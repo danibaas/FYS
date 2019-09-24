@@ -53,8 +53,8 @@ class Healthbar {
         }
       }
     }
-    //Press 'a' to eat a stroopwafel / pick up health
-    if (keyPressed == true && key == 'a') {
+    //Press 'o' to eat a stroopwafel / pick up health
+    if (keyPressed == true && key == 'o') {
       if (clickedLastFrame == false) {
         clickedLastFrame = true;
         if (lives<6 && dead == false) {
