@@ -5,6 +5,7 @@ int highscore = 0;
 Scene activateScene;
 //healthbar
 Healthbar hb;
+//Jump j; <-- gravity mechanic
 
 void setup() {
   // ratio 16:9
@@ -16,6 +17,8 @@ void setup() {
   }
   hb = new Healthbar();
   hb.loadHealth();
+  //j = new Jump();
+  //j.setupGravity();
 }
 
 // the game loop

@@ -4,11 +4,11 @@ class Gravity {
   float y = height/4;
 
   float gravity = 0.1;
-  float felocity = 0;
+  float velocity = 0;
   float upforce = -6;
 
   void jump() {
-    felocity += upforce;
+    velocity += upforce;
     //jump mechanic
   }
 
@@ -22,13 +22,13 @@ class Gravity {
 
 
   void fall() {
-    felocity += gravity;
-    y += felocity;
+    velocity += gravity;
+    y += velocity;
     //zwaartekracht functie
 
     if (y > height) {
       y = height;
-      felocity = 0;
+      velocity = 0;
       //bal blijft zo binnen het scherm
     }
   }
