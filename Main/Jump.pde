@@ -1,8 +1,7 @@
-Ball ball;
+Gravity ball;
 
 void setup(){
-  size(720, 480);
-  ball = new Ball();
+  ball = new Gravity();
 }
 
 void draw(){
