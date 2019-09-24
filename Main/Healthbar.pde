@@ -16,25 +16,23 @@ class Healthbar {
     strokeWeight(3);
     rect(-10, -10, 310, 60);
 
-
     fill(0);
     strokeWeight(1);
     textSize(25);
-    text("lives: "+lives, 0, 75);
+    text("lives: " + lives, 0, 75);
 
     int x = 0;
-    for (int i=0; i<iMax; i++) {
+    for (int i=0; i < iMax; i++) {
       image(stroopwafel, x, 0, stroopwafel.width/8, stroopwafel.height/8);
-      x+=50;
+      x += 50;
     }
-
-    if (dead == true) {
+    // display gameover screen
+    if (dead) {
       fill(0);
       textSize(50);
       text("GAME OVER", 500, 360);
     }
   }
-
 
   boolean clickedLastFrame = false;
   boolean dead = false;
@@ -53,7 +51,7 @@ class Healthbar {
         }
       }
     }
-    //Press 'o' to eat a stroopwafel / pick up health
+    //Press 'o' to eat a stroopwafel
     if (keyPressed == true && key == 'o') {
       if (clickedLastFrame == false) {
         clickedLastFrame = true;
