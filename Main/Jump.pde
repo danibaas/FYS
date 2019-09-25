@@ -1,11 +1,11 @@
 class Jump {
   Gravity ball;
 
-  void setupGravity() {
+  void setupGravity() { // object affected by gravity should be initialised in here
     ball = new Gravity();
   }
 
-  void drawGravity() {
+  void drawGravity() { // draw everything that gravity handles
     background(0);
 
     ball.show();
