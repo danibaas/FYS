@@ -12,6 +12,7 @@ class Block {
     this.boxWidth2 = boxWidth2;
     this.boxHeight2 = boxHeight2;
   }
+
   void noCollision() {
     if (position.x + boxWidth < position2.x || 
       position.x > position2.x + boxWidth2||
