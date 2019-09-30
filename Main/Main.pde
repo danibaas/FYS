@@ -8,6 +8,8 @@ Scene activateScene;
 //healthbar
 Healthbar hb;
 //Jump j; <-- gravity mechanic
+CharacterAttack ca;
+//character attack
 
 void setup() {
   // ratio 16:9
@@ -19,6 +21,8 @@ void setup() {
   }
   hb = new Healthbar();
   hb.loadHealth();
+  ca = new CharacterAttack();
+  ca.loadAttack();
   //j = new Jump();
   //j.setupGravity();
 }
@@ -28,12 +32,15 @@ void draw() {
   activateScene.Update();
   activateScene.Draw();
   hb.drawHealthbar();
+  ca.drawAttack();
 }
 
 void keyPressed() {
   hb.pressedKey();
+  ca.pressed();
 }
 
 void keyReleased() {
   hb.releasedKey();
+  ca.released();
 }
