@@ -8,7 +8,7 @@ class Ball {
   }
 
   void Update() {
-    position =  position.add(new PVector(10, 0));
+    position = position.add(new PVector(10, 0));
   }
 
   void Draw() {

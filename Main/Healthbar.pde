@@ -1,6 +1,5 @@
 class Healthbar {
   PImage stroopwafel;
-
   int lives = 6;
   int iMax = 6;
 
@@ -37,14 +36,14 @@ class Healthbar {
   boolean clickedLastFrame = false;
   boolean dead = false;
 
-  void pressed() {
+  void pressedKey() {
     //Press 'd' to take damage
     if (keyPressed == true && key == 'd') {
       if (clickedLastFrame == false) {
         clickedLastFrame = true;
-        if (lives>0) {
-          lives -= 1;
-          iMax  -= 1;
+        if (lives > 0) {
+          lives--;
+          iMax--;
           if (lives == 0) {
             dead = true;
           }
@@ -55,15 +54,15 @@ class Healthbar {
     if (keyPressed == true && key == 'o') {
       if (clickedLastFrame == false) {
         clickedLastFrame = true;
-        if (lives<6 && dead == false) {
-          lives += 1;
-          iMax += 1;
+        if (lives < 6 && dead == false) {
+          lives++;
+          iMax++;
         }
       }
     }
   }
 
-  void released() {
+  void releasedKey() {
     clickedLastFrame = false;
   }
 }

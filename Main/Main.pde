@@ -1,6 +1,8 @@
 import de.bezier.data.sql.*;
-SQLite sql;
+
 int highscore = 0;
+SQLite sql;
+
 //scenes
 Scene activateScene;
 //healthbar
@@ -23,16 +25,15 @@ void setup() {
 
 // the game loop
 void draw() {
-  //background(255);
   activateScene.Update();
   activateScene.Draw();
   hb.drawHealthbar();
 }
 
 void keyPressed() {
-  hb.pressed();
+  hb.pressedKey();
 }
 
 void keyReleased() {
-  hb.released();
+  hb.releasedKey();
 }

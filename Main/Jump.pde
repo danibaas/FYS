@@ -1,13 +1,12 @@
 class Jump {
   Gravity ball;
 
-  void setupGravity() {
+  void setupGravity() { // object affected by gravity should be initialised in here
     ball = new Gravity();
   }
 
-  void drawGravity() {
+  void drawGravity() { // draw everything that gravity handles
     background(0);
-
     ball.show();
     ball.fall();
   }
@@ -15,11 +14,9 @@ class Jump {
   void gravityPressed() {
     if (key == 'w') {
       ball.jump();
-    }
-    if (key == 'd') {
+    } else if (key == 'd') {
       ball.rightmovement();
-    }
-    if (key == 'a') {
+    } else if (key == 'a') {
       ball.leftmovement();
     }
   }
@@ -69,4 +66,4 @@ class Jump {
  final static int arrowLeft = 64;
  final static int ArrowRight = 128;
  }
-*/
+ */
