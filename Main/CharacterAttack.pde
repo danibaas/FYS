@@ -53,10 +53,6 @@ class CharacterAttack {
         }
       }
     }
-    if (keyPressed == true && key == CODED) {
-      if (key == ESC) {
-      }
-    }
   }
 
   void released() {
