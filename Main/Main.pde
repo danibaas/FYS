@@ -16,6 +16,15 @@ void setup() {
   // ratio 16:9
   size(1280, 720);
   activateScene = new StartScene();
+  String path = sketchPath() + "/highscores.db";
+  File f = new File(path);
+  if (!f.exists()) {
+    try {
+      f.createNewFile();
+    } catch(IOException e) {
+      println(e);
+    }
+  }
   sql = new SQLite(this, "highscores.db");
   if (sql.connect()) {
     sql.execute("CREATE TABLE IF NOT EXISTS highscores (name varchar(128), int score)");
@@ -48,6 +57,6 @@ void keyReleased() {
   hb.releasedKey();
   ca.released();
 }
-void mousePressed(){
+void mousePressed() {
   cs.pressed();
 }
