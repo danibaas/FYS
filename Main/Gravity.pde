@@ -6,7 +6,7 @@ class Gravity {
   float gravity = 0.1;
   float velocity = 0;
   float upforce = -6;
-  float movement = 20;
+  float movement = 3.5;
 
   void jump() {
     velocity += upforce;

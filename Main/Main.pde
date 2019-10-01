@@ -36,7 +36,6 @@ void setup() {
 
 // the game loop
 void draw() {
-  smooth();
   activateScene.Update();
   activateScene.Draw();
   jump.drawGravity();
