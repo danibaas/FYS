@@ -4,13 +4,15 @@ Main instance;
 HighScore highScore;
 //scenes
 Scene activateScene;
-CharacterSelect cs;
 
 //healthbar
 Healthbar hb;
 //Jump j; <-- gravity mechanic
 CharacterAttack ca;
 //game over screen
+//character attack
+CharacterSelect cs;
+//character select
 GameOver go;
 
 void setup() {
