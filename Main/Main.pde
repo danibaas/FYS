@@ -34,7 +34,6 @@ void setup() {
   ca = new CharacterAttack();
   ca.loadAttack();
   cs = new CharacterSelect();
-  cs.Draw();
   //j = new Jump();
   //j.setupGravity();
 }

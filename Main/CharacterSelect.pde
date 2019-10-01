@@ -1,8 +1,8 @@
 class CharacterSelect extends Scene {
   boolean hasChosen = false;
 
-  void Update() {
-  }
+  void Update() {}
+  
   void Draw() {
     if (!hasChosen) {
       background(120);
