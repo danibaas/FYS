@@ -4,15 +4,16 @@ Main instance;
 HighScore highScore;
 //scenes
 Scene activateScene;
+CharacterSelect cs;
 
 //healthbar
 Healthbar hb;
 //Jump j; <-- gravity mechanic
-CharacterAttack ca;
-//game over screen
+
 //character attack
-CharacterSelect cs;
-//character select
+CharacterAttack ca;
+
+//game over screen
 GameOver go;
 
 void setup() {
@@ -22,20 +23,6 @@ void setup() {
   highScore = new HighScore();
   highScore.initializeDatabase();
   activateScene = new StartScene();
-  String path = sketchPath() + "/highscores.db";
-  File f = new File(path);
-  if (!f.exists()) {
-    try {
-      f.createNewFile();
-    } 
-    catch(IOException e) {
-      println(e);
-    }
-  }
-  sql = new SQLite(this, f.getPath());
-  if (sql.connect()) {
-    sql.execute("CREATE TABLE IF NOT EXISTS highscores (name varchar(128), int score)");
-  }
   hb = new Healthbar();
   hb.loadHealth();
   //  hb.loadHealth();/  //hb.addHealth();
