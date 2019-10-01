@@ -1,4 +1,4 @@
-class gameOver {
+class GameOver {
 
   void fontLoad(){
     PFont eightBit;
@@ -7,7 +7,7 @@ class gameOver {
   }
 
   
-  void display() {
+  void drawDisplay() {
     fill(0);
     rectMode(CENTER);
     rect(width/2, height/2, 400, 150);

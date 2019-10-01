@@ -11,6 +11,8 @@ Healthbar hb;
 CharacterAttack ca;
 //character attack
 CharacterSelect cs;
+//character select
+GameOver go;
 
 void setup() {
   // ratio 16:9
@@ -21,7 +23,8 @@ void setup() {
   if (!f.exists()) {
     try {
       f.createNewFile();
-    } catch(IOException e) {
+    } 
+    catch(IOException e) {
       println(e);
     }
   }
@@ -31,6 +34,7 @@ void setup() {
   }
   hb = new Healthbar();
   hb.loadHealth();
+  //  hb.loadHealth();/  //hb.addHealth();
   ca = new CharacterAttack();
   ca.loadAttack();
   cs = new CharacterSelect();
