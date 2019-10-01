@@ -26,29 +26,28 @@ void setup() {
   activateScene = new StartScene();
   hb = new Healthbar();
   hb.loadHealth();
-  //  hb.loadHealth();/  //hb.addHealth();
   ca = new CharacterAttack();
   ca.loadAttack();
   cs = new CharacterSelect();
   //j = new Jump();
-  jump = new Jump();
-  jump.setupGravity();
+  // jump = new Jump();
+  //  jump.setupGravity();
 }
 
 // the game loop
 void draw() {
   activateScene.Update();
   activateScene.Draw();
-  hb.drawHealthbar();
   ca.drawAttack();
+  hb.drawHealthbar();
   cs.Draw();
-  jump.drawGravity();
+  // jump.drawGravity();
 }
 
 void keyPressed() {
   hb.pressedKey();
   ca.pressed();
-  jump.gravityPressed();
+  // jump.gravityPressed();
 }
 
 void keyReleased() {

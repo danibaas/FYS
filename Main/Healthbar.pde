@@ -36,16 +36,11 @@ class Healthbar {
   }
 
   void drawHealthbar() {
-    background(255);
+    //background(255);
     //Box of lives
     fill(255);
     strokeWeight(3);
     rect(-10, -10, 310, 60);
-
-    //fill(0);
-    //strokeWeight(1);
-    //textSize(25);
-    //text("lives: " + lives, 0, 75);
 
     int x = 0;
     for (int i=0; i < iMax; i++) {
