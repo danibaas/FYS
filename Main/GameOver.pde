@@ -5,7 +5,6 @@ class GameOver {
     eightBit = createFont("PressStart2P.ttf", 30);
     textFont(eightBit);
   }
-
   
   void drawDisplay() {
     fill(0);

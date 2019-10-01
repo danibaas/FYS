@@ -2,6 +2,8 @@ class Healthbar {
   PImage stroopwafel;
   int lives = 6;
   int iMax = 6;
+  boolean clickedLastFrame = false;
+  boolean dead = false;
 
   void loadHealth() {
     stroopwafel = loadImage("stroopwafel.jpg");
@@ -17,16 +19,15 @@ class Healthbar {
     }
   }
 
-
   void addHealth() {
     if (lives < 6 && dead == false) {
       lives++;
       iMax++;
     }
   }
+
   void drawHealthbar() {
     background(255);
-
     //Box of lives
     fill(255);
     strokeWeight(3);
@@ -44,14 +45,11 @@ class Healthbar {
     }
     // display gameover screen
     if (dead) {
-    //  fill(0);
-    //  textSize(50);
-    //  text("GAME OVER", 500, 360);
+      //  fill(0);
+      //  textSize(50);
+      //  text("GAME OVER", 500, 360);
     }
   }
-
-  boolean clickedLastFrame = false;
-  boolean dead = false;
 
   void pressedKey() {
     //Press 'd' to take damage

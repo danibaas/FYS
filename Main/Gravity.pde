@@ -20,7 +20,6 @@ class Gravity {
     x += 20;
   }
 
-
   void fall() {
     velocity += gravity;
     y += velocity;
