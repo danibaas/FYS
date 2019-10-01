@@ -30,7 +30,6 @@ void setup() {
   ca.loadAttack();
   cs = new CharacterSelect();
   jump = new Jump();
-  jump = new Jump();
   jump.setupGravity();
 }
 

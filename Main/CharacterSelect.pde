@@ -15,7 +15,7 @@ class CharacterSelect extends Scene {
 
 
   void pressed() {
-    if (mousePressed == true && mouseButton == LEFT) {
+    if (mousePressed && mouseButton == LEFT) {
       if (mouseX>=400 && mouseX<=600 && mouseY>=400 && mouseY<=500) {
         //CharacterSelect Corra
         hasChosen = true;

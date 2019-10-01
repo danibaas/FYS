@@ -36,6 +36,6 @@ class Gravity {
     fill(255);
     rectMode(CENTER);
     rect(x, y, 50, 50);
-    
+    rectMode(CORNER);
   }
 }
