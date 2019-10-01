@@ -4,7 +4,7 @@ Main instance;
 HighScore highScore;
 //scenes
 Scene activateScene;
-CharacterSelect cs;
+//CharacterSelect cs;
 
 Block block;
 
@@ -30,7 +30,7 @@ void setup() {
   hb.loadHealth();
   ca = new CharacterAttack();
   ca.loadAttack();
-  cs = new CharacterSelect();
+ // cs = new CharacterSelect();
   jump = new Jump();
   jump.setupGravity();
   go = new GameOver();
@@ -45,7 +45,7 @@ void draw() {
   jump.drawGravity();
   ca.drawAttack();
   hb.drawHealthbar();
-  cs.Draw();
+  //cs.Draw();
 
 }
 
@@ -60,5 +60,5 @@ void keyReleased() {
   ca.released();
 }
 void mousePressed() {
-  cs.pressed();
+  //cs.pressed();
 }

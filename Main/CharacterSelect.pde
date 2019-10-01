@@ -1,4 +1,4 @@
-class CharacterSelect extends Scene {
+/*class CharacterSelect extends Scene {
   boolean hasChosen = false;
 
   void Update() {}
@@ -32,4 +32,4 @@ class CharacterSelect extends Scene {
       }
     }
   }
-}
+}*/
