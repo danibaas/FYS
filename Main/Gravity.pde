@@ -6,6 +6,7 @@ class Gravity {
   float gravity = 0.1;
   float velocity = 0;
   float upforce = -6;
+  float movement = 20;
 
   void jump() {
     velocity += upforce;
@@ -13,11 +14,11 @@ class Gravity {
   }
 
   void leftmovement() {
-    x -= 20;
+    x -= movement;
   }
 
   void rightmovement() {
-    x += 20;
+    x += movement;
   }
 
   void fall() {
@@ -36,6 +37,6 @@ class Gravity {
     fill(255);
     rectMode(CENTER);
     rect(x, y, 50, 50);
-    
+    rectMode(CORNER);
   }
 }

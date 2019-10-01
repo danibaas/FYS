@@ -30,12 +30,13 @@ void setup() {
   ca.loadAttack();
   cs = new CharacterSelect();
   jump = new Jump();
-  jump = new Jump();
   jump.setupGravity();
+  go = new GameOver();
 }
 
 // the game loop
 void draw() {
+  smooth();
   activateScene.Update();
   activateScene.Draw();
   jump.drawGravity();
