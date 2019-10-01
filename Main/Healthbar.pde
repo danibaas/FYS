@@ -25,9 +25,13 @@ class Healthbar {
   }
 
   void addHealth() {
-    if (lives < 6 && dead == false) {
-      lives++;
-      iMax++;
+    if (!addAHealth && !dead && !clickedLastFrame) {
+      addAHealth = true;
+      clickedLastFrame = true;
+      if (lives < 6 && !dead) {
+        lives++;
+        iMax++;
+      }
     }
   }
 
@@ -50,9 +54,6 @@ class Healthbar {
     }
     // display gameover screen
     if (dead) {
-      //  fill(0);
-      //  textSize(50);
-      //  text("GAME OVER", 500, 360);
     }
   }
 
@@ -85,5 +86,6 @@ class Healthbar {
   void releasedKey() {
     clickedLastFrame = false;
     removeAHealth = false;
+    addAHealth = false;
   }
 }

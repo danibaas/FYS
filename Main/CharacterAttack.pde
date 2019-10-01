@@ -23,7 +23,6 @@ class CharacterAttack {
     if (attack == true) {
       a.drawFireball();
       a.move();
-      //hb.addHealth();
     }
     for (Fireball s : fireballs) {
       if (s.getSpecial()) {
@@ -47,7 +46,6 @@ class CharacterAttack {
         clickedLastFrame = true;
         for (Fireball b : fireballs) {
           b.setSpecial(true);
-          hb.removeHealth();
         }
       }
     }
