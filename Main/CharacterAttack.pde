@@ -3,6 +3,8 @@ class CharacterAttack {
   PImage fireBallSpecial;
   ArrayList<Fireball> fireballs = new ArrayList();
   Fireball a;
+  private boolean clickedLastFrame = false;
+  private boolean attack = false;
 
   void loadAttack() {
     fireBall = loadImage("Fireball.jpg");
@@ -21,20 +23,15 @@ class CharacterAttack {
     if (attack == true) {
       a.drawFireball();
       a.move();
+      //hb.addHealth();
     }
-    //if (specialAttack == true) {
     for (Fireball s : fireballs) {
       if (s.getSpecial()) {
         s.drawFireball();
         s.move();
       }
     }
-    // }
   }
-
-
-  boolean clickedLastFrame = false;
-  boolean attack = false;
 
   void pressed() {
     //Activate normale attack by pressing 'a'
@@ -50,6 +47,7 @@ class CharacterAttack {
         clickedLastFrame = true;
         for (Fireball b : fireballs) {
           b.setSpecial(true);
+          hb.removeHealth();
         }
       }
     }
@@ -116,7 +114,6 @@ class CharacterAttack {
         special = false;
         yS=0;
       }
-      println(yS, xA);
     }
 
     void setSpecial(boolean specialA) {
