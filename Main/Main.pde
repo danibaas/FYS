@@ -7,6 +7,8 @@ Scene activateScene;
 //CharacterSelect cs;
 
 Block block;
+Pickup pu;
+
 
 //healthbar
 Healthbar hb;
@@ -35,6 +37,7 @@ void setup() {
   jump.setupGravity();
   go = new GameOver();
   block = new Block(new PVector(200, 200), 100, 100);
+  pu = new Pickup(new PVector(200, 200), 100, 100);
 }
 
 // the game loop
@@ -42,6 +45,7 @@ void draw() {
   activateScene.Update();
   activateScene.Draw();
   block.noCollision();
+  pu.pickup();
   jump.drawGravity();
   ca.drawAttack();
   hb.drawHealthbar();

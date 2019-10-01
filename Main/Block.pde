@@ -3,6 +3,7 @@ class Block {
   PVector position2;
   float boxWidth2, boxHeight2;
   float radius = 25;
+  boolean collision = false;
 
 
   public Block(PVector position2, float boxWidth2, float boxHeight2) {
@@ -18,10 +19,10 @@ class Block {
       x - radius > position2.x + boxWidth2||
       y + radius < position2.y || 
       y - radius > position2.y + boxHeight2 ) {
-
+      collision = false;
       // no collision
     } else { 
-      println("collision");
+      collision = true;
     }
     rect(position2.x, position2.y, boxWidth2, boxHeight2);
   }
