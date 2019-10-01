@@ -6,6 +6,8 @@ HighScore highScore;
 Scene activateScene;
 CharacterSelect cs;
 
+Block block;
+
 //healthbar
 Healthbar hb;
 //Jump j; <-- gravity mechanic
@@ -32,16 +34,19 @@ void setup() {
   jump = new Jump();
   jump.setupGravity();
   go = new GameOver();
+  block = new Block(new PVector(200,200), 100,100);
 }
 
 // the game loop
 void draw() {
   activateScene.Update();
   activateScene.Draw();
+    block.noCollision();
   jump.drawGravity();
   ca.drawAttack();
   hb.drawHealthbar();
   cs.Draw();
+
 }
 
 void keyPressed() {
