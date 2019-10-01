@@ -7,6 +7,23 @@ class Healthbar {
     stroopwafel = loadImage("stroopwafel.jpg");
   }
 
+  void removeHealth() {
+    if (lives > 0 ) {
+      lives-=1;
+      iMax-=1;
+      if (lives == 0) {
+        dead = true;
+      }
+    }
+  }
+
+
+  void addHealth() {
+    if (lives < 6 && dead == false) {
+      lives++;
+      iMax++;
+    }
+  }
   void drawHealthbar() {
     background(255);
 
@@ -15,10 +32,10 @@ class Healthbar {
     strokeWeight(3);
     rect(-10, -10, 310, 60);
 
-    fill(0);
-    strokeWeight(1);
-    textSize(25);
-    text("lives: " + lives, 0, 75);
+    //fill(0);
+    //strokeWeight(1);
+    //textSize(25);
+    //text("lives: " + lives, 0, 75);
 
     int x = 0;
     for (int i=0; i < iMax; i++) {
@@ -27,9 +44,9 @@ class Healthbar {
     }
     // display gameover screen
     if (dead) {
-      fill(0);
-      textSize(50);
-      text("GAME OVER", 500, 360);
+    //  fill(0);
+    //  textSize(50);
+    //  text("GAME OVER", 500, 360);
     }
   }
 
