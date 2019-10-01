@@ -71,8 +71,8 @@ class Healthbar {
         }
       }
     }
-    //Press 'o' to eat a stroopwafel
-    if (keyPressed == true && key == 'o') {
+    //Press 'e' to eat a stroopwafel
+    if (keyPressed == true && key == 'e') {
       if (clickedLastFrame == false) {
         clickedLastFrame = true;
         if (lives < 6 && dead == false) {
