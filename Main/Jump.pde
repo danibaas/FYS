@@ -12,12 +12,14 @@ class Jump {
   }
 
   void gravityPressed() {
-    if (key == 'w') {
-      ball.jump();
-    } else if (key == 'd') {
-      ball.rightmovement();
-    } else if (key == 'a') {
-      ball.leftmovement();
+    if (key == CODED) {
+      if (keyCode == UP) {
+        ball.jump();
+      } else if (keyCode == RIGHT) {
+        ball.rightmovement();
+      } else if (keyCode == LEFT) {
+        ball.leftmovement();
+      }
     }
   }
 }
