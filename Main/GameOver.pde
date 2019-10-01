@@ -27,9 +27,9 @@ class GameOver {
     // reset game
      if(keyPressed){
       if(key == 'r'){
-        frameCount = -1;
         gameOver = false;
-      }
+        frameCount = -1;
+        }
     }
   }
 }

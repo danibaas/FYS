@@ -31,6 +31,7 @@ void setup() {
   cs = new CharacterSelect();
   jump = new Jump();
   jump.setupGravity();
+  go = new GameOver();
 }
 
 // the game loop
