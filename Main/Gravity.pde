@@ -34,6 +34,8 @@ class Gravity {
 
   void show() {
     fill(255);
-    ellipse(x, y, 50, 50);
+    rectMode(CENTER);
+    rect(x, y, 50, 50);
+    
   }
 }

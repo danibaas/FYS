@@ -9,6 +9,7 @@ CharacterSelect cs;
 //healthbar
 Healthbar hb;
 //Jump j; <-- gravity mechanic
+Jump jump;
 
 //character attack
 CharacterAttack ca;
@@ -30,7 +31,8 @@ void setup() {
   ca.loadAttack();
   cs = new CharacterSelect();
   //j = new Jump();
-  //j.setupGravity();
+  jump = new Jump();
+  jump.setupGravity();
 }
 
 // the game loop
@@ -40,11 +42,13 @@ void draw() {
   hb.drawHealthbar();
   ca.drawAttack();
   cs.Draw();
+  jump.drawGravity();
 }
 
 void keyPressed() {
   hb.pressedKey();
   ca.pressed();
+  jump.gravityPressed();
 }
 
 void keyReleased() {
