@@ -2,13 +2,9 @@
 Main instance;
 //highscore class, handles highscore.
 HighScore highScore;
-//scenes
-Scene activateScene;
 //CharacterSelect cs;
-
 Block block;
 Pickup pu;
-
 
 //healthbar
 Healthbar hb;
@@ -27,7 +23,6 @@ void setup() {
   instance = this;
   highScore = new HighScore();
   highScore.initializeDatabase();
-  activateScene = new StartScene();
   hb = new Healthbar();
   hb.loadHealth();
   ca = new CharacterAttack();
@@ -42,8 +37,7 @@ void setup() {
 
 // the game loop
 void draw() {
-  activateScene.Update();
-  activateScene.Draw();
+  background(255, 253, 208);
   block.noCollision();
   pu.pickup();
   jump.drawGravity();

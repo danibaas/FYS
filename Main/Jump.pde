@@ -7,7 +7,10 @@ class Jump {
 
   void drawGravity() { // draw everything that gravity handles
     ball.show();
-    ball.fall();
+    if (ball.y < height-25) {
+      ball.fall();
+    }
+   
     ball.move();
   }
 
@@ -15,6 +18,7 @@ class Jump {
     if (key == CODED) {
       if (keyCode == UP) {
         ball.jump();
+        ball.setMove(keyCode, true);
       } else if (keyCode == RIGHT) {
         ball.setMove(keyCode, true);
       } else if (keyCode == LEFT) {
