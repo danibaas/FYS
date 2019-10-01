@@ -33,14 +33,14 @@ class CharacterAttack {
   }
 
   void pressed() {
-    //Activate normale attack by pressing 'a'
+    //Activate normal attack by pressing 'a'
     if (keyPressed == true && key == 'a') {
       if (clickedLastFrame == false) {
         attack = true;
         clickedLastFrame = true;
       }
     }
-    //Activate speciale attack by pressing 's'
+    //Activate special attack by pressing 's'
     if (keyPressed == true && key == 's') {
       if (clickedLastFrame == false) {
         clickedLastFrame = true;
