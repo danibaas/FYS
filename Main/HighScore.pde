@@ -24,6 +24,10 @@ class HighScore {
   void updateScore() {
     highScore++;
   }
+
+  void setScore(int score) {
+    highScore = score;
+  }
   // database 
   void saveHighScore(String name, int score) {
     if (sql.connect()) {
