@@ -1,10 +1,8 @@
 class Block {
-
   PVector position2;
   float boxWidth2, boxHeight2;
   float radius = 25;
   boolean collision = false;
-
 
   public Block(PVector position2, float boxWidth2, float boxHeight2) {
     this.position2 = position2;

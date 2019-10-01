@@ -1,12 +1,12 @@
 class GameOver {
   boolean gameOver;
 
-  void fontLoad(){
+  void fontLoad() {
     PFont eightBit;
     eightBit = createFont("PressStart2P.ttf", 30);
     textFont(eightBit);
   }
-  
+
   void drawDisplay() {
     gameOver = true;
     fill(0);
@@ -23,13 +23,13 @@ class GameOver {
     text("Retry?", width/2, height/2+25);
     fill(0, 0, 0, 0);
     rect(width/2, height/2+30, 100, 30);
-    
+
     // reset game
-     if(keyPressed){
-      if(key == 'r'){
+    if (keyPressed) {
+      if (key == 'r') {
         gameOver = false;
         frameCount = -1;
-        }
+      }
     }
   }
 }

@@ -5,7 +5,7 @@ class Pickup extends Block {
   }
 
   void pickup() {
-    if (block.collision == true) {
+    if (block.collision) {
       hb.addHealth();
     }
   }

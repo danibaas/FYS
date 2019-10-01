@@ -5,15 +5,12 @@ HighScore highScore;
 //CharacterSelect cs;
 Block block;
 Pickup pu;
-
 //healthbar
 Healthbar hb;
 //Jump j; <-- gravity mechanic
 Jump jump;
-
 //character attack
 CharacterAttack ca;
-
 //game over screen
 GameOver go;
 
@@ -37,7 +34,7 @@ void setup() {
 
 // the game loop
 void draw() {
-  background(255, 253, 208);
+  background(200);
   block.noCollision();
   pu.pickup();
   jump.drawGravity();

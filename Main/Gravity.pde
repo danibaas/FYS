@@ -5,7 +5,7 @@ class Gravity {
 
   float gravity = 0.1;
   float velocity = 0;
-  float upforce = -6;
+  float upforce = -7;
   float movement = 3.5;
   boolean isUp, isDown, isRight, isLeft, airBorne;
 
@@ -14,20 +14,13 @@ class Gravity {
     //jump mechanic
   }
 
-  /*void leftmovement() {
-   x -= movement;
-   }
-   
-   void rightmovement() {
-   x += movement;
-   }*/
-
   boolean isFalling() {
     return (y <= height-25);
   }
 
   void fall() {
     if (y < height-25) {
+      airBorne = true;
       velocity += gravity;
       y += velocity;
       //zwaartekracht functie
@@ -35,6 +28,7 @@ class Gravity {
       if (y > height - 25) {
         y = height - 25;
         velocity = 0;
+        airBorne = false;
         //bal blijft zo binnen het scherm
       } else if (y <= 25) {
         y = 25;
@@ -47,7 +41,6 @@ class Gravity {
     final int r = 50 >> 1;
     x = constrain(x + movement*(int(isRight) - int(isLeft)), r, width  - r);
     y = constrain(y + movement*(int(isDown)  - int(isUp)), r, height - r);
-    //println(velocity, y);
   }
 
   void show() {
