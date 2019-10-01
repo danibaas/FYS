@@ -29,25 +29,25 @@ void setup() {
   ca = new CharacterAttack();
   ca.loadAttack();
   cs = new CharacterSelect();
-  //j = new Jump();
-  // jump = new Jump();
-  //  jump.setupGravity();
+  jump = new Jump();
+  jump = new Jump();
+  jump.setupGravity();
 }
 
 // the game loop
 void draw() {
   activateScene.Update();
   activateScene.Draw();
+  jump.drawGravity();
   ca.drawAttack();
   hb.drawHealthbar();
   cs.Draw();
-  // jump.drawGravity();
 }
 
 void keyPressed() {
   hb.pressedKey();
   ca.pressed();
-  // jump.gravityPressed();
+  jump.gravityPressed();
 }
 
 void keyReleased() {
