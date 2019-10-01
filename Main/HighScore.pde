@@ -28,6 +28,10 @@ class HighScore {
   void setScore(int score) {
     highScore = score;
   }
+  
+  int getScore() {
+     return highScore; 
+  }
   // database 
   void saveHighScore(String name, int score) {
     if (sql.connect()) {
