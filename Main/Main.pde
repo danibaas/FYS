@@ -25,7 +25,7 @@ void setup() {
       println(e);
     }
   }
-  sql = new SQLite(this, "highscores.db");
+  sql = new SQLite(this, f.getPath());
   if (sql.connect()) {
     sql.execute("CREATE TABLE IF NOT EXISTS highscores (name varchar(128), int score)");
   }
