@@ -37,6 +37,6 @@
         //CharacterSelect Dondon
         hasChosen = true;
       }
-    }*/
+    }
   }
 }*/
