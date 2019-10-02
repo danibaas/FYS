@@ -46,6 +46,7 @@ void draw() {
 void keyPressed() {
   hb.pressedKey();
   ca.pressed();
+  //cs.pressed();
   jump.gravityPressed();
 }
 
@@ -53,8 +54,4 @@ void keyReleased() {
   hb.releasedKey();
   ca.released();
   jump.gravityReleased();
-}
-
-void mousePressed() {
-  //cs.pressed();
 }
