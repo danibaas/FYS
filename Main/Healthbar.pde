@@ -12,22 +12,23 @@ class Healthbar {
   }
 
   void removeHealth() {
-    if (!removeAHealth && !dead && !clickedLastFrame) {
+    if (!removeAHealth && !dead) {
       removeAHealth = true;
-      clickedLastFrame = true;
+      //clickedLastFrame = true;
       if (lives > 0 ) {
         lives--;
         iMax--;
-      } else if (lives == 0) {
+      } 
+      if (lives == 0) {
         dead = true;
       }
     }
   }
 
   void addHealth() {
-    if (!addAHealth && !dead && !clickedLastFrame) {
+    if (!addAHealth && !dead ) {
       addAHealth = true;
-      clickedLastFrame = true;
+      //clickedLastFrame = true;
       if (lives < 6 && !dead) {
         lives++;
         iMax++;
@@ -51,6 +52,7 @@ class Healthbar {
     if (dead) {
       go.drawDisplay();
     }
+    println(iMax, dead);
   }
 
   void pressedKey() {
@@ -58,23 +60,14 @@ class Healthbar {
     if (keyPressed == true && key == 'd') {
       if (clickedLastFrame == false) {
         clickedLastFrame = true;
-        if (lives > 0) {
-          lives--;
-          iMax--;
-          if (lives == 0) {
-            dead = true;
-          }
-        }
+        removeHealth();
       }
     }
     //Press 'e' to eat a stroopwafel
     if (keyPressed == true && key == 'e') {
       if (clickedLastFrame == false) {
         clickedLastFrame = true;
-        if (lives < 6 && dead == false) {
-          lives++;
-          iMax++;
-        }
+        hb.addHealth();
       }
     }
   }
