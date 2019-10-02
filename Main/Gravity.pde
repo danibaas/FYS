@@ -3,9 +3,9 @@ class Gravity {
   float x = 140;
   float y = height/4;
 
-  float gravity = 0.2;
+  float gravity = 0.08;
   float velocity = 0;
-  float upforce = -7;
+  float upforce = -4;
   float movement = 3.5;
   boolean isUp, isDown, isRight, isLeft, airBorne;
 
