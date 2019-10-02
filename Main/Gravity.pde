@@ -7,7 +7,7 @@ class Gravity {
   float velocity = 0;
   float upforce = -3.5;
   float movement = 3.5;
-  boolean isUp, isDown, isRight, isLeft, airBorne, jumped;
+  boolean isUp, isDown, isRight, isLeft, airBorne;
 
   void jump() {
     velocity += upforce;
@@ -16,15 +16,6 @@ class Gravity {
 
   boolean isFalling() {
     return (y <= height-25);
-  }
-
-  boolean hasJumped() {
-    return jumped;
-  }
-
-  void fall() {
-
-    println(velocity, y);
   }
 
   void move() {
