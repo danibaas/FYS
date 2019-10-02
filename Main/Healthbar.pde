@@ -52,7 +52,6 @@ class Healthbar {
     if (dead) {
       go.drawDisplay();
     }
-    println(iMax, dead);
   }
 
   void pressedKey() {
