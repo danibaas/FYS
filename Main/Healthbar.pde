@@ -14,7 +14,6 @@ class Healthbar {
   void removeHealth() {
     if (!removeAHealth && !dead) {
       removeAHealth = true;
-      //clickedLastFrame = true;
       if (lives > 0 ) {
         lives--;
         iMax--;
@@ -28,7 +27,6 @@ class Healthbar {
   void addHealth() {
     if (!addAHealth && !dead ) {
       addAHealth = true;
-      //clickedLastFrame = true;
       if (lives < 6 && !dead) {
         lives++;
         iMax++;
@@ -37,7 +35,6 @@ class Healthbar {
   }
 
   void drawHealthbar() {
-    //background(255);
     //Box of lives
     fill(255);
     strokeWeight(3);
