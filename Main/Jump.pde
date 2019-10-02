@@ -7,9 +7,9 @@ class Jump {
 
   void drawGravity() { // draw everything that gravity handles
     ball.show();
-    if (ball.y < height-25) {
+    /*if (ball.y < height-25) {
       ball.fall();
-    }
+    }*/
     ball.move();
   }
 
