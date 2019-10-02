@@ -3,7 +3,7 @@ class Gravity {
   float x = 140;
   float y = height/4;
 
-  float gravity = 0.1;
+  float gravity = 0.2;
   float velocity = 0;
   float upforce = -7;
   float movement = 3.5;
