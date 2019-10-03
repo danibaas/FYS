@@ -5,8 +5,9 @@
   }
 
   void pickup() {
-    if (block.collision) {
+    if (collision) {
       hb.addHealth();
     }
+    rect(position2.x, position2.y, boxWidth2, boxHeight2);
   }
 }

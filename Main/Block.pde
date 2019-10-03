@@ -22,6 +22,6 @@ class Block {
     } else { 
       collision = true;
     }
-    rect(position2.x, position2.y, boxWidth2, boxHeight2);
+    
   }
 }

@@ -3,8 +3,9 @@ Main instance;
 //highscore class, handles highscore.
 HighScore highScore;
 //CharacterSelect cs;
-Block block;
+
 Pickup pu;
+Enemy e;
 //healthbar
 Healthbar hb;
 //Jump j; <-- gravity mechanic
@@ -28,14 +29,16 @@ void setup() {
   jump = new Jump();
   jump.setupGravity();
   go = new GameOver();
-  block = new Block(new PVector(200, 200), 100, 100);
-  pu = new Pickup(new PVector(200, 200), 100, 100);
+  pu = new Pickup(new PVector(300, 400), 100, 100);
+  e = new Enemy(new PVector(500,500),100,100);
 }
 
 // the game loop
 void draw() {
   background(200);
-  block.noCollision();
+  e.noCollision();
+  e.enemy();
+  pu.noCollision();
   pu.pickup();
   jump.drawGravity();
   ca.drawAttack();
