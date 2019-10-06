@@ -28,7 +28,7 @@ class Background {
 
     //achtergrond blok1
     Bx = Bx - speed;
-    if (Bx < -640) {
+    if (Bx < -640 && mousePressed) {
       Bx = 1280;
     }
     if (Bx > 0 - 1);
@@ -37,7 +37,7 @@ class Background {
 
     //achtergrond blok2
     Bx2 = Bx2 - speed;
-    if (Bx2 < -640) {
+    if (Bx2 < -640 && mousePressed) {
       Bx2 = 1280;
     }
     if (Bx2 > 0 - 1);
@@ -46,7 +46,7 @@ class Background {
 
     //achtergrond blok3
     Bx3 = Bx3 - speed;
-    if (Bx3 < -640) {
+    if (Bx3 < -640 && mousePressed) {
       Bx3 = 1280;
     }
     if (Bx3 > 0 - 1);
