@@ -12,22 +12,21 @@ class Healthbar {
   }
 
   void removeHealth() {
-    if (!removeAHealth && !dead && !clickedLastFrame) {
+    if (!removeAHealth && !dead) {
       removeAHealth = true;
-      clickedLastFrame = true;
       if (lives > 0 ) {
         lives--;
         iMax--;
-      } else if (lives == 0) {
+      } 
+      if (lives == 0) {
         dead = true;
       }
     }
   }
 
   void addHealth() {
-    if (!addAHealth && !dead && !clickedLastFrame) {
+    if (!addAHealth && !dead ) {
       addAHealth = true;
-      clickedLastFrame = true;
       if (lives < 6 && !dead) {
         lives++;
         iMax++;
@@ -36,7 +35,6 @@ class Healthbar {
   }
 
   void drawHealthbar() {
-    //background(255);
     //Box of lives
     fill(255);
     strokeWeight(3);
@@ -58,23 +56,14 @@ class Healthbar {
     if (keyPressed == true && key == 'd') {
       if (clickedLastFrame == false) {
         clickedLastFrame = true;
-        if (lives > 0) {
-          lives--;
-          iMax--;
-          if (lives == 0) {
-            dead = true;
-          }
-        }
+        removeHealth();
       }
     }
     //Press 'e' to eat a stroopwafel
     if (keyPressed == true && key == 'e') {
       if (clickedLastFrame == false) {
         clickedLastFrame = true;
-        if (lives < 6 && dead == false) {
-          lives++;
-          iMax++;
-        }
+        hb.addHealth();
       }
     }
   }

@@ -7,14 +7,16 @@ class Jump {
 
   void drawGravity() { // draw everything that gravity handles
     ball.show();
-    ball.fall();
     ball.move();
   }
 
   void gravityPressed() {
     if (key == CODED) {
       if (keyCode == UP) {
-        ball.jump();
+        if (!ball.airBorne) {
+          ball.jump();
+          ball.setMove(keyCode, true);
+        }
       } else if (keyCode == RIGHT) {
         ball.setMove(keyCode, true);
       } else if (keyCode == LEFT) {
@@ -22,8 +24,8 @@ class Jump {
       }
     }
   }
-  
+
   void gravityReleased() {
-     ball.setMove(keyCode, false); 
+    ball.setMove(keyCode, false);
   }
 }

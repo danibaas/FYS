@@ -2,23 +2,20 @@
 Main instance;
 //highscore class, handles highscore.
 HighScore highScore;
-//scenes
-Scene activateScene;
 //CharacterSelect cs;
 
-Block block;
 Pickup pu;
 
 //Background
 Background bg;
+//enemy
+Enemy e;
 //healthbar
 Healthbar hb;
 //Jump j; <-- gravity mechanic
 Jump jump;
-
 //character attack
 CharacterAttack ca;
-
 //game over screen
 GameOver go;
 
@@ -28,7 +25,7 @@ void setup() {
   instance = this;
   highScore = new HighScore();
   highScore.initializeDatabase();
-  activateScene = new StartScene();
+  // activateScene = new StartScene();
   bg = new Background();
   hb = new Healthbar();
   hb.loadHealth();
@@ -38,17 +35,21 @@ void setup() {
   jump = new Jump();
   jump.setupGravity();
   go = new GameOver();
-  block = new Block(new PVector(200, 200), 100, 100);
-  pu = new Pickup(new PVector(200, 200), 100, 100);
+  pu = new Pickup(new PVector(300, 400), 100, 100);
+  e = new Enemy(new PVector(500, 500), 100, 100);
 }
 
 // the game loop
 void draw() {
-  activateScene.Update();
-  activateScene.Draw();
+  background(200);
+  //activateScene.Update();
+  //activateScene.Draw();
   bg.Movebg();
   bg.Displaybg();
-  block.noCollision();
+  //  block.noCollision();
+  e.noCollision();
+  e.enemy();
+  pu.noCollision();
   pu.pickup();
   jump.drawGravity();
   ca.drawAttack();
@@ -59,6 +60,7 @@ void draw() {
 void keyPressed() {
   hb.pressedKey();
   ca.pressed();
+  //cs.pressed();
   jump.gravityPressed();
 }
 
@@ -66,8 +68,4 @@ void keyReleased() {
   hb.releasedKey();
   ca.released();
   jump.gravityReleased();
-}
-
-void mousePressed() {
-  //cs.pressed();
 }

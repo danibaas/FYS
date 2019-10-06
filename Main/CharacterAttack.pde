@@ -102,15 +102,15 @@ class CharacterAttack {
         xA += 5;
       }
       if (special == true) {
-        yS+=5;
+        yS += 5;
       }
-      if (xA>1280) {
+      if (xA>1280 && !special) {
         attack = false;
-        xA=0;
+        xA = 0;
       }
       if (yS>600) {
         special = false;
-        yS=0;
+        yS = 0;
       }
     }
 
