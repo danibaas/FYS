@@ -9,7 +9,8 @@ Scene activateScene;
 Block block;
 Pickup pu;
 
-
+//Background
+Background bg;
 //healthbar
 Healthbar hb;
 //Jump j; <-- gravity mechanic
@@ -28,6 +29,7 @@ void setup() {
   highScore = new HighScore();
   highScore.initializeDatabase();
   activateScene = new StartScene();
+  bg = new Background();
   hb = new Healthbar();
   hb.loadHealth();
   ca = new CharacterAttack();
@@ -44,6 +46,8 @@ void setup() {
 void draw() {
   activateScene.Update();
   activateScene.Draw();
+  bg.Movebg();
+  bg.Displaybg();
   block.noCollision();
   pu.pickup();
   jump.drawGravity();
