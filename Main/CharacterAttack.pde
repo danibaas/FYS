@@ -2,14 +2,14 @@ class CharacterAttack {
   PImage fireBall;
   PImage fireBallSpecial;
   ArrayList<Fireball> fireballs = new ArrayList();
-  Fireball a;
+  Fireball attack;
   private boolean clickedLastFrame = false;
-  private boolean attack = false;
+  private boolean canAttack = false;
 
   void loadAttack() {
     fireBall = loadImage("Fireball.jpg");
     fireBallSpecial = loadImage("FireballSpecial.jpg");
-    a = new Fireball(fireBall, 0, 500, fireBall.width/4, fireBall.height/4, 2);
+    attack = new Fireball(fireBall, 0, 500, fireBall.width/4, fireBall.height/4, 2);
     int yPos = -50;
     int xPos = 0;
     for (int i=0; i<39; i++) {
@@ -20,9 +20,9 @@ class CharacterAttack {
   }
 
   void drawAttack() {
-    if (attack == true) {
-      a.drawFireball();
-      a.move();
+    if (canAttack == true) {
+      attack.drawFireball();
+      attack.move();
     }
     for (Fireball s : fireballs) {
       if (s.getSpecial()) {
@@ -36,7 +36,7 @@ class CharacterAttack {
     //Activate normal attack by pressing 'a'
     if (keyPressed == true && key == 'a') {
       if (clickedLastFrame == false) {
-        attack = true;
+        canAttack = true;
         clickedLastFrame = true;
       }
     }
@@ -98,14 +98,14 @@ class CharacterAttack {
     }
 
     void move() {
-      if (attack == true) {
+      if (canAttack == true) {
         xA += 5;
       }
       if (special == true) {
         yS += 5;
       }
       if (xA>1280 && !special) {
-        attack = false;
+        canAttack = false;
         xA = 0;
       }
       if (yS>600) {
