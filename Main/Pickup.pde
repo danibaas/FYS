@@ -6,7 +6,7 @@
 
   void pickup() {
     if (collision) {
-      hb.addHealth();
+      healthbar.addHealth();
     }
     rect(position2.x, position2.y, boxWidth2, boxHeight2);
   }

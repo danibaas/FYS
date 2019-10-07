@@ -63,7 +63,7 @@ class Healthbar {
     if (keyPressed == true && key == 'e') {
       if (clickedLastFrame == false) {
         clickedLastFrame = true;
-        hb.addHealth();
+        healthbar.addHealth();
       }
     }
   }

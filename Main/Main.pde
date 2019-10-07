@@ -9,9 +9,9 @@ Pickup pu;
 //Background
 Background bg;
 //enemy
-Enemy e;
+Enemy enemy;
 //healthbar
-Healthbar hb;
+Healthbar healthbar;
 //Jump j; <-- gravity mechanic
 Jump jump;
 //character attack
@@ -27,8 +27,8 @@ void setup() {
   highScore.initializeDatabase();
   // activateScene = new StartScene();
   bg = new Background();
-  hb = new Healthbar();
-  hb.loadHealth();
+  healthbar = new Healthbar();
+  healthbar.loadHealth();
   ca = new CharacterAttack();
   ca.loadAttack();
   // cs = new CharacterSelect();
@@ -36,7 +36,7 @@ void setup() {
   jump.setupGravity();
   go = new GameOver();
   pu = new Pickup(new PVector(300, 400), 100, 100);
-  e = new Enemy(new PVector(500, 500), 100, 100);
+  enemy = new Enemy(new PVector(500, 500), 100, 100);
 }
 
 // the game loop
@@ -47,25 +47,25 @@ void draw() {
   bg.Movebg();
   bg.Displaybg();
   //  block.noCollision();
-  e.noCollision();
-  e.enemy();
+  enemy.noCollision();
+  enemy.enemy();
   pu.noCollision();
   pu.pickup();
   jump.drawGravity();
   ca.drawAttack();
-  hb.drawHealthbar();
+  healthbar.drawHealthbar();
   //cs.Draw();
 }
 
 void keyPressed() {
-  hb.pressedKey();
+  healthbar.pressedKey();
   ca.pressed();
   //cs.pressed();
   jump.gravityPressed();
 }
 
 void keyReleased() {
-  hb.releasedKey();
+  healthbar.releasedKey();
   ca.released();
   jump.gravityReleased();
 }

@@ -6,7 +6,7 @@ class Enemy extends Block {
 
   void enemy() {
     if (collision == true) {
-      hb.removeHealth();
+      healthbar.removeHealth();
     }
     rect(position2.x,position2.y,boxWidth2,boxHeight2);
   }
