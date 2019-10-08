@@ -12,10 +12,10 @@ Background bg;
 Enemy enemy;
 //healthbar
 Healthbar healthbar;
-//gravity mechanic
+//Jump j; <-- gravity mechanic
 Jump jump;
 //character attack
-CharacterAttack characterAttack;
+CharacterAttack ca;
 //game over screen
 GameOver gameover;
 
@@ -25,11 +25,12 @@ void setup() {
   instance = this;
   highScore = new HighScore();
   highScore.initializeDatabase();
+  // activateScene = new StartScene();
   bg = new Background();
   healthbar = new Healthbar();
   healthbar.loadHealth();
-  characterAttack = new CharacterAttack();
-  characterAttack.loadAttack();
+  ca = new CharacterAttack();
+  ca.loadAttack();
   // cs = new CharacterSelect();
   jump = new Jump();
   jump.setupGravity();
@@ -41,6 +42,8 @@ void setup() {
 // the game loop
 void draw() {
   background(200);
+  //activateScene.Update();
+  //activateScene.Draw();
   bg.Displaybg();
   //  block.noCollision();
   enemy.noCollision();
@@ -48,8 +51,8 @@ void draw() {
   pu.noCollision();
   pu.pickup();
   jump.drawGravity();
-  characterAttack.drawAttack();
-  characterAttack.drawBeam();
+  ca.drawAttack();
+  ca.drawBeam();
   healthbar.drawHealthbar();
   //cs.Draw();
 }
@@ -57,13 +60,13 @@ void draw() {
 void keyPressed() {
     bg.Movebg();
   healthbar.pressedKey();
-  characterAttack.pressed();
+  ca.pressed();
   //cs.pressed();
   //jump.gravityPressed();
 }
 
 void keyReleased() {
   healthbar.releasedKey();
-  characterAttack.released();
+  ca.released();
  jump.gravityReleased();
 }
