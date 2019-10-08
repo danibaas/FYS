@@ -6,7 +6,7 @@ class CharacterAttack {
   private boolean clickedLastFrame = false;
   private boolean canAttack = false;
   private boolean ready = false;
-  int timer;
+  private int timer;
 
   void loadAttack() {
     fireBall = loadImage("Fireball.jpg");
@@ -22,7 +22,7 @@ class CharacterAttack {
   }
 
   void drawAttack() {
-    if (canAttack == true) {
+    if (canAttack) {
       attack.drawFireball();
       attack.move();
     }
@@ -51,23 +51,23 @@ class CharacterAttack {
       textSize(20);
       text("SPECIAL NOT READY!!!!!!", 600, 25);
     }
-    //special is ready om de 3 seconden
-    if (frameCount - timer >=180) {
+    //special is ready om de 10 seconden
+    if (frameCount - timer >=600) {
       ready = true;
     }
   }
 
   void pressed() {
     //Activate normal attack by pressing 'a'
-    if (keyPressed == true && key == 'a') {
-      if (clickedLastFrame == false) {
+    if (keyPressed && key == 'a') {
+      if (!clickedLastFrame) {
         canAttack = true;
         clickedLastFrame = true;
       }
     }
     //Activate special attack by pressing 's'
-    if (keyPressed == true && key == 's') {
-      if (clickedLastFrame == false) {
+    if (keyPressed && key == 's') {
+      if (!clickedLastFrame) {
         clickedLastFrame = true;
         ready = false;
         timer = frameCount;
