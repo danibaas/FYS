@@ -40,25 +40,22 @@ class Background {
       if (Backgroundx < -640) {
         Backgroundx = 1280;
       }
-      if (Backgroundx > 0 - 1);
-      {
-      }
+
 
       //achtergrond blok2
       if (Backgroundx2 < -640) {
         Backgroundx2 = 1280;
       }
-      if (Backgroundx2 > 0 - 1);
-      {
-      }
+
 
       //achtergrond blok3
       if (Backgroundx3 < -640) {
         Backgroundx3 = 1280;
       }
-      if (Backgroundx3 > 0 - 1);
-      {
-      }
+
+
+
+
       if (keyCode == UP) {
         if (!jump.ball.airBorne) {
           jump.ball.jump();
