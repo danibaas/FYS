@@ -18,6 +18,7 @@ Jump jump;
 CharacterAttack characterAttack;
 //game over screen
 GameOver gameover;
+ArrayList<Collision> objList = new ArrayList<Collision>();
 
 void setup() {
   // ratio 16:9
@@ -43,9 +44,14 @@ void draw() {
   background(200);
   background.Displaybg();
   //  block.noCollision();
-  enemy.noCollision();
+  for(Collision c : objList)
+  {
+    c.noCollision();
+  }
+  
+  //enemy.noCollision();
   enemy.enemy();
-  pickup.noCollision();
+  //pickup.noCollision();
   pickup.pickup();
   jump.drawGravity();
   characterAttack.drawAttack();

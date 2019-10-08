@@ -8,6 +8,7 @@ class Collision{
     this.position = position;
     this.boxWidth = boxWidth;
     this.boxHeight = boxHeight;
+    objList.add(this);
   }
 
   void noCollision() {
