@@ -18,11 +18,13 @@ Jump jump;
 CharacterAttack characterAttack;
 //game over screen
 GameOver gameover;
-ArrayList<Collision> objList = new ArrayList<Collision>();
-ArrayList<Updater> updateList = new ArrayList();
+ArrayList<Collision> objList;
+ArrayList<Updater> updateList;
 
 void setup() {
   // ratio 16:9
+  objList = new ArrayList();
+  updateList = new ArrayList();
   size(1280, 720);
   instance = this;
   highScore = new HighScore();
