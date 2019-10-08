@@ -12,7 +12,7 @@ Background bg;
 Enemy enemy;
 //healthbar
 Healthbar healthbar;
-//Jump j; <-- gravity mechanic
+//gravity mechanic
 Jump jump;
 //character attack
 CharacterAttack ca;
@@ -25,7 +25,6 @@ void setup() {
   instance = this;
   highScore = new HighScore();
   highScore.initializeDatabase();
-  // activateScene = new StartScene();
   bg = new Background();
   healthbar = new Healthbar();
   healthbar.loadHealth();
@@ -42,8 +41,6 @@ void setup() {
 // the game loop
 void draw() {
   background(200);
-  //activateScene.Update();
-  //activateScene.Draw();
   bg.Displaybg();
   //  block.noCollision();
   enemy.noCollision();
