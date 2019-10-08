@@ -23,6 +23,7 @@ class GameOver {
     text("Retry?", width/2, height/2+25);
     fill(0, 0, 0, 0);
     rect(width/2, height/2+30, 100, 30);
+    rectMode(CORNER);
 
     // reset game
     if (keyPressed) {
