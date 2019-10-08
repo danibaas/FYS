@@ -54,7 +54,7 @@ class CharacterAttack {
       text("SPECIAL NOT READY!!!!!!", 600, 25);
       textAlign(LEFT);
       countDown--;
-      text(countDown, 400,25);
+      text(countDown/60, 400,25);
     }
     //special is ready om de 10 seconden
     if (frameCount - timer >=600) {
