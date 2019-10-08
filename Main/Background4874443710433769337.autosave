@@ -1,0 +1,73 @@
+class Background {
+  float Backgroundx1 = 1280;
+  float Backgroundy1 = 0;
+  float speed = 5.5;
+
+  float Backgroundx2 = 1920;
+  float Backgroundy2 = 0;
+
+  float Backgroundx3 = 2560;
+  float Backgroundy3 = 0;
+
+  void Displaybg() {
+    //BACKGROUND IMAGE
+
+    //first
+    fill(0, 255, 0);
+    rect(Backgroundx1, Backgroundy1, 640, 800);
+
+    //second
+    fill(255, 0, 0);
+    rect(Backgroundx2, Backgroundy2, 640, 800);
+
+    //third
+    fill(10, 10, 225);
+    rect(Backgroundx3, Backgroundy3, 645, 800);
+  }
+
+  void Movebg() {
+    if (key == CODED) {
+      if (keyCode == RIGHT) {
+        Backgroundx1 = Backgroundx1 - speed;
+        Backgroundx2 = Backgroundx2 - speed;
+        Backgroundx3 = Backgroundx3 - speed;
+      } else if (keyCode == LEFT) {
+        Backgroundx1 = Backgroundx1 + speed;
+        Backgroundx2 = Backgroundx2 + speed;
+        Backgroundx3 = Backgroundx3 + speed;
+      }
+      //achtergrond blok1
+      if (Backgroundx1 < -640) {
+        Backgroundx1 = 1280;
+      } else if (Backgroundx1 > 1280 && ) {
+        Backgroundx1 = -640;
+      }
+
+      //achtergrond blok2
+      if (Backgroundx2 < -640) {
+        Backgroundx2 = 1280;
+      }else if (Backgroundx2 > 1280 ) {
+        Backgroundx2 = -640;
+      }
+
+
+      //achtergrond blok3
+      if (Backgroundx3 < -640) {
+        Backgroundx3 = 1280;
+      } else if (Backgroundx3 > 1280 ) {
+        Backgroundx3 = -640;
+      }
+
+
+
+
+
+      if (keyCode == UP) {
+        if (!jump.ball.airBorne) {
+          jump.ball.jump();
+          jump.ball.setMove(keyCode, true);
+        }
+      }
+    }
+  }
+}

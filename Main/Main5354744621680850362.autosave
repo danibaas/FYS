@@ -52,11 +52,10 @@ void draw() {
   characterAttack.drawBeam();
   healthbar.drawHealthbar();
   //cs.Draw();
-  background.Ground();
 }
 
 void keyPressed() {
-    background.Movebg();
+  background.Movebg();
   healthbar.pressedKey();
   characterAttack.pressed();
   //cs.pressed();
@@ -66,5 +65,5 @@ void keyPressed() {
 void keyReleased() {
   healthbar.releasedKey();
   characterAttack.released();
- jump.gravityReleased();
+  jump.gravityReleased();
 }
