@@ -13,9 +13,9 @@ class CharacterAttack {
     int yPos = -50;
     int xPos = 0;
     for (int i=0; i<39; i++) {
-      Fireball s = new Fireball(fireBallSpecial, xPos, yPos, fireBallSpecial.width/4, fireBallSpecial.height/4, 2, false);
+      Fireball specials = new Fireball(fireBallSpecial, xPos, yPos, fireBallSpecial.width/4, fireBallSpecial.height/4, 2, false);
       xPos+=33;
-      fireballs.add(s);
+      fireballs.add(specials);
     }
   }
 
@@ -44,8 +44,8 @@ class CharacterAttack {
     if (keyPressed == true && key == 's') {
       if (clickedLastFrame == false) {
         clickedLastFrame = true;
-        for (Fireball b : fireballs) {
-          b.setSpecial(true);
+        for (Fireball s : fireballs) {
+          s.setSpecial(true);
         }
       }
     }
