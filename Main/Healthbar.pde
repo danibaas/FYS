@@ -53,15 +53,15 @@ class Healthbar {
 
   void pressedKey() {
     //Press 'd' to take damage
-    if (keyPressed == true && key == 'd') {
-      if (clickedLastFrame == false) {
+    if (keyPressed && key == 'd') {
+      if (!clickedLastFrame) {
         clickedLastFrame = true;
         removeHealth();
       }
     }
     //Press 'e' to eat a stroopwafel
-    if (keyPressed == true && key == 'e') {
-      if (clickedLastFrame == false) {
+    if (keyPressed && key == 'e') {
+      if (!clickedLastFrame) {
         clickedLastFrame = true;
         healthbar.addHealth();
       }

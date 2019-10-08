@@ -66,7 +66,7 @@ class CharacterAttack {
       }
     }
     //Activate special attack by pressing 's'
-    if (keyPressed && key == 's') {
+    if (keyPressed && key == 's' && ready) {
       if (!clickedLastFrame) {
         clickedLastFrame = true;
         ready = false;
