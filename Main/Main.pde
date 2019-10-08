@@ -15,7 +15,7 @@ Healthbar healthbar;
 //gravity mechanic
 Jump jump;
 //character attack
-CharacterAttack ca;
+CharacterAttack characterAttack;
 //game over screen
 GameOver gameover;
 
@@ -28,8 +28,8 @@ void setup() {
   bg = new Background();
   healthbar = new Healthbar();
   healthbar.loadHealth();
-  ca = new CharacterAttack();
-  ca.loadAttack();
+  characterAttack = new CharacterAttack();
+  characterAttack.loadAttack();
   // cs = new CharacterSelect();
   jump = new Jump();
   jump.setupGravity();
@@ -48,7 +48,7 @@ void draw() {
   pu.noCollision();
   pu.pickup();
   jump.drawGravity();
-  ca.drawAttack();
+  characterAttack.drawAttack();
   healthbar.drawHealthbar();
   //cs.Draw();
 }
@@ -56,13 +56,13 @@ void draw() {
 void keyPressed() {
     bg.Movebg();
   healthbar.pressedKey();
-  ca.pressed();
+  characterAttack.pressed();
   //cs.pressed();
   //jump.gravityPressed();
 }
 
 void keyReleased() {
   healthbar.releasedKey();
-  ca.released();
+  characterAttack.released();
  jump.gravityReleased();
 }
