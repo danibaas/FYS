@@ -1,13 +1,13 @@
- class Pickup extends Block {
+ class Pickup extends Collision {
 
-  Pickup(PVector position2, float boxWidth2, float boxHeight2) {
-    super(position2, boxWidth2, boxHeight2);
+  Pickup(PVector position, float boxWidth, float boxHeight) {
+    super(position, boxWidth, boxHeight);
   }
 
   void pickup() {
     if (collision) {
       healthbar.addHealth();
     }
-    rect(position2.x, position2.y, boxWidth2, boxHeight2);
+    rect(position.x, position.y, boxWidth, boxHeight);
   }
 }

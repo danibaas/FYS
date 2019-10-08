@@ -1,13 +1,13 @@
-class Enemy extends Block {
+class Enemy extends Collision {
 
-  Enemy(PVector position2, float boxWidth2, float boxHeight2) {
-    super(position2, boxWidth2, boxHeight2);
+  Enemy(PVector position, float boxWidth, float boxHeight) {
+    super(position, boxWidth, boxHeight);
   }
 
   void enemy() {
     if (collision == true) {
       healthbar.removeHealth();
     }
-    rect(position2.x,position2.y,boxWidth2,boxHeight2);
+    rect(position.x,position.y,boxWidth,boxHeight);
   }
 }
