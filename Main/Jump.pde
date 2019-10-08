@@ -21,11 +21,11 @@ class Jump implements Updater {
           ball.jump();
           ball.setMove(keyCode, true);
         }
-      } else if (keyCode == RIGHT) {
+      } /*else if (keyCode == RIGHT) {
         ball.setMove(keyCode, true);
       } else if (keyCode == LEFT) {
         ball.setMove(keyCode, true);
-      }
+      }*/
     }
   }
 
