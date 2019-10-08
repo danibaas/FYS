@@ -1,4 +1,4 @@
-class CharacterAttack {
+class CharacterAttack implements Updater {
   PImage fireBall;
   PImage fireBallSpecial;
   ArrayList<Fireball> fireballs = new ArrayList();
@@ -10,7 +10,7 @@ class CharacterAttack {
   int timeToWait = 600; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
   int countDown = timeToWait;
 
-  void loadAttack() {
+  CharacterAttack() {
     fireBall = loadImage("Fireball.jpg");
     fireBallSpecial = loadImage("FireballSpecial.jpg");
     attack = new Fireball(fireBall, 0, 500, fireBall.width/4, fireBall.height/4, 2);
@@ -21,9 +21,13 @@ class CharacterAttack {
       xPos+=33;
       fireballs.add(specials);
     }
+    updateList.add(this);
   }
 
-  void drawAttack() {
+  void updateObject() {
+  }
+
+  void drawObject() {
     if (canAttack) {
       attack.drawFireball();
       attack.move();
@@ -34,9 +38,6 @@ class CharacterAttack {
         s.move();
       }
     }
-  }
-
-  void drawBeam() {
     if (ready) {
       fill(0, 255, 0);
       rect(400, 0, 400, 50);
@@ -54,7 +55,7 @@ class CharacterAttack {
       text("SPECIAL NOT READY!!!!!!", 600, 25);
       textAlign(LEFT);
       countDown--;
-      text(countDown/60, 400,25);
+      text(countDown/60, 400, 25);
     }
     //special is ready om de 10 seconden
     if (frameCount - timer >=600) {
@@ -62,7 +63,46 @@ class CharacterAttack {
     }
   }
 
-  void pressed() {
+  /*void drawAttack() {
+   if (canAttack) {
+   attack.drawFireball();
+   attack.move();
+   }
+   for (Fireball s : fireballs) {
+   if (s.getSpecial()) {
+   s.drawFireball();
+   s.move();
+   }
+   }
+   }
+   
+   void drawBeam() {
+   if (ready) {
+   fill(0, 255, 0);
+   rect(400, 0, 400, 50);
+   fill(0);
+   textAlign(CENTER);
+   textSize(20);
+   text("SPECIAL READY!!!!!!", 600, 25);
+   }
+   if (!ready) {
+   fill(255, 0, 0);
+   rect(400, 0, 400, 50);
+   fill(0);
+   textAlign(CENTER);
+   textSize(20);
+   text("SPECIAL NOT READY!!!!!!", 600, 25);
+   textAlign(LEFT);
+   countDown--;
+   text(countDown/60, 400,25);
+   }
+   //special is ready om de 10 seconden
+   if (frameCount - timer >=600) {
+   ready = true;
+   }
+   }*/
+
+  void pressedKey() {
     //Activate normal attack by pressing 'a'
     if (keyPressed && key == 'a') {
       if (!clickedLastFrame) {
@@ -84,7 +124,7 @@ class CharacterAttack {
     }
   }
 
-  void released() {
+  void releasedKey() {
     clickedLastFrame = false;
   }
 

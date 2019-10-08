@@ -1,16 +1,20 @@
-class Jump {
+class Jump implements Updater {
   Gravity ball;
 
-  void setupGravity() { // object affected by gravity should be initialised in here
+  Jump() { // object affected by gravity should be initialised in here
     ball = new Gravity();
+    updateList.add(this);
   }
 
-  void drawGravity() { // draw everything that gravity handles
+  void drawObject() { // draw everything that gravity handles
     ball.show();
     ball.move();
   }
 
-  void gravityPressed() {
+  void updateObject() {
+  }
+
+  void pressedKey() {
     if (key == CODED) {
       if (keyCode == UP) {
         if (!ball.airBorne) {
@@ -18,14 +22,14 @@ class Jump {
           ball.setMove(keyCode, true);
         }
       } else if (keyCode == RIGHT) {
-       // ball.setMove(keyCode, true);
+        ball.setMove(keyCode, true);
       } else if (keyCode == LEFT) {
         ball.setMove(keyCode, true);
       }
     }
   }
 
-  void gravityReleased() {
+  void releasedKey() {
     ball.setMove(keyCode, false);
   }
 }

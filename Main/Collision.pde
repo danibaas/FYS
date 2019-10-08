@@ -1,4 +1,4 @@
-class Collision{
+class Collision {
   PVector position;
   float boxWidth, boxHeight;
   float radius = 25;
@@ -23,6 +23,5 @@ class Collision{
     } else { 
       collision = true;
     }
-    
   }
 }

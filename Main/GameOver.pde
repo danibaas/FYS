@@ -7,7 +7,7 @@ class GameOver {
     textFont(eightBit);
   }
 
-  void drawDisplay() {
+  void drawObject() {
     gameOver = true;
     fill(0);
     rectMode(CENTER);
@@ -24,7 +24,6 @@ class GameOver {
     fill(0, 0, 0, 0);
     rect(width/2, height/2+30, 100, 30);
     rectMode(CORNER);
-
     // reset game
     if (keyPressed) {
       if (key == 'r') {

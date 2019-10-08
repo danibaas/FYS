@@ -19,6 +19,7 @@ CharacterAttack characterAttack;
 //game over screen
 GameOver gameover;
 ArrayList<Collision> objList = new ArrayList<Collision>();
+ArrayList<Updater> updateList = new ArrayList();
 
 void setup() {
   // ratio 16:9
@@ -28,12 +29,12 @@ void setup() {
   highScore.initializeDatabase();
   background = new Background();
   healthbar = new Healthbar();
-  healthbar.loadHealth();
+  // healthbar.loadHealth();
   characterAttack = new CharacterAttack();
-  characterAttack.loadAttack();
+  //characterAttack.loadAttack();
   // cs = new CharacterSelect();
   jump = new Jump();
-  jump.setupGravity();
+  //jump.setupGravity();
   gameover = new GameOver();
   pickup = new Pickup(new PVector(300, 400), 100, 100);
   enemy = new Enemy(new PVector(500, 500), 100, 100);
@@ -44,35 +45,44 @@ void draw() {
   background(200);
   background.Displaybg();
   //  block.noCollision();
-  for(Collision c : objList)
-  {
+  for (Updater r : updateList) {
+    r.drawObject();
+    r.updateObject();
+  }
+  for (Collision c : objList) {
     c.noCollision();
   }
-  
+
   //enemy.noCollision();
-  enemy.enemy();
+  //enemy.enemy();
   //pickup.noCollision();
-  pickup.pickup();
-  jump.drawGravity();
-  characterAttack.drawAttack();
-  characterAttack.drawBeam();
-  healthbar.drawHealthbar();
+  //pickup.pickup();
+  //jump.drawGravity();
+  //characterAttack.drawAttack();
+  //characterAttack.drawBeam();
+  //healthbar.drawHealthbar();
   //cs.Draw();
   background.Ground();
 }
 
 void keyPressed() {
-    background.Movebg();
-  healthbar.pressedKey();
-  characterAttack.pressed();
-  enemy.moveEnemy();
-  pickup.movePickup();
+  for (Updater r : updateList) {
+    r.pressedKey();
+  }
+  background.Movebg();
+  //healthbar.pressedKey();
+  //characterAttack.pressed();
+  //enemy.moveEnemy();
+  //pickup.movePickup();
   //cs.pressed();
   //jump.gravityPressed();
 }
 
 void keyReleased() {
-  healthbar.releasedKey();
-  characterAttack.released();
- jump.gravityReleased();
+  for (Updater r : updateList) {
+    r.releasedKey();
+  }
+  //healthbar.releasedKey();
+  //characterAttack.released();
+  //jump.gravityReleased();
 }

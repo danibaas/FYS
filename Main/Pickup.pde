@@ -1,24 +1,30 @@
-class Pickup extends Collision {
+class Pickup extends Collision implements Updater {
 
   Pickup(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
+    updateList.add(this);
   }
 
-  void pickup() {
+  void drawObject() {
+  }
+
+  void updateObject() {
     if (collision) {
       healthbar.addHealth();
     }
     rect(position.x, position.y, boxWidth, boxHeight);
   }
-  void movePickup() {
+
+  void pressedKey() {
     if (key == CODED) {
       if (keyCode == RIGHT) {
         position.x = position.x - background.speed;
-
       } else if (keyCode == LEFT) {
         position.x = position.x + background.speed;
-
       }
     }
+  }
+
+  void releasedKey() {
   }
 }

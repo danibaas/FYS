@@ -1,4 +1,4 @@
-class Healthbar {
+class Healthbar implements Updater {
   PImage stroopwafel;
   int lives = 6;
   int iMax = 6;
@@ -7,8 +7,9 @@ class Healthbar {
   boolean removeAHealth = false;
   boolean addAHealth = false;
 
-  void loadHealth() {
+  Healthbar() {
     stroopwafel = loadImage("stroopwafel.jpg");
+    updateList.add(this);
   }
 
   void removeHealth() {
@@ -34,7 +35,10 @@ class Healthbar {
     }
   }
 
-  void drawHealthbar() {
+  void updateObject() {
+  }
+
+  void drawObject() {
     //Box of lives
     fill(255);
     strokeWeight(3);
@@ -47,7 +51,7 @@ class Healthbar {
     }
     // display gameover screen
     if (dead) {
-      gameover.drawDisplay();
+      gameover.drawObject();
     }
   }
 
