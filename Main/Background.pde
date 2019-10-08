@@ -8,6 +8,8 @@ class Background {
 
   float Backgroundx3 = 2560;
   float Backgroundy3 = 0;
+  
+  float groundHeight = height - 24;
 
   void Displaybg() {
     //BACKGROUND IMAGE
@@ -66,5 +68,9 @@ class Background {
         }
       }
     }
+  }
+  void Ground(){
+  fill(100, 0, 0);
+  rect(0-50, groundHeight, width+50, groundHeight);
   }
 }
