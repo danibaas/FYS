@@ -6,7 +6,9 @@ class CharacterAttack {
   private boolean clickedLastFrame = false;
   private boolean canAttack = false;
   private boolean ready = false;
-  private int timer;
+  private int timer; 
+  int timeToWait = 600; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
+  int countDown = timeToWait;
 
   void loadAttack() {
     fireBall = loadImage("Fireball.jpg");
@@ -50,6 +52,9 @@ class CharacterAttack {
       textAlign(CENTER);
       textSize(20);
       text("SPECIAL NOT READY!!!!!!", 600, 25);
+      textAlign(LEFT);
+      countDown--;
+      text(countDown, 400,25);
     }
     //special is ready om de 10 seconden
     if (frameCount - timer >=600) {
@@ -71,6 +76,7 @@ class CharacterAttack {
         clickedLastFrame = true;
         ready = false;
         timer = frameCount;
+        countDown = timeToWait;
         for (Fireball s : fireballs) {
           s.setSpecial(true);
         }

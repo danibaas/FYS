@@ -13,26 +13,26 @@ class Gravity {
   }
 
   boolean isFalling() {
-    return (yObject <= height-25);
+    return (yObject <= height-50);
   }
 
   void move() {
-    if (yObject < height-25) {
+    final int r = 50;
+    if (yObject < height-r) {
       airBorne = true;
       velocity += gravity;
       yObject += velocity;
       //zwaartekracht functie
-      if (yObject >= height - 25) {
-        yObject = height - 25;
+      if (yObject >= height - r) {
+        yObject = height - r;
         velocity = 0;
         airBorne = false;
         //bal blijft zo binnen het scherm
-      } else if (yObject <= 25) {
+      } else if (yObject <= r) {
         yObject = 25;
         velocity = 0;
       }
     }
-    final int r = 50 >> 1;
     xObject = constrain(xObject + movement*(int(isRight) - int(isLeft)), r, width  - r);
     yObject = constrain(yObject + movement*(int(isDown) - int(isUp)), r, height - r);
   }

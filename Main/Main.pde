@@ -52,6 +52,7 @@ void draw() {
   characterAttack.drawBeam();
   healthbar.drawHealthbar();
   //cs.Draw();
+  bg.Ground();
 }
 
 void keyPressed() {
