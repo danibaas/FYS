@@ -47,7 +47,7 @@ class Healthbar {
     }
     // display gameover screen
     if (dead) {
-      go.drawDisplay();
+      gameover.drawDisplay();
     }
   }
 

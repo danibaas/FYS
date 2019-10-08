@@ -17,7 +17,7 @@ Jump jump;
 //character attack
 CharacterAttack ca;
 //game over screen
-GameOver go;
+GameOver gameover;
 
 void setup() {
   // ratio 16:9
@@ -34,7 +34,7 @@ void setup() {
   // cs = new CharacterSelect();
   jump = new Jump();
   jump.setupGravity();
-  go = new GameOver();
+  gameover = new GameOver();
   pu = new Pickup(new PVector(300, 400), 100, 100);
   enemy = new Enemy(new PVector(500, 500), 100, 100);
 }
