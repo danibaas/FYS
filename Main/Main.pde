@@ -4,7 +4,7 @@ Main instance;
 HighScore highScore;
 //CharacterSelect cs;
 
-Pickup pu;
+Pickup pickup;
 
 //Background
 Background background;
@@ -34,7 +34,7 @@ void setup() {
   jump = new Jump();
   jump.setupGravity();
   gameover = new GameOver();
-  pu = new Pickup(new PVector(300, 400), 100, 100);
+  pickup = new Pickup(new PVector(300, 400), 100, 100);
   enemy = new Enemy(new PVector(500, 500), 100, 100);
 }
 
@@ -45,8 +45,8 @@ void draw() {
   //  block.noCollision();
   enemy.noCollision();
   enemy.enemy();
-  pu.noCollision();
-  pu.pickup();
+  pickup.noCollision();
+  pickup.pickup();
   jump.drawGravity();
   characterAttack.drawAttack();
   characterAttack.drawBeam();
@@ -59,6 +59,8 @@ void keyPressed() {
     background.Movebg();
   healthbar.pressedKey();
   characterAttack.pressed();
+  enemy.moveEnemy();
+  pickup.movePickup();
   //cs.pressed();
   //jump.gravityPressed();
 }
