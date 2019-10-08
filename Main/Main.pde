@@ -44,7 +44,6 @@ void draw() {
   background(200);
   //activateScene.Update();
   //activateScene.Draw();
-  bg.Movebg();
   bg.Displaybg();
   //  block.noCollision();
   enemy.noCollision();
@@ -58,6 +57,7 @@ void draw() {
 }
 
 void keyPressed() {
+    bg.Movebg();
   healthbar.pressedKey();
   ca.pressed();
   //cs.pressed();
@@ -67,5 +67,5 @@ void keyPressed() {
 void keyReleased() {
   healthbar.releasedKey();
   ca.released();
- // jump.gravityReleased();
+ jump.gravityReleased();
 }

@@ -18,7 +18,7 @@ class Jump {
           ball.setMove(keyCode, true);
         }
       } else if (keyCode == RIGHT) {
-        ball.setMove(keyCode, true);
+       // ball.setMove(keyCode, true);
       } else if (keyCode == LEFT) {
         ball.setMove(keyCode, true);
       }
