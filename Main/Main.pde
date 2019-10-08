@@ -61,11 +61,11 @@ void keyPressed() {
   healthbar.pressedKey();
   ca.pressed();
   //cs.pressed();
-  jump.gravityPressed();
+  //jump.gravityPressed();
 }
 
 void keyReleased() {
   healthbar.releasedKey();
   ca.released();
-  jump.gravityReleased();
+ // jump.gravityReleased();
 }
