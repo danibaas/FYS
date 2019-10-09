@@ -9,15 +9,16 @@ class CharacterAttack implements Updater {
   private int timer; 
   int timeToWait = 1800; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
   int countDown = timeToWait;
+  int yAttack;
 
   CharacterAttack() {
     fireBall = loadImage("Fireball.jpg");
     fireBallSpecial = loadImage("FireballSpecial.jpg");
-    attack = new Fireball(fireBall, 0, 500, fireBall.width/4, fireBall.height/4, 2);
+    attack = new Fireball(fireBall, 140, yAttack, fireBall.width/4, fireBall.height/4, 5);
     int yPos = -50;
     int xPos = 0;
     for (int i=0; i<39; i++) {
-      Fireball specials = new Fireball(fireBallSpecial, xPos, yPos, fireBallSpecial.width/4, fireBallSpecial.height/4, 2, false);
+      Fireball specials = new Fireball(fireBallSpecial, xPos, yPos, fireBallSpecial.width/4, fireBallSpecial.height/4, 5, false);
       xPos+=33;
       fireballs.add(specials);
     }
@@ -25,6 +26,10 @@ class CharacterAttack implements Updater {
   }
 
   void updateObject() {
+    yAttack = (int) jump.ball.yObject;
+    if (!attack.hasFired) {
+      attack.yA = yAttack;
+    }
   }
 
   void drawObject() {
@@ -108,6 +113,7 @@ class CharacterAttack implements Updater {
       if (!clickedLastFrame) {
         canAttack = true;
         clickedLastFrame = true;
+        attack.hasFired = true;
       }
     }
     //Activate special attack by pressing 's'
@@ -141,6 +147,7 @@ class CharacterAttack implements Updater {
     int fbsHeight;
     int speed;
     boolean special;
+    boolean hasFired = false;
 
     Fireball(PImage fb, int xA, int yA, int fbWidth, int fbHeight, int speed) {
       this.fb = fb;
@@ -172,18 +179,19 @@ class CharacterAttack implements Updater {
 
     void move() {
       if (canAttack == true) {
-        xA += 5;
+        xA += speed;
       }
       if (special == true) {
-        yS += 5;
+        yS += speed;
       }
       if (xA>1280 && !special) {
         canAttack = false;
-        xA = 0;
+        xA = 140;
+        hasFired = false;
       }
       if (yS>600) {
         special = false;
-        yS = 0;
+        yS = -50;
       }
     }
 

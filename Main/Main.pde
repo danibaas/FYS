@@ -32,11 +32,11 @@ void setup() {
   background = new Background();
   healthbar = new Healthbar();
   // healthbar.loadHealth();
+  jump = new Jump();
+  //jump.setupGravity();
   characterAttack = new CharacterAttack();
   //characterAttack.loadAttack();
   // cs = new CharacterSelect();
-  jump = new Jump();
-  //jump.setupGravity();
   gameover = new GameOver();
   pickup = new Pickup(new PVector(300, 400), 100, 100);
   enemy = new Enemy(new PVector(500, 500), 100, 100);
@@ -45,7 +45,7 @@ void setup() {
 // the game loop
 void draw() {
   background(200);
-  background.Displaybg();
+  //background.Displaybg();
   //  block.noCollision();
   for (Updater r : updateList) {
     r.drawObject();
@@ -64,14 +64,14 @@ void draw() {
   //characterAttack.drawBeam();
   //healthbar.drawHealthbar();
   //cs.Draw();
-  background.Ground();
+  //background.Ground();
 }
 
 void keyPressed() {
   for (Updater r : updateList) {
     r.pressedKey();
   }
-  background.Movebg();
+  //background.Movebg();
   //healthbar.pressedKey();
   //characterAttack.pressed();
   //enemy.moveEnemy();
