@@ -12,6 +12,7 @@ Healthbar healthbar;
 Player player;
 CharacterAttack characterAttack;
 GameOver gameover;
+Obstacle obstacle;
 
 //collision & update loop lists
 ArrayList<Collision> objList;
@@ -33,6 +34,7 @@ void setup() {
   gameover = new GameOver();
   pickup = new Pickup(new PVector(300, 400), 100, 100);
   enemy = new Enemy(new PVector(500, 500), 100, 100);
+  obstacle = new Obstacle(new PVector(600, 600), 200, 100);
 }
 
 // the game loop

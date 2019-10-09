@@ -53,7 +53,7 @@ class Player implements Updater {
       velocity += gravity;
       yObject += velocity;
       //zwaartekracht functie
-      if (yObject >= height - r) {
+      if (yObject >= height - r||obstacle.onObstacle&&yObject>=height-r-obstacle.boxHeight) {
         yObject = height - r;
         velocity = 0;
         airBorne = false;

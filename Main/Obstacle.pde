@@ -1,33 +1,42 @@
-//class Obstacle extends Collision {
-  
-//PVector player = new PVector(jump.ball.xObject,jump.ball.yObject);
-//  Obstacle(PVector position, float boxWidth, float boxHeight) {
-//    super(position, boxWidth, boxHeight);
-//  }
-//  void obstacle() {
-//    rect(position.x, position.y, boxWidth, boxHeight);
-//  }
-//  void obstacleMove() {
-//    if (key == CODED) {
-//      if (keyCode == RIGHT) {
-//        position.x = position.x - bg.speed;
-//      } else if (keyCode == LEFT) {
-//        position.x = position.x + bg.speed;
-//      }
-//    }
-//  }
-  
-//  void collides(){
-// if(player.y + radius < position.y &&
-//     player.x + radius > position.x &&
-//     player.x < position.x + boxWidth){
-//    jump.ball.yObject= position.y - radius;
-//  }
-//  //if(player.x + radius > position.x &&
-//  //   player.y + radius > position.y &&
-//  //   player.y > position.y + boxHeight){
-//  //   bg.speed = 0;
-//  //   }
-//  //}
-//}
-//}
+class Obstacle extends Collision implements Updater {
+  boolean onObstacle = false;
+  Obstacle(PVector position, float boxWidth, float boxHeight) {
+    super(position, boxWidth, boxHeight);
+    updateList.add(this);
+  }
+  void drawObject() {
+    rect(position.x, position.y, boxWidth, boxHeight);
+  }
+
+  void updateObject() {
+    PVector play = new PVector(player.xObject, player.yObject);
+
+    if (play.y > position.y &&
+      play.x + radius > position.x &&
+      play.x < position.x + boxWidth) {
+      player.yObject = constrain(player.yObject + player.movement*(int(player.isDown) - int(player.isUp))-boxHeight, radius, height - radius);
+      onObstacle = true;
+    } else {
+      onObstacle=false;
+    }
+    /* if (player.x + radius < position.x &&
+     player.y + radius > position.y) {
+     background.speed = 0;
+     
+     }*/
+  }
+
+
+  void pressedKey() {
+    if (key == CODED) {
+      if (keyCode == RIGHT) {
+        position.x = position.x - background.speed;
+      } else if (keyCode == LEFT) {
+        position.x = position.x + background.speed;
+      }
+    }
+  }
+
+  void releasedKey() {
+  }
+}
