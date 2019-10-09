@@ -1,4 +1,4 @@
-class Gravity {
+class Player implements Updater {
   float xObject = 140;
   float yObject = height/4;
   float gravity = 0.07;
@@ -6,6 +6,36 @@ class Gravity {
   float upforce = -3.5;
   float movement = 3.5;
   boolean isUp, isDown, isRight, isLeft, airBorne;
+  
+  Player() {
+     updateList.add(this); 
+  }
+  
+  void drawObject() {
+    fill(255);
+    rectMode(CENTER);
+    rect(xObject, yObject, 50, 50);
+    rectMode(CORNER);
+  }
+  
+  void updateObject() {
+     move(); 
+  }
+  
+  void pressedKey() {
+    if (key == CODED) {
+      if (keyCode == UP) {
+        if (!airBorne) {
+          jump();
+          setMove(keyCode, true);
+        }
+      }
+    }
+  }
+  
+  void releasedKey() {
+     setMove(keyCode, false);
+  }
 
   void jump() {
     velocity += upforce;
@@ -35,13 +65,6 @@ class Gravity {
     }
     xObject = constrain(xObject + movement*(int(isRight) - int(isLeft)), r, width  - r);
     yObject = constrain(yObject + movement*(int(isDown) - int(isUp)), r, height - r);
-  }
-
-  void show() {
-    fill(255);
-    rectMode(CENTER);
-    rect(xObject, yObject, 50, 50);
-    rectMode(CORNER);
   }
 
   boolean setMove(final int k, final boolean b) {

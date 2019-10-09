@@ -1,23 +1,19 @@
 //instance of this class, used for database
 Main instance;
-//highscore class, handles highscore.
+
+//object creation
 HighScore highScore;
-//CharacterSelect cs;
-
+//CharacterSelect characterSelect;
 Pickup pickup;
-
-//Background
 Background background;
-//enemy
 Enemy enemy;
-//healthbar
 Healthbar healthbar;
 //gravity mechanic
-Jump jump;
-//character attack
+Player player;
 CharacterAttack characterAttack;
-//game over screen
 GameOver gameover;
+
+//collision & update loop lists
 ArrayList<Collision> objList;
 ArrayList<Updater> updateList;
 
@@ -31,12 +27,9 @@ void setup() {
   highScore.initializeDatabase();
   background = new Background();
   healthbar = new Healthbar();
-  // healthbar.loadHealth();
-  jump = new Jump();
-  //jump.setupGravity();
+  player = new Player();
   characterAttack = new CharacterAttack();
-  //characterAttack.loadAttack();
-  // cs = new CharacterSelect();
+  //characterSelect = new CharacterSelect();
   gameover = new GameOver();
   pickup = new Pickup(new PVector(300, 400), 100, 100);
   enemy = new Enemy(new PVector(500, 500), 100, 100);
@@ -45,8 +38,6 @@ void setup() {
 // the game loop
 void draw() {
   background(200);
-  //background.Displaybg();
-  //  block.noCollision();
   for (Updater r : updateList) {
     r.drawObject();
     r.updateObject();
@@ -54,37 +45,16 @@ void draw() {
   for (Collision c : objList) {
     c.noCollision();
   }
-
-  //enemy.noCollision();
-  //enemy.enemy();
-  //pickup.noCollision();
-  //pickup.pickup();
-  //jump.drawGravity();
-  //characterAttack.drawAttack();
-  //characterAttack.drawBeam();
-  //healthbar.drawHealthbar();
-  //cs.Draw();
-  //background.Ground();
 }
 
 void keyPressed() {
   for (Updater r : updateList) {
     r.pressedKey();
   }
-  //background.Movebg();
-  //healthbar.pressedKey();
-  //characterAttack.pressed();
-  //enemy.moveEnemy();
-  //pickup.movePickup();
-  //cs.pressed();
-  //jump.gravityPressed();
 }
 
 void keyReleased() {
   for (Updater r : updateList) {
     r.releasedKey();
   }
-  //healthbar.releasedKey();
-  //characterAttack.released();
-  //jump.gravityReleased();
 }

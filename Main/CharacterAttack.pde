@@ -10,15 +10,16 @@ class CharacterAttack implements Updater {
   int timeToWait = 1800; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
   int countDown = timeToWait;
   int yAttack;
+  int fireballSpeed = 5;
 
   CharacterAttack() {
     fireBall = loadImage("Fireball.jpg");
     fireBallSpecial = loadImage("FireballSpecial.jpg");
-    attack = new Fireball(fireBall, 140, yAttack, fireBall.width/4, fireBall.height/4, 5);
+    attack = new Fireball(fireBall, 140, yAttack, fireBall.width/4, fireBall.height/4, fireballSpeed);
     int yPos = -50;
     int xPos = 0;
     for (int i=0; i<39; i++) {
-      Fireball specials = new Fireball(fireBallSpecial, xPos, yPos, fireBallSpecial.width/4, fireBallSpecial.height/4, 5, false);
+      Fireball specials = new Fireball(fireBallSpecial, xPos, yPos, fireBallSpecial.width/4, fireBallSpecial.height/4, fireballSpeed, false);
       xPos+=33;
       fireballs.add(specials);
     }
@@ -26,7 +27,7 @@ class CharacterAttack implements Updater {
   }
 
   void updateObject() {
-    yAttack = (int) jump.ball.yObject;
+    yAttack = (int) player.yObject;
     if (!attack.hasFired) {
       attack.yA = yAttack;
     }
@@ -67,45 +68,6 @@ class CharacterAttack implements Updater {
       ready = true;
     }
   }
-
-  /*void drawAttack() {
-   if (canAttack) {
-   attack.drawFireball();
-   attack.move();
-   }
-   for (Fireball s : fireballs) {
-   if (s.getSpecial()) {
-   s.drawFireball();
-   s.move();
-   }
-   }
-   }
-   
-   void drawBeam() {
-   if (ready) {
-   fill(0, 255, 0);
-   rect(400, 0, 400, 50);
-   fill(0);
-   textAlign(CENTER);
-   textSize(20);
-   text("SPECIAL READY!!!!!!", 600, 25);
-   }
-   if (!ready) {
-   fill(255, 0, 0);
-   rect(400, 0, 400, 50);
-   fill(0);
-   textAlign(CENTER);
-   textSize(20);
-   text("SPECIAL NOT READY!!!!!!", 600, 25);
-   textAlign(LEFT);
-   countDown--;
-   text(countDown/60, 400,25);
-   }
-   //special is ready om de 10 seconden
-   if (frameCount - timer >=600) {
-   ready = true;
-   }
-   }*/
 
   void pressedKey() {
     //Activate normal attack by pressing 'a'

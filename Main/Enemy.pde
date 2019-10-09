@@ -9,10 +9,10 @@ class Enemy extends Collision implements Updater {
     if (collision == true) {
       healthbar.removeHealth();
     }
-    rect(position.x, position.y, boxWidth, boxHeight);
   }
 
   void drawObject() {
+    rect(position.x, position.y, boxWidth, boxHeight);
   }
 
   void pressedKey() {

@@ -6,13 +6,13 @@ class Pickup extends Collision implements Updater {
   }
 
   void drawObject() {
+    rect(position.x, position.y, boxWidth, boxHeight);
   }
 
   void updateObject() {
     if (collision) {
       healthbar.addHealth();
     }
-    rect(position.x, position.y, boxWidth, boxHeight);
   }
 
   void pressedKey() {

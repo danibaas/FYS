@@ -12,8 +12,8 @@ class Collision {
   }
 
   void noCollision() {
-    float xCollision = jump.ball.xObject;
-    float yCollision = jump.ball.yObject;
+    float xCollision = player.xObject;
+    float yCollision = player.yObject;
     if (xCollision + radius < position.x || 
       xCollision - radius > position.x + boxWidth||
       yCollision + radius < position.y || 

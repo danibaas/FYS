@@ -12,29 +12,6 @@ class Healthbar implements Updater {
     updateList.add(this);
   }
 
-  void removeHealth() {
-    if (!removeAHealth && !dead) {
-      removeAHealth = true;
-      if (lives > 0 ) {
-        lives--;
-        iMax--;
-      } 
-      if (lives == 0) {
-        dead = true;
-      }
-    }
-  }
-
-  void addHealth() {
-    if (!addAHealth && !dead ) {
-      addAHealth = true;
-      if (lives < 6 && !dead) {
-        lives++;
-        iMax++;
-      }
-    }
-  }
-
   void updateObject() {
   }
 
@@ -76,5 +53,28 @@ class Healthbar implements Updater {
     clickedLastFrame = false;
     removeAHealth = false;
     addAHealth = false;
+  }
+
+  void removeHealth() {
+    if (!removeAHealth && !dead) {
+      removeAHealth = true;
+      if (lives > 0 ) {
+        lives--;
+        iMax--;
+      } 
+      if (lives == 0) {
+        dead = true;
+      }
+    }
+  }
+
+  void addHealth() {
+    if (!addAHealth && !dead ) {
+      addAHealth = true;
+      if (lives < 6 && !dead) {
+        lives++;
+        iMax++;
+      }
+    }
   }
 }
