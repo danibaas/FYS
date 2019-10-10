@@ -6,6 +6,7 @@ class Player implements Updater {
   float upforce = -3.5;
   float movement = 3.5;
   boolean isUp, isDown, isRight, isLeft, airBorne;
+  int playerSize = 50;
   
   Player() {
      updateList.add(this); 
@@ -14,7 +15,7 @@ class Player implements Updater {
   void drawObject() {
     fill(255);
     rectMode(CENTER);
-    rect(xObject, yObject, 50, 50);
+    rect(xObject, yObject, playerSize, playerSize);
     rectMode(CORNER);
   }
   
@@ -28,6 +29,13 @@ class Player implements Updater {
         if (!airBorne) {
           jump();
           setMove(keyCode, true);
+        }
+      }
+    }
+    //Does nothing right now
+    if(key == CODED){
+      if(keyCode == DOWN){
+        if(!airBorne){
         }
       }
     }
