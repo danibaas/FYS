@@ -28,7 +28,7 @@ class Background implements Updater {
     fill(10, 10, 225);
     rect(backgroundPane3X, backgroundPane3Y, 640, 800);
     stroke(0);
-    
+
     //ground
     fill(100, 0, 0);
     rect(0-50, groundHeight, width+50, groundHeight);
@@ -42,16 +42,20 @@ class Background implements Updater {
       if (keyCode == RIGHT) {
         walkingForward = true;
         //achtergrond blok1
-        backgroundPaneX = backgroundPaneX - speed;
-        backgroundPane2X = backgroundPane2X - speed;
-        backgroundPane3X = backgroundPane3X - speed;
+        if (!obstacle.collision) {
+          backgroundPaneX = backgroundPaneX - speed;
+          backgroundPane2X = backgroundPane2X - speed;
+          backgroundPane3X = backgroundPane3X - speed;
+        }
       } else if (keyCode == LEFT) {
         walkingBackward=true;
-        backgroundPaneX = backgroundPaneX + speed;
-        backgroundPane2X = backgroundPane2X + speed;
-        backgroundPane3X = backgroundPane3X + speed;
+        if (!obstacle.collision) {
+          backgroundPaneX = backgroundPaneX + speed;
+          backgroundPane2X = backgroundPane2X + speed;
+          backgroundPane3X = backgroundPane3X + speed;
+        }
       }
-      if (walkingForward) {
+      if (walkingForward && !obstacle.collision) {
         if (backgroundPaneX == 640) {
           backgroundPane2X = 1280;
         }
@@ -62,7 +66,7 @@ class Background implements Updater {
           backgroundPaneX = 1280;
         }
       }
-      if (walkingBackward) {
+      if (walkingBackward && !obstacle.collision) {
         if (backgroundPaneX == 0) {
           backgroundPane3X = -640;
         }

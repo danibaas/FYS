@@ -17,9 +17,9 @@ class Enemy extends Collision implements Updater {
 
   void pressedKey() {
     if (key == CODED) {
-      if (keyCode == RIGHT) {
+      if (keyCode == RIGHT && !obstacle.collision) {
         position.x = position.x - background.speed;
-      } else if (keyCode == LEFT) {
+      } else if (keyCode == LEFT && !obstacle.collision) {
         position.x = position.x + background.speed;
       }
     }
