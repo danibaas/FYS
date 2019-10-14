@@ -1,4 +1,6 @@
 class Background implements Updater {
+  PImage background;
+  float backgroundX = 0;
   float backgroundPaneX = 1280;
   float backgroundPaneY = 0;
   float backgroundPane2X = 1920;
@@ -11,10 +13,12 @@ class Background implements Updater {
   boolean walkingBackward;
 
   Background() {
+    background = loadImage(sketchPath() + "/lib/background.png");
     updateList.add(this);
   }
   void drawObject() {
     // background panes
+    image(background, backgroundX, 0);
     noStroke();
     //first
     fill(0, 255, 0);
@@ -31,7 +35,7 @@ class Background implements Updater {
 
     //ground
     fill(100, 0, 0);
-    rect(0-50, groundHeight, width+50, groundHeight);
+    rect(0-50, groundHeight, width + 50, groundHeight);
   }
 
   void updateObject() {
@@ -43,16 +47,18 @@ class Background implements Updater {
         walkingForward = true;
         //achtergrond blok1
         if (!obstacle.collision) {
-          backgroundPaneX = backgroundPaneX - speed;
-          backgroundPane2X = backgroundPane2X - speed;
-          backgroundPane3X = backgroundPane3X - speed;
+          backgroundPaneX -= speed;
+          backgroundPane2X -= speed;
+          backgroundPane3X -= speed;
+          backgroundX -= speed;
         }
       } else if (keyCode == LEFT) {
-        walkingBackward=true;
+        walkingBackward = true;
         if (!obstacle.collision) {
-          backgroundPaneX = backgroundPaneX + speed;
-          backgroundPane2X = backgroundPane2X + speed;
-          backgroundPane3X = backgroundPane3X + speed;
+          backgroundPaneX += speed;
+          backgroundPane2X += speed;
+          backgroundPane3X += speed;
+          backgroundX += speed;
         }
       }
       if (walkingForward && !obstacle.collision) {

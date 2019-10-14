@@ -8,7 +8,7 @@ class Healthbar implements Updater {
   boolean addAHealth = false;
 
   Healthbar() {
-    stroopwafel = loadImage("stroopwafel.jpg");
+    stroopwafel = loadImage(sketchPath() + "/lib/stroopwafel.jpg");
     updateList.add(this);
   }
 

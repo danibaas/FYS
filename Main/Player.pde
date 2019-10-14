@@ -1,4 +1,5 @@
 class Player implements Updater {
+  PImage playerSkin;
   float xObject = 140;
   float yObject = height/4;
   float gravity = 0.07;
@@ -7,22 +8,26 @@ class Player implements Updater {
   float movement = 3.5;
   boolean isUp, isDown, isRight, isLeft, airBorne;
   int playerSize = 50;
-  
+
   Player() {
-     updateList.add(this); 
+    //playerSkin = charatcerSelect.getPlayerSkin();
+    playerSkin = loadImage(sketchPath() + "/lib/player.png");
+    playerSkin.resize(playerSize, playerSize);
+    updateList.add(this);
   }
-  
+
   void drawObject() {
     fill(255);
     rectMode(CENTER);
     rect(xObject, yObject, playerSize, playerSize);
     rectMode(CORNER);
+    image(playerSkin, xObject - playerSize/2, yObject - playerSize/2);
   }
-  
+
   void updateObject() {
-     move(); 
+    move();
   }
-  
+
   void pressedKey() {
     if (key == CODED) {
       if (keyCode == UP) {
@@ -33,16 +38,16 @@ class Player implements Updater {
       }
     }
     //Does nothing right now
-    if(key == CODED){
-      if(keyCode == DOWN){
-        if(!airBorne){
+    if (key == CODED) {
+      if (keyCode == DOWN) {
+        if (!airBorne) {
         }
       }
     }
   }
-  
+
   void releasedKey() {
-     setMove(keyCode, false);
+    setMove(keyCode, false);
   }
 
   void jump() {

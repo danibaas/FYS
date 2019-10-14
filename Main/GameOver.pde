@@ -3,7 +3,7 @@ class GameOver {
 
   void fontLoad() {
     PFont eightBit;
-    eightBit = createFont("PressStart2P.ttf", 30);
+    eightBit = createFont(sketchPath() + "/lib/PressStart2P.ttf", 30);
     textFont(eightBit);
   }
 

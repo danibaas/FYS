@@ -13,8 +13,8 @@ class CharacterAttack implements Updater {
   int fireballSpeed = 5;
 
   CharacterAttack() {
-    fireBall = loadImage("Fireball.jpg");
-    fireBallSpecial = loadImage("FireballSpecial.jpg");
+    fireBall = loadImage(sketchPath() + "/lib/Fireball.jpg");
+    fireBallSpecial = loadImage(sketchPath() + "/lib/FireballSpecial.jpg");
     attack = new Fireball(fireBall, 140, yAttack, fireBall.width/4, fireBall.height/4, fireballSpeed);
     int yPos = -50;
     int xPos = 0;
