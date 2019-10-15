@@ -29,6 +29,8 @@ class Obstacle extends Collision implements Updater {
   }
 
   void pressedKey() {
+        doMove = false;
+
     if (key == CODED) {
       if (keyCode == RIGHT && !collision) {
         keys[2] = true;

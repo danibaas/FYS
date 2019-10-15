@@ -22,6 +22,7 @@ class Collision {
      }*/
     if (xCollision + radius > position.x && xCollision + radius < position.x + boxWidth && yCollision - radius > position.y && yCollision + radius < position.y + boxHeight) {
       collision = true;  
+      
     } else {
       collision = false;
     }

@@ -93,7 +93,7 @@ class Player implements Updater {
         velocity = 0;
       }
     }
-    xObject = constrain(xObject + movement*(int(isRight) - int(isLeft)), r, width - r);
+    //xObject = constrain(xObject + movement*(int(isRight) - int(isLeft)), r, width - r);
     yObject = constrain(yObject + movement*(int(isDown) - int(isUp)), r, height - r);
   }
 
