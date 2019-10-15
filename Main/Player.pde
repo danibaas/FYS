@@ -1,15 +1,19 @@
-class Player implements Updater {
+class Player extends Collider implements Updater {
   PImage playerSkin;
-  float xObject = 140;
-  float yObject = height/4;
+  PVector playerVector;
+  //float xPos = 140;
+  //float yPos = height/4;
   float gravity = 0.07;
   float velocity = 0;
   float upforce = -2.4;
   float movement = 3.5;
   boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame;
-  int playerSize = 50;
+  int playerSize;
 
-  Player() {
+  Player(PVector vector, int size) {
+    super(vector, size, size);
+    playerVector = vector;
+    playerSize = size;
     //playerSkin = charatcerSelect.getPlayerSkin();
     playerSkin = loadImage(sketchPath() + "/lib/player.png");
     playerSkin.resize(playerSize, playerSize);
@@ -19,9 +23,9 @@ class Player implements Updater {
   void drawObject() {
     fill(255);
     rectMode(CENTER);
-    rect(xObject, yObject, playerSize, playerSize);
+    rect(playerVector.x, playerVector.y, playerSize, playerSize);
     rectMode(CORNER);
-    image(playerSkin, xObject - playerSize/2, yObject - playerSize/2);
+    image(playerSkin, playerVector.x - playerSize/2, playerVector.y - playerSize/2);
   }
 
   void updateObject() {
@@ -72,51 +76,47 @@ class Player implements Updater {
     //jump mechanic
   }
 
-  boolean isFalling() {
-    return (yObject <= height-50);
-  }
-
   void move() {
     final int r = 50;
-    if (yObject < height-r) {
+    if (playerVector.y < height-r) {
       airBorne = true;
       velocity += gravity;
-      yObject += velocity;
+      playerVector.y += velocity;
       //zwaartekracht functie
-      if (yObject >= height - r || obstacle.onObstacle&&yObject >= height - r - obstacle.boxHeight) {
-        yObject = height - r;
+      if (playerVector.y >= height - r) {
+        playerVector.y = height - r;
         velocity = 0;
         airBorne = false;
         //bal blijft zo binnen het scherm
-      } else if (yObject <= r) {
-        yObject = 25;
+      } else if (playerVector.y <= r) {
+        playerVector.y = 25;
         velocity = 0;
       }
     }
     //xObject = constrain(xObject + movement*(int(isRight) - int(isLeft)), r, width - r);
-    yObject = constrain(yObject + movement*(int(isDown) - int(isUp)), r, height - r);
+    playerVector.y = constrain(playerVector.y + movement*(int(isDown) - int(isUp)), r, height - r);
   }
 
-  boolean setMove(final int k, final boolean b) {
-    switch (k) {
+  boolean setMove(final int pressedKey, final boolean toMove) {
+    switch (pressedKey) {
     case +'W':
     case UP:
-      return isUp = b;
+      return isUp = toMove;
 
     case +'S':
     case DOWN:
-      return isDown = b;
+      return isDown = toMove;
 
     case +'A':
     case LEFT:
-      return isLeft = b;
+      return isLeft = toMove;
 
     case +'D':
     case RIGHT:
-      return isRight = b;
+      return isRight = toMove;
 
     default:
-      return b;
+      return toMove;
     }
   }
 }

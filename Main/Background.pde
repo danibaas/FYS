@@ -12,7 +12,7 @@ class Background implements Updater {
   float backgroundPane3Y = 0;
   float groundHeight = height - 24;
   float speed = 5;
-  boolean walkingForward, walkingBackward, clickedLastFrame;
+  boolean walkingForward, walkingBackward;
 
   Background() {
     background = loadImage(sketchPath() + "/lib/background.png");
@@ -49,10 +49,11 @@ class Background implements Updater {
   }
 
   void updateObject() {
+    println(obstacle.collidesWithPlayer(player));
     if (keys[2]) {
       walkingForward = true;
       //achtergrond blok1
-      if (!obstacle.collision) {
+      if (walkingForward && !obstacle.collidesWithPlayer(player)) { //COLLISION CHECK
         backgroundPaneX -= speed;
         backgroundPane2X -= speed;
         backgroundPane3X -= speed;
@@ -61,14 +62,14 @@ class Background implements Updater {
       highScore.updateScore();
     } else if (keys[1]) {
       walkingBackward = true;
-      if (!obstacle.collision) {
+      if (walkingBackward && !obstacle.collidesWithPlayer(player)) {  //COLLISION CHECK
         backgroundPaneX += speed;
         backgroundPane2X += speed;
         backgroundPane3X += speed;
         backgroundX += speed;
       }
     }
-    if (walkingForward && !obstacle.collision) {
+    if (walkingForward && !obstacle.collidesWithPlayer(player)) { // walkingForward && collision check
       if (backgroundPaneX == 640) {
         backgroundPane2X = 1280;
       }
@@ -79,7 +80,7 @@ class Background implements Updater {
         backgroundPaneX = 1280;
       }
     }
-    if (walkingBackward && !obstacle.collision) {
+    if (walkingBackward && !obstacle.collidesWithPlayer(player)) { // walkingForward && collision check
       if (backgroundPaneX == 0) {
         backgroundPane3X = -640;
       }
@@ -96,10 +97,8 @@ class Background implements Updater {
     if (key == CODED) {
       if (keyCode == RIGHT) {
         keys[2] = true;
-        clickedLastFrame = true;
       } else if (keyCode == LEFT) {
         keys[1] = true;
-        clickedLastFrame = true;
       }
     }
   }
@@ -107,9 +106,6 @@ class Background implements Updater {
   void releasedKey() {
     walkingForward = false;
     walkingBackward = false;
-    if (clickedLastFrame) {
-      clickedLastFrame = false;
-    }
     if (key == CODED) {
       if (keyCode == LEFT) {
         keys[1] = false;

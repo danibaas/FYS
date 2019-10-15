@@ -15,7 +15,7 @@ Obstacle obstacle;
 Lazers lazers;
 
 //collision & update loop lists
-ArrayList<Collision> objList;
+//ArrayList<Collision> objList;
 ArrayList<Updater> updateList;
 
 //movmement help
@@ -24,7 +24,7 @@ boolean[] keys = new boolean[4];
 
 void setup() {
   // ratio 16:9
-  objList = new ArrayList();
+  //objList = new ArrayList();
   updateList = new ArrayList();
   size(1280, 720);
   instance = this;
@@ -32,7 +32,7 @@ void setup() {
   highScore.initializeDatabase();
   background = new Background();
   healthbar = new Healthbar();
-  player = new Player();
+  player = new Player(new PVector(140, height / 4), 50);
   characterAttack = new CharacterAttack();
   //characterSelect = new CharacterSelect();
   gameOver = new GameOver();
@@ -45,15 +45,16 @@ void setup() {
 // the game loop
 void draw() {
   background(200);
-  for (Updater r : updateList) {
-    r.drawObject();
-    r.updateObject();
+  if (gameOver.gameOver) {
+    gameOver.drawObject();
+  } else {
+    for (Updater r : updateList) {
+      r.drawObject();
+      r.updateObject();
+    }
+    lazers.timeLazers();
+    highScore.displayScore();
   }
-  for (Collision c : objList) {
-    c.noCollision();
-  }
-  lazers.presentlazers();
-  highScore.displayScore();
 }
 
 void keyPressed() {

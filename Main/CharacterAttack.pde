@@ -27,7 +27,7 @@ class CharacterAttack implements Updater {
   }
 
   void updateObject() {
-    yAttack = (int) player.yObject;
+    yAttack = (int) player.playerVector.y;
     if (!attack.hasFired) {
       attack.yA = yAttack;
     }

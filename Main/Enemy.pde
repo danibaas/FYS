@@ -1,21 +1,25 @@
-class Enemy extends Collision implements Updater {
+class Enemy extends Collider implements Updater {
   PImage skin;
-  boolean doMove;
+  PVector position;
+  float boxWidth, boxHeight;
 
   Enemy(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
+    this.position = position;
+    this.boxWidth = boxWidth;
+    this.boxHeight = boxHeight;
     skin = loadImage(sketchPath() + "/lib/enemy.png");
     skin.resize((int) boxWidth + 10, (int) boxHeight + 10);
     updateList.add(this);
   }
 
   void updateObject() {
-    if (collision == true) {
+    if (collidesWithPlayer(player)) {
       healthbar.removeHealth();
     }
-    if (keys[2] && doMove) {
+    if (keys[2]) { //als keys[2] en !collision
       position.x = position.x - background.speed;
-    } else if (keys[1] && doMove) {
+    } else if (keys[1]) {
       position.x = position.x + background.speed;
     }
   }
@@ -31,26 +35,8 @@ class Enemy extends Collision implements Updater {
   }
 
   void pressedKey() {
-    if (key == CODED) {
-      if (keyCode == RIGHT && !obstacle.collision) {
-        keys[2] = true;
-        doMove = true;
-      } else if (keyCode == LEFT && !obstacle.collision) {
-        keys[1] = true;
-        doMove = true;
-      }
-    }
   }
 
   void releasedKey() {
-    if (key == CODED) {
-      if (keyCode == RIGHT) {
-        keys[2] = false;
-        doMove = false;
-      } else if (keyCode == LEFT) {
-        keys[1] = false;
-        doMove = false;
-      }
-    }
   }
 }
