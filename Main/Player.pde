@@ -7,7 +7,8 @@ class Player extends Collider implements Updater {
   float velocity = 0;
   float upforce = -2.4;
   float movement = 3.5;
-  boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame;
+  boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision;
+  ;
   int playerSize;
 
   Player(PVector vector, int size) {
@@ -29,6 +30,7 @@ class Player extends Collider implements Updater {
   }
 
   void updateObject() {
+    hasCollision();
     move();
     if (keys[0]) {
       if (!airBorne) {
@@ -69,6 +71,16 @@ class Player extends Collider implements Updater {
         keys[3] = false;
       }
     }
+  }
+
+  boolean hasCollision() {
+    boolean collides = false;
+    if (!collidesWithEnemy(enemy) && !collidesWithObstacle(obstacle) && !collidesWithPickup(pickup)) {
+      overalCollision = false;
+    } else {
+      overalCollision = true;
+    }
+    return collides;
   }
 
   void jump() {

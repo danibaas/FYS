@@ -4,7 +4,6 @@ class Lazers extends Collider {
   int timer;
   int timer2;
   boolean drawLazer;
-  //PVector position;
 
   Lazers(PVector position, float breedte, float hoogte) {
     super(position, breedte, hoogte);

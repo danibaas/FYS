@@ -1,13 +1,8 @@
 class Enemy extends Collider implements Updater {
   PImage skin;
-  PVector position;
-  float boxWidth, boxHeight;
 
   Enemy(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
-    this.position = position;
-    this.boxWidth = boxWidth;
-    this.boxHeight = boxHeight;
     skin = loadImage(sketchPath() + "/lib/enemy.png");
     skin.resize((int) boxWidth + 10, (int) boxHeight + 10);
     updateList.add(this);
@@ -17,9 +12,9 @@ class Enemy extends Collider implements Updater {
     if (collidesWithPlayer(player)) {
       healthbar.removeHealth();
     }
-    if (keys[2]) { //als keys[2] en !collision
+    if (keys[2] && !player.hasCollision()) {
       position.x = position.x - background.speed;
-    } else if (keys[1]) {
+    } else if (keys[1] && !player.hasCollision()) {
       position.x = position.x + background.speed;
     }
   }

@@ -1,16 +1,11 @@
 class Pickup extends Collider implements Updater {
   PImage skin;
-  PVector position;
-  //float boxWidth, boxHeight;
 
   Pickup(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
-    //this.position = position;
-    //this.boxWidth = boxWidth;
-    //this.boxHeight = boxHeight;
     skin = loadImage(sketchPath() + "/lib/healthkit.png");
     skin.resize((int) boxWidth, (int) boxHeight);
-    //updateList.add(this);
+    updateList.add(this);
   }
 
   void drawObject() {
@@ -23,9 +18,9 @@ class Pickup extends Collider implements Updater {
     if (collidesWithPlayer(player)) { // collision check
       healthbar.addHealth();
     }
-    if (keys[2]) {
+    if (keys[2] && !player.hasCollision()) {
       position.x = position.x - background.speed;
-    } else if (keys[1]) {
+    } else if (keys[1] && !player.hasCollision()) {
       position.x = position.x + background.speed;
     }
   }

@@ -49,11 +49,11 @@ class Background implements Updater {
   }
 
   void updateObject() {
-    println(obstacle.collidesWithPlayer(player));
+    // println(obstacle.collidesWithPlayer(player));
     if (keys[2]) {
       walkingForward = true;
       //achtergrond blok1
-      if (walkingForward && !obstacle.collidesWithPlayer(player)) { //COLLISION CHECK
+      if (walkingForward && !player.hasCollision()) { //COLLISION CHECK
         backgroundPaneX -= speed;
         backgroundPane2X -= speed;
         backgroundPane3X -= speed;
@@ -62,14 +62,14 @@ class Background implements Updater {
       highScore.updateScore();
     } else if (keys[1]) {
       walkingBackward = true;
-      if (walkingBackward && !obstacle.collidesWithPlayer(player)) {  //COLLISION CHECK
+      if (walkingBackward && !player.hasCollision()) {  //COLLISION CHECK
         backgroundPaneX += speed;
         backgroundPane2X += speed;
         backgroundPane3X += speed;
         backgroundX += speed;
       }
     }
-    if (walkingForward && !obstacle.collidesWithPlayer(player)) { // walkingForward && collision check
+    if (walkingForward && !player.hasCollision()) { // walkingForward && collision check
       if (backgroundPaneX == 640) {
         backgroundPane2X = 1280;
       }
@@ -80,7 +80,7 @@ class Background implements Updater {
         backgroundPaneX = 1280;
       }
     }
-    if (walkingBackward && !obstacle.collidesWithPlayer(player)) { // walkingForward && collision check
+    if (walkingBackward && !player.hasCollision()) { // walkingForward && collision check
       if (backgroundPaneX == 0) {
         backgroundPane3X = -640;
       }
