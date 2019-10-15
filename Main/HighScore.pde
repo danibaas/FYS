@@ -33,7 +33,9 @@ class HighScore {
   }
 
   void updateScore() {
-    highScore += 0.1;
+    if (!obstacle.collision && !gameOver.gameOver) {
+      highScore += 0.1;
+    }
   }
 
   void setScore(float score) {

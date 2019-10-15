@@ -10,7 +10,7 @@ Enemy enemy;
 Healthbar healthbar;
 Player player;
 CharacterAttack characterAttack;
-GameOver gameover;
+GameOver gameOver;
 Obstacle obstacle;
 Lazers lazers;
 
@@ -35,7 +35,7 @@ void setup() {
   player = new Player();
   characterAttack = new CharacterAttack();
   //characterSelect = new CharacterSelect();
-  gameover = new GameOver();
+  gameOver = new GameOver();
   pickup = new Pickup(new PVector(300, 400), 100, 100);
   enemy = new Enemy(new PVector(500, 500), 100, 100);
   obstacle = new Obstacle(new PVector(600, 600), 200, 100);

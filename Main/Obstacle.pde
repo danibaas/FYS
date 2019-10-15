@@ -6,13 +6,13 @@ class Obstacle extends Collision implements Updater {
     super(position, boxWidth, boxHeight);
     updateList.add(this);
   }
+  
   void drawObject() {
     rect(position.x, position.y, boxWidth, boxHeight);
   }
 
   void updateObject() {
     PVector play = new PVector(player.xObject, player.yObject);
-
     /*if (play.y > position.y &&
      play.x + radius > position.x &&
      play.x < position.x + boxWidth) {

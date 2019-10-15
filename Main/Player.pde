@@ -8,6 +8,7 @@ class Player implements Updater {
   float movement = 3.5;
   boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame;
   int playerSize = 50;
+  CollisionTypes currentCollision;
 
   Player() {
     //playerSkin = charatcerSelect.getPlayerSkin();

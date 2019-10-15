@@ -29,7 +29,7 @@ class Healthbar implements Updater {
     }
     // display gameover screen
     if (dead) {
-      gameover.drawObject();
+      gameOver.drawObject();
     }
   }
 
