@@ -11,9 +11,8 @@ class Background implements Updater {
   float backgroundPane3X = 2560;
   float backgroundPane3Y = 0;
   float groundHeight = height - 24;
-  float speed = 10;
-  boolean walkingForward;
-  boolean walkingBackward;
+  float speed = 5;
+  boolean walkingForward, walkingBackward, clickedLastFrame;
 
   Background() {
     background = loadImage(sketchPath() + "/lib/background.png");
@@ -50,49 +49,56 @@ class Background implements Updater {
   }
 
   void updateObject() {
+    if (keys[2]) {
+      walkingForward = true;
+      //achtergrond blok1
+      if (!obstacle.collision) {
+        backgroundPaneX -= speed;
+        backgroundPane2X -= speed;
+        backgroundPane3X -= speed;
+        backgroundX -= speed;
+      }
+    } else if (keys[1]) {
+      walkingBackward = true;
+      if (!obstacle.collision) {
+        backgroundPaneX += speed;
+        backgroundPane2X += speed;
+        backgroundPane3X += speed;
+        backgroundX += speed;
+      }
+    }
+    if (walkingForward && !obstacle.collision) {
+      if (backgroundPaneX == 640) {
+        backgroundPane2X = 1280;
+      }
+      if (backgroundPane2X == 640) {
+        backgroundPane3X = 1280;
+      }
+      if (backgroundPane3X == 640) {
+        backgroundPaneX = 1280;
+      }
+    }
+    if (walkingBackward && !obstacle.collision) {
+      if (backgroundPaneX == 0) {
+        backgroundPane3X = -640;
+      }
+      if (backgroundPane3X == 0) {
+        backgroundPane2X = -640;
+      }
+      if (backgroundPane2X == 0) {
+        backgroundPaneX = -640;
+      }
+    }
   }
 
   void pressedKey() {
     if (key == CODED) {
       if (keyCode == RIGHT) {
-        walkingForward = true;
-        //achtergrond blok1
-        if (!obstacle.collision) {
-          backgroundPaneX -= speed;
-          backgroundPane2X -= speed;
-          backgroundPane3X -= speed;
-          backgroundX -= speed;
-        }
+        keys[2] = true;
+        clickedLastFrame = true;
       } else if (keyCode == LEFT) {
-        walkingBackward = true;
-        if (!obstacle.collision) {
-          backgroundPaneX += speed;
-          backgroundPane2X += speed;
-          backgroundPane3X += speed;
-          backgroundX += speed;
-        }
-      }
-      if (walkingForward && !obstacle.collision) {
-        if (backgroundPaneX == 640) {
-          backgroundPane2X = 1280;
-        }
-        if (backgroundPane2X == 640) {
-          backgroundPane3X = 1280;
-        }
-        if (backgroundPane3X == 640) {
-          backgroundPaneX = 1280;
-        }
-      }
-      if (walkingBackward && !obstacle.collision) {
-        if (backgroundPaneX == 0) {
-          backgroundPane3X = -640;
-        }
-        if (backgroundPane3X == 0) {
-          backgroundPane2X = -640;
-        }
-        if (backgroundPane2X == 0) {
-          backgroundPaneX = -640;
-        }
+        keys[1] = true;
+        clickedLastFrame = true;
       }
     }
   }
@@ -100,5 +106,15 @@ class Background implements Updater {
   void releasedKey() {
     walkingForward = false;
     walkingBackward = false;
+    if (clickedLastFrame) {
+      clickedLastFrame = false;
+    }
+    if (key == CODED) {
+      if (keyCode == LEFT) {
+        keys[1] = false;
+      } else if (keyCode == RIGHT) {
+        keys[2] = false;
+      }
+    }
   }
 }

@@ -30,6 +30,7 @@ class Lazers extends Collision {
       if (frameCount - timer2 >=180) {
         drawLazer = false;
         timer = frameCount;
+        position.y = random(60, 720);
       }
     }
   }

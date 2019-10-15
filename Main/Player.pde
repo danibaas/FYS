@@ -4,9 +4,9 @@ class Player implements Updater {
   float yObject = height/4;
   float gravity = 0.07;
   float velocity = 0;
-  float upforce = -3.5;
+  float upforce = -2.4;
   float movement = 3.5;
-  boolean isUp, isDown, isRight, isLeft, airBorne;
+  boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame;
   int playerSize = 50;
 
   Player() {
@@ -26,28 +26,47 @@ class Player implements Updater {
 
   void updateObject() {
     move();
+    if (keys[0]) {
+      if (!airBorne) {
+        jump();
+        setMove(keyCode, true);
+      }
+    } else if (keys[3]) {
+      if (!airBorne) {
+      }
+    }
   }
 
   void pressedKey() {
     if (key == CODED) {
       if (keyCode == UP) {
-        if (!airBorne) {
-          jump();
-          setMove(keyCode, true);
-        }
+        keys[0] = true;
+        clickedLastFrame = true;
       }
     }
     //Does nothing right now
     if (key == CODED) {
       if (keyCode == DOWN) {
-        if (!airBorne) {
-        }
+        keys[3] = true;
+        clickedLastFrame = true;
       }
     }
   }
 
   void releasedKey() {
     setMove(keyCode, false);
+    if (clickedLastFrame) {
+      //keys[0] = false;
+      //keys[3] = false;
+      clickedLastFrame = false;
+    }
+    if (key == CODED) {
+      if (keyCode == UP) {
+        keys[0] = false;
+      } else if (keyCode == DOWN) {
+        keys[3] = false;
+      }
+    }
   }
 
   void jump() {
@@ -66,7 +85,7 @@ class Player implements Updater {
       velocity += gravity;
       yObject += velocity;
       //zwaartekracht functie
-      if (yObject >= height - r||obstacle.onObstacle&&yObject>=height-r-obstacle.boxHeight) {
+      if (yObject >= height - r || obstacle.onObstacle&&yObject >= height - r - obstacle.boxHeight) {
         yObject = height - r;
         velocity = 0;
         airBorne = false;
@@ -76,7 +95,7 @@ class Player implements Updater {
         velocity = 0;
       }
     }
-    xObject = constrain(xObject + movement*(int(isRight) - int(isLeft)), r, width  - r);
+    xObject = constrain(xObject + movement*(int(isRight) - int(isLeft)), r, width - r);
     yObject = constrain(yObject + movement*(int(isDown) - int(isUp)), r, height - r);
   }
 
