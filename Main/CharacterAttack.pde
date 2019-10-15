@@ -7,7 +7,7 @@ class CharacterAttack implements Updater {
   private boolean canAttack = false;
   private boolean ready = false;
   private int timer; 
-  int timeToWait = 180; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
+  int timeToWait = 1800; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
   int countDown = timeToWait;
   int yAttack;
   int fireballSpeed = 5;
