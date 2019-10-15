@@ -13,6 +13,7 @@ Player player;
 CharacterAttack characterAttack;
 GameOver gameover;
 Obstacle obstacle;
+Lazers lazers;
 
 //collision & update loop lists
 ArrayList<Collision> objList;
@@ -35,6 +36,7 @@ void setup() {
   pickup = new Pickup(new PVector(300, 400), 100, 100);
   enemy = new Enemy(new PVector(500, 500), 100, 100);
   obstacle = new Obstacle(new PVector(600, 600), 200, 100);
+  lazers = new Lazers(new PVector(100, random(60, 720)), 1080, 30);
 }
 
 // the game loop
@@ -47,6 +49,7 @@ void draw() {
   for (Collision c : objList) {
     c.noCollision();
   }
+  lazers.presentlazers();
 }
 
 void keyPressed() {
