@@ -2,7 +2,7 @@ import de.bezier.data.sql.*;
 
 class HighScore {
   SQLite sql;
-  int highScore = 0;
+  float highScore = 0;
 
   void initializeDatabase() {
     String path = sketchPath() + "/highscores.db";
@@ -17,34 +17,45 @@ class HighScore {
     }
     sql = new SQLite(instance, f.getPath());
     if (sql.connect()) {
-      sql.execute("CREATE TABLE IF NOT EXISTS highscores (name varchar(128), int score)");
+      sql.execute("CREATE TABLE IF NOT EXISTS highscores (name varchar(128), float score)");
     }
   }
 
-  void updateScore() {
-    highScore++;
+  void displayScore() {
+    stroke(0);
+    fill(255);
+    rect(1045, 0, 233, 40);
+    fill(150, 100, 255);
+    textSize(30);
+    textAlign(LEFT);
+    String tekst = "Score: " + nfc(highScore, 1); 
+    text(tekst, 1050, 30);
   }
 
-  void setScore(int score) {
+  void updateScore() {
+    highScore += 0.1;
+  }
+
+  void setScore(float score) {
     highScore = score;
   }
 
-  int getScore() {
+  float getScore() {
     return highScore;
   }
   // database 
-  void saveHighScore(String name, int score) {
+  void saveHighScore(String name, float score) {
     if (sql.connect()) {
       sql.execute("INSERT INTO highscores VALUES(" + name + ", " + score + ")");
     }
   }
 
-  int getScore(String name) {
-    int score = 0;
+  float getScore(String name) {
+    float score = 0;
     if (sql.connect()) {
       sql.query("SELECT * FROM highscores WHERE name='" + name + "'");
       if (sql.next()) {
-        score = sql.getInt("score");
+        score = sql.getFloat("score");
       }
     }
     return score;

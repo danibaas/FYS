@@ -53,6 +53,7 @@ void draw() {
     c.noCollision();
   }
   lazers.presentlazers();
+  highScore.displayScore();
 }
 
 void keyPressed() {

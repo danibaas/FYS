@@ -9,6 +9,7 @@ class Healthbar implements Updater {
 
   Healthbar() {
     stroopwafel = loadImage(sketchPath() + "/lib/stroopwafel.jpg");
+    stroopwafel.resize(35, 35);
     updateList.add(this);
   }
 
@@ -19,12 +20,12 @@ class Healthbar implements Updater {
     //Box of lives
     fill(255);
     strokeWeight(3);
-    rect(-10, -10, 310, 60);
+    rect(-10, -10, 260, 60);
 
     int x = 0;
     for (int i=0; i < iMax; i++) {
-      image(stroopwafel, x, 0, stroopwafel.width/8, stroopwafel.height/8);
-      x += 50;
+      image(stroopwafel, x, 5);
+      x += 40;
     }
     // display gameover screen
     if (dead) {

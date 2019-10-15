@@ -7,7 +7,7 @@ class CharacterAttack implements Updater {
   private boolean canAttack = false;
   private boolean ready = false;
   private int timer; 
-  int timeToWait = 1800; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
+  int timeToWait = 180; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
   int countDown = timeToWait;
   int yAttack;
   int fireballSpeed = 5;
@@ -46,22 +46,23 @@ class CharacterAttack implements Updater {
     }
     if (ready) {
       fill(0, 255, 0);
-      rect(400, 0, 400, 50);
+      rect(0, 50, 250, 35);
       fill(0);
       textAlign(CENTER);
       textSize(20);
-      text("SPECIAL READY!!!!!!", 600, 25);
+      text("SPECIAL READY", 125, 75);
     }
     if (!ready) {
       fill(255, 0, 0);
-      rect(400, 0, 400, 50);
+      rect(0, 50, 250, 35);
       fill(0);
       textAlign(CENTER);
       textSize(20);
-      text("SPECIAL NOT READY!!!!!!", 600, 25);
+      text("SPECIAL NOT READY", 140, 75);
       textAlign(LEFT);
       countDown--;
-      text(countDown/60, 400, 25);
+      text(countDown/60, 5, 75);
+      textAlign(CENTER);
     }
     //special is ready om de 10 seconden
     if (frameCount - timer >=timeToWait) {

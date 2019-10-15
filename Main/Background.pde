@@ -58,6 +58,7 @@ class Background implements Updater {
         backgroundPane3X -= speed;
         backgroundX -= speed;
       }
+      highScore.updateScore();
     } else if (keys[1]) {
       walkingBackward = true;
       if (!obstacle.collision) {
