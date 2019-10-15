@@ -1,5 +1,7 @@
 class Obstacle extends Collision implements Updater {
-  boolean onObstacle = false;
+  boolean onObstacle, doMove;
+
+
   Obstacle(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
     updateList.add(this);
@@ -19,19 +21,34 @@ class Obstacle extends Collision implements Updater {
      } else {
      onObstacle=false;
      }*/
+    if (keys[2] && doMove) {
+      position.x = position.x - background.speed;
+    } else if (keys[1] && doMove) {
+      position.x = position.x + background.speed;
+    }
   }
-
 
   void pressedKey() {
     if (key == CODED) {
-      if (keyCode == RIGHT&&!collision) {
-        position.x = position.x - background.speed;
-      } else if (keyCode == LEFT&& !collision) {
-        position.x = position.x + background.speed;
+      if (keyCode == RIGHT && !collision) {
+        keys[2] = true;
+        doMove = true;
+      } else if (keyCode == LEFT && !collision) {
+        keys[1] = true;
+        doMove = true;
       }
     }
   }
 
   void releasedKey() {
+    if (key == CODED) {
+      if (keyCode == LEFT) {
+        keys[1] = false; 
+        doMove = false;
+      } else if (keyCode == RIGHT) {
+        keys[2] = false;
+        doMove = false;
+      }
+    }
   }
 }

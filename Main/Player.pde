@@ -56,8 +56,6 @@ class Player implements Updater {
   void releasedKey() {
     setMove(keyCode, false);
     if (clickedLastFrame) {
-      //keys[0] = false;
-      //keys[3] = false;
       clickedLastFrame = false;
     }
     if (key == CODED) {

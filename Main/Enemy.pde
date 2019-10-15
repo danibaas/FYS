@@ -1,5 +1,6 @@
 class Enemy extends Collision implements Updater {
   PImage skin;
+  boolean doMove;
 
   Enemy(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
@@ -11,6 +12,11 @@ class Enemy extends Collision implements Updater {
   void updateObject() {
     if (collision == true) {
       healthbar.removeHealth();
+    }
+    if (keys[2] && doMove) {
+      position.x = position.x - background.speed;
+    } else if (keys[1] && doMove) {
+      position.x = position.x + background.speed;
     }
   }
 
@@ -27,13 +33,24 @@ class Enemy extends Collision implements Updater {
   void pressedKey() {
     if (key == CODED) {
       if (keyCode == RIGHT && !obstacle.collision) {
-        position.x = position.x - background.speed;
+        keys[2] = true;
+        doMove = true;
       } else if (keyCode == LEFT && !obstacle.collision) {
-        position.x = position.x + background.speed;
+        keys[1] = true;
+        doMove = true;
       }
     }
   }
 
   void releasedKey() {
+    if (key == CODED) {
+      if (keyCode == RIGHT) {
+        keys[2] = false;
+        doMove = false;
+      } else if (keyCode == LEFT) {
+        keys[1] = false;
+        doMove = false;
+      }
+    }
   }
 }
