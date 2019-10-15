@@ -52,7 +52,7 @@ void draw() {
       r.drawObject();
       r.updateObject();
     }
-    lazers.timeLazers();
+    //lazers.timeLazers();
     highScore.displayScore();
   }
 }

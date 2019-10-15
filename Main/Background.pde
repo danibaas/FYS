@@ -49,46 +49,47 @@ class Background implements Updater {
   }
 
   void updateObject() {
-    // println(obstacle.collidesWithPlayer(player));
-    if (keys[2]) {
-      walkingForward = true;
-      //achtergrond blok1
-      if (walkingForward && !player.hasCollision()) { //COLLISION CHECK
-        backgroundPaneX -= speed;
-        backgroundPane2X -= speed;
-        backgroundPane3X -= speed;
-        backgroundX -= speed;
+    if (!player.stopMoving) {
+      if (keys[2] && !player.hasCollision()) {
+        walkingForward = true;
+        //achtergrond blok1
+        if (walkingForward) { //COLLISION CHECK
+          backgroundPaneX -= speed;
+          backgroundPane2X -= speed;
+          backgroundPane3X -= speed;
+          backgroundX -= speed;
+        }
+        highScore.updateScore();
+      } else if (keys[1] && !player.hasCollision()) {
+        walkingBackward = true;
+        if (walkingBackward) {  //COLLISION CHECK
+          backgroundPaneX += speed;
+          backgroundPane2X += speed;
+          backgroundPane3X += speed;
+          backgroundX += speed;
+        }
       }
-      highScore.updateScore();
-    } else if (keys[1]) {
-      walkingBackward = true;
-      if (walkingBackward && !player.hasCollision()) {  //COLLISION CHECK
-        backgroundPaneX += speed;
-        backgroundPane2X += speed;
-        backgroundPane3X += speed;
-        backgroundX += speed;
+      if (walkingForward) { // walkingForward && collision check
+        if (backgroundPaneX == 640) {
+          backgroundPane2X = 1280;
+        }
+        if (backgroundPane2X == 640) {
+          backgroundPane3X = 1280;
+        }
+        if (backgroundPane3X == 640) {
+          backgroundPaneX = 1280;
+        }
       }
-    }
-    if (walkingForward && !player.hasCollision()) { // walkingForward && collision check
-      if (backgroundPaneX == 640) {
-        backgroundPane2X = 1280;
-      }
-      if (backgroundPane2X == 640) {
-        backgroundPane3X = 1280;
-      }
-      if (backgroundPane3X == 640) {
-        backgroundPaneX = 1280;
-      }
-    }
-    if (walkingBackward && !player.hasCollision()) { // walkingForward && collision check
-      if (backgroundPaneX == 0) {
-        backgroundPane3X = -640;
-      }
-      if (backgroundPane3X == 0) {
-        backgroundPane2X = -640;
-      }
-      if (backgroundPane2X == 0) {
-        backgroundPaneX = -640;
+      if (walkingBackward) { // walkingForward && collision check
+        if (backgroundPaneX == 0) {
+          backgroundPane3X = -640;
+        }
+        if (backgroundPane3X == 0) {
+          backgroundPane2X = -640;
+        }
+        if (backgroundPane2X == 0) {
+          backgroundPaneX = -640;
+        }
       }
     }
   }

@@ -18,10 +18,12 @@ class Pickup extends Collider implements Updater {
     if (collidesWithPlayer(player)) { // collision check
       healthbar.addHealth();
     }
-    if (keys[2] && !player.hasCollision()) {
-      position.x = position.x - background.speed;
-    } else if (keys[1] && !player.hasCollision()) {
-      position.x = position.x + background.speed;
+    if (!player.stopMoving) {
+      if (keys[2] && !player.hasCollision()) {
+        position.x = position.x - background.speed;
+      } else if (keys[1] && !player.hasCollision()) {
+        position.x = position.x + background.speed;
+      }
     }
   }
 

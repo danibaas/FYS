@@ -1,12 +1,12 @@
 class Collider {
   PVector position;
-  float boxWidth, boxHeight, radius;
+  float boxWidth, boxHeight;
+  int collisionType;
 
   Collider(PVector position, float boxWidth, float boxHeight) {
     this.position = position;
     this.boxWidth = boxWidth;
     this.boxHeight = boxHeight;
-    radius = boxWidth / 2;
   }
 
   boolean collidesWithPlayer(Player player) { 
@@ -14,6 +14,15 @@ class Collider {
     float playerRadius = player.playerSize / 2;
     if (player.playerVector.x + playerRadius > position.x && player.playerVector.x - playerRadius < position.x + boxWidth && player.playerVector.y + playerRadius > position.y && player.playerVector.y - playerRadius < position.y + boxHeight) {
       collides = true;
+      if (player.playerVector.x + playerRadius > position.x) {
+        collisionType = CollisionType.LEFT;
+      } else if (player.playerVector.x + playerRadius > position.x) {
+        collisionType = CollisionType.RIGHT;
+      } else if (player.playerVector.y + playerRadius > position.y) {
+        collisionType = CollisionType.TOP;
+      } else {
+        collisionType = CollisionType.BOTTOM;
+      }
     }
     return collides;
   }

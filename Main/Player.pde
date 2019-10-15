@@ -7,7 +7,7 @@ class Player extends Collider implements Updater {
   float velocity = 0;
   float upforce = -2.4;
   float movement = 3.5;
-  boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision;
+  boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, stopMoving;
   ;
   int playerSize;
 
@@ -95,8 +95,12 @@ class Player extends Collider implements Updater {
       velocity += gravity;
       playerVector.y += velocity;
       //zwaartekracht functie
-      if (playerVector.y >= height - r) {
-        playerVector.y = height - r;
+      if (playerVector.y >= height - r || obstacle.playerOnObstacle) {
+        if (playerVector.y >= height - r) {
+          playerVector.y = height - r;
+        } else {
+          playerVector.y = obstacle.position.y - playerSize/2;
+        }
         velocity = 0;
         airBorne = false;
         //bal blijft zo binnen het scherm
