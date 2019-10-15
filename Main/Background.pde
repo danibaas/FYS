@@ -1,5 +1,8 @@
 class Background implements Updater {
   PImage background;
+  PImage backgroundpane;
+  PImage backgroundpane2;
+  PImage backgroundpane3;
   float backgroundX = 0;
   float backgroundPaneX = 1280;
   float backgroundPaneY = 0;
@@ -14,6 +17,12 @@ class Background implements Updater {
 
   Background() {
     background = loadImage(sketchPath() + "/lib/background.png");
+    backgroundpane = loadImage(sketchPath() + "/lib/backgroundpane1.png");
+    backgroundpane.resize(640, 800);
+    backgroundpane2 = loadImage(sketchPath() + "/lib/backgroundpane2.png");
+    backgroundpane2.resize(640, 800);
+    backgroundpane3 = loadImage(sketchPath() + "/lib/backgroundpane3.png");
+    backgroundpane3.resize(640, 800);
     updateList.add(this);
   }
   void drawObject() {
@@ -23,14 +32,16 @@ class Background implements Updater {
     //first
     fill(0, 255, 0);
     rect(backgroundPaneX, backgroundPaneY, 640, 800);
-
+    image(backgroundpane, backgroundPaneX, backgroundPaneY);
     //second
     fill(255, 0, 0);
     rect(backgroundPane2X, backgroundPane2Y, 640, 800);
+    image(backgroundpane2, backgroundPane2X, backgroundPane2Y);
 
     //third
     fill(10, 10, 225);
     rect(backgroundPane3X, backgroundPane3Y, 640, 800);
+    image(backgroundpane3, backgroundPane3X, backgroundPane3Y);
     stroke(0);
 
     //ground
