@@ -11,10 +11,15 @@ class Obstacle extends Collider implements Updater {
   }
 
   void updateObject() {
-    println(player.playerVector.x, position.x, enemy.position.x, pickup.position.x);
+    //println(player.playerVector.x, position.x, enemy.position.x, pickup.position.x);
     if (collidesWithPlayer(player)) {
       resolveCollision();
+      player.stopMoving = true;
     } else {
+      int playerRadius = player.playerSize / 2;
+      if (playerOnObstacle && (player.playerVector.x + playerRadius < position.x || player.playerVector.x - playerRadius > position.x + boxWidth)) {
+         playerOnObstacle = false; 
+      }
       collisionType = CollisionType.NONE;
       moveEntity(false);
     }
@@ -44,9 +49,9 @@ class Obstacle extends Collider implements Updater {
       }
       background.turnOff();
     } else if (collisionType == CollisionType.TOP) {
+      playerOnObstacle = true;
     } else {
       //under obstacle
     }
-    player.stopMoving = true;
   }
 }

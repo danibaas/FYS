@@ -7,7 +7,7 @@ class Player extends Collider implements Updater {
   float velocity = 0;
   float upforce = -2.4;
   float movement = 3.5;
-  boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, stopMoving;
+  boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, stopMoving, jumped;
   ;
   int playerSize;
 
@@ -41,6 +41,7 @@ class Player extends Collider implements Updater {
       if (!airBorne) {
       }
     }
+    println(playerVector.y, velocity);
   }
 
   void pressedKey() {
@@ -57,6 +58,11 @@ class Player extends Collider implements Updater {
         clickedLastFrame = true;
       }
     }
+    if (key == 'l') {
+       for (int i = 0; i < 3; i++) {
+          println(); 
+       }
+    }
   }
 
   void releasedKey() {
@@ -68,6 +74,7 @@ class Player extends Collider implements Updater {
     if (key == CODED) {
       if (keyCode == UP) {
         keys[0] = false;
+        jumped = false;
       } else if (keyCode == DOWN) {
         keys[3] = false;
       }
@@ -86,29 +93,31 @@ class Player extends Collider implements Updater {
 
   void jump() {
     velocity += upforce;
+    jumped = true;
     //jump mechanic
   }
 
   void move() {
     final int r = 50;
-    if (playerVector.y < height-r) {
+    if (obstacle.playerOnObstacle || (playerVector.y < height-r && !obstacle.playerOnObstacle)) {
       airBorne = true;
       velocity += gravity;
       playerVector.y += velocity;
       //zwaartekracht functie
-      if (playerVector.y >= height - r || obstacle.playerOnObstacle) {
-        if (playerVector.y >= height - r) {
-          playerVector.y = height - r;
-        } else {
-          playerVector.y = obstacle.position.y - playerSize/2;
-        }
-        velocity = 0;
-        airBorne = false;
-        //bal blijft zo binnen het scherm
-      } else if (playerVector.y <= r) {
-        playerVector.y = 25;
-        velocity = 0;
+    }
+    if (playerVector.y >= height - r || (obstacle.playerOnObstacle && playerVector.y + playerSize > obstacle.position.y) && !jumped) {
+      if (playerVector.y >= height - r) {
+        playerVector.y = height - r;
+      } else {
+        playerVector.y = obstacle.position.y - playerSize/2;
+        stopMoving = false;
       }
+      velocity = 0;
+      airBorne = false;
+      //bal blijft zo binnen het scherm
+    } else if (playerVector.y <= r) {
+      playerVector.y = 25;
+      velocity = 0;
     }
     //xObject = constrain(xObject + movement*(int(isRight) - int(isLeft)), r, width - r);
     playerVector.y = constrain(playerVector.y + movement*(int(isDown) - int(isUp)), r, height - r);
