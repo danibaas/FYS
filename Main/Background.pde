@@ -12,7 +12,7 @@ class Background implements Updater {
   float backgroundPane3Y = 0;
   float groundHeight = height - 24;
   float speed = 5;
-  boolean walkingForward, walkingBackward;
+  boolean walkingForward, walkingBackward, enabled;
 
   Background() {
     background = loadImage(sketchPath() + "/lib/background.png");
@@ -22,8 +22,10 @@ class Background implements Updater {
     backgroundpane2.resize(640, 800);
     backgroundpane3 = loadImage(sketchPath() + "/lib/backgroundpane3.png");
     backgroundpane3.resize(640, 800);
+    enabled = true;
     updateList.add(this);
   }
+
   void drawObject() {
     // background panes
     image(background, backgroundX, 0);
@@ -49,7 +51,7 @@ class Background implements Updater {
   }
 
   void updateObject() {
-    if (!player.hasCollision() && !player.stopMoving) {
+    if (!player.hasCollision() && !player.stopMoving && enabled) {
       if (keys[2]) {
         walkingForward = true;
         //achtergrond blok1
@@ -114,5 +116,13 @@ class Background implements Updater {
         keys[2] = false;
       }
     }
+  }
+
+  void turnOn() {
+    enabled = true;
+  }
+
+  void turnOff() {
+    enabled = false;
   }
 }

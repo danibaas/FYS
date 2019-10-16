@@ -15,7 +15,6 @@ Obstacle obstacle;
 Lazers lazers;
 
 //collision & update loop lists
-//ArrayList<Collision> objList;
 ArrayList<Updater> updateList;
 
 //movmement help
@@ -24,7 +23,6 @@ boolean[] keys = new boolean[4];
 
 void setup() {
   // ratio 16:9
-  //objList = new ArrayList();
   updateList = new ArrayList();
   size(1280, 720);
   instance = this;
@@ -51,7 +49,6 @@ void draw() {
     for (Updater r : updateList) {
       r.updateObject();
       r.drawObject();
-      
     }
     //lazers.timeLazers();
     highScore.displayScore();

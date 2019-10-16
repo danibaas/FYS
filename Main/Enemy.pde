@@ -12,10 +12,8 @@ class Enemy extends Collider implements Updater {
     if (collidesWithPlayer(player)) {
       //healthbar.removeHealth();
     }
-    if (keys[2] && !player.hasCollision() && !player.stopMoving) {
-      position.x = position.x - background.speed;
-    } else if (keys[1] && !player.hasCollision() && !player.stopMoving) {
-      position.x = position.x + background.speed;
+    if (!obstacle.collidesWithPlayer(player)) {
+      moveEntity(false);
     }
   }
 
