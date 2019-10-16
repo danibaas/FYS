@@ -12,11 +12,12 @@ class Collider {
   boolean collidesWithPlayer(Player player) { 
     boolean collides = false;
     float playerRadius = player.playerSize / 2;
-    if (player.playerVector.x + playerRadius > position.x && player.playerVector.x - playerRadius < position.x + boxWidth && player.playerVector.y + playerRadius > position.y && player.playerVector.y - playerRadius < position.y + boxHeight) {
+    if (player.playerVector.x + playerRadius > position.x && player.playerVector.x - playerRadius < position.x + boxWidth 
+      && player.playerVector.y + playerRadius > position.y && player.playerVector.y - playerRadius < position.y + boxHeight) {
       collides = true;
-      if (player.playerVector.x + playerRadius > position.x) {
+      if (player.playerVector.x + playerRadius > position.x && player.playerVector.x < position.x + boxWidth) {
         collisionType = CollisionType.LEFT;
-      } else if (player.playerVector.x + playerRadius > position.x) {
+      } else if (player.playerVector.x - playerRadius < position.x + boxWidth) {
         collisionType = CollisionType.RIGHT;
       } else if (player.playerVector.y + playerRadius > position.y) {
         collisionType = CollisionType.TOP;

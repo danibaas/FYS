@@ -49,8 +49,9 @@ void draw() {
     gameOver.drawObject();
   } else {
     for (Updater r : updateList) {
-      r.drawObject();
       r.updateObject();
+      r.drawObject();
+      
     }
     //lazers.timeLazers();
     highScore.displayScore();

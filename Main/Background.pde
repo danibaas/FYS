@@ -49,8 +49,8 @@ class Background implements Updater {
   }
 
   void updateObject() {
-    if (!player.stopMoving) {
-      if (keys[2] && !player.hasCollision()) {
+    if (!player.hasCollision() && !player.stopMoving) {
+      if (keys[2]) {
         walkingForward = true;
         //achtergrond blok1
         if (walkingForward) { //COLLISION CHECK
@@ -60,7 +60,7 @@ class Background implements Updater {
           backgroundX -= speed;
         }
         highScore.updateScore();
-      } else if (keys[1] && !player.hasCollision()) {
+      } else if (keys[1]) {
         walkingBackward = true;
         if (walkingBackward) {  //COLLISION CHECK
           backgroundPaneX += speed;

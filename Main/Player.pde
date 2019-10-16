@@ -61,6 +61,7 @@ class Player extends Collider implements Updater {
 
   void releasedKey() {
     setMove(keyCode, false);
+    stopMoving = false;
     if (clickedLastFrame) {
       clickedLastFrame = false;
     }
