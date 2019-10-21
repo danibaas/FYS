@@ -18,7 +18,7 @@ class Pickup extends Collider implements Updater {
     if (collidesWithPlayer(player)) { // collision check
       healthbar.addHealth();
     }
-    if (!obstacle.collidesWithPlayer(player)) {
+    if (!player.hasCollision()) {
       moveEntity(false);
     }
   }

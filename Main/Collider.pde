@@ -15,7 +15,6 @@ class Collider {
     if (player.playerVector.x + playerRadius > position.x && player.playerVector.x - playerRadius < position.x + boxWidth 
       && player.playerVector.y + playerRadius > position.y && player.playerVector.y - playerRadius < position.y + boxHeight) {
       collides = true;
-      //println(player.playerVector.x + playerRadius > position.x, player.playerVector.y > position.y, player.playerVector.x < position.x + boxWidth/2);
       if (player.playerVector.x + playerRadius > position.x && player.playerVector.y > position.y && player.playerVector.x < position.x + boxWidth/2) {
         collisionType = CollisionType.LEFT;
       } else if (player.playerVector.x - playerRadius < position.x + boxWidth && player.playerVector.y > position.y) {
@@ -42,6 +41,16 @@ class Collider {
     boolean collides = false;
     if (obstacle.position.x + obstacle.boxWidth > position.x && obstacle.position.x < position.x + boxWidth && obstacle.position.y + obstacle.boxHeight > position.y && obstacle.position.y - obstacle.boxHeight < position.y + boxHeight) {
       collides = true;
+    }
+    return collides;
+  }
+
+  boolean collidesWithObstacle(ArrayList<Obstacle> obstacle) {
+    boolean collides = false;
+    for (Obstacle obs : obstacle) {
+      if (obs.position.x + obs.boxWidth > position.x && obs.position.x < position.x + boxWidth && obs.position.y + obs.boxHeight > position.y && obs.position.y - obs.boxHeight < position.y + boxHeight) {
+        collides = true;
+      }
     }
     return collides;
   }

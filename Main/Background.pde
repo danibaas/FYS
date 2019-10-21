@@ -55,7 +55,7 @@ class Background implements Updater {
       if (keys[2]) {
         walkingForward = true;
         //achtergrond blok1
-        if (walkingForward) { //COLLISION CHECK
+        if (walkingForward) {
           backgroundPaneX -= speed;
           backgroundPane2X -= speed;
           backgroundPane3X -= speed;
@@ -64,14 +64,14 @@ class Background implements Updater {
         highScore.updateScore();
       } else if (keys[1]) {
         walkingBackward = true;
-        if (walkingBackward) {  //COLLISION CHECK
+        if (walkingBackward) {
           backgroundPaneX += speed;
           backgroundPane2X += speed;
           backgroundPane3X += speed;
           backgroundX += speed;
         }
       }
-      if (walkingForward) { // walkingForward && collision check
+      if (walkingForward) {
         if (backgroundPaneX == 640) {
           backgroundPane2X = 1280;
         }
@@ -82,7 +82,7 @@ class Background implements Updater {
           backgroundPaneX = 1280;
         }
       }
-      if (walkingBackward) { // walkingForward && collision check
+      if (walkingBackward) {
         if (backgroundPaneX == 0) {
           backgroundPane3X = -640;
         }

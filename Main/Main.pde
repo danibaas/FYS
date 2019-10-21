@@ -11,11 +11,12 @@ Healthbar healthbar;
 Player player;
 CharacterAttack characterAttack;
 GameOver gameOver;
-Obstacle obstacle;
+OfficeObstacle office;
 Lazers lazers;
 
 //collision & update loop lists
 ArrayList<Updater> updateList;
+ArrayList<Obstacle> obstacleList;
 
 //movmement help
 boolean[] keys = new boolean[4];
@@ -24,6 +25,7 @@ boolean[] keys = new boolean[4];
 void setup() {
   // ratio 16:9
   updateList = new ArrayList();
+  obstacleList = new ArrayList();
   size(1280, 720);
   instance = this;
   highScore = new HighScore();
@@ -36,7 +38,7 @@ void setup() {
   gameOver = new GameOver();
   pickup = new Pickup(new PVector(300, 400), 100, 100);
   enemy = new Enemy(new PVector(500, 500), 100, 100);
-  obstacle = new Obstacle(new PVector(600, 600), 200, 100);
+  office = new OfficeObstacle(new PVector(600, 600), 200, 100);
   lazers = new Lazers(new PVector(100, random(60, 720)), 1080, 30);
 }
 
@@ -50,7 +52,7 @@ void draw() {
       r.updateObject();
       r.drawObject();
     }
-    //lazers.timeLazers();
+    lazers.timeLazers();
     highScore.displayScore();
   }
 }
