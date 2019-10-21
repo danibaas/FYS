@@ -1,34 +1,24 @@
-class Obstacle extends Collider implements Updater {
+class Obstacle extends Collider {
   boolean playerOnObstacle;
 
   Obstacle(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
-    updateList.add(this);
-  }
-
-  void drawObject() {
-    rect(position.x, position.y, boxWidth, boxHeight);
+    playerOnObstacle = false;
+    obstacleList.add(this);
   }
 
   void updateObject() {
-    //println(player.playerVector.x, position.x, enemy.position.x, pickup.position.x);
     if (collidesWithPlayer(player)) {
       resolveCollision();
       player.stopMoving = true;
     } else {
       int playerRadius = player.playerSize / 2;
       if (playerOnObstacle && (player.playerVector.x + playerRadius < position.x || player.playerVector.x - playerRadius > position.x + boxWidth)) {
-         playerOnObstacle = false; 
+        playerOnObstacle = false;
       }
       collisionType = CollisionType.NONE;
       moveEntity(false);
     }
-  }
-
-  void pressedKey() {
-  }
-
-  void releasedKey() {
   }
 
   void resolveCollision() {
