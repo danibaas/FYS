@@ -28,7 +28,6 @@ class Player extends Collider implements Updater {
   }
 
   void updateObject() {
-    playerSkin = characterSelect.getPlayerSkin();
     hasCollision();
     move();
     if (keys[0]) {
@@ -84,6 +83,7 @@ class Player extends Collider implements Updater {
   }
 
   void setCrouch(boolean crouched) {
+    playerSkin = characterSelect.getPlayerSkin();
     if (crouched && !isCrouched) {
       isCrouched = true;
       playerVector.y += playerHeight / 4;
