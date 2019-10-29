@@ -25,7 +25,7 @@ class OfficeObstacle extends Obstacle implements Updater {
         playerOnObstacle = false;
       }
       collisionType = CollisionType.NONE;
-      moveEntity(false);
+      background.turnOn();
     }
     if (!player.hasCollision()) {
       moveEntity(false);
@@ -34,7 +34,7 @@ class OfficeObstacle extends Obstacle implements Updater {
   }
 
   void loopObstacle() {
-    if (position.x + boxWidth < 0) {
+    if (position.x + boxWidth < 0 && timer + waitTime < millis()) {
       timer = millis(); 
       position.x = width + 2*boxWidth;
     }

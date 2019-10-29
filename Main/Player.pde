@@ -8,15 +8,13 @@ class Player extends Collider implements Updater {
   float upforce = -2.4;
   float movement = 3.5;
   boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, stopMoving, jumped;
-  ;
   int playerSize;
 
   Player(PVector vector, int size) {
     super(vector, size, size);
     playerVector = vector;
     playerSize = size;
-    //playerSkin = charatcerSelect.getPlayerSkin();
-    playerSkin = loadImage(sketchPath() + "/lib/player.png");
+    playerSkin = characterSelect.getPlayerSkin();
     playerSkin.resize(playerSize, playerSize);
     updateList.add(this);
   }
@@ -78,6 +76,21 @@ class Player extends Collider implements Updater {
         keys[3] = false;
       }
     }
+  }
+
+  boolean isOnObstacle() {
+    boolean onObstacle= false;
+    for (Obstacle b : obstacleList) {
+      if (b.playerOnObstacle) {
+        onObstacle = true;
+      }
+    }
+    return onObstacle;
+  }
+
+  void updateSkin() {
+    playerSkin = characterSelect.getPlayerSkin();
+    playerSkin.resize(playerSize, playerSize);
   }
 
   boolean hasCollision() {

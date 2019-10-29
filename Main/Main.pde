@@ -3,7 +3,7 @@ Main instance;
 
 //object creation
 HighScore highScore;
-//CharacterSelect characterSelect;
+CharacterSelect characterSelect;
 Pickup pickup;
 Background background;
 Enemy enemy;
@@ -32,9 +32,9 @@ void setup() {
   highScore.initializeDatabase();
   background = new Background();
   healthbar = new Healthbar();
-  player = new Player(new PVector(140, height / 4), 50);
   characterAttack = new CharacterAttack();
-  //characterSelect = new CharacterSelect();
+  characterSelect = new CharacterSelect();
+  player = new Player(new PVector(140, height / 4), 50);
   gameOver = new GameOver();
   pickup = new Pickup(new PVector(300, 400), 100, 100);
   enemy = new Enemy(new PVector(500, 500), 100, 100);
@@ -47,6 +47,9 @@ void draw() {
   background(200);
   if (gameOver.gameOver) {
     gameOver.drawObject();
+  } else if (!characterSelect.hasChosen) {
+    characterSelect.drawSelect();
+    player.updateObject();
   } else {
     for (Updater r : updateList) {
       r.updateObject();
@@ -58,6 +61,10 @@ void draw() {
 }
 
 void keyPressed() {
+  if (!characterSelect.hasChosen) {
+    characterSelect.pressed();
+    player.updateSkin();
+  }
   for (Updater r : updateList) {
     r.pressedKey();
   }
