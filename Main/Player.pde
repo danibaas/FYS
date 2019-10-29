@@ -28,6 +28,7 @@ class Player extends Collider implements Updater {
   }
 
   void updateObject() {
+    playerSkin = characterSelect.getPlayerSkin();
     hasCollision();
     move();
     if (keys[0]) {
