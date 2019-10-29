@@ -8,23 +8,25 @@ class Player extends Collider implements Updater {
   float upforce = -2.4;
   float movement = 3.5;
   boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, stopMoving, jumped;
-  int playerSize;
+  boolean crouched = false;
+  int PlayerSizeW, PlayerSizeH;
 
-  Player(PVector vector, int size) {
-    super(vector, size, size);
+  Player(PVector vector, int sizeW, int sizeH ) {
+    super(vector, sizeW, sizeH);
     playerVector = vector;
-    playerSize = size;
+    PlayerSizeW = sizeW;
+    PlayerSizeH = sizeH;
     playerSkin = characterSelect.getPlayerSkin();
-    playerSkin.resize(playerSize, playerSize);
+    playerSkin.resize(PlayerSizeW, PlayerSizeH);
     updateList.add(this);
   }
 
   void drawObject() {
     fill(255);
     rectMode(CENTER);
-    rect(playerVector.x, playerVector.y, playerSize, playerSize);
+    rect(playerVector.x, playerVector.y, PlayerSizeW, PlayerSizeH);
     rectMode(CORNER);
-    image(playerSkin, playerVector.x - playerSize/2, playerVector.y - playerSize/2);
+    image(playerSkin, playerVector.x - PlayerSizeW/2, playerVector.y - PlayerSizeH/2);
   }
 
   void updateObject() {
@@ -48,11 +50,14 @@ class Player extends Collider implements Updater {
         clickedLastFrame = true;
       }
     }
-    //Does nothing right now
+    //You're supposed to crouch here
     if (key == CODED) {
       if (keyCode == DOWN) {
         keys[3] = true;
         clickedLastFrame = true;
+        PlayerSizeH /= 2;
+        crouched = true;
+        
       }
     }
     if (key == 'l') {
@@ -74,6 +79,8 @@ class Player extends Collider implements Updater {
         jumped = false;
       } else if (keyCode == DOWN) {
         keys[3] = false;
+        PlayerSizeH *= 2;
+        clickedLastFrame = false;
       }
     }
   }
@@ -90,7 +97,7 @@ class Player extends Collider implements Updater {
 
   void updateSkin() {
     playerSkin = characterSelect.getPlayerSkin();
-    playerSkin.resize(playerSize, playerSize);
+    playerSkin.resize(PlayerSizeW, PlayerSizeH);
   }
 
   boolean hasCollision() {
@@ -110,7 +117,7 @@ class Player extends Collider implements Updater {
   }
 
   void move() {
-    final int r = 50;
+    final int r = (int) background.groundHeight - PlayerSizeH / 2;
     for (Obstacle obstacle : obstacleList) {
       if (obstacle.playerOnObstacle || (playerVector.y < height-r && !obstacle.playerOnObstacle)) {
         airBorne = true;
@@ -118,18 +125,18 @@ class Player extends Collider implements Updater {
         playerVector.y += velocity;
         //zwaartekracht functie
       }
-      if (playerVector.y >= height - r || (obstacle.playerOnObstacle && playerVector.y + playerSize > obstacle.position.y) && !jumped) {
+      if (playerVector.y >= height - r || (obstacle.playerOnObstacle && playerVector.y + PlayerSizeH/2 > obstacle.position.y) && !jumped) {
         if (playerVector.y >= height - r) {
           playerVector.y = height - r;
         } else {
-          playerVector.y = obstacle.position.y - playerSize/2;
+          playerVector.y = obstacle.position.y - PlayerSizeH/2;
           stopMoving = false;
         }
         velocity = 0;
         airBorne = false;
         //bal blijft zo binnen het scherm
       } else if (playerVector.y <= r) {
-        playerVector.y = playerSize/2;
+        playerVector.y = PlayerSizeH/2;
         velocity = 0;
       }
       playerVector.y = constrain(playerVector.y + movement*(int(isDown) - int(isUp)), r, height - r);

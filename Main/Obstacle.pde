@@ -12,8 +12,9 @@ class Obstacle extends Collider {
       resolveCollision();
       player.stopMoving = true;
     } else {
-      int playerRadius = player.playerSize / 2;
-      if (playerOnObstacle && (player.playerVector.x + playerRadius < position.x || player.playerVector.x - playerRadius > position.x + boxWidth)) {
+      int playerRadiusW = player.PlayerSizeW;
+      int playerRadiusH = player.PlayerSizeH;
+      if (playerOnObstacle && (player.playerVector.x + playerRadiusW < position.x || player.playerVector.x - playerRadiusW > position.x + boxWidth)) {
         playerOnObstacle = false;
       }
       collisionType = CollisionType.NONE;

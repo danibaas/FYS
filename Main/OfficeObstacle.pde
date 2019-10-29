@@ -20,8 +20,8 @@ class OfficeObstacle extends Obstacle implements Updater {
       resolveCollision();
       player.stopMoving = true;
     } else {
-      int playerRadius = player.playerSize / 2;
-      if (playerOnObstacle && (player.playerVector.x + playerRadius < position.x || player.playerVector.x - playerRadius > position.x + boxWidth)) {
+      int playerRadiusW = player.PlayerSizeW;
+      if (playerOnObstacle && (player.playerVector.x + playerRadiusW < position.x || player.playerVector.x - playerRadiusW > position.x + boxWidth)) {
         playerOnObstacle = false;
       }
       collisionType = CollisionType.NONE;
