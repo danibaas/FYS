@@ -37,7 +37,7 @@ void setup() {
   player = new Player(new PVector(140, height / 4), 50, 50);
   gameOver = new GameOver();
   pickup = new Pickup(new PVector(300, 400), 100, 100);
-  enemy = new Enemy(new PVector(500, 500), 100, 100);
+  enemy = new Enemy(new PVector(500, 600), 100, 100);
   office = new OfficeObstacle(new PVector(600, 600), 200, 100);
   lazers = new Lazers(new PVector(100, random(60, 720)), 1080, 30);
 }

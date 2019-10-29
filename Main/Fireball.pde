@@ -40,8 +40,17 @@ class Fireball {
       image(fb, xA, yA, fbWidth, fbHeight);
     }
   }
+  
+  void collision(){
+    println (enemy.health);
+      if (enemy.position.x + enemy.boxWidth > xA && enemy.position.x < xA + fbWidth) {
+      enemy.health -=10;
+      xA = 1400;
+    }
+  }
 
   void move() {
+    collision();
     if (characterAttack.canAttack == true) {
       xA += speed;
     }

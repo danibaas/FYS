@@ -2,6 +2,7 @@ class Enemy extends Collider implements Updater {
   PImage skin;
   int timer;
   int waitTime = 3000;
+  int health = 10;
 
   Enemy(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
@@ -12,6 +13,7 @@ class Enemy extends Collider implements Updater {
   }
 
   void updateObject() {
+    dead();
     if (collidesWithPlayer(player)) {
       healthbar.removeHealth();
     }
@@ -26,6 +28,14 @@ class Enemy extends Collider implements Updater {
       position.x = width + 2*boxWidth;
     }
   } 
+  
+  void dead(){
+    if(health < 1){
+ 
+      position.x = width + 2*boxWidth; 
+      health = 10;
+    }
+  }
 
   void drawObject() {
     fill(255);
