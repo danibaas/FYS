@@ -33,7 +33,6 @@ class HighScore {
   }
 
   void updateScore() {
-    //if (!player.collidesWithObstacle(obstacle) && !gameOver.gameOver) {
     if (!player.hasCollision() && !gameOver.gameOver) {
       highScore += 0.1;
     }

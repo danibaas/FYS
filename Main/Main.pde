@@ -64,9 +64,10 @@ void keyPressed() {
   if (!characterSelect.hasChosen) {
     characterSelect.pressed();
     player.updateSkin();
-  }
-  for (Updater r : updateList) {
-    r.pressedKey();
+  } else {
+    for (Updater r : updateList) {
+      r.pressedKey();
+    }
   }
 }
 
