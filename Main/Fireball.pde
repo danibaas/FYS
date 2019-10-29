@@ -42,10 +42,12 @@ class Fireball {
   }
   
   void collision(){
-    println (enemy.health);
+    //println (enemy.health);
       if (enemy.position.x + enemy.boxWidth > xA && enemy.position.x < xA + fbWidth) {
       enemy.health -=10;
-      xA = 1400;
+      characterAttack.canAttack = false;
+      hasFired = false;
+      xA = 140;
     }
   }
 
@@ -57,11 +59,11 @@ class Fireball {
     if (special == true) {
       yS += speed;
     }
-    if (xA>1280 && !special) {
+    /*if (xA>1280 && !special) {
       characterAttack.canAttack = false;
       xA = 140;
       hasFired = false;
-    }
+    }*/
     if (yS>600) {
       special = false;
       yS = -50;
