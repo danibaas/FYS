@@ -47,7 +47,7 @@ class Background implements Updater {
 
     //ground
     fill(100, 0, 0);
-    rect(0-50, groundHeight, width + 50, groundHeight);
+    rect(-50, groundHeight, width + 50, groundHeight);
   }
 
   void updateObject() {

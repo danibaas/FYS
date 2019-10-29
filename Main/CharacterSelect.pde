@@ -1,5 +1,5 @@
 class CharacterSelect {
-  boolean hasChosen, choseCorra, choseDonDon;
+  boolean hasChosen, choseCorra = true, choseDonDon;
 
   void drawSelect() {
     PImage skinDonDon = loadImage(sketchPath() + "/lib/dondon.png");
@@ -41,16 +41,14 @@ class CharacterSelect {
   }
 
   void pressed() {
-    if (key == 'a' && !hasChosen) {
+    if (key == ENTER && !hasChosen) {
       hasChosen = true;
     }
     if (key == CODED) {
       if (keyCode == LEFT) {
-        //CharacterSelect Corra
         choseCorra = true;
         choseDonDon = false;
       } else if (keyCode == RIGHT) {
-        //CharacterSelect Dondon
         choseDonDon = true;
         choseCorra = false;
       }
@@ -61,11 +59,11 @@ class CharacterSelect {
   PImage getPlayerSkin() {
     PImage skin = loadImage(sketchPath() + "/lib/player.png");
     if (choseCorra && hasChosen) {
-      // corra skin
       skin = loadImage(sketchPath() + "/lib/corra.png");
+      skin.resize(player.playerWidth, player.playerHeight);
     } else if (choseDonDon && hasChosen) {
-      // dondon skin
       skin = loadImage(sketchPath() + "/lib/dondon.png");
+      skin.resize(player.playerWidth, player.playerHeight);
     }
     return skin;
   }

@@ -34,7 +34,7 @@ void setup() {
   characterSelect = new CharacterSelect();
   healthbar = new Healthbar();
   characterAttack = new CharacterAttack();
-  player = new Player(new PVector(140, height / 4), 50, 50);
+  player = new Player(new PVector(140, height / 4), 100, 100);
   gameOver = new GameOver();
   pickup = new Pickup(new PVector(300, 400), 100, 100);
   enemy = new Enemy(new PVector(500, 600), 100, 100);
