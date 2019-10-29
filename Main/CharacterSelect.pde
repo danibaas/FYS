@@ -13,7 +13,6 @@ class CharacterSelect {
       fill(255, 0, 0);
       rect(680, 400, 200, 100);
       fill(0);
-      textAlign(CENTER);
       text("DONDON", 780, 450);
     }
   }

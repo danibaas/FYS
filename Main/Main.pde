@@ -31,9 +31,9 @@ void setup() {
   highScore = new HighScore();
   highScore.initializeDatabase();
   background = new Background();
+  characterSelect = new CharacterSelect();
   healthbar = new Healthbar();
   characterAttack = new CharacterAttack();
-  characterSelect = new CharacterSelect();
   player = new Player(new PVector(140, height / 4), 50);
   gameOver = new GameOver();
   pickup = new Pickup(new PVector(300, 400), 100, 100);
