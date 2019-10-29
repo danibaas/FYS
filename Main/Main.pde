@@ -44,7 +44,6 @@ void setup() {
 
 // the game loop
 void draw() {
-  background(200);
   if (gameOver.gameOver) {
     gameOver.drawObject();
   } else if (!characterSelect.hasChosen) {
