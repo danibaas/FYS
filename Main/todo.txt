@@ -1,5 +1,0 @@
-jump shit fixen, probeer alle booleans te println en ik zag een boolean voor is airborne en onobstacle zorg dat die goed met 
-elkaar communiceren
-
-Heen en weer collision, zorg eerst dat de collision werkt door de speler weer uit het object te zetten als hij erin stapt. 
-Als je dat werkend hebt dan kun je ook collision in de andere classes zetten zoals enemy en healthpack
