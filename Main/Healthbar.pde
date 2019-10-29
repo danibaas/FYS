@@ -1,11 +1,12 @@
 class Healthbar implements Updater {
   PImage stroopwafel;
-  int lives = 6;
-  int iMax = 6;
+  int maxLives;
+  int currentLives;
   private boolean clickedLastFrame = false;
   boolean dead = false;
   boolean removeAHealth = false;
   boolean addAHealth = false;
+  boolean getHealth = false;
 
   Healthbar() {
     stroopwafel = loadImage(sketchPath() + "/lib/stroopwafel.jpg");
@@ -13,20 +14,34 @@ class Healthbar implements Updater {
     updateList.add(this);
   }
 
-  void updateObject() {
+  void updateObject() { 
+    if (characterSelect.choseDonDon && !getHealth) {
+      getHealth = true;
+      maxLives = 6;
+      currentLives = 6;
+    } else if (characterSelect.choseCorra && !getHealth) {
+      getHealth = true;
+      maxLives = 3;
+      currentLives = 3;
+    }
   }
 
   void drawObject() {
+    if(characterSelect.hasChosen){
+      
+    }
+    println(maxLives);
     //Box of lives
     fill(255);
     strokeWeight(3);
-    rect(-10, -10, 260, 60);
+    rect(-10, -10, 10+40*currentLives, 60);
 
-    int x = 0;
-    for (int i=0; i < iMax; i++) {
-      image(stroopwafel, x, 5);
-      x += 40;
+    int lifeOffset = 0;
+    for (int iLives=0; iLives < currentLives; iLives++) {
+      image(stroopwafel, lifeOffset, 5);
+      lifeOffset += 40;
     }
+
     // display gameover screen
     if (dead) {
       gameOver.drawObject();
@@ -45,7 +60,7 @@ class Healthbar implements Updater {
     if (keyPressed && key == 'e') {
       if (!clickedLastFrame) {
         clickedLastFrame = true;
-        healthbar.addHealth();
+        addHealth();
       }
     }
   }
@@ -59,11 +74,10 @@ class Healthbar implements Updater {
   void removeHealth() {
     if (!removeAHealth && !dead) {
       removeAHealth = true;
-      if (lives > 0 ) {
-        lives--;
-        iMax--;
+      if (currentLives > 0 ) {
+        currentLives--;
       } 
-      if (lives == 0) {
+      if (currentLives == 0) {
         dead = true;
       }
     }
@@ -72,9 +86,8 @@ class Healthbar implements Updater {
   void addHealth() {
     if (!addAHealth && !dead ) {
       addAHealth = true;
-      if (lives < 6 && !dead) {
-        lives++;
-        iMax++;
+      if (currentLives < maxLives && !dead) {
+        currentLives++;
       }
     }
   }

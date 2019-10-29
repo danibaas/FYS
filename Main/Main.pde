@@ -31,9 +31,9 @@ void setup() {
   highScore = new HighScore();
   highScore.initializeDatabase();
   background = new Background();
+  characterSelect = new CharacterSelect();
   healthbar = new Healthbar();
   characterAttack = new CharacterAttack();
-  characterSelect = new CharacterSelect();
   player = new Player(new PVector(140, height / 4), 50, 50);
   gameOver = new GameOver();
   pickup = new Pickup(new PVector(300, 400), 100, 100);
@@ -44,7 +44,6 @@ void setup() {
 
 // the game loop
 void draw() {
-  background(200);
   if (gameOver.gameOver) {
     gameOver.drawObject();
   } else if (!characterSelect.hasChosen) {
@@ -64,9 +63,10 @@ void keyPressed() {
   if (!characterSelect.hasChosen) {
     characterSelect.pressed();
     player.updateSkin();
-  }
-  for (Updater r : updateList) {
-    r.pressedKey();
+  } else {
+    for (Updater r : updateList) {
+      r.pressedKey();
+    }
   }
 }
 

@@ -54,7 +54,6 @@ class Background implements Updater {
     if (!player.hasCollision() && !player.stopMoving && enabled) {
       if (keys[2]) {
         walkingForward = true;
-        //achtergrond blok1
         if (walkingForward) {
           backgroundPaneX -= speed;
           backgroundPane2X -= speed;
@@ -64,11 +63,13 @@ class Background implements Updater {
         highScore.updateScore();
       } else if (keys[1]) {
         walkingBackward = true;
-        if (walkingBackward) {
+        if (walkingBackward && backgroundX < 0) {
           backgroundPaneX += speed;
           backgroundPane2X += speed;
           backgroundPane3X += speed;
           backgroundX += speed;
+        } else {
+          player.stopMoving = true;
         }
       }
       if (walkingForward) {
