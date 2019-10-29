@@ -43,7 +43,7 @@ class Fireball {
   
   void collision(){
     //println (enemy.health);
-      if (enemy.position.x + enemy.boxWidth > xA && enemy.position.x < xA + fbWidth) {
+      if (enemy.position.x + enemy.boxWidth > xA && enemy.position.x < xA + fbWidth && enemy.position.y < yA) {
       enemy.health -=10;
       characterAttack.canAttack = false;
       hasFired = false;
