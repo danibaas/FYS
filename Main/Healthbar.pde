@@ -30,7 +30,6 @@ class Healthbar implements Updater {
     if(characterSelect.hasChosen){
       
     }
-    println(maxLives);
     //Box of lives
     fill(255);
     strokeWeight(3);

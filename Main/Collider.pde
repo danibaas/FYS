@@ -11,8 +11,8 @@ class Collider {
 
   boolean collidesWithPlayer(Player player) { 
     boolean collides = false;
-    float playerRadiusW = player.PlayerSizeW / 2;
-    float playerRadiusH = player.PlayerSizeH / 2;
+    float playerRadiusW = player.playerWidth / 2;
+    float playerRadiusH = player.playerHeight / 2;
     if (player.playerVector.x + playerRadiusW > position.x && player.playerVector.x - playerRadiusW < position.x + boxWidth 
       && player.playerVector.y + playerRadiusH > position.y && player.playerVector.y - playerRadiusH < position.y + boxHeight) {
       collides = true;
@@ -31,7 +31,7 @@ class Collider {
 
   boolean collidesWithEnemy(Enemy enemy) {
     boolean collides = false;
-    if (enemy.position.x + enemy.boxWidth > position.x && enemy.position.x - enemy.boxWidth > position.x + boxWidth) {
+    if (enemy.position.x + enemy.boxWidth > position.x && enemy.position.x < position.x + boxWidth) {
       collides = true;
     }
     //boven en onderkant collision van enemy is overbodig?
