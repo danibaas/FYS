@@ -14,15 +14,38 @@ class Healthbar implements Updater {
     updateList.add(this);
   }
 
-  void updateObject() { 
-    if (characterSelect.choseDonDon && !getHealth) {
+  void updateObject() {
+    //When character selected get the lives
+    if (characterSelect.choseDonDon && !getHealth && highScore.highScore == 0) {
       getHealth = true;
       maxLives = 6;
       currentLives = 6;
-    } else if (characterSelect.choseCorra && !getHealth) {
+    } else if (characterSelect.choseCorra && !getHealth && highScore.highScore ==0) {
       getHealth = true;
-      maxLives = 3;
-      currentLives = 3;
+      maxLives = 4;
+      currentLives = 4;
+    }
+    if (characterSelect.choseDonDon) {
+      if (highScore.highScore > 50 && highScore.highScore <100) {
+        maxLives = 5;
+      } else if (highScore.highScore > 100 && highScore.highScore < 150) {
+        maxLives = 4;
+      } else if (highScore.highScore > 150) {
+        maxLives = 3;
+      }
+      if (currentLives > maxLives) {
+        currentLives = maxLives;
+      }
+    }
+    if (characterSelect.choseCorra) {
+      if (highScore.highScore > 75 && highScore.highScore <150) {
+        maxLives = 3;
+      } else if (highScore.highScore > 150) {
+        maxLives = 2;
+      } 
+      if (currentLives > maxLives) {
+        currentLives = maxLives;
+      }
     }
   }
 
