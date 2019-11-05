@@ -3,6 +3,9 @@ class Enemy extends Collider implements Updater {
   int timer;
   int waitTime = 3000;
   int health = 10;
+  boolean removedHealthLastFrame = false;
+  int healthTimer;
+  int holdRemove = 1000;
 
   Enemy(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
@@ -14,12 +17,17 @@ class Enemy extends Collider implements Updater {
 
   void updateObject() {
     checkDead();
-    if (collidesWithPlayer(player)) {
+    if (collidesWithPlayer(player) && !removedHealthLastFrame) {
       player.colliderType = ColliderType.ENEMY;
       healthbar.removeHealth();
+      removedHealthLastFrame = true;
+      healthTimer = millis();
     }
     moveEntity(false);
     loopEnemy();
+    if (healthTimer + holdRemove < millis()) {
+       removedHealthLastFrame = false; 
+    }
   } 
 
   void drawObject() {

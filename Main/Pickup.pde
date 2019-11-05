@@ -2,6 +2,7 @@ class Pickup extends Collider implements Updater {
   PImage skin;
   int timer;
   int waitTime = 3000;
+  boolean hasPickedUp;
 
   Pickup(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
@@ -21,16 +22,24 @@ class Pickup extends Collider implements Updater {
     if (collidesWithPlayer(player)) { // collision check
       player.colliderType = ColliderType.PICKUP;
       healthbar.addHealth();
+      hasPickedUp = true;
     }
     moveEntity(false);
     loopPickup();
   }
+  
   void loopPickup() {
+    if (hasPickedUp) {
+       hasPickedUp = false;
+       position.x = width + 2*boxWidth;
+       timer = millis();
+    }
     if (position.x + boxWidth < 0 && timer + waitTime < millis()) {
       timer = millis(); 
       position.x = width + 2*boxWidth;
     }
   } 
+  
 
   void pressedKey() {
   }
