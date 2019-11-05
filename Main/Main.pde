@@ -1,6 +1,5 @@
 //instance of this class, used for database
 Main instance;
-
 //object creation
 HighScore highScore;
 CharacterSelect characterSelect;

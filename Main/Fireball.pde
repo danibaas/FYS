@@ -40,10 +40,10 @@ class Fireball {
       image(fb, xA, yA, fbWidth, fbHeight);
     }
   }
-  
-  void collision(){
+
+  void collision() {
     //println (enemy.health);
-      if (enemy.position.x + enemy.boxWidth > xA && enemy.position.x < xA + fbWidth && enemy.position.y < yA) {
+    if (enemy.position.x + enemy.boxWidth > xA && enemy.position.x < xA + fbWidth && enemy.position.y < yA) {
       enemy.health -=10;
       characterAttack.canAttack = false;
       hasFired = false;
@@ -60,10 +60,10 @@ class Fireball {
       yS += speed;
     }
     /*if (xA>1280 && !special) {
-      characterAttack.canAttack = false;
-      xA = 140;
-      hasFired = false;
-    }*/
+     characterAttack.canAttack = false;
+     xA = 140;
+     hasFired = false;
+     }*/
     if (yS>600) {
       special = false;
       yS = -50;

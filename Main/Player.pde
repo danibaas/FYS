@@ -1,8 +1,6 @@
 class Player extends Collider implements Updater { //<>//
   PImage playerSkin;
   PVector playerVector;
-  //float xPos = 140;
-  //float yPos = height/4;
   float gravity = 0.07;
   float velocity = 0;
   float upforce = -2.4;
@@ -38,7 +36,7 @@ class Player extends Collider implements Updater { //<>//
         setMove(keyCode, true);
       }
     } else if (keys[3] && !isCrouched) {
-       setCrouch(true); 
+      setCrouch(true);
     }
   }
 
@@ -49,7 +47,6 @@ class Player extends Collider implements Updater { //<>//
         clickedLastFrame = true;
       }
     }
-    //You're supposed to crouch here
     if (key == CODED) {
       if (keyCode == DOWN) {
         keys[3] = true;
@@ -144,7 +141,6 @@ class Player extends Collider implements Updater { //<>//
       }
       playerVector.y = constrain(playerVector.y + movement*(int(isDown) - int(isUp)), groundHeight, height - groundHeight);
     }
-    
   }
 
   boolean setMove(final int pressedKey, final boolean toMove) {
