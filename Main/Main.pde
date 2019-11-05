@@ -59,8 +59,6 @@ void draw() {
       r.updateObject();
       r.drawObject();
     }
-    lazers.timeLazers();
-    lazers.damageUpdate();
     highScore.displayScore();
     
   }
