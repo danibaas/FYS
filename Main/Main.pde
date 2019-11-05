@@ -60,7 +60,7 @@ void draw() {
       r.drawObject();
     }
     lazers.timeLazers();
-    lazers.DamageUpdate();
+    lazers.damageUpdate();
     highScore.displayScore();
     
   }

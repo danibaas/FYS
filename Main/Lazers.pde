@@ -38,8 +38,8 @@ class Lazers extends Collider {
     lazerTimer();
   }
 
-  void DamageUpdate() {
-    if (collidesWithPlayer(player)) {
+  void damageUpdate() {
+    if (collidesWithPlayer(player) && drawLazer) {
       player.colliderType = ColliderType.LAZER;
       healthbar.removeHealth();
     }
