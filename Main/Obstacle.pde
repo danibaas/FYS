@@ -9,6 +9,7 @@ class Obstacle extends Collider {
 
   void updateObject() {
     if (collidesWithPlayer(player)) {
+      player.colliderType = ColliderType.OBSTACLE;
       resolveCollision();
       player.stopMoving = true;
     } else {

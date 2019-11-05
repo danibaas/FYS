@@ -1,4 +1,4 @@
-class Player extends Collider implements Updater {
+class Player extends Collider implements Updater { //<>//
   PImage playerSkin;
   PVector playerVector;
   //float xPos = 140;
@@ -9,6 +9,7 @@ class Player extends Collider implements Updater {
   float movement = 3.5;
   boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, stopMoving, jumped, isCrouched;
   int playerWidth, playerHeight;
+  int colliderType;
 
   Player(PVector vector, int sizeW, int sizeH ) {
     super(vector, sizeW, sizeH);
@@ -16,6 +17,7 @@ class Player extends Collider implements Updater {
     playerWidth = sizeW;
     playerHeight = sizeH;
     playerSkin = characterSelect.getPlayerSkin();
+    colliderType = ColliderType.NONE;
     updateList.add(this);
   }
 
@@ -82,6 +84,18 @@ class Player extends Collider implements Updater {
     }
   }
 
+  boolean hasCollision() {
+    boolean collision = false;
+    for (Collider collider : collisionList) {
+      if (!(collider instanceof Player)) {
+        if (collider.collidesWithPlayer(this)) {
+          collision = true;
+        }
+      }
+    }
+    return collision;
+  }
+
   void setCrouch(boolean crouched) {
     playerSkin = characterSelect.getPlayerSkin();
     if (crouched && !isCrouched) {
@@ -99,16 +113,6 @@ class Player extends Collider implements Updater {
 
   void updateSkin() {
     playerSkin = characterSelect.getPlayerSkin();
-  }
-
-  boolean hasCollision() {
-    boolean collides = false;
-    if (!collidesWithEnemy(enemy) && !collidesWithObstacle(obstacleList) && !collidesWithPickup(pickup)) {
-      overalCollision = false;
-    } else {
-      overalCollision = true;
-    }
-    return collides;
   }
 
   void jump() {

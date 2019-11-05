@@ -17,6 +17,7 @@ Lazers lazers;
 //collision & update loop lists
 ArrayList<Updater> updateList;
 ArrayList<Obstacle> obstacleList;
+ArrayList<Collider> collisionList;
 
 //movmement help
 boolean[] keys = new boolean[4];
@@ -26,6 +27,7 @@ void setup() {
   // ratio 16:9
   updateList = new ArrayList();
   obstacleList = new ArrayList();
+  collisionList = new ArrayList();
   size(1280, 720);
   instance = this;
   highScore = new HighScore();
@@ -50,6 +52,9 @@ void draw() {
     characterSelect.drawSelect();
     player.updateObject();
   } else {
+    for (Collider collider : collisionList) {
+      collider.update();
+    }
     for (Updater r : updateList) {
       r.updateObject();
       r.drawObject();

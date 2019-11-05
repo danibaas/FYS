@@ -51,7 +51,7 @@ class Background implements Updater {
   }
 
   void updateObject() {
-    if (!player.hasCollision() && !player.stopMoving && enabled) {
+    if ((!player.hasCollision() || player.colliderType != ColliderType.OBSTACLE) && !player.stopMoving && enabled) { //<>//
       if (keys[2]) {
         walkingForward = true;
         if (walkingForward) {

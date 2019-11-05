@@ -13,29 +13,14 @@ class Enemy extends Collider implements Updater {
   }
 
   void updateObject() {
-    dead();
+    checkDead();
     if (collidesWithPlayer(player)) {
+      player.colliderType = ColliderType.ENEMY;
       healthbar.removeHealth();
     }
-    if (!player.hasCollision()) {
-      moveEntity(false);
-      loopEnemy();
-    }
-  }
-  void loopEnemy() {
-    if (position.x + boxWidth < 0 && timer + waitTime < millis()) {
-      timer = millis(); 
-      position.x = width + 2*boxWidth;
-    }
+    moveEntity(false);
+    loopEnemy();
   } 
-  
-  void dead(){
-    if(health < 1){
- 
-      position.x = width + 2*boxWidth; 
-      health = 10;
-    }
-  }
 
   void drawObject() {
     fill(255);
@@ -51,5 +36,19 @@ class Enemy extends Collider implements Updater {
   }
 
   void releasedKey() {
+  }
+
+  void checkDead() {
+    if (health < 1) {
+      position.x = width + 2*boxWidth; 
+      health = 10;
+    }
+  }
+
+  void loopEnemy() {
+    if (position.x + boxWidth < 0 && timer + waitTime < millis()) {
+      timer = millis(); 
+      position.x = width + 2*boxWidth;
+    }
   }
 }

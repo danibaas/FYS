@@ -27,8 +27,7 @@ class Healthbar implements Updater {
   }
 
   void drawObject() {
-    if(characterSelect.hasChosen){
-      
+    if (characterSelect.hasChosen) {
     }
     //Box of lives
     fill(255);

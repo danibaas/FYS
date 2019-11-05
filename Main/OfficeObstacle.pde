@@ -27,7 +27,7 @@ class OfficeObstacle extends Obstacle implements Updater {
       collisionType = CollisionType.NONE;
       background.turnOn();
     }
-    if (!player.hasCollision()) {
+    if (player.colliderType != ColliderType.OBSTACLE) {
       moveEntity(false);
       loopObstacle();
     }

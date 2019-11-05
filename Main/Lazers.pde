@@ -14,7 +14,7 @@ class Lazers extends Collider {
   void drawLazer() {
     fill(255, 0, 0);
     noStroke();
-    rect(position.x, position.y, sizex, sizey);
+    rect(position.x, position.y, sizex, sizey, 20);
   }
 
   void lazerTimer() {
