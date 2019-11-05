@@ -37,9 +37,8 @@ class Player extends Collider implements Updater { //<>//
         jump();
         setMove(keyCode, true);
       }
-    } else if (keys[3]) {
-      if (!airBorne) {
-      }
+    } else if (keys[3] && !isCrouched) {
+       setCrouch(true); 
     }
   }
 
@@ -55,8 +54,6 @@ class Player extends Collider implements Updater { //<>//
       if (keyCode == DOWN) {
         keys[3] = true;
         clickedLastFrame = true;
-        setCrouch(true);
-        isCrouched = true;
       }
     }
     if (key == 'l') {
@@ -102,12 +99,12 @@ class Player extends Collider implements Updater { //<>//
       isCrouched = true;
       playerVector.y += playerHeight / 4;
       playerHeight /= 2;
-      playerSkin.resize(playerSkin.width, playerSkin.height / 2);
+      playerSkin.resize(playerWidth, playerHeight);
     } else if (!crouched && isCrouched) {
       isCrouched = false;
       playerVector.y -= playerHeight / 4;
       playerHeight *= 2;
-      playerSkin.resize(playerSkin.width, playerSkin.height * 2);
+      playerSkin.resize(playerWidth, playerHeight);
     }
   }
 
@@ -122,7 +119,6 @@ class Player extends Collider implements Updater { //<>//
   }
 
   void move() {
-    //hardcoded groundheight
     int trueHeight = height - (int) background.groundHeight;
     int groundHeight = trueHeight + playerHeight / 2;
     for (Obstacle obstacle : obstacleList) {
@@ -148,6 +144,7 @@ class Player extends Collider implements Updater { //<>//
       }
       playerVector.y = constrain(playerVector.y + movement*(int(isDown) - int(isUp)), groundHeight, height - groundHeight);
     }
+    
   }
 
   boolean setMove(final int pressedKey, final boolean toMove) {
