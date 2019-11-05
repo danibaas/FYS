@@ -60,7 +60,6 @@ void draw() {
       r.drawObject();
     }
     highScore.displayScore();
-    
   }
 }
 
