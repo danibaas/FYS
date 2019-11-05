@@ -21,25 +21,26 @@ class Pickup extends Collider implements Updater {
   void updateObject() {
     if (collidesWithPlayer(player)) { // collision check
       player.colliderType = ColliderType.PICKUP;
-      healthbar.addHealth();
-      hasPickedUp = true;
+      if (healthbar.addHealth()) {
+        hasPickedUp = true;
+      }
     }
     moveEntity(false);
     loopPickup();
   }
-  
+
   void loopPickup() {
     if (hasPickedUp) {
-       hasPickedUp = false;
-       position.x = width + 2*boxWidth;
-       timer = millis();
+      hasPickedUp = false;
+      position.x = width + 2*boxWidth;
+      timer = millis();
     }
     if (position.x + boxWidth < 0 && timer + waitTime < millis()) {
       timer = millis(); 
       position.x = width + 2*boxWidth;
     }
   } 
-  
+
 
   void pressedKey() {
   }

@@ -81,12 +81,15 @@ class Healthbar implements Updater {
     }
   }
 
-  void addHealth() {
+  boolean addHealth() {
+    boolean added = false;
     if (!addAHealth && !dead ) {
       addAHealth = true;
       if (currentLives < maxLives && !dead) {
         currentLives++;
+        added = true;
       }
     }
+    return added;
   }
 }
