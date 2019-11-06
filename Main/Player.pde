@@ -45,10 +45,7 @@ class Player extends Collider implements Updater { //<>//
       if (keyCode == UP) {
         keys[0] = true;
         clickedLastFrame = true;
-      }
-    }
-    if (key == CODED) {
-      if (keyCode == DOWN) {
+      } else if (keyCode == DOWN) {
         keys[3] = true;
         clickedLastFrame = true;
       }
@@ -76,18 +73,6 @@ class Player extends Collider implements Updater { //<>//
         clickedLastFrame = false;
       }
     }
-  }
-
-  boolean hasCollision() {
-    boolean collision = false;
-    for (Collider collider : collisionList) {
-      if (!(collider instanceof Player)) {
-        if (collider.collidesWithPlayer(this)) {
-          collision = true;
-        }
-      }
-    }
-    return collision;
   }
 
   void setCrouch(boolean crouched) {
@@ -119,13 +104,14 @@ class Player extends Collider implements Updater { //<>//
     int trueHeight = height - (int) background.groundHeight;
     int groundHeight = trueHeight + playerHeight / 2;
     for (Obstacle obstacle : obstacleList) {
-      if (obstacle.playerOnObstacle || (playerVector.y < height-groundHeight && !obstacle.playerOnObstacle)) {
+      println(hasCollision(), obstacle.playerOnObstacle);
+      if (obstacle.playerOnObstacle || (playerVector.y < height - groundHeight && !obstacle.playerOnObstacle)) {
         airBorne = true;
         velocity += gravity;
         playerVector.y += velocity;
         //zwaartekracht functie
       }
-      if (playerVector.y >= height - groundHeight || (obstacle.playerOnObstacle && playerVector.y + playerHeight/2 > obstacle.position.y) && !jumped) {
+      if (playerVector.y >= height - groundHeight || (obstacle.playerOnObstacle && playerVector.y + playerHeight / 2 > obstacle.position.y) && !jumped) {
         if (playerVector.y >= height - groundHeight) {
           playerVector.y = height - groundHeight;
         } else {
@@ -139,7 +125,7 @@ class Player extends Collider implements Updater { //<>//
         playerVector.y = playerHeight/2;
         velocity = 0;
       }
-      playerVector.y = constrain(playerVector.y + movement*(int(isDown) - int(isUp)), groundHeight, height - groundHeight);
+      playerVector.y = constrain(playerVector.y + movement * (int(isDown) - int(isUp)), groundHeight, height - groundHeight);
     }
   }
 

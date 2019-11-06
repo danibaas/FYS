@@ -1,23 +1,19 @@
 class Lazers extends Collider implements Updater {  
-  int sizex;
-  int sizey;
-  boolean drawLazer;
-  boolean warningLazer;
-  boolean playerDamage;
-
-  int positionY = 450;
+  int sizeX;
+  int sizeY;
   int currentMillis;
   int millisToWait;
   int lazerTimer;
   int waitTime;
-  int warningTimer;
+  boolean drawLazer;
+  boolean warningLazer;
 
   Lazers(PVector position, int breedte, int hoogte) {
     super(position, breedte, hoogte);
-    sizex = breedte;
-    sizey = hoogte;
+    sizeX = breedte;
+    sizeY = hoogte;
     currentMillis = millis();
-    millisToWait = 5000 ;
+    millisToWait = 5000;
     waitTime = 3000;
     updateList.add(this);
   }
@@ -26,25 +22,19 @@ class Lazers extends Collider implements Updater {
     if (warningLazer) {
       fill(120);
       noStroke();
-      rect(position.x, positionY, sizex, sizey, 20);
-      fill(0);
-      textSize(20);
-      text("LAZER!!!",position.x+100,positionY+20);
-    }
-    if (drawLazer) {
+      rect(position.x, position.y + (sizeY/5) * 2, sizeX, sizeY/3, 20);
+    } else if (drawLazer) {
       fill(255, 0, 0);
       noStroke();
-      rect(position.x, positionY, sizex, sizey, 20);
+      rect(position.x, position.y, sizeX, sizeY, 20);
     }
   }
 
   void updateObject() {
-    //lazer hoelang die blijft
-    if (lazerTimer + waitTime < millis() && drawLazer) {
-      playerDamage = false;
-      currentMillis = millis();
-      drawLazer = false;
-      positionY = (int) random(300, 600);
+    if (!drawLazer) {
+      collisionList.remove(this);
+    } else {
+      collisionList.add(this);
     }
     //tekent de lazer
     if (currentMillis + millisToWait < millis() && !drawLazer) {
@@ -52,21 +42,26 @@ class Lazers extends Collider implements Updater {
       warningLazer = false;
       lazerTimer = millis();
     }
-    if (currentMillis + millisToWait/5 < millis() && !drawLazer) {
+    //lazer hoelang die blijft
+    if (lazerTimer + waitTime < millis() && drawLazer) {
+      currentMillis = millis();
+      drawLazer = false;
+      position.y = (int) random(200, 550);
+    }
+    if (currentMillis + (millisToWait/5) * 4 < millis() && !drawLazer) {
       warningLazer = true;
     }
-    if (collidesWithPlayer(player) && drawLazer) {
+    if (collidesWithPlayer(player) && drawLazer && !warningLazer) {
       player.colliderType = ColliderType.LAZER;
-      if (!playerDamage) {
-        drawLazer = false;
-        currentMillis = millis();
-        healthbar.removeHealth();
-        playerDamage = true;
-      }
+      drawLazer = false;
+      currentMillis = millis();
+      healthbar.removeHealth();
     }
   }
+
   void pressedKey() {
   }
+
   void releasedKey() {
   }
 }

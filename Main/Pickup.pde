@@ -32,7 +32,7 @@ class Pickup extends Collider implements Updater {
   void loopPickup() {
     if (hasPickedUp) {
       hasPickedUp = false;
-      position.x = width + 2*boxWidth;
+      position.x = width + 2 * boxWidth;
       timer = millis();
     }
     if (position.x + boxWidth < 0 && timer + waitTime < millis()) {
@@ -40,7 +40,6 @@ class Pickup extends Collider implements Updater {
       position.x = width + 2*boxWidth;
     }
   } 
-
 
   void pressedKey() {
   }

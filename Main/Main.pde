@@ -33,15 +33,15 @@ void setup() {
   highScore.initializeDatabase();
   background = new Background();
   characterSelect = new CharacterSelect();
+  player = new Player(new PVector(140, height / 4), 100, 100);
   healthbar = new Healthbar();
   characterAttack = new CharacterAttack();
-  player = new Player(new PVector(140, height / 4), 100, 100);
   gameOver = new GameOver();
   pickup = new Pickup(new PVector(300, 400), 100, 100);
-  enemy = new Enemy(new PVector(500, 600), 100, 100);
-  office = new OfficeObstacle(new PVector(600, 600), 200, 100);
-  lazers = new Lazers(new PVector(100, random(60, 720)), 1080, 30);
-}
+  enemy = new Enemy(new PVector(500, 596), 100, 100);
+  office = new OfficeObstacle(new PVector(650, 597), 200, 100);
+  lazers = new Lazers(new PVector(100, random(200, 550)), 1080, 30);
+} 
 
 // the game loop
 void draw() {

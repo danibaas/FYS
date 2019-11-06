@@ -26,7 +26,7 @@ class Healthbar implements Updater {
       currentLives = 4;
     }
     if (characterSelect.choseDonDon) {
-      if (highScore.highScore > 50 && highScore.highScore <100) {
+      if (highScore.highScore > 50 && highScore.highScore < 100) {
         maxLives = 5;
       } else if (highScore.highScore > 100 && highScore.highScore < 150) {
         maxLives = 4;
@@ -38,7 +38,7 @@ class Healthbar implements Updater {
       }
     }
     if (characterSelect.choseCorra) {
-      if (highScore.highScore > 75 && highScore.highScore <150) {
+      if (highScore.highScore > 75 && highScore.highScore < 150) {
         maxLives = 3;
       } else if (highScore.highScore > 150) {
         maxLives = 2;
@@ -50,19 +50,16 @@ class Healthbar implements Updater {
   }
 
   void drawObject() {
-    if (characterSelect.hasChosen) {
-    }
     //Box of lives
     fill(255);
     strokeWeight(3);
-    rect(-10, -10, 10+40*currentLives, 60);
+    rect(-10, -10, 10 + 40 * currentLives, 60);
 
     int lifeOffset = 0;
-    for (int iLives=0; iLives < currentLives; iLives++) {
+    for (int iLives = 0; iLives < currentLives; iLives++) {
       image(stroopwafel, lifeOffset, 5);
       lifeOffset += 40;
     }
-
     // display gameover screen
     if (dead) {
       gameOver.drawObject();
@@ -95,7 +92,7 @@ class Healthbar implements Updater {
   void removeHealth() {
     if (!removeAHealth && !dead) {
       removeAHealth = true;
-      if (currentLives > 0 ) {
+      if (currentLives > 0) {
         currentLives--;
       } 
       if (currentLives == 0) {
@@ -106,7 +103,7 @@ class Healthbar implements Updater {
 
   boolean addHealth() {
     boolean added = false;
-    if (!addAHealth && !dead ) {
+    if (!addAHealth && !dead) {
       addAHealth = true;
       if (currentLives < maxLives && !dead) {
         currentLives++;

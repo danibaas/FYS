@@ -15,11 +15,11 @@ class CharacterAttack implements Updater {
   CharacterAttack() {
     fireBall = loadImage(sketchPath() + "/lib/Fireball.jpg");
     fireBallSpecial = loadImage(sketchPath() + "/lib/FireballSpecial.jpg");
-    attack = new Fireball(fireBall, 140, yAttack, fireBall.width/4, fireBall.height/4, fireballSpeed);
+    attack = new Fireball(fireBall, new PVector(ceil(player.position.x + player.playerWidth/2), yAttack), fireBall.width/4, fireBall.height/4, fireballSpeed);
     int yPos = -50;
     int xPos = 0;
     for (int i=0; i<39; i++) {
-      Fireball specials = new Fireball(fireBallSpecial, xPos, yPos, fireBallSpecial.width/4, fireBallSpecial.height/4, fireballSpeed, false);
+      Fireball specials = new Fireball(fireBallSpecial, new PVector(xPos, yPos), fireBallSpecial.width/4, fireBallSpecial.height/4, fireballSpeed, false);
       xPos+=33;
       fireballs.add(specials);
     }
@@ -29,8 +29,9 @@ class CharacterAttack implements Updater {
   void updateObject() {
     yAttack = (int) player.playerVector.y;
     if (!attack.hasFired) {
-      attack.yA = yAttack;
+      attack.normalAttack.y = yAttack;
     }
+    attack.updateFireball();
   }
 
   void drawObject() {

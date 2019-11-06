@@ -12,13 +12,20 @@ class Collider {
 
   void update() {
     hasCollision();
+    if (!player.hasCollision()) {
+      player.collisionType = CollisionType.NONE;
+      collisionType = CollisionType.NONE;
+      player.colliderType = ColliderType.NONE;
+    }
   }
 
   boolean hasCollision() {
     boolean collision = false;
     for (Collider collider : collisionList) {
-      if (collider.collides(this)) {
-        collision = true;
+      if (!(collider instanceof Player)) {
+        if (collides(collider)) {
+          collision = true;
+        }
       }
     }
     return collision;
@@ -55,41 +62,6 @@ class Collider {
     }
     return collides;
   }
-  /*
-  boolean collidesWithEnemy(Enemy enemy) {
-   boolean collides = false;
-   if (enemy.position.x + enemy.boxWidth > position.x && enemy.position.x < position.x + boxWidth) {
-   collides = true;
-   }
-   //boven en onderkant collision van enemy is overbodig?
-   return collides;
-   }
-   
-   boolean collidesWithObstacle(Obstacle obstacle) {
-   boolean collides = false;
-   if (obstacle.position.x + obstacle.boxWidth > position.x && obstacle.position.x < position.x + boxWidth && obstacle.position.y + obstacle.boxHeight > position.y && obstacle.position.y - obstacle.boxHeight < position.y + boxHeight) {
-   collides = true;
-   }
-   return collides;
-   }
-   
-   boolean collidesWithObstacle(ArrayList<Obstacle> obstacle) {
-   boolean collides = false;
-   for (Obstacle obs : obstacle) {
-   if (obs.position.x + obs.boxWidth > position.x && obs.position.x < position.x + boxWidth && obs.position.y + obs.boxHeight > position.y && obs.position.y - obs.boxHeight < position.y + boxHeight) {
-   collides = true;
-   }
-   }
-   return collides;
-   }
-   
-   boolean collidesWithPickup(Pickup pickup) {
-   boolean collides = false;
-   if (pickup.position.x + pickup.boxWidth > position.x && pickup.position.x - pickup.boxWidth > position.x + boxWidth && pickup.position.y + pickup.boxHeight > position.y && pickup.position.y - pickup.boxHeight < position.y + boxHeight) {
-   collides = true;
-   }
-   return collides;
-   }*/
 
   void moveEntity(boolean collision) {
     if (!(player.colliderType == ColliderType.OBSTACLE)) {
