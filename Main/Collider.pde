@@ -1,7 +1,6 @@
 class Collider {
   PVector position;
   float boxWidth, boxHeight;
-  int collisionType;
 
   Collider(PVector position, float boxWidth, float boxHeight) {
     this.position = position;
@@ -14,7 +13,7 @@ class Collider {
     hasCollision();
     if (!player.hasCollision()) {
       player.collisionType = CollisionType.NONE;
-      collisionType = CollisionType.NONE;
+      player.collisionType = CollisionType.NONE;
       player.colliderType = ColliderType.NONE;
     }
   }
@@ -47,17 +46,17 @@ class Collider {
     boolean collides = false;
     float playerRadiusW = player.playerWidth / 2;
     float playerRadiusH = player.playerHeight / 2;
-    if (player.playerVector.x + playerRadiusW > position.x && player.playerVector.x - playerRadiusW < position.x + boxWidth 
-      && player.playerVector.y + playerRadiusH > position.y && player.playerVector.y - playerRadiusH < position.y + boxHeight) {
+    if (player.playerVector.x + playerRadiusW >= position.x && player.playerVector.x - playerRadiusW <= position.x + boxWidth 
+      && player.playerVector.y + playerRadiusH >= position.y && player.playerVector.y - playerRadiusH <= position.y + boxHeight) {
       collides = true;
-      if (player.playerVector.x + playerRadiusW > position.x && player.playerVector.y > position.y && player.playerVector.x < position.x + boxWidth/2) {
-        collisionType = CollisionType.LEFT;
-      } else if (player.playerVector.x - playerRadiusW < position.x + boxWidth && player.playerVector.y > position.y) {
-        collisionType = CollisionType.RIGHT;
-      } else if (player.playerVector.y + playerRadiusH > position.y && player.playerVector.x + playerRadiusW > position.x && player.playerVector.x - playerRadiusW < position.x + boxWidth) {
-        collisionType = CollisionType.TOP;
+      if (player.playerVector.y + playerRadiusH >= position.y && player.playerVector.x + playerRadiusW >= position.x && player.playerVector.x - playerRadiusW <= position.x + boxWidth) {
+        player.collisionType = CollisionType.TOP;
+      } else if (player.playerVector.x + playerRadiusW >= position.x && player.playerVector.y >= position.y && player.playerVector.x <= position.x + boxWidth/2) {
+        player.collisionType = CollisionType.LEFT;
+      } else if (player.playerVector.x - playerRadiusW <= position.x + boxWidth && player.playerVector.y >= position.y) {
+        player.collisionType = CollisionType.RIGHT;
       } else {
-        collisionType = CollisionType.BOTTOM;
+        player.collisionType = CollisionType.BOTTOM;
       }
     }
     return collides;
@@ -68,15 +67,15 @@ class Collider {
       if (!collision) {
         if (keys[2] && !player.stopMoving) {
           position.x -= background.speed;
-        } else if (keys[1] && !player.stopMoving) {
-          position.x += background.speed;
         }
       } else {
         if (keys[2] && !player.stopMoving) {
           position.x += background.speed;
-        } else if (keys[1] && !player.stopMoving) {
-          position.x -= background.speed;
         }
+      }
+    } else {
+      if (keys[2] && player.collisionType == CollisionType.TOP) {
+        position.x -= background.speed;
       }
     }
   }

@@ -12,7 +12,7 @@ class Background implements Updater {
   float backgroundPane3Y = 0;
   float groundHeight = height - 24;
   float speed = 5;
-  boolean walkingForward, walkingBackward, enabled;
+  boolean walkingForward, enabled;
 
   Background() {
     background = loadImage(sketchPath() + "/lib/background.png");
@@ -61,16 +61,6 @@ class Background implements Updater {
           backgroundX -= speed;
         }
         highScore.updateScore();
-      } else if (keys[1]) {
-        walkingBackward = true;
-        if (walkingBackward && backgroundX < 0) {
-          backgroundPaneX += speed;
-          backgroundPane2X += speed;
-          backgroundPane3X += speed;
-          backgroundX += speed;
-        } else {
-          player.stopMoving = true;
-        }
       }
       if (walkingForward) {
         if (backgroundPaneX == 640) {
@@ -83,17 +73,6 @@ class Background implements Updater {
           backgroundPaneX = 1280;
         }
       }
-      if (walkingBackward) {
-        if (backgroundPaneX == 0) {
-          backgroundPane3X = -640;
-        }
-        if (backgroundPane3X == 0) {
-          backgroundPane2X = -640;
-        }
-        if (backgroundPane2X == 0) {
-          backgroundPaneX = -640;
-        }
-      }
     }
   }
 
@@ -101,19 +80,14 @@ class Background implements Updater {
     if (key == CODED) {
       if (keyCode == RIGHT) {
         keys[2] = true;
-      } else if (keyCode == LEFT) {
-        keys[1] = true;
       }
     }
   }
 
   void releasedKey() {
     walkingForward = false;
-    walkingBackward = false;
     if (key == CODED) {
-      if (keyCode == LEFT) {
-        keys[1] = false;
-      } else if (keyCode == RIGHT) {
+      if (keyCode == RIGHT) {
         keys[2] = false;
       }
     }

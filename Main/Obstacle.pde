@@ -17,13 +17,13 @@ class Obstacle extends Collider {
       if (playerOnObstacle && (player.playerVector.x + playerRadiusW < position.x || player.playerVector.x - playerRadiusW > position.x + boxWidth)) {
         playerOnObstacle = false;
       }
-      collisionType = CollisionType.NONE;
+      player.collisionType = CollisionType.NONE;
       moveEntity(false);
     }
   }
 
   void resolveCollision() {
-    if (collisionType == CollisionType.LEFT) {
+    if (player.collisionType == CollisionType.LEFT) {
       for (Object j : updateList) {
         if (j instanceof Collider && !(j instanceof Player)) {
           Collider c = (Collider) j;
@@ -31,7 +31,7 @@ class Obstacle extends Collider {
         }
       }
       background.turnOff();
-    } else if (collisionType == CollisionType.RIGHT) {
+    } else if (player.collisionType == CollisionType.RIGHT) {
       for (Object j : updateList) {
         if (j instanceof Collider && !(j instanceof Player)) {
           Collider c = (Collider) j;
@@ -39,7 +39,7 @@ class Obstacle extends Collider {
         }
       }
       background.turnOff();
-    } else if (collisionType == CollisionType.TOP) {
+    } else if (player.collisionType == CollisionType.TOP) {
       playerOnObstacle = true;
     }
   }

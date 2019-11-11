@@ -8,8 +8,9 @@ class Player extends Collider implements Updater { //<>//
   boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, stopMoving, jumped, isCrouched;
   int playerWidth, playerHeight;
   int colliderType;
+  int collisionType;
 
-  Player(PVector vector, int sizeW, int sizeH ) {
+  Player(PVector vector, int sizeW, int sizeH) {
     super(vector, sizeW, sizeH);
     playerVector = vector;
     playerWidth = sizeW;
@@ -104,7 +105,6 @@ class Player extends Collider implements Updater { //<>//
     int trueHeight = height - (int) background.groundHeight;
     int groundHeight = trueHeight + playerHeight / 2;
     for (Obstacle obstacle : obstacleList) {
-      println(hasCollision(), obstacle.playerOnObstacle);
       if (obstacle.playerOnObstacle || (playerVector.y < height - groundHeight && !obstacle.playerOnObstacle)) {
         airBorne = true;
         velocity += gravity;
