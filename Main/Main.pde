@@ -9,6 +9,7 @@ Enemy enemy;
 Healthbar healthbar;
 Player player;
 CharacterAttack characterAttack;
+Fireball fireball;
 GameOver gameOver;
 OfficeObstacle office;
 Lazers lazers;
