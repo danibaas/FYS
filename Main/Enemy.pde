@@ -29,7 +29,10 @@ class Enemy extends Collider implements Updater {
       healthTimer = millis();
     }
     moveEntity(false);
+    if(!boss.spawnBoss){
     loopEnemy();
+    }else {
+    }
     if (healthTimer + holdRemove < millis()) {
       removedHealthLastFrame = false;
     }
@@ -77,7 +80,6 @@ class Enemy extends Collider implements Updater {
   }
 
   void enemyAttack() {
-
     enemyAttackY = position.y;
     enemyAttackWidth = 50;
     enemyAttackHeight = 50;

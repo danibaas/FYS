@@ -7,9 +7,15 @@ class Boss extends Collider implements Updater {
   }
 
   void drawObject() {
-    println("test");
+    rect(position.x, position.y, boxWidth, boxHeight);
+    println(spawnBoss);
   }
   void updateObject() {
+    if (highScore.highScore > 50) {
+      spawnBoss = true;
+    } else {
+      spawnBoss = false;
+    }
   }
   void pressedKey() {
   }
