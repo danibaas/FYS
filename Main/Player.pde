@@ -29,7 +29,6 @@ class Player extends Collider implements Updater { //<>//
   }
 
   void updateObject() {
-    hasCollision();
     move();
     if (keys[0]) {
       if (!airBorne) {
@@ -74,6 +73,18 @@ class Player extends Collider implements Updater { //<>//
         clickedLastFrame = false;
       }
     }
+  }
+
+  boolean hasCollision() {
+    boolean collision = false;
+    for (Collider collider : collisionList) {
+      if (!(collider instanceof Player)) {
+        if (collider.collidesWithPlayer(this)) {
+          collision = true;
+        }
+      }
+    }
+    return collision;
   }
 
   void setCrouch(boolean crouched) {

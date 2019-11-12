@@ -23,7 +23,9 @@ class Obstacle extends Collider {
   }
 
   void resolveCollision() {
-    if (player.collisionType == CollisionType.LEFT) {
+    if (player.collisionType == CollisionType.TOP) {
+      playerOnObstacle = true;
+    } else if (player.collisionType == CollisionType.LEFT) {
       for (Object j : updateList) {
         if (j instanceof Collider && !(j instanceof Player)) {
           Collider c = (Collider) j;
@@ -39,8 +41,6 @@ class Obstacle extends Collider {
         }
       }
       background.turnOff();
-    } else if (player.collisionType == CollisionType.TOP) {
-      playerOnObstacle = true;
     }
   }
 }

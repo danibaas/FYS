@@ -10,24 +10,11 @@ class Collider {
   }
 
   void update() {
-    hasCollision();
     if (!player.hasCollision()) {
       player.collisionType = CollisionType.NONE;
       player.collisionType = CollisionType.NONE;
       player.colliderType = ColliderType.NONE;
     }
-  }
-
-  boolean hasCollision() {
-    boolean collision = false;
-    for (Collider collider : collisionList) {
-      if (!(collider instanceof Player)) {
-        if (collides(collider)) {
-          collision = true;
-        }
-      }
-    }
-    return collision;
   }
 
   boolean collides(Collider instance) {
@@ -64,7 +51,7 @@ class Collider {
 
   void moveEntity(boolean collision) {
     if (!(player.colliderType == ColliderType.OBSTACLE)) {
-      if (!collision) {
+      if (!collision || player.collisionType == CollisionType.TOP) {
         if (keys[2] && !player.stopMoving) {
           position.x -= background.speed;
         }
@@ -74,8 +61,10 @@ class Collider {
         }
       }
     } else {
-      if (keys[2] && player.collisionType == CollisionType.TOP) {
-        position.x -= background.speed;
+      if (player.collisionType == CollisionType.TOP) {
+        if (keys[2] && !player.stopMoving) {
+          position.x -= background.speed;
+        }
       }
     }
   }
