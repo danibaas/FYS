@@ -21,7 +21,7 @@ class Pickup extends Collider implements Updater {
   void updateObject() {
     if (collidesWithPlayer(player)) { // collision check
       player.colliderType = ColliderType.PICKUP;
-      if (healthbar.addHealth()) {
+      if (player.healthbar.addHealth()) {
         hasPickedUp = true;
       }
     }

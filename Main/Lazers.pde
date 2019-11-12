@@ -55,7 +55,7 @@ class Lazers extends Collider implements Updater {
       player.colliderType = ColliderType.LAZER;
       drawLazer = false;
       currentMillis = millis();
-      healthbar.removeHealth();
+      player.healthbar.removeHealth();
     }
   }
 

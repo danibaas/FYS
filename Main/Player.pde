@@ -1,4 +1,4 @@
-class Player extends Collider implements Updater { //<>//
+class Player extends Collider implements Updater { //<>// //<>//
   PImage playerSkin;
   PVector playerVector;
   float gravity = 0.07;
@@ -9,6 +9,7 @@ class Player extends Collider implements Updater { //<>//
   int playerWidth, playerHeight;
   int colliderType;
   int collisionType;
+  Healthbar healthbar;
 
   Player(PVector vector, int sizeW, int sizeH) {
     super(vector, sizeW, sizeH);
@@ -17,6 +18,7 @@ class Player extends Collider implements Updater { //<>//
     playerHeight = sizeH;
     playerSkin = characterSelect.getPlayerSkin();
     colliderType = ColliderType.NONE;
+    healthbar = new Healthbar();
     updateList.add(this);
   }
 
@@ -26,9 +28,11 @@ class Player extends Collider implements Updater { //<>//
     rect(playerVector.x, playerVector.y, playerWidth, playerHeight);
     rectMode(CORNER);
     image(playerSkin, playerVector.x - playerWidth/2, playerVector.y - playerHeight/2);
+    healthbar.drawPlayerHealth();
   }
 
   void updateObject() {
+    hasCollision();
     move();
     if (keys[0]) {
       if (!airBorne) {
@@ -38,9 +42,12 @@ class Player extends Collider implements Updater { //<>//
     } else if (keys[3] && !isCrouched) {
       setCrouch(true);
     }
+    //Health
+    healthbar.updatePlayerHealth();
   }
 
   void pressedKey() {
+    healthbar.pressedKeyHealth();
     if (key == CODED) {
       if (keyCode == UP) {
         keys[0] = true;
@@ -58,6 +65,7 @@ class Player extends Collider implements Updater { //<>//
   }
 
   void releasedKey() {
+    healthbar.releasedKeyHealth();
     setMove(keyCode, false);
     stopMoving = false;
     if (clickedLastFrame) {
@@ -73,18 +81,6 @@ class Player extends Collider implements Updater { //<>//
         clickedLastFrame = false;
       }
     }
-  }
-
-  boolean hasCollision() {
-    boolean collision = false;
-    for (Collider collider : collisionList) {
-      if (!(collider instanceof Player)) {
-        if (collider.collidesWithPlayer(this)) {
-          collision = true;
-        }
-      }
-    }
-    return collision;
   }
 
   void setCrouch(boolean crouched) {

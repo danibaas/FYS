@@ -1,4 +1,4 @@
-class Healthbar implements Updater {
+class Healthbar {
   PImage stroopwafel;
   int maxLives;
   int currentLives;
@@ -8,19 +8,18 @@ class Healthbar implements Updater {
   boolean addAHealth = false;
   boolean getHealth = false;
 
-  Healthbar() {
+ Healthbar() {
     stroopwafel = loadImage(sketchPath() + "/lib/stroopwafel.jpg");
     stroopwafel.resize(35, 35);
-    updateList.add(this);
   }
 
-  void updateObject() {
+  void updatePlayerHealth() {
     //When character selected get the lives
-    if (characterSelect.choseDonDon && !getHealth && highScore.highScore == 0) {
+    if (characterSelect.choseDonDon && !getHealth && characterSelect.hasChosen) {
       getHealth = true;
       maxLives = 6;
       currentLives = 6;
-    } else if (characterSelect.choseCorra && !getHealth && highScore.highScore ==0) {
+    } else if (characterSelect.choseCorra && !getHealth && characterSelect.hasChosen) {
       getHealth = true;
       maxLives = 4;
       currentLives = 4;
@@ -48,8 +47,14 @@ class Healthbar implements Updater {
       }
     }
   }
+  void updateEnemyHealth() {
+    if (enemy.enemyGotHurt /*&& enemyLives > 0*/) {
+      //enemyLives-=1;
+      enemy.enemyGotHurt = false;
+    } 
+  }
 
-  void drawObject() {
+  void drawPlayerHealth() {
     //Box of lives
     fill(255);
     strokeWeight(3);
@@ -66,7 +71,11 @@ class Healthbar implements Updater {
     }
   }
 
-  void pressedKey() {
+  void drawEnemyHealth() {
+    fill(255, 0, 0);
+  }
+
+  void pressedKeyHealth() {
     //Press 'd' to take damage
     if (keyPressed && key == 'd') {
       if (!clickedLastFrame) {
@@ -83,7 +92,7 @@ class Healthbar implements Updater {
     }
   }
 
-  void releasedKey() {
+  void releasedKeyHealth() {
     clickedLastFrame = false;
     removeAHealth = false;
     addAHealth = false;
