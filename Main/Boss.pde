@@ -7,6 +7,7 @@ class Boss extends Collider implements Updater {
   }
 
   void drawObject() {
+    fill(255);
     rect(position.x, position.y, boxWidth, boxHeight);
     moveEntity(false);
     println(spawnBoss);
