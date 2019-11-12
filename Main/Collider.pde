@@ -36,12 +36,17 @@ class Collider {
     if (player.playerVector.x + playerRadiusW >= position.x && player.playerVector.x - playerRadiusW <= position.x + boxWidth 
       && player.playerVector.y + playerRadiusH >= position.y && player.playerVector.y - playerRadiusH <= position.y + boxHeight) {
       collides = true;
-      if (player.playerVector.y + playerRadiusH >= position.y && player.playerVector.x + playerRadiusW >= position.x && player.playerVector.x - playerRadiusW <= position.x + boxWidth) {
-        player.collisionType = CollisionType.TOP;
-      } else if (player.playerVector.x + playerRadiusW >= position.x && player.playerVector.y >= position.y && player.playerVector.x <= position.x + boxWidth/2) {
-        player.collisionType = CollisionType.LEFT;
+      if (player.playerVector.x + playerRadiusW >= position.x && player.playerVector.y >= position.y && player.playerVector.x <= position.x + boxWidth/2) {
+        if (this instanceof Fireball) {
+          Fireball colliding = (Fireball) this;
+          if (!colliding.shotByPlayer) {
+            player.collisionType = CollisionType.LEFT;
+          }
+        }
       } else if (player.playerVector.x - playerRadiusW <= position.x + boxWidth && player.playerVector.y >= position.y) {
         player.collisionType = CollisionType.RIGHT;
+      } else if (player.playerVector.y + playerRadiusH >= position.y && player.playerVector.x + playerRadiusW >= position.x && player.playerVector.x - playerRadiusW <= position.x + boxWidth) {
+        player.collisionType = CollisionType.TOP;
       } else {
         player.collisionType = CollisionType.BOTTOM;
       }

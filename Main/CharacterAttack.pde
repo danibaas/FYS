@@ -16,11 +16,13 @@ class CharacterAttack implements Updater {
     fireBall = loadImage(sketchPath() + "/lib/Fireball.jpg");
     fireBallSpecial = loadImage(sketchPath() + "/lib/FireballSpecial.jpg");
     attack = new Fireball(fireBall, new PVector(ceil(player.position.x + player.playerWidth/2), yAttack), fireBall.width/4, fireBall.height/4, fireballSpeed);
+    attack.shotByPlayer = true;
     int yPos = -50;
     int xPos = 0;
     for (int i=0; i<39; i++) {
       Fireball specials = new Fireball(fireBallSpecial, new PVector(xPos, yPos), fireBallSpecial.width/4, fireBallSpecial.height/4, fireballSpeed, false);
       xPos+=33;
+      specials.shotByPlayer = true;
       fireballs.add(specials);
     }
     updateList.add(this);

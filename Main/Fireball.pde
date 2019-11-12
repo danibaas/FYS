@@ -11,6 +11,7 @@ class Fireball extends Collider {
   int speed;
   boolean special;
   boolean hasFired = false;
+  boolean shotByPlayer = false;
 
   Fireball(PImage fireball, PVector attack, int fireballWidth, int fireballHeight, int speed) {
     super(attack, fireballWidth, fireballHeight);
