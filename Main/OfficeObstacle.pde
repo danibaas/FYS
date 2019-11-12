@@ -32,7 +32,10 @@ class OfficeObstacle extends Obstacle implements Updater {
       background.turnOn();
     }
     moveEntity(false);
-    loopObstacle();
+    if (!boss.spawnBoss) {
+      loopObstacle();
+    }else{
+    }
   }
 
   void loopObstacle() {
