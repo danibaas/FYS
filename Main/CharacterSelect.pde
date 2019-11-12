@@ -1,5 +1,6 @@
 class CharacterSelect {
   boolean hasChosen, choseCorra = true, choseDonDon;
+  float defaultSpeed = 5;
 
   void drawSelect() {
     PImage skinDonDon = loadImage(sketchPath() + "/lib/dondon.png");
@@ -55,7 +56,6 @@ class CharacterSelect {
     }
   }
 
-
   PImage getPlayerSkin() {
     PImage skin = loadImage(sketchPath() + "/lib/player.png");
     if (choseCorra && hasChosen) {
@@ -65,8 +65,18 @@ class CharacterSelect {
     } else if (choseDonDon && hasChosen) {
       skin = loadImage(sketchPath() + "/lib/dondon.png");
       skin.resize(player.playerWidth, player.playerHeight);
-      background.speed = 3;
+      background.speed = 2.5;
     }
     return skin;
+  }
+
+  float getSpeed() {
+    float speed = defaultSpeed;
+    if (choseCorra & hasChosen) {
+      speed = 5;
+    } else if (choseDonDon && hasChosen) {
+      speed = 3;
+    }
+    return speed;
   }
 }

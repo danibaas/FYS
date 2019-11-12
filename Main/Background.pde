@@ -11,7 +11,7 @@ class Background implements Updater {
   float backgroundPane3X = 2560;
   float backgroundPane3Y = 0;
   float groundHeight = height - 24;
-  float speed = 5;
+  float speed = characterSelect.getSpeed();
   boolean walkingForward, enabled;
 
   Background() {
