@@ -1,4 +1,4 @@
-class Player extends Collider implements Updater { //<>// //<>//
+class Player extends Collider implements Updater { //<>//
   PImage playerSkin;
   PVector playerVector;
   float gravity = 0.07;
@@ -81,6 +81,18 @@ class Player extends Collider implements Updater { //<>// //<>//
         clickedLastFrame = false;
       }
     }
+  }
+
+  boolean hasCollision() {
+    boolean collision = false;
+    for (Collider collider : collisionList) {
+      if (!(collider instanceof Player)) {
+        if (collider.collidesWithPlayer(this)) {
+          collision = true;
+        }
+      }
+    }
+    return collision;
   }
 
   void setCrouch(boolean crouched) {

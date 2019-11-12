@@ -61,9 +61,11 @@ class CharacterSelect {
     if (choseCorra && hasChosen) {
       skin = loadImage(sketchPath() + "/lib/corra.png");
       skin.resize(player.playerWidth, player.playerHeight);
+      background.speed = 5;
     } else if (choseDonDon && hasChosen) {
       skin = loadImage(sketchPath() + "/lib/dondon.png");
       skin.resize(player.playerWidth, player.playerHeight);
+      background.speed = 3;
     }
     return skin;
   }
