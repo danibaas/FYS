@@ -52,7 +52,7 @@ class Fireball extends Collider {
   void move() {
     for (Collider collider : collisionList) {
       if (collides(collider) && collider instanceof Enemy) {
-        enemy.health -= enemy.health;
+        //enemy.health -= enemy.health;
         enemy.enemyGotHurt=true;
         resetAttack();
       }

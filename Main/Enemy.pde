@@ -2,7 +2,6 @@ class Enemy extends Collider implements Updater {
   PImage skin;
   int timer;
   int waitTime = 3000;
-  int health = 10;
   boolean removedHealthLastFrame = false;
   int healthTimer;
   int holdRemove = 1000;
@@ -20,7 +19,8 @@ class Enemy extends Collider implements Updater {
 
   void updateObject() {
     checkDead();
-    enemyAttack();
+    //enemyAttack();
+    healthbar.updateEnemyHealth();
     /// player gets damage
     if (collidesWithPlayer(player) && !removedHealthLastFrame) {
       //  player.colliderType = ColliderType.ENEMY;
@@ -43,6 +43,7 @@ class Enemy extends Collider implements Updater {
   } 
 
   void drawObject() {
+    healthbar.drawEnemyHealth();
     fill(255);
     rect(position.x, position.y, boxWidth, boxHeight);
     rect(enemyAttackX, enemyAttackY, enemyAttackWidth, enemyAttackHeight);
@@ -60,20 +61,22 @@ class Enemy extends Collider implements Updater {
   }
 
   void checkDead() {
-    if (health <= 0) {
+    if (healthbar.enemyDead) {
       position.x = width + 2*boxWidth; 
-      health = 10;
+      healthbar.enemyDead = false;
+      healthbar.currentLivesEnemy=4;
     }
   }
 
   void loopEnemy() {
     if (position.x + boxWidth < 0 && timer + waitTime < millis()) {
       timer = millis(); 
-      position.x = enemy.position.x = random(1500,1700);
+      position.x = enemy.position.x = random(1500, 1700);
+      healthbar.currentLivesEnemy = 4;
     }
   }
-  
-   void enemyAttack() {
+
+  void enemyAttack() {
 
     enemyAttackY = position.y;
     enemyAttackWidth = 50;

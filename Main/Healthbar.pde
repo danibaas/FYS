@@ -2,13 +2,15 @@ class Healthbar {
   PImage stroopwafel;
   int maxLives;
   int currentLives;
+  int currentLivesEnemy = 4;
   private boolean clickedLastFrame = false;
   boolean dead = false;
+  boolean enemyDead;
   boolean removeAHealth = false;
   boolean addAHealth = false;
   boolean getHealth = false;
 
- Healthbar() {
+  Healthbar() {
     stroopwafel = loadImage(sketchPath() + "/lib/stroopwafel.jpg");
     stroopwafel.resize(35, 35);
   }
@@ -47,12 +49,6 @@ class Healthbar {
       }
     }
   }
-  void updateEnemyHealth() {
-    if (enemy.enemyGotHurt /*&& enemyLives > 0*/) {
-      //enemyLives-=1;
-      enemy.enemyGotHurt = false;
-    } 
-  }
 
   void drawPlayerHealth() {
     //Box of lives
@@ -71,8 +67,21 @@ class Healthbar {
     }
   }
 
+  void updateEnemyHealth() {
+    if (enemy.enemyGotHurt && currentLivesEnemy > 0) {
+      currentLivesEnemy-=1;
+      enemy.enemyGotHurt = false;
+    }
+    if(currentLivesEnemy<=0){
+      enemyDead = true;
+    }
+  }
+
   void drawEnemyHealth() {
     fill(255, 0, 0);
+    for (int iEnemy = 0; iEnemy<currentLivesEnemy; iEnemy++) {
+      rect(enemy.position.x+25*iEnemy, enemy.position.y, enemy.boxWidth/4, enemy.boxHeight-120);
+    }
   }
 
   void pressedKeyHealth() {
