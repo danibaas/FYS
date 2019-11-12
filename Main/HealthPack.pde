@@ -1,10 +1,10 @@
-class Pickup extends Collider implements Updater {
+class HealthPack extends Collider implements Updater {
   PImage skin;
   int timer;
   int waitTime = 3000;
   boolean hasPickedUp;
 
-  Pickup(PVector position, float boxWidth, float boxHeight) {
+  HealthPack(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
     skin = loadImage(sketchPath() + "/lib/healthkit.png");
     skin.resize((int) boxWidth, (int) boxHeight);

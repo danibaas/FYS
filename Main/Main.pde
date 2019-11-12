@@ -3,7 +3,7 @@ Main instance;
 //object creation
 HighScore highScore;
 CharacterSelect characterSelect;
-Pickup pickup;
+HealthPack health;
 Background background;
 Enemy enemy;
 Healthbar healthbar;
@@ -37,7 +37,7 @@ void setup() {
   player = new Player(new PVector(140, height / 4), 100, 100);
   healthbar = new Healthbar();
   gameOver = new GameOver();
-  pickup = new Pickup(new PVector(300, 400), 100, 100);
+  health = new HealthPack(new PVector(300, 400), 100, 100);
   enemy = new Enemy(new PVector(500, 596), 100, 100);
   office = new OfficeObstacle(new PVector(650, 597), 200, 100);
   lazers = new Lazers(new PVector(100, random(200, 550)), 1080, 30);
