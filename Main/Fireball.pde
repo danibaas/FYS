@@ -11,6 +11,7 @@ class Fireball extends Collider {
   int speed;
   boolean special;
   boolean hasFired = false;
+  boolean specialFired;
   boolean shotByPlayer = false;
 
   Fireball(PImage fireball, PVector attack, int fireballWidth, int fireballHeight, int speed) {
@@ -47,6 +48,11 @@ class Fireball extends Collider {
     } else {
       collisionList.add(this);
     }
+    if (!specialFired) {
+      collisionList.remove(this);
+    } else {
+      collisionList.add(this);
+    }
   }
 
   void move() {
@@ -56,7 +62,7 @@ class Fireball extends Collider {
         resetAttack();
       }
       if (collides(collider) && collider instanceof Boss) {
-        healthbar.bossGotHurt=true;
+        boss.bossGotHurt=true;
         resetAttack();
       }
     }

@@ -10,7 +10,7 @@ class Healthbar {
   boolean removeAHealth = false;
   boolean addAHealth = false;
   boolean getHealth = false;
-  boolean bossGotHurt;
+
 
   Healthbar() {
     stroopwafel = loadImage(sketchPath() + "/lib/stroopwafel.jpg");
@@ -87,8 +87,11 @@ class Healthbar {
   }
   
   void updateBossHealth(){
-    if(bossGotHurt){
-      
+    if(boss.bossGotHurt && currentLivesBoss>0){
+      currentLivesBoss-=1;
+      boss.bossGotHurt =false;
+    } if(currentLivesBoss<=0){
+      boss.bossIsDead=true;
     }
   }
   
