@@ -50,7 +50,7 @@ void setup() {
 
 // the game loop
 void draw() {
-  println(background.backgroundPaneX, background.backgroundPane2X, background.backgroundPane3X);
+  //println(background.backgroundPaneX, background.backgroundPane2X, background.backgroundPane3X);
   if (gameOver.gameOver) {
     gameOver.drawObject();
   } else if (!characterSelect.hasChosen) {
