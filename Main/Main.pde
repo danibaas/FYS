@@ -14,6 +14,7 @@ GameOver gameOver;
 OfficeObstacle office;
 Lazers lazers;
 Coffee coffeePickup;
+Boss boss;
 
 //collision & update loop lists
 ArrayList<Updater> updateList;
@@ -44,6 +45,7 @@ void setup() {
   lazers = new Lazers(new PVector(100, random(200, 550)), 1080, 30);
   characterAttack = new CharacterAttack();
   coffeePickup = new Coffee(new PVector(600, 400), 100, 100);
+  boss = new Boss(new PVector(100,100), 100, 100);
 } 
 
 // the game loop
