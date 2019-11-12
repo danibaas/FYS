@@ -55,6 +55,10 @@ class Fireball extends Collider {
         enemy.enemyGotHurt=true;
         resetAttack();
       }
+      if (collides(collider) && collider instanceof Boss) {
+        healthbar.bossGotHurt=true;
+        resetAttack();
+      }
     }
     if (characterAttack.canAttack) {
       normalAttack.x += speed;

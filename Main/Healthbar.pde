@@ -3,12 +3,14 @@ class Healthbar {
   int maxLives;
   int currentLives;
   int currentLivesEnemy = 4;
+  int currentLivesBoss = 10;
   private boolean clickedLastFrame = false;
   boolean dead = false;
   boolean enemyDead;
   boolean removeAHealth = false;
   boolean addAHealth = false;
   boolean getHealth = false;
+  boolean bossGotHurt;
 
   Healthbar() {
     stroopwafel = loadImage(sketchPath() + "/lib/stroopwafel.jpg");
@@ -81,6 +83,20 @@ class Healthbar {
     fill(255, 0, 0);
     for (int iEnemy = 0; iEnemy<currentLivesEnemy; iEnemy++) {
       rect(enemy.position.x+25*iEnemy, enemy.position.y, enemy.boxWidth/4, enemy.boxHeight-120);
+    }
+  }
+  
+  void updateBossHealth(){
+    if(bossGotHurt){
+      
+    }
+  }
+  
+  void drawBossHealth(){
+    fill(255,0,0);
+    for(int iBoss=0;iBoss<currentLivesBoss;iBoss++){
+      fill(255,0,0);
+      rect(boss.position.x, boss.position.y, boss.boxWidth, boss.boxHeight);
     }
   }
 
