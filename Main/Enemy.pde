@@ -23,10 +23,10 @@ class Enemy extends Collider implements Updater {
     healthbar.updateEnemyHealth();
     /// player gets damage
     if (collidesWithPlayer(player) && !removedHealthLastFrame) {
-      //  player.colliderType = ColliderType.ENEMY;
-      //  healthbar.removeHealth();
-      //  removedHealthLastFrame = true;
-      //  healthTimer = millis();
+      player.colliderType = ColliderType.ENEMY;
+      healthbar.removeHealth();
+      removedHealthLastFrame = true;
+      healthTimer = millis();
     }
     moveEntity(false);
     loopEnemy();
