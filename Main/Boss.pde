@@ -4,8 +4,8 @@ class Boss extends Collider implements Updater {
   boolean bossIsDead;
   //int timer;
   //int waitTime = 3000;
-  
-  
+
+
   Boss(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
     updateList.add(this);

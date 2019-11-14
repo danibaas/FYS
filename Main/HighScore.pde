@@ -10,7 +10,8 @@ class HighScore {
     if (!f.exists()) {
       try {
         f.createNewFile();
-      } catch(IOException e) {
+      } 
+      catch(IOException e) {
         println(e);
       }
     }

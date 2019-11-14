@@ -34,7 +34,6 @@ class OfficeObstacle extends Obstacle implements Updater {
     moveEntity(false);
     if (!boss.spawnBoss) {
       loopObstacle();
-    }else{
     }
   }
 

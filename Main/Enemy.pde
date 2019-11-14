@@ -29,9 +29,9 @@ class Enemy extends Collider implements Updater {
       healthTimer = millis();
     }
     moveEntity(false);
-    if(!boss.spawnBoss){
-    loopEnemy();
-    }else {}
+    if (!boss.spawnBoss) {
+      loopEnemy();
+    }
     if (healthTimer + holdRemove < millis()) {
       removedHealthLastFrame = false;
     }
@@ -40,7 +40,7 @@ class Enemy extends Collider implements Updater {
       enemyGotHurt=false;
     }
     if (dist(office.position.x+office.boxWidth/2, office.position.y, enemy.position.x - enemy.boxWidth/2, enemy.position.y) < 200) {
-      enemy.position.x += 20;
+      enemy.position.x = office.position.x + office.boxWidth + 200;
     }
   } 
 
@@ -82,24 +82,23 @@ class Enemy extends Collider implements Updater {
     enemyAttackY = position.y;
     enemyAttackWidth = 50;
     enemyAttackHeight = 50;
-    if (position.x-player.position.x > 100) {
-      enemyAttackX-=5;
+    if (position.x - player.position.x > 100) {
+      enemyAttackX -= 5;
     } else {
-      enemyAttackX=position.x;
+      enemyAttackX = position.x;
     }
     if (enemyAttackX < 0) {
-      enemyAttackX=position.x;
+      enemyAttackX = position.x;
     }
 
     if (player.position.x + player.boxWidth > enemyAttackX && enemy.position.x < enemyAttackX + enemyAttackWidth && player.position.y < enemyAttackY) {
-      enemyAttackX=position.x;
+      enemyAttackX = position.x;
     }
     if (office.position.x + office.boxWidth > enemyAttackX && office.position.x < enemyAttackX + enemyAttackWidth && office.position.y < enemyAttackY) {
-      enemyAttackX=position.x;
+      enemyAttackX = position.x;
     }
 
-    if (enemyAttackX < player.position.x + player.playerWidth/2 && enemyAttackY < player.position.y + player.playerHeight/2 && enemyAttackY> player.position.y - player.playerHeight/2
-      ) {
+    if (enemyAttackX < player.position.x + player.playerWidth/2 && enemyAttackY < player.position.y + player.playerHeight/2 && enemyAttackY> player.position.y - player.playerHeight/2) {
       healthbar.removeHealth();
     }
   }

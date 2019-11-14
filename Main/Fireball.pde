@@ -75,7 +75,7 @@ class Fireball extends Collider {
         resetAttack();
       }
     } else {
-      if (normalAttack.x > width) {
+      if (normalAttack != null && normalAttack.x > width) {
         resetAttack();
       }
     }

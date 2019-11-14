@@ -74,7 +74,7 @@ class Healthbar {
       currentLivesEnemy-=1;
       enemy.enemyGotHurt = false;
     }
-    if(currentLivesEnemy<=0){
+    if (currentLivesEnemy<=0) {
       enemyDead = true;
     }
   }
@@ -85,20 +85,21 @@ class Healthbar {
       rect(enemy.position.x+25*iEnemy, enemy.position.y, enemy.boxWidth/4, enemy.boxHeight-120);
     }
   }
-  
-  void updateBossHealth(){
-    if(boss.bossGotHurt && currentLivesBoss>0){
+
+  void updateBossHealth() {
+    if (boss.bossGotHurt && currentLivesBoss>0) {
       currentLivesBoss-=1;
       boss.bossGotHurt =false;
-    } if(currentLivesBoss<=0){
+    } 
+    if (currentLivesBoss<=0) {
       boss.bossIsDead=true;
     }
   }
-  
-  void drawBossHealth(){
-    fill(255,0,0);
-    for(int iBoss=0;iBoss<currentLivesBoss;iBoss++){
-      fill(255,0,0);
+
+  void drawBossHealth() {
+    fill(255, 0, 0);
+    for (int iBoss=0; iBoss<currentLivesBoss; iBoss++) {
+      fill(255, 0, 0);
       rect(boss.position.x, boss.position.y, boss.boxWidth, boss.boxHeight);
     }
   }

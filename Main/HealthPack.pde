@@ -26,9 +26,9 @@ class HealthPack extends Collider implements Updater {
       }
     }
     moveEntity(false);
-    if(!boss.spawnBoss){
-    loopPickup();
-    }else {}
+    if (!boss.spawnBoss) {
+      loopPickup();
+    }
   }
 
   void loopPickup() {

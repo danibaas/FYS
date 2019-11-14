@@ -1,4 +1,4 @@
-class Background implements Updater {
+class Background implements Updater { //<>//
   PImage background;
   PImage backgroundpane;
   PImage backgroundpane2;
@@ -51,7 +51,7 @@ class Background implements Updater {
   }
 
   void updateObject() {
-    if (player.collisionType != CollisionType.LEFT && player.collisionType != CollisionType.RIGHT && !player.stopMoving && enabled) { //<>// //<>//
+    if (player.collisionType != CollisionType.LEFT && player.collisionType != CollisionType.RIGHT && !player.stopMoving && enabled) {
       if (keys[2]) {
         walkingForward = true;
         if (walkingForward) {
@@ -63,13 +63,13 @@ class Background implements Updater {
         highScore.updateScore();
       }
       if (walkingForward) {
-        if (backgroundPaneX == 640) {
+        if (backgroundPaneX == 640 && backgroundPane2X < 0 ) {
           backgroundPane2X = 1280;
         }
-        if (backgroundPane2X == 640) {
+        if (backgroundPane2X == 640 && backgroundPane3X < 0) {
           backgroundPane3X = 1280;
         }
-        if (backgroundPane3X == 640) {
+        if (backgroundPane3X == 640 && backgroundPaneX < 0) {
           backgroundPaneX = 1280;
         }
       }
@@ -99,5 +99,11 @@ class Background implements Updater {
 
   void turnOff() {
     enabled = false;
+  }
+
+  void equalize() {
+    backgroundPaneX = ceil(backgroundPaneX/10)*10;
+    backgroundPane2X = ceil(backgroundPane2X/10)*10;
+    backgroundPane3X = ceil(backgroundPane3X/10)*10;
   }
 }

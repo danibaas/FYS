@@ -44,8 +44,8 @@ void setup() {
   office = new OfficeObstacle(new PVector(650, 597), 200, 100);
   //lazers = new Lazers(new PVector(100, random(200, 550)), 1080, 30);
   characterAttack = new CharacterAttack();
-  //coffeePickup = new Coffee(new PVector(600, 400), 100, 100);
-  //boss = new Boss(new PVector(600, 600), 100, 100);
+  coffeePickup = new Coffee(new PVector(600, 400), 100, 100);
+  boss = new Boss(new PVector(600, 600), 100, 100);
 } 
 
 // the game loop
