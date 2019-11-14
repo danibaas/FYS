@@ -58,7 +58,7 @@ class Fireball extends Collider {
   void move() {
     for (Collider collider : collisionList) {
       if (collides(collider) && collider instanceof Enemy) {
-        enemy.enemyGotHurt=true;
+        enemy.enemyGotHurt = true;
         resetAttack();
       }
       if (collides(collider) && collider instanceof Boss) {
@@ -72,7 +72,7 @@ class Fireball extends Collider {
     if (special) {
       specialAttack.y += speed;
       if (specialAttack.y > 600) {
-        resetSpecialAttack();
+        resetAttack();
       }
     } else {
       if (normalAttack.x > width) {
@@ -82,13 +82,14 @@ class Fireball extends Collider {
   }
 
   void resetAttack() {
-    characterAttack.canAttack = false;
-    normalAttack.x = START_POSITION;
-    hasFired = false;
-  }
-  void resetSpecialAttack() {
-    special = false;
-    specialAttack.y = -50;
+    if (!special) {
+      characterAttack.canAttack = false;
+      normalAttack.x = START_POSITION;
+      hasFired = false;
+    } else {
+      special = false;
+      specialAttack.y = -50;
+    }
   }
 
   void setSpecial(boolean specialA) {

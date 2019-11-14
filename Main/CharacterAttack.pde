@@ -19,9 +19,9 @@ class CharacterAttack implements Updater {
     attack.shotByPlayer = true;
     int yPos = -50;
     int xPos = 0;
-    for (int i=0; i<39; i++) {
-      Fireball specials = new Fireball(fireBallSpecial, new PVector(xPos, yPos), fireBallSpecial.width/4, fireBallSpecial.height/4, fireballSpeed, false);
-      xPos+=33;
+    for (int i = 0; i < 39; i++) {
+      Fireball specials = new Fireball(fireBallSpecial, new PVector(xPos, yPos), fireBallSpecial.width/4, fireBallSpecial.height/4, fireballSpeed, true);
+      xPos += 33;
       specials.shotByPlayer = true;
       fireballs.add(specials);
     }
@@ -68,7 +68,7 @@ class CharacterAttack implements Updater {
       textAlign(CENTER);
     }
     //special is ready om de 10 seconden
-    if (frameCount - timer >=timeToWait) {
+    if (frameCount - timer >= timeToWait) {
       ready = true;
     }
   }
