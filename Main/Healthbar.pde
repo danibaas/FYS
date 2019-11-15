@@ -10,7 +10,7 @@ class Healthbar {
 
   Healthbar(int currentLives) {
     this.currentLives = currentLives;
-    stroopwafel = loadImage(sketchPath() + "/lib/stroopwafel.jpg");
+    stroopwafel = loadImage(sketchPath() + "/assets/images/stroopwafel.jpg");
     stroopwafel.resize(35, 35);
   }
 

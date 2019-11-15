@@ -6,7 +6,7 @@ class HealthPack extends Collider implements Updater {
 
   HealthPack(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
-    skin = loadImage(sketchPath() + "/lib/healthkit.png");
+    skin = loadImage(sketchPath() + "/assets/images/healthkit.png");
     skin.resize((int) boxWidth, (int) boxHeight);
     timer = millis();
     updateList.add(this);

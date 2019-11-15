@@ -15,12 +15,12 @@ class Background implements Updater { //<>//
   boolean walkingForward, enabled;
 
   Background() {
-    background = loadImage(sketchPath() + "/lib/background.png");
-    backgroundpane = loadImage(sketchPath() + "/lib/backgroundpane1.png");
+    background = loadImage(sketchPath() + "/assets/images/background.png");
+    backgroundpane = loadImage(sketchPath() + "/assets/images/backgroundpane1.png");
     backgroundpane.resize(640, 800);
-    backgroundpane2 = loadImage(sketchPath() + "/lib/backgroundpane2.png");
+    backgroundpane2 = loadImage(sketchPath() + "/assets/images/backgroundpane2.png");
     backgroundpane2.resize(640, 800);
-    backgroundpane3 = loadImage(sketchPath() + "/lib/backgroundpane3.png");
+    backgroundpane3 = loadImage(sketchPath() + "/assets/images/backgroundpane3.png");
     backgroundpane3.resize(640, 800);
     enabled = true;
     updateList.add(this);

@@ -12,7 +12,7 @@ class Enemy extends Collider implements Updater {
 
   Enemy(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
-    skin = loadImage(sketchPath() + "/lib/enemy.png");
+    skin = loadImage(sketchPath() + "/assets/images/enemy.png");
     skin.resize((int) boxWidth + 10, (int) boxHeight + 10);
     timer = millis();
     healthbar = new Healthbar(4);

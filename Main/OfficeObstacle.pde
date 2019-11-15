@@ -5,7 +5,7 @@ class OfficeObstacle extends Obstacle implements Updater {
 
   OfficeObstacle(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
-    obstacle = loadImage(sketchPath() + "/lib/office.png");
+    obstacle = loadImage(sketchPath() + "/assets/images/office.png");
     obstacle.resize((int) boxWidth, (int) boxHeight);
     timer = millis();
     updateList.add(this);

@@ -9,7 +9,7 @@ class Coffee extends Collider implements Updater {
 
   Coffee(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
-    coffee = loadImage(sketchPath() + "/lib/coffee.png");
+    coffee = loadImage(sketchPath() + "/assets/images/coffee.png");
     coffee.resize((int) boxWidth, (int) boxHeight);
     updateList.add(this);
   }
