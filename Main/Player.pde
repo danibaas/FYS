@@ -18,7 +18,7 @@ class Player extends Collider implements Updater { //<>//
     playerHeight = sizeH;
     playerSkin = characterSelect.getPlayerSkin();
     colliderType = ColliderType.NONE;
-    healthbar = new Healthbar();
+    //healthbar = new Healthbar();
     updateList.add(this);
   }
 
@@ -43,7 +43,9 @@ class Player extends Collider implements Updater { //<>//
       setCrouch(true);
     }
     //Health
-    healthbar.updatePlayerHealth();
+    if (healthbar !=null) {
+      healthbar.updatePlayerHealth();
+    }
   }
 
   void pressedKey() {
@@ -65,7 +67,9 @@ class Player extends Collider implements Updater { //<>//
   }
 
   void releasedKey() {
-    healthbar.releasedKeyHealth();
+    if (healthbar !=null) {
+      healthbar.releasedKeyHealth();
+    }
     setMove(keyCode, false);
     stopMoving = false;
     if (clickedLastFrame) {

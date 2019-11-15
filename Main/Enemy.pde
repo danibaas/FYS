@@ -8,23 +8,27 @@ class Enemy extends Collider implements Updater {
   float enemyAttackY, enemyAttackWidth, enemyAttackHeight;
   float enemyAttackX=position.x;
   boolean enemyGotHurt;
+  Healthbar healthbar;
 
   Enemy(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
     skin = loadImage(sketchPath() + "/lib/enemy.png");
     skin.resize((int) boxWidth + 10, (int) boxHeight + 10);
     timer = millis();
+    healthbar = new Healthbar(4);
     updateList.add(this);
   }
 
   void updateObject() {
     checkDead();
     //enemyAttack();
-    healthbar.updateEnemyHealth();
+    if (healthbar !=null) {
+      healthbar.updateEnemyHealth();
+    }
     /// player gets damage
     if (collidesWithPlayer(player) && !removedHealthLastFrame) {
       player.colliderType = ColliderType.ENEMY;
-      healthbar.removeHealth();
+      player.healthbar.removeHealth();
       removedHealthLastFrame = true;
       healthTimer = millis();
     }
@@ -45,7 +49,9 @@ class Enemy extends Collider implements Updater {
   } 
 
   void drawObject() {
-    healthbar.drawEnemyHealth();
+    if (healthbar !=null) {
+      healthbar.drawEnemyHealth();
+    }
     fill(255);
     rect(position.x, position.y, boxWidth, boxHeight);
     rect(enemyAttackX, enemyAttackY, enemyAttackWidth, enemyAttackHeight);
@@ -63,10 +69,12 @@ class Enemy extends Collider implements Updater {
   }
 
   void checkDead() {
-    if (healthbar.enemyDead) {
-      position.x = width + 2*boxWidth; 
-      healthbar.enemyDead = false;
-      healthbar.currentLivesEnemy=4;
+    if (healthbar !=null) {
+      if (healthbar.dead) {
+        position.x = width + 2*boxWidth; 
+        healthbar.dead = false;
+        healthbar.currentLives=4;
+      }
     }
   }
 
@@ -74,7 +82,7 @@ class Enemy extends Collider implements Updater {
     if (position.x + boxWidth < 0 && timer + waitTime < millis()) {
       timer = millis(); 
       position.x = enemy.position.x = random(1500, 1700);
-      healthbar.currentLivesEnemy = 4;
+      healthbar.currentLives = 4;
     }
   }
 

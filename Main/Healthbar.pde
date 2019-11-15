@@ -2,32 +2,29 @@ class Healthbar {
   PImage stroopwafel;
   int maxLives;
   int currentLives;
-  int currentLivesEnemy = 4;
-  int currentLivesBoss = 10;
   private boolean clickedLastFrame = false;
   boolean dead = false;
-  boolean enemyDead;
   boolean removeAHealth = false;
   boolean addAHealth = false;
-  boolean getHealth = false;
 
 
-  Healthbar() {
+  Healthbar(int currentLives) {
+    this.currentLives = currentLives;
     stroopwafel = loadImage(sketchPath() + "/lib/stroopwafel.jpg");
     stroopwafel.resize(35, 35);
   }
 
   void updatePlayerHealth() {
     //When character selected get the lives
-    if (characterSelect.choseDonDon && !getHealth && characterSelect.hasChosen) {
-      getHealth = true;
-      maxLives = 6;
-      currentLives = 6;
-    } else if (characterSelect.choseCorra && !getHealth && characterSelect.hasChosen) {
-      getHealth = true;
-      maxLives = 4;
-      currentLives = 4;
-    }
+    //if (characterSelect.choseDonDon && !getHealth && characterSelect.hasChosen) {
+    //  getHealth = true;
+    //  maxLives = 6;
+    //  currentLives = 6;
+    //} else if (characterSelect.choseCorra && !getHealth && characterSelect.hasChosen) {
+    //  getHealth = true;
+    //  maxLives = 4;
+    //  currentLives = 4;
+    //}
     if (characterSelect.choseDonDon) {
       if (highScore.highScore > 50 && highScore.highScore < 100) {
         maxLives = 5;
@@ -70,35 +67,35 @@ class Healthbar {
   }
 
   void updateEnemyHealth() {
-    if (enemy.enemyGotHurt && currentLivesEnemy > 0) {
-      currentLivesEnemy-=1;
+    if (enemy.enemyGotHurt && currentLives > 0) {
+      currentLives-=1;
       enemy.enemyGotHurt = false;
     }
-    if (currentLivesEnemy<=0) {
-      enemyDead = true;
+    if (currentLives<=0) {
+      dead = true;
     }
   }
 
   void drawEnemyHealth() {
     fill(255, 0, 0);
-    for (int iEnemy = 0; iEnemy<currentLivesEnemy; iEnemy++) {
+    for (int iEnemy = 0; iEnemy<currentLives; iEnemy++) {
       rect(enemy.position.x+25*iEnemy, enemy.position.y, enemy.boxWidth/4, enemy.boxHeight-120);
     }
   }
 
   void updateBossHealth() {
-    if (boss.bossGotHurt && currentLivesBoss>0) {
-      currentLivesBoss-=1;
+    if (boss.bossGotHurt && currentLives>0) {
+      currentLives-=1;
       boss.bossGotHurt =false;
     } 
-    if (currentLivesBoss<=0) {
+    if (currentLives<=0) {
       boss.bossIsDead=true;
     }
   }
 
   void drawBossHealth() {
     fill(255, 0, 0);
-    for (int iBoss=0; iBoss<currentLivesBoss; iBoss++) {
+    for (int iBoss=0; iBoss<currentLives; iBoss++) {
       fill(255, 0, 0);
       rect(boss.position.x, boss.position.y, boss.boxWidth, boss.boxHeight);
     }

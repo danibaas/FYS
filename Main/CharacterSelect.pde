@@ -62,10 +62,14 @@ class CharacterSelect {
       skin = loadImage(sketchPath() + "/lib/corra.png");
       skin.resize(player.playerWidth, player.playerHeight);
       background.speed = 5;
+      player.healthbar = new Healthbar(4);
+      player.healthbar.maxLives=4;
     } else if (choseDonDon && hasChosen) {
       skin = loadImage(sketchPath() + "/lib/dondon.png");
       skin.resize(player.playerWidth, player.playerHeight);
       background.speed = 2.5;
+      player.healthbar = new Healthbar(6); 
+      player.healthbar.maxLives=6;
     }
     return skin;
   }
