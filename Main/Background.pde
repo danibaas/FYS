@@ -51,6 +51,7 @@ class Background implements Updater { //<>//
   }
 
   void updateObject() {
+    println(backgroundPaneX, backgroundPane2X, backgroundPane3X);
     if (player.collisionType != CollisionType.LEFT && player.collisionType != CollisionType.RIGHT && !player.stopMoving && enabled) {
       if (keys[2]) {
         walkingForward = true;
@@ -63,14 +64,14 @@ class Background implements Updater { //<>//
         highScore.updateScore();
       }
       if (walkingForward) {
-        if (backgroundPaneX == 640 && backgroundPane2X < 0 ) {
+        if (backgroundPaneX <= -640) {
+          backgroundPaneX = 1280;
+        }
+        if (backgroundPane2X <= -640) {
           backgroundPane2X = 1280;
         }
-        if (backgroundPane2X == 640 && backgroundPane3X < 0) {
+        if (backgroundPane3X <= -640) {
           backgroundPane3X = 1280;
-        }
-        if (backgroundPane3X == 640 && backgroundPaneX < 0) {
-          backgroundPaneX = 1280;
         }
       }
     }

@@ -67,7 +67,7 @@ class CharacterSelect {
     } else if (choseDonDon && hasChosen) {
       skin = loadImage(sketchPath() + "/assets/images/dondon.png");
       skin.resize(player.playerWidth, player.playerHeight);
-      background.speed = 2.5;
+      background.speed = 3;
       player.healthbar = new Healthbar(6); 
       player.healthbar.maxLives=6;
     }

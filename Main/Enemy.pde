@@ -33,9 +33,9 @@ class Enemy extends Collider implements Updater {
       healthTimer = millis();
     }
     moveEntity(false);
-    if (!boss.spawnBoss) {
-      loopEnemy();
-    }
+    //if (!boss.spawnBoss) {
+    loopEnemy();
+    //}
     if (healthTimer + holdRemove < millis()) {
       removedHealthLastFrame = false;
     }

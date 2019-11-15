@@ -3,6 +3,7 @@ import de.bezier.data.sql.*;
 class HighScore {
   SQLite sql;
   float highScore = 0;
+  final float SCORE_INCREMENT = 0.1;
 
   void initializeDatabase() {
     String path = sketchPath() + "/highscores.db";
@@ -34,7 +35,11 @@ class HighScore {
 
   void updateScore() {
     if (player.colliderType != ColliderType.OBSTACLE && !gameOver.gameOver) {
-      highScore += 0.1;
+      if (coffeePickup.speedBoostActive) {
+        highScore += SCORE_INCREMENT * 2;
+      } else {
+        highScore += SCORE_INCREMENT;
+      }
     }
   }
 

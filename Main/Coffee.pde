@@ -2,7 +2,7 @@ class Coffee extends Collider implements Updater {
   PImage coffee;
   boolean speedBoostActive, spawned = true;
   final int WAIT_TIME = 3000;
-  final int SPAWN_WAIT_TIME = 5000;
+  final int SPAWN_WAIT_TIME = 15000;
   int currentTime;
   int previousSpeed;
   int despawnTime;
@@ -29,7 +29,11 @@ class Coffee extends Collider implements Updater {
         speedBoostActive = true;
         previousSpeed = (int) background.speed;
         background.equalize();
-        background.speed = characterSelect.getSpeed() * 2;
+        if (characterSelect.choseDonDon) {
+          background.speed = 5;
+        } else {
+          background.speed = characterSelect.getSpeed() * 2;
+        }
         spawned = false;
       }
     }
@@ -49,6 +53,7 @@ class Coffee extends Collider implements Updater {
       if (speedBoostActive) {
         speedBoostActive = false; 
         background.speed = characterSelect.getSpeed();
+        despawnTime = millis();
       }
     }
     if (despawnTime + SPAWN_WAIT_TIME < millis() && !spawned) {
