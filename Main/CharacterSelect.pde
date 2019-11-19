@@ -3,8 +3,6 @@ class CharacterSelect {
   float defaultSpeed = 5;
 
   void drawSelect() {
-    PImage skinDonDon = loadImage(sketchPath() + "/assets/images/dondon.png");
-    PImage skinCorra = loadImage(sketchPath() + "/assets/images/corra.png");
     if (!hasChosen) {
       background(120);
       textAlign(CENTER);
@@ -57,16 +55,14 @@ class CharacterSelect {
   }
 
   PImage getPlayerSkin() {
-    PImage skin = loadImage(sketchPath() + "/assets/images/player.png");
+    PImage skin = defaultSkin;
     if (choseCorra && hasChosen) {
-      skin = loadImage(sketchPath() + "/assets/images/corra.png");
-      skin.resize(player.playerWidth, player.playerHeight);
+      skin = skinCorra;
       background.speed = 5;
       player.healthbar = new Healthbar(4);
       player.healthbar.maxLives=4;
     } else if (choseDonDon && hasChosen) {
-      skin = loadImage(sketchPath() + "/assets/images/dondon.png");
-      skin.resize(player.playerWidth, player.playerHeight);
+      skin = skinDonDon;
       background.speed = 3;
       player.healthbar = new Healthbar(6); 
       player.healthbar.maxLives=6;

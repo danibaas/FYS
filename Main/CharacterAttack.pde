@@ -1,6 +1,4 @@
 class CharacterAttack implements Updater {
-  PImage fireBall;
-  PImage fireBallSpecial;
   ArrayList<Fireball> fireballs = new ArrayList();
   Fireball attack;
   private boolean clickedLastFrame = false;
@@ -13,14 +11,12 @@ class CharacterAttack implements Updater {
   int fireballSpeed = 5;
 
   CharacterAttack() {
-    fireBall = loadImage(sketchPath() + "/assets/images/Fireball.jpg");
-    fireBallSpecial = loadImage(sketchPath() + "/assets/images/FireballSpecial.jpg");
-    attack = new Fireball(fireBall, new PVector(ceil(player.position.x + player.playerWidth/2), yAttack), fireBall.width/4, fireBall.height/4, fireballSpeed);
+    attack = new Fireball(new PVector(ceil(player.position.x + player.playerWidth/2), yAttack), fireBall.width/4, fireBall.height/4, fireballSpeed);
     attack.shotByPlayer = true;
     int yPos = -50;
     int xPos = 0;
     for (int i = 0; i < 39; i++) {
-      Fireball specials = new Fireball(fireBallSpecial, new PVector(xPos, yPos), fireBallSpecial.width/4, fireBallSpecial.height/4, fireballSpeed, false);
+      Fireball specials = new Fireball(new PVector(xPos, yPos), fireBallSpecial.width/4, fireBallSpecial.height/4, fireballSpeed, false);
       xPos += 33;
       specials.shotByPlayer = true;
       fireballs.add(specials);

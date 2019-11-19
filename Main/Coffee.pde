@@ -1,5 +1,4 @@
 class Coffee extends Collider implements Updater {
-  PImage coffee;
   boolean speedBoostActive, spawned = true;
   final int WAIT_TIME = 3000;
   final int SPAWN_WAIT_TIME = 15000;
@@ -9,8 +8,6 @@ class Coffee extends Collider implements Updater {
 
   Coffee(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
-    coffee = loadImage(sketchPath() + "/assets/images/coffee.png");
-    coffee.resize((int) boxWidth, (int) boxHeight);
     updateList.add(this);
   }
 

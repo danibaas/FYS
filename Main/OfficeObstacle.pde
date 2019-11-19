@@ -1,12 +1,9 @@
 class OfficeObstacle extends Obstacle implements Updater {
-  PImage obstacle;
   int timer;
   int waitTime = 3000;
 
   OfficeObstacle(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
-    obstacle = loadImage(sketchPath() + "/assets/images/office.png");
-    obstacle.resize((int) boxWidth, (int) boxHeight);
     timer = millis();
     updateList.add(this);
   }
@@ -33,7 +30,7 @@ class OfficeObstacle extends Obstacle implements Updater {
     }
     moveEntity(false);
     //if (!boss.spawnBoss) {
-      loopObstacle();
+    loopObstacle();
     //}
   }
 

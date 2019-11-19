@@ -25,6 +25,31 @@ ArrayList<Collider> collisionList;
 boolean[] keys = new boolean[4];
 // 0 = up, 1 = left, 2 = right, 3 is down
 
+// PLAYER CONSTANTS
+final PVector PLAYER_VECTOR = new PVector(140, height / 4);
+final int PLAYER_WIDTH = 100;
+final int PLAYER_HEIGHT = 100;
+// HEALTH PICKUP
+final PVector HEALTH_VECTOR = new PVector(300, 400);
+final int HEALTH_WIDTH = 100;
+final int HEALTH_HEIGHT = 100;
+// ENEMY CONSTANTS
+final PVector ENEMY_VECTOR = new PVector(500, 596);
+final int ENEMY_WIDTH = 100;
+final int ENEMY_HEIGHT = 100;
+// OBSTACLE CONSTANTS 
+final PVector OBSTACLE_VECTOR = new PVector(650, 597);
+final int OBSTACLE_WIDTH = 200;
+final int OBSTACLE_HEIGHT = 100;
+// COFFE (SPEED BOOST) CONSTANTS
+final PVector COFFEE_VECTOR = new PVector(600, 400);
+final int COFFEE_WIDTH = 100;
+final int COFFEE_HEIGHT = 100;
+// BOSS CONSTANTS
+final PVector BOSS_VECTOR = new PVector(600, 600);
+final int BOSS_WIDTH = 100;
+final int BOSS_HEIGHT = 100;
+
 void setup() {
   // ratio 16:9
   updateList = new ArrayList();
@@ -32,20 +57,21 @@ void setup() {
   collisionList = new ArrayList();
   size(1280, 720);
   instance = this;
+  loadAssets();
   highScore = new HighScore();
   highScore.initializeDatabase();
   characterSelect = new CharacterSelect();
   background = new Background();
-  player = new Player(new PVector(140, height / 4), 100, 100);
+  player = new Player(PLAYER_VECTOR, PLAYER_WIDTH, PLAYER_HEIGHT);
   //healthbar = new Healthbar();
   gameOver = new GameOver();
-  healthPickup = new HealthPack(new PVector(300, 400), 100, 100);
-  enemy = new Enemy(new PVector(500, 596), 100, 100);
-  office = new OfficeObstacle(new PVector(650, 597), 200, 100);
+  healthPickup = new HealthPack(HEALTH_VECTOR, HEALTH_WIDTH, HEALTH_HEIGHT);
+  enemy = new Enemy(ENEMY_VECTOR, ENEMY_WIDTH, ENEMY_HEIGHT);
+  office = new OfficeObstacle(OBSTACLE_VECTOR, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
   //lazers = new Lazers(new PVector(100, random(200, 550)), 1080, 30);
   characterAttack = new CharacterAttack();
-  coffeePickup = new Coffee(new PVector(600, 400), 100, 100);
-  boss = new Boss(new PVector(600, 600), 100, 100);
+  coffeePickup = new Coffee(COFFEE_VECTOR, COFFEE_WIDTH, COFFEE_HEIGHT);
+  boss = new Boss(BOSS_VECTOR, BOSS_WIDTH, BOSS_HEIGHT);
 } 
 
 // the game loop

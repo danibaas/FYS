@@ -1,6 +1,4 @@
 class Fireball extends Collider {
-  PImage fireball;
-  PImage fireballSpecial;
   PVector normalAttack;
   PVector specialAttack;
   int fireballWidth;
@@ -13,20 +11,18 @@ class Fireball extends Collider {
   boolean hasFired = false;
   boolean shotByPlayer = false;
 
-  Fireball(PImage fireball, PVector attack, int fireballWidth, int fireballHeight, int speed) {
+  Fireball(PVector attack, int fireballWidth, int fireballHeight, int speed) {
     super(attack, fireballWidth, fireballHeight);
     normalAttack = attack;
-    this.fireball = fireball;
     this.fireballWidth = fireballWidth;
     this.fireballHeight = fireballHeight;
     this.speed = speed;
     special = false;
   }
 
-  Fireball(PImage fireballSpecial, PVector attack, int fireballSpecialWidth, int fireballSpecialHeight, int speed, boolean special) {
+  Fireball(PVector attack, int fireballSpecialWidth, int fireballSpecialHeight, int speed, boolean special) {
     super(attack, fireballSpecialWidth, fireballSpecialHeight);
     specialAttack = attack;
-    this.fireballSpecial = fireballSpecial;
     this.fireballSpecialWidth = fireballSpecialWidth;
     this.fireballSpecialHeight = fireballSpecialHeight;
     this.speed = speed;
@@ -35,9 +31,9 @@ class Fireball extends Collider {
 
   void drawFireball() {
     if (special) {
-      image(fireballSpecial, specialAttack.x, specialAttack.y, fireballSpecialWidth, fireballSpecialHeight);
+      image(fireBallSpecial, specialAttack.x, specialAttack.y, fireballSpecialWidth, fireballSpecialHeight);
     } else {
-      image(fireball, normalAttack.x, normalAttack.y, fireballWidth, fireballHeight);
+      image(fireBall, normalAttack.x, normalAttack.y, fireballWidth, fireballHeight);
     }
   }
 
@@ -61,7 +57,7 @@ class Fireball extends Collider {
       }
     }
     if (characterAttack.canAttack) {
-      if (normalAttack != null){
+      if (normalAttack != null) {
         normalAttack.x += speed;
       }
     }

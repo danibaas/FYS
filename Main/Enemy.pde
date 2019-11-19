@@ -1,19 +1,16 @@
 class Enemy extends Collider implements Updater {
-  PImage skin;
   int timer;
   int waitTime = 3000;
   boolean removedHealthLastFrame = false;
   int healthTimer;
   int holdRemove = 1000;
   float enemyAttackY, enemyAttackWidth, enemyAttackHeight;
-  float enemyAttackX=position.x;
+  float enemyAttackX = position.x;
   boolean enemyGotHurt;
   Healthbar healthbar;
 
   Enemy(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
-    skin = loadImage(sketchPath() + "/assets/images/enemy.png");
-    skin.resize((int) boxWidth + 10, (int) boxHeight + 10);
     timer = millis();
     healthbar = new Healthbar(4);
     updateList.add(this);
@@ -58,7 +55,7 @@ class Enemy extends Collider implements Updater {
     pushMatrix();
     translate(position.x + 100, position.y);
     scale(-1, 1);
-    image(skin, 0, 0);
+    image(skinEnemy, 0, 0);
     popMatrix();
   }
 

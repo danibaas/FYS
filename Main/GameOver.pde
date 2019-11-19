@@ -2,8 +2,6 @@ class GameOver {
   boolean gameOver;
 
   void fontLoad() {
-    PFont eightBit;
-    eightBit = createFont(sketchPath() + "/lib/PressStart2P.ttf", 30);
     textFont(eightBit);
   }
 

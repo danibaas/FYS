@@ -1,5 +1,4 @@
 class Healthbar {
-  PImage stroopwafel;
   int maxLives;
   int currentLives;
   private boolean clickedLastFrame = false;
@@ -10,8 +9,6 @@ class Healthbar {
 
   Healthbar(int currentLives) {
     this.currentLives = currentLives;
-    stroopwafel = loadImage(sketchPath() + "/assets/images/stroopwafel.jpg");
-    stroopwafel.resize(35, 35);
   }
 
   void updatePlayerHealth() {

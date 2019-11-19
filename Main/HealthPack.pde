@@ -1,13 +1,10 @@
 class HealthPack extends Collider implements Updater {
-  PImage skin;
   int timer;
   int waitTime = 3000;
   boolean hasPickedUp;
 
   HealthPack(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
-    skin = loadImage(sketchPath() + "/assets/images/healthkit.png");
-    skin.resize((int) boxWidth, (int) boxHeight);
     timer = millis();
     updateList.add(this);
   }
@@ -15,7 +12,7 @@ class HealthPack extends Collider implements Updater {
   void drawObject() {
     fill(255);
     rect(position.x, position.y, boxWidth, boxHeight);
-    image(skin, position.x, position.y);
+    image(health, position.x, position.y);
   }
 
   void updateObject() {
