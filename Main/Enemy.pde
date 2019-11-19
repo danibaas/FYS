@@ -12,7 +12,7 @@ class Enemy extends Collider implements Updater {
   Enemy(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
     timer = millis();
-    healthbar = new Healthbar(4);
+    healthbar = new Healthbar(1);
     updateList.add(this);
   }
 
@@ -25,11 +25,9 @@ class Enemy extends Collider implements Updater {
     /// player gets damage
     if (collidesWithPlayer(player) && !removedHealthLastFrame) {
       player.colliderType = ColliderType.ENEMY;
-      player.healthbar.removeHealth();
-      removedHealthLastFrame = true;
-      healthTimer = millis();
+      player.healthbar.isDead = true;
     }
-    moveEntity(false);
+    moveEntity();
     //if (!boss.spawnBoss) {
     loopEnemy();
     //}
@@ -59,7 +57,7 @@ class Enemy extends Collider implements Updater {
       enemyAttackX = position.x-50;
     }
     if (enemyAttackX < player.position.x + player.playerWidth/2 && enemyAttackY < player.position.y + player.playerHeight/2 && enemyAttackY> player.position.y - player.playerHeight/2) {
-      player.healthbar.removeHealth();
+      player.healthbar.isDead = true;
     }
     if(enemyAttackX<0){
       attack = false;
@@ -92,11 +90,11 @@ class Enemy extends Collider implements Updater {
   }
 
   void checkDead() {
-    if (healthbar !=null) {
-      if (healthbar.dead) {
+    if (healthbar != null) {
+      if (healthbar.isDead) {
         position.x = width + 2*boxWidth; 
-        healthbar.dead = false;
-        healthbar.currentLives=4;
+        healthbar.isDead = false;
+        healthbar.currentLives = 1;
       }
     }
   }
@@ -105,30 +103,7 @@ class Enemy extends Collider implements Updater {
     if (position.x + boxWidth < 0 && timer + waitTime < millis()) {
       timer = millis(); 
       position.x = enemy.position.x = random(1500, 1700);
-      healthbar.currentLives = 4;
+      healthbar.currentLives = 1;
     }
   }
-
-  //  void enemyAttack() {
-  //    enemyAttackY = position.y;
-  //    if (position.x - player.position.x > 100) {
-  //      enemyAttackX -= 5;
-  //    } else {
-  //      enemyAttackX = position.x;
-  //    }
-  //    if (enemyAttackX < 0) {
-  //      enemyAttackX = position.x;
-  //    }
-
-  //    if (player.position.x + player.boxWidth > enemyAttackX && enemy.position.x < enemyAttackX + enemyAttackWidth && player.position.y < enemyAttackY) {
-  //      enemyAttackX = position.x;
-  //    }
-  //    if (office.position.x + office.boxWidth > enemyAttackX && office.position.x < enemyAttackX + enemyAttackWidth && office.position.y < enemyAttackY) {
-  //      enemyAttackX = position.x;
-  //    }
-
-  //    if (enemyAttackX < player.position.x + player.playerWidth/2 && enemyAttackY < player.position.y + player.playerHeight/2 && enemyAttackY> player.position.y - player.playerHeight/2) {
-  //      healthbar.removeHealth();
-  //    }
-  //  }
 }
