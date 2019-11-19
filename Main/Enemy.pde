@@ -40,10 +40,10 @@ class Enemy extends Collider implements Updater {
     if (enemyCanAttack) {
       enemyAttackY = position.y;
       attack = true;
-      if (keys[2]) {
-        enemyAttackX -= 10;
+      if (coffeePickup.speedBoostActive) {
+        enemyAttackX -= background.speed+5;
       } else {
-        enemyAttackX -= 5;
+        enemyAttackX -= background.speed+5;
       }
     } else {
       enemyAttackX = position.x - 50;
@@ -55,7 +55,6 @@ class Enemy extends Collider implements Updater {
       attack = false;
       enemyAttackX = position.x-50;
     }
-    println(enemyAttackX);
   } 
 
   void drawObject() {

@@ -31,7 +31,7 @@ final PVector PLAYER_VECTOR = new PVector(140, height / 4);
 final int PLAYER_WIDTH = 100;
 final int PLAYER_HEIGHT = 100;
 // ENEMY CONSTANTS
-final PVector ENEMY_VECTOR = new PVector(900, 596);
+final PVector ENEMY_VECTOR = new PVector(2000, 596);
 final int ENEMY_WIDTH = 100;
 final int ENEMY_HEIGHT = 100;
 // OBSTACLE CONSTANTS 
