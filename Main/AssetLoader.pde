@@ -64,5 +64,5 @@ void loadAssets() {
   obstacle.resize(OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
 
   // FONTS
-  eightBit = createFont(sketchPath() + "/lib/PressStart2P.ttf", 30);
+  eightBit = createFont(sketchPath() + "/assets/fonts/PressStart2P.ttf", 30);
 }
