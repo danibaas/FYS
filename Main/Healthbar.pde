@@ -1,7 +1,6 @@
 class Healthbar {
-  int maxLives;
-  int currentLives;
-  boolean isDead = false;
+  int maxLives, currentLives;
+  boolean isDead;
 
   Healthbar(int currentLives) {
     this.currentLives = currentLives;

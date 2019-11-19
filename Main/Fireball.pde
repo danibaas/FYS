@@ -1,15 +1,8 @@
 class Fireball extends Collider {
-  PVector normalAttack;
-  PVector specialAttack;
-  int fireballWidth;
-  int fireballHeight;
-  int fireballSpecialWidth;
-  int fireballSpecialHeight;
+  PVector normalAttack, specialAttack;
+  int fireballWidth, fireballHeight, fireballSpecialWidth, fireballSpecialHeight, speed;
   final int START_POSITION = ceil(player.position.x + player.playerWidth / 2);
-  int speed;
-  boolean special;
-  boolean hasFired = false;
-  boolean shotByPlayer = false;
+  boolean special, hasFired, shotByPlayer;
 
   Fireball(PVector attack, int fireballWidth, int fireballHeight, int speed) {
     super(attack, fireballWidth, fireballHeight);

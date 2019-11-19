@@ -1,12 +1,7 @@
 class Enemy extends Collider implements Updater {
-  int timer;
-  int waitTime = 3000;
-  boolean removedHealthLastFrame = false;
-  int healthTimer;
-  int holdRemove = 1000;
-  float enemyAttackWidth = 50, enemyAttackHeight = 50, enemyAttackX, enemyAttackY;
-  boolean enemyCanAttack, attack, fired;
-  boolean enemyGotHurt;
+  int timer, waitTime = 3000;
+  float enemyAttackY, enemyAttackWidth = 50, enemyAttackHeight = 50, enemyAttackX = position.x;
+  boolean enemyCanAttack, attack, fired, enemyGotHurt;
   Healthbar healthbar;
 
   Enemy(PVector position, float boxWidth, float boxHeight) {
@@ -19,11 +14,11 @@ class Enemy extends Collider implements Updater {
   void updateObject() {
     checkDead();
     //enemyAttack();
-    if (healthbar !=null) {
+    if (healthbar != null) {
       healthbar.updateEnemyHealth();
     }
     /// player gets damage
-    if (collidesWithPlayer(player) && !removedHealthLastFrame) {
+    if (collidesWithPlayer(player)) {
       player.colliderType = ColliderType.ENEMY;
       player.healthbar.isDead = true;
     }
@@ -31,35 +26,32 @@ class Enemy extends Collider implements Updater {
     //if (!boss.spawnBoss) {
     loopEnemy();
     //}
-    if (healthTimer + holdRemove < millis()) {
-      removedHealthLastFrame = false;
-    }
     if (enemyGotHurt) {
-      enemyGotHurt=false;
+      enemyGotHurt = false;
     }
-    if (dist(office.position.x+office.boxWidth/2, office.position.y, enemy.position.x - enemy.boxWidth/2, enemy.position.y) < 200) {
+    if (dist(office.position.x + office.boxWidth/2, office.position.y, enemy.position.x - enemy.boxWidth/2, enemy.position.y) < 200) {
       enemy.position.x = office.position.x + office.boxWidth + 200;
     }
-    if (player.position.x-position.x>-1050) {
+    if (player.position.x - position.x > -1050) {
       enemyCanAttack = true;
     } else {
       enemyCanAttack = false;
     }
     if (enemyCanAttack) {
       enemyAttackY = position.y;
-      attack=true;
+      attack = true;
       if (keys[2]) {
-        enemyAttackX-=10;
+        enemyAttackX -= 10;
       } else {
-        enemyAttackX-=5;
+        enemyAttackX -= 5;
       }
     } else {
-      enemyAttackX = position.x-50;
+      enemyAttackX = position.x - 50;
     }
     if (enemyAttackX < player.position.x + player.playerWidth/2 && enemyAttackY < player.position.y + player.playerHeight/2 && enemyAttackY> player.position.y - player.playerHeight/2) {
       player.healthbar.isDead = true;
     }
-    if(enemyAttackX<0){
+    if (enemyAttackX<0) {
       attack = false;
       enemyAttackX = position.x-50;
     }
@@ -67,7 +59,7 @@ class Enemy extends Collider implements Updater {
   } 
 
   void drawObject() {
-    if (healthbar !=null) {
+    if (healthbar != null) {
       healthbar.drawEnemyHealth();
     }
     fill(255);

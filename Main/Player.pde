@@ -2,14 +2,11 @@ class Player extends Collider implements Updater {
   PImage playerSkin;
   PVector playerVector;
   float velocity = 0;
-  float upforce = -2.4;
+  final float UP_FORCE = -2.4;
   final float MOVEMENT = 3.5;
   final float GRAVITY = 0.07;
   boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, jumped, isCrouched;
-  int playerWidth, playerHeight;
-  int colliderType;
-  int collisionType;
-  int crouchCounter;
+  int playerWidth, playerHeight, colliderType, collisionType, crouchCounter;
   Healthbar healthbar;
 
   Player(PVector vector, int sizeW, int sizeH) {
@@ -118,7 +115,7 @@ class Player extends Collider implements Updater {
   }
 
   void jump() {
-    velocity += upforce;
+    velocity += UP_FORCE;
     jumped = true;
     //jump mechanic
   }

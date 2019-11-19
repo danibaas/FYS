@@ -1,11 +1,5 @@
-class Background implements Updater {
-  float backgroundX = 0;
-  float backgroundPaneX = 1280;
-  float backgroundPaneY = 0;
-  float backgroundPane2X = 1920;
-  float backgroundPane2Y = 0;
-  float backgroundPane3X = 2560;
-  float backgroundPane3Y = 0;
+class Background implements Updater { //<>//
+  float backgroundX = 0, backgroundPaneX = 1280, backgroundPaneY = 0, backgroundPane2X = 1920, backgroundPane2Y = 0, backgroundPane3X = 2560, backgroundPane3Y = 0;
   float groundHeight = height - 24;
   float speed = characterSelect.getSpeed();
 

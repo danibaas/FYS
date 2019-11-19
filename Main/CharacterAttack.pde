@@ -1,13 +1,10 @@
 class CharacterAttack implements Updater {
   ArrayList<Fireball> fireballs = new ArrayList();
   Fireball attack;
-  private boolean clickedLastFrame = false;
-  private boolean canAttack = false;
-  private boolean ready = false;
-  private int timer; 
+  boolean clickedLastFrame, canAttack, ready;
+  int timer, yAttack; 
   int timeToWait = 600; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
   int countDown = timeToWait;
-  int yAttack;
   int fireballSpeed = 5;
 
   CharacterAttack() {

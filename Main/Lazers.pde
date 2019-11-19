@@ -1,12 +1,6 @@
 class Lazers extends Collider implements Updater {  
-  int sizeX;
-  int sizeY;
-  int currentMillis;
-  int millisToWait;
-  int lazerTimer;
-  int waitTime;
-  boolean drawLazer;
-  boolean warningLazer;
+  int sizeX, sizeY, currentMillis, millisToWait, lazerTimer, waitTime;
+  boolean drawLazer, warningLazer;
 
   Lazers(PVector position, int breedte, int hoogte) {
     super(position, breedte, hoogte);

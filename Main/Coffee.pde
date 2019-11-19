@@ -2,9 +2,7 @@ class Coffee extends Collider implements Updater {
   boolean speedBoostActive, spawned = true;
   final int WAIT_TIME = 3000;
   final int SPAWN_WAIT_TIME = 15000;
-  int currentTime;
-  int previousSpeed;
-  int despawnTime;
+  int currentTime, previousSpeed, despawnTime;
 
   Coffee(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);

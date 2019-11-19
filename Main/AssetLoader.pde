@@ -1,18 +1,5 @@
 // IMAGES
-PImage backgroundImage;
-PImage backgroundpane;
-PImage backgroundpane2;
-PImage backgroundpane3;
-PImage fireBall;
-PImage fireBallSpecial;
-PImage skinDonDon;
-PImage skinCorra;
-PImage defaultSkin;
-PImage coffee;
-PImage skinEnemy;
-PImage health;
-PImage stroopwafel;
-PImage obstacle;
+PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, health, stroopwafel, obstacle;
 
 //SOUNDS
 SoundFile soundTrack;

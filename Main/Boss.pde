@@ -1,7 +1,5 @@
 class Boss extends Collider implements Updater {
-  boolean spawnBoss;
-  boolean hasBeenHit;
-  boolean isDead;
+  boolean spawnBoss, hasBeenHit, isDead;
   //int timer;
   //int waitTime = 3000;
 
