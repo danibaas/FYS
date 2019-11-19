@@ -5,10 +5,9 @@ Main instance;
 //object creation
 HighScore highScore;
 CharacterSelect characterSelect;
-HealthPack healthPickup;
 Background background;
 Enemy enemy;
-Healthbar healthbar;
+//Healthbar healthbar;
 Player player;
 CharacterAttack characterAttack;
 Fireball fireball;
@@ -31,12 +30,8 @@ boolean[] keys = new boolean[4];
 final PVector PLAYER_VECTOR = new PVector(140, height / 4);
 final int PLAYER_WIDTH = 100;
 final int PLAYER_HEIGHT = 100;
-// HEALTH PICKUP
-final PVector HEALTH_VECTOR = new PVector(300, 400);
-final int HEALTH_WIDTH = 100;
-final int HEALTH_HEIGHT = 100;
 // ENEMY CONSTANTS
-final PVector ENEMY_VECTOR = new PVector(500, 596);
+final PVector ENEMY_VECTOR = new PVector(900, 596);
 final int ENEMY_WIDTH = 100;
 final int ENEMY_HEIGHT = 100;
 // OBSTACLE CONSTANTS 
@@ -67,7 +62,6 @@ void setup() {
   player = new Player(PLAYER_VECTOR, PLAYER_WIDTH, PLAYER_HEIGHT);
   //healthbar = new Healthbar();
   gameOver = new GameOver();
-  healthPickup = new HealthPack(HEALTH_VECTOR, HEALTH_WIDTH, HEALTH_HEIGHT);
   enemy = new Enemy(ENEMY_VECTOR, ENEMY_WIDTH, ENEMY_HEIGHT);
   office = new OfficeObstacle(OBSTACLE_VECTOR, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
   //lazers = new Lazers(new PVector(100, random(200, 550)), 1080, 30);

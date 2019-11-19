@@ -8,10 +8,8 @@ class Background implements Updater { //<>//
   float backgroundPane3Y = 0;
   float groundHeight = height - 24;
   float speed = characterSelect.getSpeed();
-  boolean walkingForward, enabled;
 
   Background() {
-    enabled = true;
     updateList.add(this);
   }
 
@@ -40,54 +38,26 @@ class Background implements Updater { //<>//
   }
 
   void updateObject() {
-    if (player.collisionType != CollisionType.LEFT && player.collisionType != CollisionType.RIGHT && !player.stopMoving && enabled) {
-      if (keys[2]) {
-        walkingForward = true;
-        if (walkingForward) {
-          backgroundPaneX -= speed;
-          backgroundPane2X -= speed;
-          backgroundPane3X -= speed;
-          backgroundX -= speed;
-        }
-        highScore.updateScore();
-      }
-      if (walkingForward) {
-        if (backgroundPaneX <= -640) {
-          backgroundPaneX = 1280;
-        }
-        if (backgroundPane2X <= -640) {
-          backgroundPane2X = 1280;
-        }
-        if (backgroundPane3X <= -640) {
-          backgroundPane3X = 1280;
-        }
-      }
+    backgroundPaneX -= speed;
+    backgroundPane2X -= speed;
+    backgroundPane3X -= speed;
+    backgroundX -= speed;
+    highScore.updateScore();
+    if (backgroundPaneX <= -640) {
+      backgroundPaneX = 1280;
+    }
+    if (backgroundPane2X <= -640) {
+      backgroundPane2X = 1280;
+    }
+    if (backgroundPane3X <= -640) {
+      backgroundPane3X = 1280;
     }
   }
 
   void pressedKey() {
-    if (key == CODED) {
-      if (keyCode == RIGHT) {
-        keys[2] = true;
-      }
-    }
   }
 
   void releasedKey() {
-    walkingForward = false;
-    if (key == CODED) {
-      if (keyCode == RIGHT) {
-        keys[2] = false;
-      }
-    }
-  }
-
-  void turnOn() {
-    enabled = true;
-  }
-
-  void turnOff() {
-    enabled = false;
   }
 
   void equalize() {

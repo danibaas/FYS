@@ -52,7 +52,7 @@ class Fireball extends Collider {
         resetAttack();
       }
       if (collides(collider) && collider instanceof Boss) {
-        boss.bossGotHurt=true;
+        boss.hasBeenHit = true;
         resetAttack();
       }
     }

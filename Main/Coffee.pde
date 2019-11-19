@@ -34,7 +34,7 @@ class Coffee extends Collider implements Updater {
         spawned = false;
       }
     }
-    moveEntity(false);
+    moveEntity();
     loopCoffee();
     timerThread();
   }

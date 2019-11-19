@@ -1,9 +1,6 @@
 class Enemy extends Collider implements Updater {
   int timer;
   int waitTime = 3000;
-  boolean removedHealthLastFrame = false;
-  int healthTimer;
-  int holdRemove = 1000;
   float enemyAttackY, enemyAttackWidth, enemyAttackHeight;
   float enemyAttackX = position.x;
   boolean enemyGotHurt;
@@ -12,30 +9,25 @@ class Enemy extends Collider implements Updater {
   Enemy(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
     timer = millis();
-    healthbar = new Healthbar(4);
+    healthbar = new Healthbar(1);
     updateList.add(this);
   }
 
   void updateObject() {
     checkDead();
     //enemyAttack();
-    if (healthbar !=null) {
+    if (healthbar != null) {
       healthbar.updateEnemyHealth();
     }
     /// player gets damage
-    if (collidesWithPlayer(player) && !removedHealthLastFrame) {
+    if (collidesWithPlayer(player)) {
       player.colliderType = ColliderType.ENEMY;
-      player.healthbar.removeHealth();
-      removedHealthLastFrame = true;
-      healthTimer = millis();
+      player.healthbar.isDead = true;
     }
-    moveEntity(false);
+    moveEntity();
     //if (!boss.spawnBoss) {
     loopEnemy();
     //}
-    if (healthTimer + holdRemove < millis()) {
-      removedHealthLastFrame = false;
-    }
     if (enemyGotHurt) {
 
       enemyGotHurt=false;
@@ -46,7 +38,7 @@ class Enemy extends Collider implements Updater {
   } 
 
   void drawObject() {
-    if (healthbar !=null) {
+    if (healthbar != null) {
       healthbar.drawEnemyHealth();
     }
     fill(255);
@@ -66,12 +58,10 @@ class Enemy extends Collider implements Updater {
   }
 
   void checkDead() {
-    if (healthbar !=null) {
-      if (healthbar.dead) {
-        position.x = width + 2*boxWidth; 
-        healthbar.dead = false;
-        healthbar.currentLives=4;
-      }
+    if (healthbar != null && healthbar.isDead) {
+      position.x = width + 2*boxWidth; 
+      healthbar.isDead = false;
+      healthbar.currentLives = 1;
     }
   }
 
@@ -79,7 +69,7 @@ class Enemy extends Collider implements Updater {
     if (position.x + boxWidth < 0 && timer + waitTime < millis()) {
       timer = millis(); 
       position.x = enemy.position.x = random(1500, 1700);
-      healthbar.currentLives = 4;
+      healthbar.currentLives = 1;
     }
   }
 
@@ -104,7 +94,6 @@ class Enemy extends Collider implements Updater {
     }
 
     if (enemyAttackX < player.position.x + player.playerWidth/2 && enemyAttackY < player.position.y + player.playerHeight/2 && enemyAttackY> player.position.y - player.playerHeight/2) {
-      healthbar.removeHealth();
     }
   }
 }

@@ -45,22 +45,22 @@ class CharacterAttack implements Updater {
     }
     if (ready) {
       fill(0, 255, 0);
-      rect(0, 50, 250, 35);
+      rect(0, 0, 250, 35);
       fill(0);
       textAlign(CENTER);
       textSize(20);
-      text("SPECIAL READY", 125, 75);
+      text("SPECIAL READY", 125, 25);
     }
     if (!ready) {
       fill(255, 0, 0);
-      rect(0, 50, 250, 35);
+      rect(0, 0, 250, 35);
       fill(0);
       textAlign(CENTER);
       textSize(20);
-      text("SPECIAL NOT READY", 140, 75);
+      text("SPECIAL NOT READY", 140, 25);
       textAlign(LEFT);
       countDown--;
-      text(countDown/60, 5, 75);
+      text(countDown/60, 5, 25);
       textAlign(CENTER);
     }
     //special is ready om de 10 seconden

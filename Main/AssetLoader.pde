@@ -54,10 +54,6 @@ void loadAssets() {
   skinEnemy = loadImage(sketchPath() + "/assets/images/enemy.png");
   skinEnemy.resize(ENEMY_WIDTH + 10, ENEMY_HEIGHT + 10);
 
-  // HEALTH PICKUP
-  health = loadImage(sketchPath() + "/assets/images/healthkit.png");
-  health.resize(HEALTH_WIDTH, HEALTH_HEIGHT);
-
   // STROOPWAFEL (HEALTH DISPLAY)
   stroopwafel = loadImage(sketchPath() + "/assets/images/stroopwafel.jpg");
   stroopwafel.resize(STROOPWAFEL_SIZE, STROOPWAFEL_SIZE);
@@ -68,7 +64,14 @@ void loadAssets() {
 
   // FONTS
   eightBit = createFont(sketchPath() + "/assets/fonts/PressStart2P.ttf", 30);
-  
+
   //SOUNDS
-  soundTrack = new SoundFile(this, "/assets/sounds/soundtrack3.wav");  
+  soundTrack = new SoundFile(this, "/assets/sounds/soundtrack3.wav");
+}
+
+void refreshPlayerSkin() {
+  skinDonDon = loadImage(sketchPath() + "/assets/images/dondon.png");
+  skinDonDon.resize(PLAYER_WIDTH, PLAYER_HEIGHT);
+  skinCorra = loadImage(sketchPath() + "/assets/images/corra.png");
+  skinCorra.resize(PLAYER_WIDTH, PLAYER_HEIGHT);
 }

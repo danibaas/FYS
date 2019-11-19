@@ -1,14 +1,15 @@
 class Player extends Collider implements Updater { //<>//
   PImage playerSkin;
   PVector playerVector;
-  float gravity = 0.07;
   float velocity = 0;
   float upforce = -2.4;
-  float movement = 3.5;
-  boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, stopMoving, jumped, isCrouched;
+  final float MOVEMENT = 3.5;
+  final float GRAVITY = 0.07;
+  boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, jumped, isCrouched;
   int playerWidth, playerHeight;
   int colliderType;
   int collisionType;
+  int crouchCounter;
   Healthbar healthbar;
 
   Player(PVector vector, int sizeW, int sizeH) {
@@ -18,7 +19,7 @@ class Player extends Collider implements Updater { //<>//
     playerHeight = sizeH;
     playerSkin = characterSelect.getPlayerSkin();
     colliderType = ColliderType.NONE;
-    //healthbar = new Healthbar();
+    healthbar = new Healthbar(1);
     updateList.add(this);
   }
 
@@ -28,10 +29,13 @@ class Player extends Collider implements Updater { //<>//
     rect(playerVector.x, playerVector.y, playerWidth, playerHeight);
     rectMode(CORNER);
     image(playerSkin, playerVector.x - playerWidth/2, playerVector.y - playerHeight/2);
-    healthbar.drawPlayerHealth();
   }
 
   void updateObject() {
+    // death check
+    if (healthbar != null) {
+      healthbar.updatePlayerHealth();
+    }
     hasCollision();
     move();
     if (keys[0]) {
@@ -42,14 +46,9 @@ class Player extends Collider implements Updater { //<>//
     } else if (keys[3] && !isCrouched) {
       setCrouch(true);
     }
-    //Health
-    if (healthbar !=null) {
-      healthbar.updatePlayerHealth();
-    }
   }
 
   void pressedKey() {
-    healthbar.pressedKeyHealth();
     if (key == CODED) {
       if (keyCode == UP) {
         keys[0] = true;
@@ -67,11 +66,7 @@ class Player extends Collider implements Updater { //<>//
   }
 
   void releasedKey() {
-    if (healthbar !=null) {
-      healthbar.releasedKeyHealth();
-    }
     setMove(keyCode, false);
-    stopMoving = false;
     if (clickedLastFrame) {
       clickedLastFrame = false;
     }
@@ -112,6 +107,10 @@ class Player extends Collider implements Updater { //<>//
       playerHeight *= 2;
       playerSkin.resize(playerWidth, playerHeight);
     }
+    crouchCounter++;
+    if (crouchCounter >= 3) {
+      refreshPlayerSkin();
+    }
   }
 
   void updateSkin() {
@@ -127,29 +126,24 @@ class Player extends Collider implements Updater { //<>//
   void move() {
     int trueHeight = height - (int) background.groundHeight;
     int groundHeight = trueHeight + playerHeight / 2;
-    for (Obstacle obstacle : obstacleList) {
-      if (obstacle.playerOnObstacle || (playerVector.y < height - groundHeight && !obstacle.playerOnObstacle)) {
-        airBorne = true;
-        velocity += gravity;
-        playerVector.y += velocity;
-        //zwaartekracht functie
-      }
-      if (playerVector.y >= height - groundHeight || (obstacle.playerOnObstacle && playerVector.y + playerHeight / 2 > obstacle.position.y) && !jumped) {
-        if (playerVector.y >= height - groundHeight) {
-          playerVector.y = height - groundHeight;
-        } else {
-          playerVector.y = obstacle.position.y - playerHeight/2;
-          stopMoving = false;
-        }
-        velocity = 0;
-        airBorne = false;
-        //bal blijft zo binnen het scherm
-      } else if (playerVector.y <= groundHeight) {
-        playerVector.y = playerHeight/2;
-        velocity = 0;
-      }
-      playerVector.y = constrain(playerVector.y + movement * (int(isDown) - int(isUp)), groundHeight, height - groundHeight);
+    if (playerVector.y < height - groundHeight) {
+      airBorne = true;
+      velocity += GRAVITY;
+      playerVector.y += velocity;
+      //zwaartekracht functie
     }
+    if (playerVector.y >= height - groundHeight && !jumped) {
+      if (playerVector.y >= height - groundHeight) {
+        playerVector.y = height - groundHeight;
+      }
+      velocity = 0;
+      airBorne = false;
+      //bal blijft zo binnen het scherm
+    } else if (playerVector.y <= groundHeight) {
+      playerVector.y = playerHeight/2;
+      velocity = 0;
+    }
+    playerVector.y = constrain(playerVector.y + MOVEMENT * (int(isDown) - int(isUp)), groundHeight, height - groundHeight);
   }
 
   boolean setMove(final int pressedKey, final boolean toMove) {

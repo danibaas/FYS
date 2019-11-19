@@ -59,13 +59,13 @@ class CharacterSelect {
     if (choseCorra && hasChosen) {
       skin = skinCorra;
       background.speed = 5;
-      player.healthbar = new Healthbar(4);
-      player.healthbar.maxLives=4;
+      player.healthbar = new Healthbar(1);
+      player.healthbar.maxLives = 4;
     } else if (choseDonDon && hasChosen) {
       skin = skinDonDon;
       background.speed = 3;
-      player.healthbar = new Healthbar(6); 
-      player.healthbar.maxLives=6;
+      player.healthbar = new Healthbar(1); 
+      player.healthbar.maxLives = 6;
     }
     return skin;
   }

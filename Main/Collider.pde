@@ -54,23 +54,7 @@ class Collider {
     return collides;
   }
 
-  void moveEntity(boolean collision) {
-    if (!(player.colliderType == ColliderType.OBSTACLE)) {
-      if (!collision || player.collisionType == CollisionType.TOP) {
-        if (keys[2] && !player.stopMoving) {
-          position.x -= background.speed;
-        }
-      } else {
-        if (keys[2] && !player.stopMoving) {
-          position.x += background.speed;
-        }
-      }
-    } else {
-      if (player.collisionType == CollisionType.TOP) {
-        if (keys[2] && !player.stopMoving) {
-          position.x -= background.speed;
-        }
-      }
-    }
+  void moveEntity() {
+    position.x -= background.speed;
   }
 }
