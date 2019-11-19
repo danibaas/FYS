@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 //instance of this class, used for database
 Main instance;
 //object creation
@@ -81,6 +83,7 @@ void draw() {
   } else if (!characterSelect.hasChosen) {
     characterSelect.drawSelect();
     player.updateObject();
+    soundTrack.loop();
   } else {
     for (Collider collider : collisionList) {
       collider.update();

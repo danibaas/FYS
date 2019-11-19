@@ -14,6 +14,9 @@ PImage health;
 PImage stroopwafel;
 PImage obstacle;
 
+//SOUNDS
+SoundFile soundTrack;
+
 // FONTS
 PFont eightBit;
 
@@ -64,5 +67,8 @@ void loadAssets() {
   obstacle.resize(OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
 
   // FONTS
-  eightBit = createFont(sketchPath() + "/lib/PressStart2P.ttf", 30);
+  eightBit = createFont(sketchPath() + "/assets/fonts/PressStart2P.ttf", 30);
+  
+  //SOUNDS
+  soundTrack = new SoundFile(this, "/assets/sounds/soundtrack3.wav");  
 }

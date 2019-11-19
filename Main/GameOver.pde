@@ -26,6 +26,7 @@ class GameOver {
     if (keyPressed) {
       if (key == 'r') {
         gameOver = false;
+        soundTrack.stop();
         frameCount = -1;
       }
     }
