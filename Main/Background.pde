@@ -1,4 +1,4 @@
-class Background implements Updater { //<>//
+class Background implements Updater {
   float backgroundX = 0;
   float backgroundPaneX = 1280;
   float backgroundPaneY = 0;

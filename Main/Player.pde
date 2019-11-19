@@ -1,4 +1,4 @@
-class Player extends Collider implements Updater { //<>//
+class Player extends Collider implements Updater {
   PImage playerSkin;
   PVector playerVector;
   float velocity = 0;
