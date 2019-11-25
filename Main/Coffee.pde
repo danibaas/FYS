@@ -18,6 +18,9 @@ class Coffee extends Collider implements Updater {
   }
 
   void updateObject() {
+    if (gameOver.gameOver) {
+      position.x = width + 2*boxWidth;
+    }
     if (collidesWithPlayer(player)) {
       if (!speedBoostActive) {
         currentTime = millis();

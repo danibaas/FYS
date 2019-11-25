@@ -12,6 +12,9 @@ class Enemy extends Collider implements Updater {
   }
 
   void updateObject() {
+    if (gameOver.gameOver) {
+      position.x = enemy.position.x = random(1500, 1700);
+    }
     checkDead();
     //enemyAttack();
     if (healthbar != null) {

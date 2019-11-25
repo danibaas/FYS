@@ -5,6 +5,7 @@ Main instance;
 //object creation
 HighScore highScore;
 CharacterSelect characterSelect;
+PrePlayScreen prePlayScreen;
 Background background;
 Enemy enemy;
 Player player;
@@ -36,7 +37,7 @@ final int ENEMY_WIDTH = 100;
 final int ENEMY_HEIGHT = 100;
 // OBSTACLE CONSTANTS
 // GROUND OBSTACLE CONSTANTS
-final PVector OBSTACLE_VECTOR = new PVector(650, 597);
+final PVector OBSTACLE_VECTOR = new PVector(1300, 597);
 final int OBSTACLE_WIDTH = 200;
 final int OBSTACLE_HEIGHT = 100;
 // CEILING OBSTACLE CONSTANTS

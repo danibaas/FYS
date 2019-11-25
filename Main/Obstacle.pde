@@ -9,6 +9,9 @@ class Obstacle extends Collider {
   }
 
   void updateObject() {
+    if (gameOver.gameOver) {
+      position.x = width + 2*boxWidth;
+    }
     if (collidesWithPlayer(player)) {
       player.colliderType = ColliderType.OBSTACLE;
       player.healthbar.isDead = true;
