@@ -15,12 +15,15 @@ class GameOver {
     fill(0);
     textSize(35);
     textAlign(CENTER, BOTTOM);
-    text("Game Over", width/2, height/2);
+    text("Game Over!", width/2, height/2 - 25);
     textSize(15);
     textAlign(CENTER, TOP);
-    text("Retry?", width/2, height/2+25);
+    text("Retry?", width/2, height/2+35);
+    fill(0);
+    textSize(25);
+    text("Score: " + nfc(highScore.highScore, 1), width/2, height/2 - 25);
     fill(0, 0, 0, 0);
-    rect(width/2, height/2+30, 100, 30);
+    rect(width/2, height/2+45, 100, 30);
     rectMode(CORNER);
     // reset game
     if (keyPressed) {

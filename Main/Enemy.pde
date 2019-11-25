@@ -29,8 +29,8 @@ class Enemy extends Collider implements Updater {
     if (enemyGotHurt) {
       enemyGotHurt = false;
     }
-    if (dist(office.position.x + office.boxWidth/2, office.position.y, enemy.position.x - enemy.boxWidth/2, enemy.position.y) < 200) {
-      enemy.position.x = office.position.x + office.boxWidth + 200;
+    if (dist(groundObstacle.position.x + groundObstacle.boxWidth/2, groundObstacle.position.y, enemy.position.x - enemy.boxWidth/2, enemy.position.y) < 200) {
+      enemy.position.x = groundObstacle.position.x + groundObstacle.boxWidth + 200;
     }
     if (player.position.x - position.x > -1050) {
       enemyCanAttack = true;
@@ -51,7 +51,7 @@ class Enemy extends Collider implements Updater {
     if (enemyAttackX < player.position.x + player.playerWidth/2 && enemyAttackY < player.position.y + player.playerHeight/2 && enemyAttackY> player.position.y - player.playerHeight/2) {
       player.healthbar.isDead = true;
     }
-    if (enemyAttackX<0) {
+    if (enemyAttackX < 0) {
       attack = false;
       enemyAttackX = position.x-50;
     }

@@ -42,6 +42,7 @@ class Fireball extends Collider {
     for (Collider collider : collisionList) {
       if (collides(collider) && collider instanceof Enemy) {
         enemy.enemyGotHurt = true;
+        highScore.highScore += 20;
         resetAttack();
       }
       if (collides(collider) && collider instanceof Boss) {

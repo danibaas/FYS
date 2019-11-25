@@ -6,13 +6,15 @@ class CharacterAttack implements Updater {
   int timeToWait = 600; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
   int countDown = timeToWait;
   int fireballSpeed = 5;
+  // CONSTANTS
+  final int SPECIAL_FIREBALL_AMOUNT = 39;
 
   CharacterAttack() {
     attack = new Fireball(new PVector(ceil(player.position.x + player.playerWidth/2), yAttack), fireBall.width/4, fireBall.height/4, fireballSpeed);
     attack.shotByPlayer = true;
     int yPos = -50;
     int xPos = 0;
-    for (int i = 0; i < 39; i++) {
+    for (int i = 0; i < SPECIAL_FIREBALL_AMOUNT; i++) {
       Fireball specials = new Fireball(new PVector(xPos, yPos), fireBallSpecial.width/4, fireBallSpecial.height/4, fireballSpeed, false);
       xPos += 33;
       specials.shotByPlayer = true;

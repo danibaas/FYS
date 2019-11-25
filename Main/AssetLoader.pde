@@ -1,5 +1,5 @@
 // IMAGES
-PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, health, stroopwafel, obstacle;
+PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, health, stroopwafel, obstacle, ceilingObstacle;
 
 //SOUNDS
 SoundFile soundTrack;
@@ -46,8 +46,12 @@ void loadAssets() {
   stroopwafel.resize(STROOPWAFEL_SIZE, STROOPWAFEL_SIZE);
 
   // OBSTACLE
+  // OFFICE / GROUND OBSTACLE
   obstacle = loadImage(sketchPath() + "/assets/images/office.png");
   obstacle.resize(OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
+  // CEILING OBSTACLE / WIRE
+  ceilingObstacle = loadImage(sketchPath() + "/assets/images/ceiling-wire.png");
+  ceilingObstacle.resize(CEILING_OBSTACLE_WIDTH, CEILING_OBSTACLE_HEIGHT);
 
   // FONTS
   eightBit = createFont(sketchPath() + "/assets/fonts/PressStart2P.ttf", 30);

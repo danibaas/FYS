@@ -11,7 +11,8 @@ Player player;
 CharacterAttack characterAttack;
 Fireball fireball;
 GameOver gameOver;
-OfficeObstacle office;
+GroundObstacle groundObstacle;
+CeilingObstacle wireObstacle;
 Lazers lazers;
 Coffee coffeePickup;
 Boss boss;
@@ -33,10 +34,15 @@ final int PLAYER_HEIGHT = 100;
 final PVector ENEMY_VECTOR = new PVector(2000, 596);
 final int ENEMY_WIDTH = 100;
 final int ENEMY_HEIGHT = 100;
-// OBSTACLE CONSTANTS 
+// OBSTACLE CONSTANTS
+// GROUND OBSTACLE CONSTANTS
 final PVector OBSTACLE_VECTOR = new PVector(650, 597);
 final int OBSTACLE_WIDTH = 200;
 final int OBSTACLE_HEIGHT = 100;
+// CEILING OBSTACLE CONSTANTS
+final PVector CEILING_VECTOR = new PVector(600, 0);
+final int CEILING_OBSTACLE_WIDTH = 150;
+final int CEILING_OBSTACLE_HEIGHT = 400;
 // COFFE (SPEED BOOST) CONSTANTS
 final PVector COFFEE_VECTOR = new PVector(600, 400);
 final int COFFEE_WIDTH = 100;
@@ -61,7 +67,8 @@ void setup() {
   player = new Player(PLAYER_VECTOR, PLAYER_WIDTH, PLAYER_HEIGHT);
   gameOver = new GameOver();
   enemy = new Enemy(ENEMY_VECTOR, ENEMY_WIDTH, ENEMY_HEIGHT);
-  office = new OfficeObstacle(OBSTACLE_VECTOR, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
+  groundObstacle = new GroundObstacle(OBSTACLE_VECTOR, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
+  wireObstacle = new CeilingObstacle(CEILING_VECTOR, CEILING_OBSTACLE_WIDTH, CEILING_OBSTACLE_HEIGHT);
   //lazers = new Lazers(new PVector(100, random(200, 550)), 1080, 30);
   characterAttack = new CharacterAttack();
   coffeePickup = new Coffee(COFFEE_VECTOR, COFFEE_WIDTH, COFFEE_HEIGHT);
