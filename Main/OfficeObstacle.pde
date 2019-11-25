@@ -15,8 +15,7 @@ class OfficeObstacle extends Obstacle implements Updater {
   void updateObject() {
     if (collidesWithPlayer(player)) {
       player.colliderType = ColliderType.OBSTACLE;
-      if (player.collisionType == CollisionType.TOP) {
-      }
+      player.healthbar.isDead = true;
     } else {
       player.collisionType = CollisionType.NONE;
     }

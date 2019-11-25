@@ -127,6 +127,9 @@ class Player extends Collider implements Updater {
       airBorne = true;
       velocity += GRAVITY;
       playerVector.y += velocity;
+      if (keys[3]) {
+         playerVector.y += (velocity/100) * 60; 
+      }
       //zwaartekracht functie
     }
     if (playerVector.y >= height - groundHeight && !jumped) {

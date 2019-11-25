@@ -7,7 +7,6 @@ HighScore highScore;
 CharacterSelect characterSelect;
 Background background;
 Enemy enemy;
-//Healthbar healthbar;
 Player player;
 CharacterAttack characterAttack;
 Fireball fireball;
@@ -60,7 +59,6 @@ void setup() {
   characterSelect = new CharacterSelect();
   background = new Background();
   player = new Player(PLAYER_VECTOR, PLAYER_WIDTH, PLAYER_HEIGHT);
-  //healthbar = new Healthbar();
   gameOver = new GameOver();
   enemy = new Enemy(ENEMY_VECTOR, ENEMY_WIDTH, ENEMY_HEIGHT);
   office = new OfficeObstacle(OBSTACLE_VECTOR, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
