@@ -1,5 +1,5 @@
 // IMAGES
-PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, health, stroopwafel, obstacle, ceilingObstacle;
+PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, health, stroopwafel, obstacle, ceilingObstacle, soundOn;
 
 //SOUNDS
 SoundFile soundTrack;
@@ -58,6 +58,7 @@ void loadAssets() {
 
   //SOUNDS
   soundTrack = new SoundFile(this, "/assets/sounds/soundtrack3.wav");
+  soundOn = loadImage(sketchPath() + "/assets/images/GeluidAan.png");
 }
 
 void refreshPlayerSkin() {
