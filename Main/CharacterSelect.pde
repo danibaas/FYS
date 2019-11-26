@@ -16,9 +16,9 @@ class CharacterSelect {
       textAlign(RIGHT, CENTER);
       text("Highscore : ", 1280, 200);
       text("123456789", 1280, 250);
-      
+
       //sound options
-      image(soundOn,0,0,50,50);
+      image(soundOn, 0, 0, 50, 50);
       //rect(0, 0, 50, 50);
 
       //not selected
@@ -60,7 +60,9 @@ class CharacterSelect {
 
   void pressed() {
     if (key == ENTER && !hasChosen) {
+      initScreen();
       hasChosen = true;
+      player.updateSkin();
     }
     if (key == CODED) {
       if (keyCode == LEFT) {

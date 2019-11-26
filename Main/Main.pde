@@ -5,7 +5,6 @@ Main instance;
 //object creation
 HighScore highScore;
 CharacterSelect characterSelect;
-PrePlayScreen prePlayScreen;
 Background background;
 Enemy enemy;
 Player player;
@@ -28,7 +27,7 @@ boolean[] keys = new boolean[4];
 // 0 = up, 1 = left, 2 = right, 3 is down
 
 // PLAYER CONSTANTS
-final PVector PLAYER_VECTOR = new PVector(140, height / 4);
+final PVector PLAYER_VECTOR = new PVector(140, 646);
 final int PLAYER_WIDTH = 100;
 final int PLAYER_HEIGHT = 100;
 // ENEMY CONSTANTS
@@ -61,46 +60,42 @@ void setup() {
   size(1280, 720);
   instance = this;
   loadAssets();
-  highScore = new HighScore();
-  highScore.initializeDatabase();
   characterSelect = new CharacterSelect();
-  background = new Background();
-  player = new Player(PLAYER_VECTOR, PLAYER_WIDTH, PLAYER_HEIGHT);
-  gameOver = new GameOver();
-  enemy = new Enemy(ENEMY_VECTOR, ENEMY_WIDTH, ENEMY_HEIGHT);
-  groundObstacle = new GroundObstacle(OBSTACLE_VECTOR, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
-  wireObstacle = new CeilingObstacle(CEILING_VECTOR, CEILING_OBSTACLE_WIDTH, CEILING_OBSTACLE_HEIGHT);
-  //lazers = new Lazers(new PVector(100, random(200, 550)), 1080, 30);
-  characterAttack = new CharacterAttack();
-  coffeePickup = new Coffee(COFFEE_VECTOR, COFFEE_WIDTH, COFFEE_HEIGHT);
-  boss = new Boss(BOSS_VECTOR, BOSS_WIDTH, BOSS_HEIGHT);
+  highScore = new HighScore();
 } 
 
 // the game loop
 void draw() {
-  if (gameOver.gameOver) {
-    gameOver.drawObject();
-  } else if (!characterSelect.hasChosen) {
-    characterSelect.drawSelect();
-    player.updateObject();
-    soundTrack.loop();
+  if (!screenActive && !holdScreen) {
+    if (gameOver.gameOver) {
+      gameOver.drawObject();
+    } else {
+      for (Collider collider : collisionList) {
+        collider.update();
+      }
+      for (Updater r : updateList) {
+        r.updateObject();
+        r.drawObject();
+      }
+      highScore.displayScore();
+    }
   } else {
-    for (Collider collider : collisionList) {
-      collider.update();
+    if (!characterSelect.hasChosen) {
+      characterSelect.drawSelect();
+      soundTrack.loop();
+    } else {
+      drawScreen();
     }
-    for (Updater r : updateList) {
-      r.updateObject();
-      r.drawObject();
-    }
-    highScore.displayScore();
   }
-}
+}  
 
 void keyPressed() {
   if (!characterSelect.hasChosen) {
     characterSelect.pressed();
-    player.updateSkin();
   } else {
+    if (screenActive) {
+      screenActive = false;
+    }  
     for (Updater r : updateList) {
       r.pressedKey();
     }
