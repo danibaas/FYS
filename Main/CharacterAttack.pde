@@ -3,19 +3,22 @@ class CharacterAttack implements Updater {
   Fireball attack;
   boolean clickedLastFrame, canAttack, ready;
   int timer, yAttack; 
-  int timeToWait = 600; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
-  int countDown = timeToWait;
-  int fireballSpeed = 5;
+  
   // CONSTANTS
+  final int FIREBALL_SPEED = 5;
+  final int SPECIAL_SPEED = 10;
   final int SPECIAL_FIREBALL_AMOUNT = 39;
+  final int TIME_TO_WAIT = 600; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
+  
+  int countDown = TIME_TO_WAIT;
 
   CharacterAttack() {
-    attack = new Fireball(new PVector(ceil(player.position.x + player.playerWidth/2), yAttack), fireBall.width/4, fireBall.height/4, fireballSpeed);
+    attack = new Fireball(new PVector(ceil(player.position.x + player.playerWidth/2), yAttack), fireBall.width/4, fireBall.height/4, FIREBALL_SPEED);
     attack.shotByPlayer = true;
     int yPos = -50;
     int xPos = 0;
     for (int i = 0; i < SPECIAL_FIREBALL_AMOUNT; i++) {
-      Fireball specials = new Fireball(new PVector(xPos, yPos), fireBallSpecial.width/4, fireBallSpecial.height/4, fireballSpeed, false);
+      Fireball specials = new Fireball(new PVector(xPos, yPos), fireBallSpecial.width/4, fireBallSpecial.height/4, SPECIAL_SPEED, false);
       xPos += 33;
       specials.shotByPlayer = true;
       fireballs.add(specials);
@@ -63,7 +66,7 @@ class CharacterAttack implements Updater {
       textAlign(CENTER);
     }
     //special is ready om de 10 seconden
-    if (frameCount - timer >= timeToWait) {
+    if (frameCount - timer >= TIME_TO_WAIT) {
       ready = true;
     }
   }
@@ -83,7 +86,7 @@ class CharacterAttack implements Updater {
         clickedLastFrame = true;
         ready = false;
         timer = frameCount;
-        countDown = timeToWait;
+        countDown = TIME_TO_WAIT;
         for (Fireball s : fireballs) {
           s.setSpecial(true);
         }

@@ -43,7 +43,7 @@ class Healthbar {
     fill(255, 0, 0);
     for (int iBoss = 0; iBoss < currentLives; iBoss++) {
       fill(255, 0, 0);
-      rect(boss.position.x, boss.position.y, boss.boxWidth, boss.boxHeight);
+      rect(boss.position.x+25*iBoss, boss.position.y, boss.boxWidth/4, boss.boxHeight-120);
     }
   }
 }

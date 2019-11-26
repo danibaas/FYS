@@ -34,15 +34,17 @@ class HighScore {
   }
 
   void updateScore() {
-    if (player.colliderType != ColliderType.OBSTACLE && !gameOver.gameOver) {
-      if (coffeePickup.speedBoostActive) {
-        highScore += SCORE_INCREMENT * 2;
-      } else {
-        highScore += SCORE_INCREMENT;
+    if (boss.spawnBoss) {
+    }else{
+      if (player.colliderType != ColliderType.OBSTACLE && !gameOver.gameOver) {
+        if (coffeePickup.speedBoostActive) {
+          highScore += SCORE_INCREMENT * 2;
+        } else {
+          highScore += SCORE_INCREMENT;
+        }
       }
     }
   }
-
   void setScore(float score) {
     highScore = score;
   }

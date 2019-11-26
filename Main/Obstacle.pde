@@ -18,7 +18,9 @@ class Obstacle extends Collider {
     } else {
       player.collisionType = CollisionType.NONE;
       moveEntity();
-      loopObstacle();
+      if (!boss.spawnBoss) {
+        loopObstacle();
+      }
     }
   }
 

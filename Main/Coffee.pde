@@ -36,7 +36,9 @@ class Coffee extends Collider implements Updater {
       }
     }
     moveEntity();
+    if(!boss.spawnBoss){
     loopCoffee();
+    }
     timerThread();
   }
 
