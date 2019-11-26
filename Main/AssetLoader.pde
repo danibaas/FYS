@@ -16,11 +16,11 @@ void loadAssets() {
   // BACKGROUND
   backgroundImage = loadImage(sketchPath() + "/assets/images/background.png");
   backgroundpane = loadImage(sketchPath() + "/assets/images/backgroundpane1.png");
-  backgroundpane.resize(BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
+  backgroundpane.resize(640, 760);
   backgroundpane2 = loadImage(sketchPath() + "/assets/images/backgroundpane2.png");
   backgroundpane2.resize(BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
   backgroundpane3 = loadImage(sketchPath() + "/assets/images/backgroundpane3.png");
-  backgroundpane3.resize(BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
+  backgroundpane3.resize(640, 761);
 
   // PLAYER ATTACKS
   fireBall = loadImage(sketchPath() + "/assets/images/Fireball.jpg");
@@ -39,11 +39,7 @@ void loadAssets() {
 
   // ENEMY
   skinEnemy = loadImage(sketchPath() + "/assets/images/enemy.png");
-  skinEnemy.resize(ENEMY_WIDTH + 10, ENEMY_HEIGHT + 10);
-
-  // STROOPWAFEL (HEALTH DISPLAY)
-  stroopwafel = loadImage(sketchPath() + "/assets/images/stroopwafel.jpg");
-  stroopwafel.resize(STROOPWAFEL_SIZE, STROOPWAFEL_SIZE);
+  skinEnemy.resize(ENEMY_WIDTH, ENEMY_HEIGHT);
 
   // OBSTACLE
   // OFFICE / GROUND OBSTACLE

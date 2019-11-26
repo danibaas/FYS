@@ -32,7 +32,7 @@ final int PLAYER_WIDTH = 100;
 final int PLAYER_HEIGHT = 100;
 // ENEMY CONSTANTS
 final PVector ENEMY_VECTOR = new PVector(2000, 596);
-final int ENEMY_WIDTH = 100;
+final int ENEMY_WIDTH = 80;
 final int ENEMY_HEIGHT = 100;
 // OBSTACLE CONSTANTS
 // GROUND OBSTACLE CONSTANTS
@@ -93,7 +93,7 @@ void keyPressed() {
   if (!characterSelect.hasChosen) {
     characterSelect.pressed();
   } else {
-    if (screenActive) {
+    if ((key == 'x' || key == 'X') && screenActive) {
       screenActive = false;
     }  
     for (Updater r : updateList) {
