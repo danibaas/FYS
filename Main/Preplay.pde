@@ -20,6 +20,8 @@ void initScreen() {
 
 void drawScreen() {
   for (Updater objects : updateList) {
-    objects.drawObject();
+    if (!(objects instanceof CharacterAttack)) { 
+      objects.drawObject();
+    }
   }
 }
