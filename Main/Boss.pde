@@ -32,6 +32,9 @@ class Boss extends Collider implements Updater {
     if(healthbar.currentLives == 0){
       spawnBoss = false;
     }
+    if(!spawnBoss){
+      position.x = -999;
+    }
     healthbar.updateBossHealth();
 }
 
