@@ -1,6 +1,6 @@
 class Enemy extends Collider implements Updater {
   int timer, waitTime = 3000;
-  float enemyAttackY, enemyAttackWidth = 50, enemyAttackHeight = 50, enemyAttackX = position.x;
+  float enemyAttackY, enemyAttackWidth = 20, enemyAttackHeight = 20, enemyAttackX = position.x;
   boolean enemyCanAttack, attack, fired, enemyGotHurt;
   Healthbar healthbar;
 
