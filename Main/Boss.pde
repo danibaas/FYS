@@ -1,28 +1,39 @@
 class Boss extends Collider implements Updater {
-  boolean spawnBoss, hasBeenHit, isDead;
+  boolean spawnBoss = false;
+  boolean hasBeenHit, isDead;
+  float bossScore = 20;
+  Healthbar healthbar;
   //int timer;
   //int waitTime = 3000;
 
   Boss(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
     updateList.add(this);
+    healthbar = new Healthbar(2);
   }
 
   void drawObject() {
     fill(255);
-    if (spawnBoss && !isDead) {
-      rect(position.x+3000, position.y, boxWidth, boxHeight);
+    if(healthbar.currentLives > 0){
+    rect(position.x, position.y, boxWidth, boxHeight);
+    }else {
     }
-    //healthbar.drawBossHealth();
+    healthbar.drawBossHealth();
   }
 
   void updateObject() {
-    if (highScore.highScore > 10) {
-      spawnBoss = true;
-    } 
+    if(position.x >= 1000){
     moveEntity();
-    //healthbar.updateBossHealth();
-  }
+    }
+    if (highScore.highScore > bossScore && spawnBoss == false) {
+      spawnBoss = true;
+      position.x = random(1800,2000);
+    }
+    if(healthbar.currentLives == 0){
+      spawnBoss = false;
+    }
+    healthbar.updateBossHealth();
+}
 
   void pressedKey() {
   }
