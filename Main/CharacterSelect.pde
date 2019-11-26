@@ -18,8 +18,7 @@ class CharacterSelect {
       text("123456789", 1280, 250);
 
       //sound options
-      image(soundOn, 0, 0, 50, 50);
-      //rect(0, 0, 50, 50);
+      //image(soundOn, 0, 0, 50, 50);
 
       //not selected
       textSize(20);
