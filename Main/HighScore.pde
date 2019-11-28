@@ -34,9 +34,8 @@ class HighScore {
   }
 
   void updateScore() {
-    if (boss.spawnBoss) {
-    }else{
-      if (player.colliderType != ColliderType.OBSTACLE && !gameOver.gameOver) {
+    if (!boss.spawnBoss) {
+      if (!gameOver.gameOver) {
         if (coffeePickup.speedBoostActive) {
           highScore += SCORE_INCREMENT * 2;
         } else {

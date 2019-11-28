@@ -46,4 +46,12 @@ class Healthbar {
       rect(boss.position.x+25*iBoss, boss.position.y, boss.boxWidth/4, boss.boxHeight-120);
     }
   }
+
+  void removeHealth(int remove) {
+    currentLives -= remove;
+    if (currentLives <= 0) {
+      isDead = true; 
+      currentLives = 0;
+    }
+  }
 }

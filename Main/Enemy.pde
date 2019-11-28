@@ -27,7 +27,7 @@ class Enemy extends Collider implements Updater {
     }
     moveEntity();
     if (!boss.spawnBoss) {
-    loopEnemy();
+      loopEnemy();
     }
     if (enemyGotHurt) {
       enemyGotHurt = false;
@@ -35,29 +35,29 @@ class Enemy extends Collider implements Updater {
     if (dist(groundObstacle.position.x + groundObstacle.boxWidth/2, groundObstacle.position.y, enemy.position.x - enemy.boxWidth/2, enemy.position.y) < 200) {
       enemy.position.x = groundObstacle.position.x + groundObstacle.boxWidth + 200;
     }
-    //if (player.position.x - position.x > -1050) {
-    //  enemyCanAttack = true;
-    //} else {
-    //  enemyCanAttack = false;
-    //}
-    //if (enemyCanAttack) {
-    //  enemyAttackY = position.y;
-    //  attack = true;
-    //  if (coffeePickup.speedBoostActive) {
-    //    enemyAttackX -= background.speed+5;
-    //  } else {
-    //    enemyAttackX -= background.speed+5;
-    //  }
-    //} else {
-    //  enemyAttackX = position.x - 50;
-    //}
-    //if (enemyAttackX < player.position.x + player.playerWidth/2 && enemyAttackY < player.position.y + player.playerHeight/2 && enemyAttackY> player.position.y - player.playerHeight/2) {
-    //  player.healthbar.isDead = true;
-    //}
-    //if (enemyAttackX < 0) {
-    //  attack = false;
-    //  enemyAttackX = position.x-50;
-    //}
+    if (player.position.x - position.x > -1050) {
+      enemyCanAttack = true;
+    } else {
+      enemyCanAttack = false;
+    }
+    if (enemyCanAttack) {
+      enemyAttackY = position.y;
+      attack = true;
+      if (coffeePickup.speedBoostActive) {
+        enemyAttackX -= background.speed+5;
+      } else {
+        enemyAttackX -= background.speed+5;
+      }
+    } else {
+      enemyAttackX = position.x - 50;
+    }
+    if (enemyAttackX < player.position.x + player.playerWidth/2 && enemyAttackX + enemyAttackWidth > player.position.x - player.playerWidth/2 && enemyAttackY < player.position.y + player.playerHeight/2 && enemyAttackY> player.position.y - player.playerHeight/2) {
+      player.healthbar.isDead = true;
+    }
+    if (enemyAttackX < 0) {
+      attack = false;
+      enemyAttackX = position.x-50;
+    }
   } 
 
   void drawObject() {

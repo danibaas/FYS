@@ -46,7 +46,7 @@ class Fireball extends Collider {
         resetAttack();
       }
       if (collides(collider) && collider instanceof Boss) {
-        boss.hasBeenHit = true;
+        boss.healthbar.removeHealth(1);
         resetAttack();
       }
     }
