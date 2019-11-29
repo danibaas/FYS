@@ -40,10 +40,12 @@ class Healthbar {
   }
 
   void drawBossHealth() {
+    int boxLifeSize = 50;
+    int beginPositionX = 400;
     fill(255, 0, 0);
     for (int iBoss = 0; iBoss < currentLives; iBoss++) {
       fill(255, 0, 0);
-      rect(boss.position.x+25*iBoss, boss.position.y, boss.boxWidth/4, boss.boxHeight-120);
+      rect(beginPositionX+boxLifeSize*iBoss, boxLifeSize, boxLifeSize, boxLifeSize);
     }
   }
 

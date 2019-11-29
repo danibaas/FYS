@@ -13,7 +13,6 @@ class Obstacle extends Collider {
       position.x = width + 2*boxWidth;
     }
     if (collidesWithPlayer(player)) {
-      println("5hybgtrbgfbtrgf");
       player.colliderType = ColliderType.OBSTACLE;
       player.healthbar.isDead = true;
     } else {
