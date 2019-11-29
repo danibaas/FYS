@@ -1,24 +1,30 @@
 import de.bezier.data.sql.*;
 
 class HighScore {
-  SQLite sql;
+  //SQLite sql;
+  MySQL sql;
   float highScore = 0;
   final float SCORE_INCREMENT = 0.1;
 
   void initializeDatabase() {
-    String path = sketchPath() + "/highscores.db";
-    File f = new File(path);
-    if (!f.exists()) {
-      try {
-        f.createNewFile();
-      } 
-      catch(IOException e) {
-        println(e);
-      }
-    }
-    sql = new SQLite(instance, f.getPath());
+    //String path = sketchPath() + "/highscores.db";
+    //File f = new File(path);
+    //if (!f.exists()) {
+    //  try {
+    //    f.createNewFile();
+    //  } 
+    //  catch(IOException e) {
+    //    println(e);
+    //  }
+    //}
+    //sql = new SQLite(instance, f.getPath());
+    String databaseName = "oege.ie.hva.nl";
+    String databaseSchema = "zbaasdr";
+    String username = "baasdr";
+    String password = "l#aEkJ7cojymzj";
+    sql = new MySQL(instance, databaseName, databaseSchema, username, password);
     if (sql.connect()) {
-      sql.execute("CREATE TABLE IF NOT EXISTS highscores (name varchar(128), float score)");
+      sql.execute("CREATE TABLE IF NOT EXISTS highscores (name varchar(128), score float)");
     }
   }
 
