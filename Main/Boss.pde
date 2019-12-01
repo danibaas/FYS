@@ -2,6 +2,7 @@ class Boss extends Collider implements Updater {
   boolean spawnBoss = false;
   boolean hasBeenHit, isDead, getXPBonus, bossOnScreen;
   float bossScore = 20;
+  int bossHealth = 4;
   Healthbar healthbar;
   //int timer;
   //int waitTime = 3000;
@@ -9,7 +10,7 @@ class Boss extends Collider implements Updater {
   Boss(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
     updateList.add(this);
-    healthbar = new Healthbar(8);
+    healthbar = new Healthbar(bossHealth);
   }
 
   void drawObject() {
@@ -29,19 +30,19 @@ class Boss extends Collider implements Updater {
     }
     if (highScore.highScore > bossScore && spawnBoss == false) {
       spawnBoss = true;
-      position.x = random(1800, 2000);
+      position.x = 2000;
       if (bossOnScreen) {
         getXPBonus = false;
       }
     }
     if (healthbar.currentLives == 0) {
       spawnBoss = false;
-      if (!getXPBonus) {
+      //if (!getXPBonus) {
         bossScore+=100;
-        healthbar.currentLives = 8;
         highScore.highScore += 60;
         getXPBonus = true;
-      }
+        healthbar.currentLives = bossHealth;
+      //}
     }
     if (!spawnBoss) {
       position.x = -999;
