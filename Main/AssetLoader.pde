@@ -16,11 +16,11 @@ void loadAssets() {
   // BACKGROUND
   backgroundImage = loadImage(sketchPath() + "/assets/images/background.png");
   backgroundpane = loadImage(sketchPath() + "/assets/images/backgroundpane1.png");
-  backgroundpane.resize(640, 773);
+  backgroundpane.resize(640, 760);
   backgroundpane2 = loadImage(sketchPath() + "/assets/images/backgroundpane2.png");
   backgroundpane2.resize(640, 760);
   backgroundpane3 = loadImage(sketchPath() + "/assets/images/backgroundpane3.png");
-  backgroundpane3.resize(640, 761);
+  backgroundpane3.resize(640, 760);
 
   // ATTACKS
   fireBall = loadImage(sketchPath() + "/assets/images/Fireball.png");
