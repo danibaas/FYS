@@ -9,9 +9,9 @@ void initScreen() {
   background = new Background();
   player = new Player(PLAYER_VECTOR, PLAYER_WIDTH, PLAYER_HEIGHT);
   gameOver = new GameOver();
-  //enemy = new Enemy(ENEMY_VECTOR, ENEMY_WIDTH, ENEMY_HEIGHT);
-  //groundObstacle = new GroundObstacle(OBSTACLE_VECTOR, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
-  //wireObstacle = new CeilingObstacle(CEILING_VECTOR, CEILING_OBSTACLE_WIDTH, CEILING_OBSTACLE_HEIGHT);
+  enemy = new Enemy(ENEMY_VECTOR, ENEMY_WIDTH, ENEMY_HEIGHT);
+  groundObstacle = new GroundObstacle(OBSTACLE_VECTOR, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
+  wireObstacle = new CeilingObstacle(CEILING_VECTOR, CEILING_OBSTACLE_WIDTH, CEILING_OBSTACLE_HEIGHT);
   //lazers = new Lazers(new PVector(100, random(200, 550)), 1080, 30);
   characterAttack = new CharacterAttack();
   coffeePickup = new Coffee(COFFEE_VECTOR, COFFEE_WIDTH, COFFEE_HEIGHT);
