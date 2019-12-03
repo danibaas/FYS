@@ -1,5 +1,5 @@
 // IMAGES
-PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, enemyWeapon, health, stroopwafel, obstacle, ceilingObstacle, soundOn;
+PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, enemyWeapon, health, stroopwafel, obstacle, ceilingObstacle, soundOn, skinBoss;
 
 //SOUNDS
 SoundFile soundTrack;
@@ -41,6 +41,7 @@ void loadAssets() {
   // ENEMY
   skinEnemy = loadImage(sketchPath() + "/assets/images/enemy.png");
   skinEnemy.resize(ENEMY_WIDTH, ENEMY_HEIGHT);
+  skinBoss = loadImage(sketchPath() + "/assets/images/boss.png");
 
   // OBSTACLE
   // OFFICE / GROUND OBSTACLE

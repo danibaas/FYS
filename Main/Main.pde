@@ -48,9 +48,9 @@ final PVector COFFEE_VECTOR = new PVector(600, 400);
 final int COFFEE_WIDTH = 100;
 final int COFFEE_HEIGHT = 100;
 // BOSS CONSTANTS
-final PVector BOSS_VECTOR = new PVector(-500, 596);
-final int BOSS_WIDTH = 100;
-final int BOSS_HEIGHT = 100;
+final PVector BOSS_VECTOR = new PVector(-500, 300);
+final int BOSS_WIDTH = 200;
+final int BOSS_HEIGHT = 200;
 
 void setup() {
   // ratio 16:9
