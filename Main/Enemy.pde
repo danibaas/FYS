@@ -78,7 +78,7 @@ class Enemy extends Collider implements Updater {
     }
   }
   class EnemyAttack {
-    float enemyAttackY, enemyAttackWidth = 20, enemyAttackHeight = 20, enemyAttackX = position.x;
+    float enemyAttackY, enemyAttackWidth = 60, enemyAttackHeight = 30, enemyAttackX = position.x;
     boolean enemyCanAttack, attack;
 
     void attack() {
@@ -108,8 +108,8 @@ class Enemy extends Collider implements Updater {
     }
     void drawAttack() {
       if (attack) {
-        fill(0, 0, 255);
-        rect(enemyAttackX, enemyAttackY, enemyAttackWidth, enemyAttackHeight);
+        noStroke();
+        image(enemyWeapon, enemyAttackX, enemyAttackY, enemyAttackWidth, enemyAttackHeight);
       }
     }
   }

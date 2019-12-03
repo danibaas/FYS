@@ -1,5 +1,5 @@
 // IMAGES
-PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, health, stroopwafel, obstacle, ceilingObstacle, soundOn;
+PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, enemyWeapon, health, stroopwafel, obstacle, ceilingObstacle, soundOn;
 
 //SOUNDS
 SoundFile soundTrack;
@@ -22,9 +22,10 @@ void loadAssets() {
   backgroundpane3 = loadImage(sketchPath() + "/assets/images/backgroundpane3T.png");
   backgroundpane3.resize(640, 761);
 
-  // PLAYER ATTACKS
+  // ATTACKS
   fireBall = loadImage(sketchPath() + "/assets/images/Fireball.jpg");
   fireBallSpecial = loadImage(sketchPath() + "/assets/images/FireballSpecial.jpg");
+  enemyWeapon = loadImage(sketchPath() + "/assets/images/enemyWeapon.png");
 
   // PLAYER SKINS
   skinDonDon = loadImage(sketchPath() + "/assets/images/dondon.png");

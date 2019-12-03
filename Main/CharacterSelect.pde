@@ -12,13 +12,6 @@ class CharacterSelect {
       textSize(50);
       fill(0);
       text("Corra & Dondon’s saving Corendon", width/2, 100);
-      //text("Saving Corendon", width/2, 150);
-      textAlign(RIGHT, CENTER);
-      text("Highscore : ", 1280, 200);
-      text("123456789", 1280, 250);
-
-      //sound options
-      //image(soundOn, 0, 0, 50, 50);
 
       //not selected
       textSize(20);
