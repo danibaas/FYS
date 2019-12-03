@@ -5,7 +5,7 @@ boolean screenActive;
 void initScreen() {
   screenActive = true;
   holdScreen = false;
-  highScore.initializeDatabase();
+  initializeDatabase();
   background = new Background();
   player = new Player(PLAYER_VECTOR, PLAYER_WIDTH, PLAYER_HEIGHT);
   gameOver = new GameOver();

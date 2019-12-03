@@ -1,22 +1,23 @@
 class Enemy extends Collider implements Updater {
   int timer, waitTime = 3000;
-  float enemyAttackY, enemyAttackWidth = 20, enemyAttackHeight = 20, enemyAttackX = position.x;
-  boolean enemyCanAttack, attack, fired, enemyGotHurt;
+  boolean enemyGotHurt;
   Healthbar healthbar;
+  EnemyAttack enemyAttack;
 
   Enemy(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
     timer = millis();
     healthbar = new Healthbar(1);
+    enemyAttack = new EnemyAttack();
     updateList.add(this);
   }
 
   void updateObject() {
+    enemyAttack.attack();
     if (gameOver.gameOver) {
       position.x = enemy.position.x = random(1500, 1700);
     }
     checkDead();
-    //enemyAttack();
     if (healthbar != null) {
       healthbar.updateEnemyHealth();
     }
@@ -35,29 +36,6 @@ class Enemy extends Collider implements Updater {
     if (dist(groundObstacle.position.x + groundObstacle.boxWidth/2, groundObstacle.position.y, enemy.position.x - enemy.boxWidth/2, enemy.position.y) < 200) {
       enemy.position.x = groundObstacle.position.x + groundObstacle.boxWidth + 200;
     }
-    if (player.position.x - position.x > -1050) {
-      enemyCanAttack = true;
-    } else {
-      enemyCanAttack = false;
-    }
-    if (enemyCanAttack) {
-      enemyAttackY = position.y;
-      attack = true;
-      if (coffeePickup.speedBoostActive) {
-        enemyAttackX -= background.speed+5;
-      } else {
-        enemyAttackX -= background.speed+5;
-      }
-    } else {
-      enemyAttackX = position.x - 50;
-    }
-    if (enemyAttackX < player.position.x + player.playerWidth/2 && enemyAttackX + enemyAttackWidth > player.position.x - player.playerWidth/2 && enemyAttackY < player.position.y + player.playerHeight/2 && enemyAttackY> player.position.y - player.playerHeight/2) {
-      player.healthbar.isDead = true;
-    }
-    if (enemyAttackX < 0) {
-      attack = false;
-      enemyAttackX = position.x-50;
-    }
   } 
 
   void drawObject() {
@@ -66,10 +44,7 @@ class Enemy extends Collider implements Updater {
     }
     fill(255);
     rect(position.x, position.y, boxWidth, boxHeight);
-    if (attack) {
-      fill(0, 0, 255);
-      rect(enemyAttackX, enemyAttackY, enemyAttackWidth, enemyAttackHeight);
-    }
+    enemyAttack.drawAttack();
     pushMatrix();
     translate(position.x + 100, position.y);
     scale(-1, 1);
@@ -100,6 +75,42 @@ class Enemy extends Collider implements Updater {
       timer = millis(); 
       position.x = enemy.position.x = random(1500, 1700);
       healthbar.currentLives = 1;
+    }
+  }
+  class EnemyAttack {
+    float enemyAttackY, enemyAttackWidth = 20, enemyAttackHeight = 20, enemyAttackX = position.x;
+    boolean enemyCanAttack, attack;
+
+    void attack() {
+      if (player.position.x - position.x > -1050) {
+        enemyCanAttack = true;
+      } else {
+        enemyCanAttack = false;
+      }
+      if (enemyCanAttack) {
+        enemyAttackY = position.y;
+        attack = true;
+        if (coffeePickup.speedBoostActive) {
+          enemyAttackX -= background.speed+5;
+        } else {
+          enemyAttackX -= background.speed+5;
+        }
+      } else {
+        enemyAttackX = position.x - 50;
+      }
+      if (enemyAttackX < player.position.x + player.playerWidth/2 && enemyAttackX + enemyAttackWidth > player.position.x - player.playerWidth/2 && enemyAttackY < player.position.y + player.playerHeight/2 && enemyAttackY> player.position.y - player.playerHeight/2) {
+        player.healthbar.isDead = true;
+      }
+      if (enemyAttackX < 0) {
+        attack = false;
+        enemyAttackX = position.x-50;
+      }
+    }
+    void drawAttack() {
+      if (attack) {
+        fill(0, 0, 255);
+        rect(enemyAttackX, enemyAttackY, enemyAttackWidth, enemyAttackHeight);
+      }
     }
   }
 }
