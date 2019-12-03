@@ -15,7 +15,6 @@ class Boss extends Collider implements Updater {
   void drawObject() {
     fill(255);
     if (healthbar.currentLives > 0) {
-      //rect(position.x, position.y, boxWidth, boxHeight);
       image(skinBoss, position.x, position.y, boxWidth, boxHeight);
     } 
     if (bossOnScreen && spawnBoss) {

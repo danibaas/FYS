@@ -30,6 +30,7 @@ class GameOver {
       if (key == 'r') {
         gameOver = false;
         soundTrack.stop();
+        boolean chose = characterSelect.choseCorra ? true : false;
         frameCount = -1;
       }
     }

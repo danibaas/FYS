@@ -13,17 +13,17 @@ class CharacterSelect {
       //titel
       textSize(30);
       fill(0);
-      text("Corra & Dondon’s saving Corendon", width/2, 50);
+      text("Corra & Dondon’s Adventure", width/2, 50);
 
       //uitleg
       textSize(25);
       textAlign(CENTER);
-      text("B = Attack",width/2,400);
-      text("A = Special attack",width/2,425);
-      text("Arrow key up = Jump",width/2,450);
-      text("Arrow key down = Crouch",width/2,475);
-      text("Pick this up for a speedboost",width/2,550);
-      image(coffee,width/2-50,600);
+      text("B = Attack", width/2, 400);
+      text("A = Special attack", width/2, 425);
+      text("Arrow key up = Jump", width/2, 450);
+      text("Arrow key down = Crouch", width/2, 475);
+      text("Pick this up for a speedboost", width/2, 550);
+      image(coffee, width/2-50, 600);
       coffee.resize(100, 100);
 
       //not selected

@@ -16,6 +16,7 @@ class Coffee extends Collider implements Updater {
   }
 
   void updateObject() {
+    println(currentTime, despawnTime, millis(), spawned, position.x);
     if (gameOver.gameOver) {
       position.x = width + 2*boxWidth;
     }
@@ -56,12 +57,12 @@ class Coffee extends Collider implements Updater {
     }
     if (despawnTime + SPAWN_WAIT_TIME < millis() && !spawned) {
       spawned = true;
-      position.x = width + 2*boxWidth;
+      position.x = (int) random(1500, 1800);
     }
   }
 
   void loopCoffee() {
-    if (position.x + boxWidth < 0) {
+    if (position.x + boxWidth < 0 && spawned) {
       despawnTime = millis();
       spawned = false;
     }
