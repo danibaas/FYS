@@ -27,7 +27,7 @@ class Login {
       } else {
         if (sql.connect()) 
         {
-          sql.execute("INSERT INTO Account (username, password) VALUES (" + playerName + ", " + playerPassword + ")");
+          sql.execute("INSERT INTO Account VALUES (default, '" + playerName + "', '" + playerPassword + "')");
           loggedIn = true;
           println(playerName);
         }
