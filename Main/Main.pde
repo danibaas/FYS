@@ -55,6 +55,7 @@ final int BOSS_HEIGHT = 100;
 void setup() {
   // ratio 16:9
   surface.setTitle("Corra & DonDon's Adventure");
+  surface.hideCursor();
   updateList = new ArrayList();
   obstacleList = new ArrayList();
   collisionList = new ArrayList();

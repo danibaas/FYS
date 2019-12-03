@@ -8,7 +8,7 @@ class Enemy extends Collider implements Updater {
     super(position, boxWidth, boxHeight);
     timer = millis();
     healthbar = new Healthbar(1);
-    enemyAttack = new EnemyAttack();
+    enemyAttack = new EnemyAttack(new PVector(position.x, position.y + 15), 60, 30);
     updateList.add(this);
   }
 
@@ -77,39 +77,50 @@ class Enemy extends Collider implements Updater {
       healthbar.currentLives = 1;
     }
   }
-  class EnemyAttack {
-    float enemyAttackY, enemyAttackWidth = 60, enemyAttackHeight = 30, enemyAttackX = position.x;
+
+  class EnemyAttack extends Collider {
+    float attackWidth, attackHeight;
+    PVector enemyPos;
     boolean enemyCanAttack, attack;
 
+    EnemyAttack(PVector enemyPos, float boxWidth, float boxHeight) {
+      super(enemyPos, boxWidth, boxHeight);
+      this.enemyPos = enemyPos;
+      attackWidth = boxWidth;
+      attackHeight = boxHeight;
+    }
+
+
     void attack() {
-      if (player.position.x - position.x > -1050) {
+      if (player.position.x - enemy.position.x > -1050) {
         enemyCanAttack = true;
       } else {
         enemyCanAttack = false;
       }
       if (enemyCanAttack) {
-        enemyAttackY = position.y;
+        enemyPos.y = enemy.position.y;
         attack = true;
         if (coffeePickup.speedBoostActive) {
-          enemyAttackX -= background.speed+5;
+          enemyPos.x -= background.speed+5;
         } else {
-          enemyAttackX -= background.speed+5;
+          enemyPos.x -= background.speed+5;
         }
       } else {
-        enemyAttackX = position.x - 50;
+        enemyPos.x = enemy.position.x - 50;
       }
-      if (enemyAttackX < player.position.x + player.playerWidth/2 && enemyAttackX + enemyAttackWidth > player.position.x - player.playerWidth/2 && enemyAttackY < player.position.y + player.playerHeight/2 && enemyAttackY> player.position.y - player.playerHeight/2) {
+      if (collidesWithPlayer(player)) {
         player.healthbar.isDead = true;
       }
-      if (enemyAttackX < 0) {
+      if (enemyPos.x < 0) {
         attack = false;
-        enemyAttackX = position.x-50;
+        enemyPos.x = enemy.position.x-50;
       }
     }
+
     void drawAttack() {
       if (attack) {
         noStroke();
-        image(enemyWeapon, enemyAttackX, enemyAttackY, enemyAttackWidth, enemyAttackHeight);
+        image(enemyWeapon, enemyPos.x, enemyPos.y, attackWidth, attackHeight);
       }
     }
   }
