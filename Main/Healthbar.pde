@@ -43,9 +43,18 @@ class Healthbar {
     int boxLifeSize = 50;
     int beginPositionX = 400;
     fill(255, 0, 0);
-    for (int iBoss = 0; iBoss < currentLives; iBoss++) {
+    for (int i = 0; i < currentLives; i++) {
+      println(beginPositionX+boxLifeSize*i, beginPositionX+boxLifeSize*currentLives-1);
       fill(255, 0, 0);
-      rect(beginPositionX+boxLifeSize*iBoss, boxLifeSize, boxLifeSize, boxLifeSize);
+      if (beginPositionX+boxLifeSize*i == 400 || beginPositionX+boxLifeSize*(currentLives-1) == beginPositionX+boxLifeSize*i) {
+        if (beginPositionX+boxLifeSize*i == 400) {
+          rect(beginPositionX+boxLifeSize*i, boxLifeSize, boxLifeSize, boxLifeSize, 25, 0, 0, 25);
+        } else {
+          rect(beginPositionX+boxLifeSize*i, boxLifeSize, boxLifeSize, boxLifeSize, 0, 25, 25, 0);
+        }
+      } else {
+        rect(beginPositionX+boxLifeSize*i, boxLifeSize, boxLifeSize, boxLifeSize);
+      }
     }
   }
 

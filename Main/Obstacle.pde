@@ -1,10 +1,11 @@
 class Obstacle extends Collider {
   int timer;
-  final int WAIT_TIME = 3000;
+  final int WAIT_TIME = 4000;
+  final int RESPAWN_MIN = 1300;
+  final int RESPAWN_MAX = 1700;
 
   Obstacle(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
-    timer = millis();
     obstacleList.add(this);
   }
 
@@ -17,7 +18,9 @@ class Obstacle extends Collider {
       player.healthbar.isDead = true;
     } else {
       player.collisionType = CollisionType.NONE;
-      moveEntity();
+      if (canWalk()) {
+        moveEntity();
+      }
       if (!boss.spawnBoss) {
         loopObstacle();
       }
@@ -25,9 +28,9 @@ class Obstacle extends Collider {
   }
 
   void loopObstacle() {
-    if (position.x + boxWidth < 0 && timer + WAIT_TIME < millis()) {
+    if (position.x + boxWidth < 0 && canWalk()) {
       timer = millis(); 
-      position.x = width + 2*boxWidth;
+      position.x = (int) random(RESPAWN_MIN, RESPAWN_MAX);
     }
   }
 
@@ -35,5 +38,13 @@ class Obstacle extends Collider {
   }
 
   void releasedKey() {
+  }
+
+  boolean canWalk() {
+    boolean walk = false;
+    if (timer + WAIT_TIME < millis()) {
+      walk = true;
+    }
+    return walk;
   }
 }
