@@ -3,7 +3,9 @@ class CharacterSelect {
   float defaultSpeed = 5;
 
   void drawSelect() {
-    if (!hasChosen) {
+    if (!login.loggedIn) {
+      login.display();
+    } else if (!hasChosen) {
       background(0, 127, 0);
       textAlign(CENTER);
       strokeWeight(3);
@@ -51,6 +53,7 @@ class CharacterSelect {
   }
 
   void pressed() {
+        if (login.loggedIn) {
     if (key == ENTER && !hasChosen) {
       initScreen();
       hasChosen = true;
@@ -65,7 +68,10 @@ class CharacterSelect {
         choseCorra = false;
       }
     }
-  }
+  }else if(!login.loggedIn){
+      login.type();
+    }
+}
 
   PImage getPlayerSkin() {
     PImage skin = defaultSkin;
