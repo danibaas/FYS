@@ -5,8 +5,8 @@ class HighScore {
   void displayScore() {
     stroke(0);
     fill(255);
-    rect(1045, 0, 233, 40);
-    fill(150, 100, 255);
+    //rect(1045, 0, 233, 40);
+    //fill(150, 100, 255);
     textSize(30);
     textAlign(LEFT);
     String tekst = "Score: " + nfc(highScore, 1); 

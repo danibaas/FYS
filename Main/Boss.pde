@@ -1,8 +1,8 @@
 class Boss extends Collider implements Updater {
   boolean spawnBoss = false;
   boolean hasBeenHit, isDead, bossOnScreen;
-  float bossScore = 500;
-  int bossHealth = 8, killBonus = 60;
+  float bossScore = 10;
+  int bossHealth = 21, killBonus = 100;
   Healthbar healthbar;
 
 
@@ -15,13 +15,12 @@ class Boss extends Collider implements Updater {
   void drawObject() {
     fill(255);
     if (healthbar.currentLives > 0) {
-      rect(position.x, position.y, boxWidth, boxHeight);
+      //rect(position.x, position.y, boxWidth, boxHeight);
       image(skinBoss, position.x, position.y, boxWidth, boxHeight);
     } 
     if (bossOnScreen && spawnBoss) {
       healthbar.drawBossHealth();
     }
-    //println(bossScore);
   }
 
   void updateObject() {

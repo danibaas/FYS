@@ -41,13 +41,13 @@ class Healthbar {
 
   void drawBossHealth() {
     int boxLifeSize = 50;
-    int beginPositionX = 400;
+    int beginPositionX = 100;
     fill(255, 0, 0);
     for (int i = 0; i < currentLives; i++) {
       println(beginPositionX+boxLifeSize*i, beginPositionX+boxLifeSize*currentLives-1);
       fill(255, 0, 0);
-      if (beginPositionX+boxLifeSize*i == 400 || beginPositionX+boxLifeSize*(currentLives-1) == beginPositionX+boxLifeSize*i) {
-        if (beginPositionX+boxLifeSize*i == 400) {
+      if (beginPositionX+boxLifeSize*i == 100 || beginPositionX+boxLifeSize*(currentLives-1) == beginPositionX+boxLifeSize*i) {
+        if (beginPositionX+boxLifeSize*i == 100) {
           rect(beginPositionX+boxLifeSize*i, boxLifeSize, boxLifeSize, boxLifeSize, 25, 0, 0, 25);
         } else {
           rect(beginPositionX+boxLifeSize*i, boxLifeSize, boxLifeSize, boxLifeSize, 0, 25, 25, 0);
