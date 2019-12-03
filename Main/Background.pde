@@ -18,18 +18,14 @@ class Background implements Updater { //<>//
     // background panes
     image(backgroundImage, backgroundX, 0);
     noStroke();
+
     //first
-    fill(0, 255, 0);
-    rect(backgroundPaneX, backgroundPaneY, PANEL_WIDTH, PANEL_HEIGHT);
     image(backgroundpane, backgroundPaneX, backgroundPaneY);
+
     //second
-    fill(255, 0, 0);
-    rect(backgroundPane2X, backgroundPane2Y, PANEL_WIDTH, PANEL_HEIGHT);
     image(backgroundpane2, backgroundPane2X, backgroundPane2Y);
 
     //third
-    fill(10, 10, 225);
-    rect(backgroundPane3X, backgroundPane3Y, PANEL_WIDTH, PANEL_HEIGHT);
     image(backgroundpane3, backgroundPane3X, backgroundPane3Y);
     stroke(0);
 

@@ -11,8 +11,6 @@ class Coffee extends Collider implements Updater {
 
   void drawObject() {
     if (spawned) {
-      fill(255);
-      rect(position.x, position.y, boxWidth, boxHeight);
       image(coffee, position.x, position.y);
     }
   }
@@ -36,8 +34,8 @@ class Coffee extends Collider implements Updater {
       }
     }
     moveEntity();
-    if(!boss.spawnBoss){
-    loopCoffee();
+    if (!boss.spawnBoss) {
+      loopCoffee();
     }
     timerThread();
   }

@@ -42,14 +42,8 @@ class Enemy extends Collider implements Updater {
     if (healthbar != null) {
       healthbar.drawEnemyHealth();
     }
-    fill(255);
-    rect(position.x, position.y, boxWidth, boxHeight);
     enemyAttack.drawAttack();
-    pushMatrix();
-    translate(position.x + 100, position.y);
-    scale(-1, 1);
-    image(skinEnemy, 0, 0);
-    popMatrix();
+    image(skinEnemy, position.x, position.y);
   }
 
   void pressedKey() {
