@@ -3,13 +3,13 @@ class CharacterAttack implements Updater {
   Fireball attack;
   boolean clickedLastFrame, canAttack, ready;
   int timer, yAttack; 
-  
+
   // CONSTANTS
   final int FIREBALL_SPEED = 5;
   final int SPECIAL_SPEED = 20;
   final int SPECIAL_FIREBALL_AMOUNT = 39;
   final int TIME_TO_WAIT = 600; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
-  
+
   int countDown = TIME_TO_WAIT;
 
   CharacterAttack() {

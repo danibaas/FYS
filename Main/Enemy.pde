@@ -1,5 +1,8 @@
 class Enemy extends Collider implements Updater {
-  int timer, waitTime = 3000;
+  int timer;
+  final int WAIT_TIME = 5000;
+  final int RESPAWN_MIN = 1800;
+  final int RESPAWN_MAX = 2100;
   boolean enemyGotHurt;
   Healthbar healthbar;
   EnemyAttack enemyAttack;
@@ -26,7 +29,9 @@ class Enemy extends Collider implements Updater {
       player.colliderType = ColliderType.ENEMY;
       player.healthbar.isDead = true;
     }
-    moveEntity();
+    if (!healthbar.isDead) {
+      moveEntity();
+    }
     if (!boss.spawnBoss) {
       loopEnemy();
     }
@@ -55,21 +60,30 @@ class Enemy extends Collider implements Updater {
   void checkDead() {
     if (healthbar != null) {
       if (healthbar.isDead) {
-        position.x = width + 2*boxWidth; 
-        if (!boss.spawnBoss) {
-          healthbar.isDead = false;
-          healthbar.currentLives = 1;
+        if (canWalk()) {
+          if (!boss.spawnBoss) {
+            healthbar.isDead = false;
+            healthbar.currentLives = 1;
+          }
         }
       }
     }
   }
 
   void loopEnemy() {
-    if (position.x + boxWidth < 0 && timer + waitTime < millis()) {
+    if (position.x + boxWidth < 0 && canWalk()) {
       timer = millis(); 
-      position.x = enemy.position.x = random(1500, 1700);
+      position.x = (int) random(RESPAWN_MIN, RESPAWN_MAX);
       healthbar.currentLives = 1;
     }
+  }
+
+  boolean canWalk() {
+    boolean walk = false;
+    if (timer + WAIT_TIME < millis()) {
+      walk = true;
+    }
+    return walk;
   }
 
   class EnemyAttack extends Collider {

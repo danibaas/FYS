@@ -21,9 +21,6 @@ class Player extends Collider implements Updater {
   }
 
   void drawObject() {
-    fill(255);
-    rectMode(CENTER);
-    rect(playerVector.x, playerVector.y, playerWidth, playerHeight);
     rectMode(CORNER);
     image(playerSkin, playerVector.x - playerWidth/2, playerVector.y - playerHeight/2);
   }
@@ -128,7 +125,7 @@ class Player extends Collider implements Updater {
       velocity += GRAVITY;
       playerVector.y += velocity;
       if (keys[3]) {
-         playerVector.y += (velocity/100) * 60; 
+        playerVector.y += (velocity/100) * 60;
       }
       //zwaartekracht functie
     }
