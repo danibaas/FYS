@@ -19,12 +19,12 @@ void loadAssets() {
   backgroundpane.resize(640, 773);
   backgroundpane2 = loadImage(sketchPath() + "/assets/images/backgroundpane2.png");
   backgroundpane2.resize(640, 760);
-  backgroundpane3 = loadImage(sketchPath() + "/assets/images/backgroundpane3T.png");
+  backgroundpane3 = loadImage(sketchPath() + "/assets/images/backgroundpane3.png");
   backgroundpane3.resize(640, 761);
 
   // ATTACKS
-  fireBall = loadImage(sketchPath() + "/assets/images/Fireball.jpg");
-  fireBallSpecial = loadImage(sketchPath() + "/assets/images/FireballSpecial.jpg");
+  fireBall = loadImage(sketchPath() + "/assets/images/Fireball.png");
+  fireBallSpecial = loadImage(sketchPath() + "/assets/images/FireballSpecial.png");
   enemyWeapon = loadImage(sketchPath() + "/assets/images/enemyWeapon.png");
 
   // PLAYER SKINS
