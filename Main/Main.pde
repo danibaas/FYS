@@ -16,6 +16,7 @@ CeilingObstacle wireObstacle;
 Lazers lazers;
 Coffee coffeePickup;
 Boss boss;
+Login login;
 
 //collision & update loop lists
 ArrayList<Updater> updateList;
@@ -61,9 +62,11 @@ void setup() {
   collisionList = new ArrayList();
   size(1280, 720);
   instance = this;
+  initializeDatabase();
   loadAssets();
   characterSelect = new CharacterSelect();
   highScore = new HighScore();
+  login = new Login();
 } 
 
 // the game loop
