@@ -1,3 +1,29 @@
+/** http://studio.processingtogether.com/sp/pad/export/ro.91tcpPtI9LrXp
+ * built with Studio Sketchpad: 
+ *   http://sketchpad.cc
+ * 
+ * observe the evolution of this sketch: 
+ *   http://studio.sketchpad.cc/sp/pad/view/ro.ttf64eeqPBj/rev.18
+ * 
+ * authors: 
+ *   
+ *   
+ *   GoToLoop
+ *   
+ 
+ * license (unless otherwise specified): 
+ *   creative commons attribution-share alike 3.0 license.
+ *   http://creativecommons.org/licenses/by-sa/3.0/ 
+ 
+ * Player Move (v1.2.1)
+ * by GoToLoop (2014/Dec/07)
+ *
+ * Forum.Processing.org/two/discussion/8511/movement-code-messed-up#Item_6
+ * Studio.ProcessingTogether.com/sp/pad/export/ro.91tcpPtI9LrXp
+ 
+   Movement eddited to fit our game. (circa 146 - 194)
+ */
+
 class Player extends Collider implements Updater {
   PImage playerSkin;
   PVector playerVector;
