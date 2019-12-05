@@ -1,7 +1,7 @@
 class Boss extends Collider implements Updater {
   boolean spawnBoss = false;
   boolean hasBeenHit, isDead, bossOnScreen;
-  float bossScore = 500;
+  float bossScore = 10, bossVelocity = 3;
   int bossHealth = 21, killBonus = 100;
   Healthbar healthbar;
 
@@ -40,7 +40,19 @@ class Boss extends Collider implements Updater {
     if (!spawnBoss) {
       position.x = -999;
     }
+    if(bossOnScreen){
+      moveBoss();
+    }
     healthbar.updateBossHealth();
+  }
+  
+  void moveBoss(){
+    position.y -= bossVelocity;
+    if(position.y < 100){
+      bossVelocity*=-1;
+    }else if(position.y > 500){
+      bossVelocity*=-1;
+    }
   }
 
   void pressedKey() {
