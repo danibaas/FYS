@@ -14,7 +14,7 @@ final int STROOPWAFEL_SIZE = 35;
 
 void loadAssets() {
   // BACKGROUND
-  backgroundImage = loadImage(sketchPath() + "/assets/images/background.png");
+  backgroundImage = loadImage(sketchPath() + "/assets/images/background_OLD.png");
   backgroundpane = loadImage(sketchPath() + "/assets/images/backgroundpane1.png");
   backgroundpane.resize(640, 760);
   backgroundpane2 = loadImage(sketchPath() + "/assets/images/backgroundpane2.png");
