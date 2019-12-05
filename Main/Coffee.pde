@@ -16,7 +16,6 @@ class Coffee extends Collider implements Updater {
   }
 
   void updateObject() {
-    println(currentTime, despawnTime, millis(), spawned, position.x);
     if (gameOver.gameOver) {
       position.x = width + 2*boxWidth;
     }
