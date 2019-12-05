@@ -3,9 +3,7 @@ class CharacterSelect {
   float defaultSpeed = 5;
 
   void drawSelect() {
-    if (!login.loggedIn) {
-      login.display();
-    } else if (!hasChosen) {
+    if (!hasChosen) {
       background(0, 127, 127);
       textAlign(CENTER);
       strokeWeight(3);
@@ -64,23 +62,19 @@ class CharacterSelect {
   }
 
   void pressed() {
-    if (login.loggedIn) {
-      if (key == ENTER && !hasChosen) {
-        initScreen();
-        hasChosen = true;
-        player.updateSkin();
+    if (key == ENTER && !hasChosen) {
+      initScreen();
+      hasChosen = true;
+      player.updateSkin();
+    }
+    if (key == CODED) {
+      if (keyCode == LEFT) {
+        choseCorra = true;
+        choseDonDon = false;
+      } else if (keyCode == RIGHT) {
+        choseDonDon = true;
+        choseCorra = false;
       }
-      if (key == CODED) {
-        if (keyCode == LEFT) {
-          choseCorra = true;
-          choseDonDon = false;
-        } else if (keyCode == RIGHT) {
-          choseDonDon = true;
-          choseCorra = false;
-        }
-      }
-    } else if (!login.loggedIn) {
-      login.type();
     }
   }
 
