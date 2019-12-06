@@ -35,11 +35,12 @@ class Background implements Updater { //<>//
   }
 
   void updateObject() {
+    if(keys[2] == true){
     backgroundPaneX -= speed;
     backgroundPane2X -= speed;
     backgroundPane3X -= speed;
     backgroundX -= speed;
-    highScore.updateScore();
+    highScore.updateScore();}
     if (backgroundPaneX <= PANEL_DESPAWN_BORDER) {
       backgroundPaneX = RESPAWN_X;
     }
@@ -52,9 +53,19 @@ class Background implements Updater { //<>//
   }
 
   void pressedKey() {
+        if (key == CODED) {
+      if (keyCode == RIGHT) {
+        keys[2] = true;
+      }
+     }
   }
 
   void releasedKey() {
+           if (key == CODED) {
+      if (keyCode == RIGHT) {
+        keys[2] = false;
+      }
+     }
   }
 
   void equalize() {

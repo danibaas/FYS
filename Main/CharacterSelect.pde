@@ -82,12 +82,12 @@ class CharacterSelect {
     PImage skin = defaultSkin;
     if (choseCorra && hasChosen) {
       skin = skinCorra;
-      background.speed = 5;
+      background.speed = 8;
       player.healthbar = new Healthbar(1);
       player.healthbar.maxLives = 4;
     } else if (choseDonDon && hasChosen) {
       skin = skinDonDon;
-      background.speed = 3;
+      background.speed = 6;
       player.healthbar = new Healthbar(1); 
       player.healthbar.maxLives = 6;
     }
@@ -97,9 +97,9 @@ class CharacterSelect {
   float getSpeed() {
     float speed = defaultSpeed;
     if (choseCorra & hasChosen) {
-      speed = 5;
+      speed = 8;
     } else if (choseDonDon && hasChosen) {
-      speed = 3;
+      speed = 6;
     }
     return speed;
   }

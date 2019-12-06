@@ -29,7 +29,7 @@ class Enemy extends Collider implements Updater {
       player.colliderType = ColliderType.ENEMY;
       player.healthbar.isDead = true;
     }
-    if (!healthbar.isDead) {
+    if (!healthbar.isDead && canWalk()) {
       moveEntity();
     }
     if (!boss.spawnBoss) {
@@ -52,9 +52,19 @@ class Enemy extends Collider implements Updater {
   }
 
   void pressedKey() {
+    if (key == CODED) {
+      if (keyCode == RIGHT) {
+        keys[2] = true;
+      }
+    }
   }
 
   void releasedKey() {
+    if (key == CODED) {
+      if (keyCode == RIGHT) {
+        keys[2] = false;
+      }
+    }
   }
 
   void checkDead() {
@@ -80,7 +90,7 @@ class Enemy extends Collider implements Updater {
 
   boolean canWalk() {
     boolean walk = false;
-    if (timer + WAIT_TIME < millis()) {
+    if (timer + WAIT_TIME < millis() && keys[2]) {
       walk = true;
     }
     return walk;

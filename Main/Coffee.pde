@@ -26,14 +26,16 @@ class Coffee extends Collider implements Updater {
         previousSpeed = (int) background.speed;
         background.equalize();
         if (characterSelect.choseDonDon) {
-          background.speed = 5;
+          background.speed = 8;
         } else {
           background.speed = characterSelect.getSpeed() * 2;
         }
         spawned = false;
       }
     }
-    moveEntity();
+    if (keys[2]) { 
+      moveEntity();
+    }
     if (!boss.spawnBoss) {
       loopCoffee();
     }
@@ -41,9 +43,19 @@ class Coffee extends Collider implements Updater {
   }
 
   void pressedKey() {
+    if (key == CODED) {
+      if (keyCode == RIGHT) {
+        keys[2] = true;
+      }
+    }
   }
 
   void releasedKey() {
+    if (key == CODED) {
+      if (keyCode == RIGHT) {
+        keys[2] = false;
+      }
+    }
   }
 
   void timerThread() {

@@ -35,14 +35,24 @@ class Obstacle extends Collider {
   }
 
   void pressedKey() {
+    if (key == CODED) {
+      if (keyCode == RIGHT) {
+        keys[2] = true;
+      }
+    }
   }
 
   void releasedKey() {
+    if (key == CODED) {
+      if (keyCode == RIGHT) {
+        keys[2] = false;
+      }
+    }
   }
 
   boolean canWalk() {
     boolean walk = false;
-    if (timer + WAIT_TIME < millis()) {
+    if (timer + WAIT_TIME < millis()&&keys[2]) {
       walk = true;
     }
     return walk;
