@@ -29,11 +29,15 @@ class Enemy extends Collider implements Updater {
       player.colliderType = ColliderType.ENEMY;
       player.healthbar.isDead = true;
     }
-    if (!healthbar.isDead && canWalk()) {
-      moveEntity();
-    }
     if (!boss.spawnBoss) {
       loopEnemy();
+      if (!healthbar.isDead && canWalk()) {
+        moveEntity();
+      }
+    } else {
+      if (position.x + boxWidth > 0 && position.x + boxWidth < width && keys[2]) {
+        moveEntity();
+      }
     }
     if (enemyGotHurt) {
       enemyGotHurt = false;
@@ -52,19 +56,9 @@ class Enemy extends Collider implements Updater {
   }
 
   void pressedKey() {
-    if (key == CODED) {
-      if (keyCode == RIGHT) {
-        keys[2] = true;
-      }
-    }
   }
 
   void releasedKey() {
-    if (key == CODED) {
-      if (keyCode == RIGHT) {
-        keys[2] = false;
-      }
-    }
   }
 
   void checkDead() {
@@ -99,7 +93,9 @@ class Enemy extends Collider implements Updater {
   class EnemyAttack extends Collider {
     float attackWidth, attackHeight;
     PVector enemyPos;
-    boolean enemyCanAttack, attack;
+    boolean outOfScreen, attack;
+    int timer;
+    final int WAIT_TIME = 2500;
 
     EnemyAttack(PVector enemyPos, float boxWidth, float boxHeight) {
       super(enemyPos, boxWidth, boxHeight);
@@ -108,14 +104,18 @@ class Enemy extends Collider implements Updater {
       attackHeight = boxHeight;
     }
 
+    boolean canAttack() {
+      boolean attack = false;
+      if (player.position.x - enemy.position.x > -1050 && (outOfScreen || !attack) && (timer + WAIT_TIME < millis())) {
+        attack = true;
+      } else {
+        attack = false;
+      }
+      return attack;
+    }
 
     void attack() {
-      if (player.position.x - enemy.position.x > -1050) {
-        enemyCanAttack = true;
-      } else {
-        enemyCanAttack = false;
-      }
-      if (enemyCanAttack) {
+      if (canAttack()) {
         enemyPos.y = enemy.position.y;
         attack = true;
         if (coffeePickup.speedBoostActive) {
@@ -128,10 +128,15 @@ class Enemy extends Collider implements Updater {
       }
       if (collidesWithPlayer(player)) {
         player.healthbar.isDead = true;
+        attack = false;
       }
       if (enemyPos.x < 0) {
         attack = false;
+        timer = millis();
+        outOfScreen = true;
         enemyPos.x = enemy.position.x-50;
+      } else {
+        outOfScreen = false;
       }
     }
 

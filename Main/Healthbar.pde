@@ -44,7 +44,6 @@ class Healthbar {
     int beginPositionX = 100;
     fill(255, 0, 0);
     for (int i = 0; i < currentLives; i++) {
-      println(beginPositionX+boxLifeSize*i, beginPositionX+boxLifeSize*currentLives-1);
       fill(255, 0, 0);
       if (beginPositionX+boxLifeSize*i == 100 || beginPositionX+boxLifeSize*(currentLives-1) == beginPositionX+boxLifeSize*i) {
         if (beginPositionX+boxLifeSize*i == 100) {

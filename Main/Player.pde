@@ -21,16 +21,16 @@
  * Forum.Processing.org/two/discussion/8511/movement-code-messed-up#Item_6
  * Studio.ProcessingTogether.com/sp/pad/export/ro.91tcpPtI9LrXp
  
- Movement eddited to fit our game. (circa 146 - 194)
+ Movement editted to fit our game. (circa 146 - 194)
  */
 
 class Player extends Collider implements Updater {
   PImage playerSkin;
   PVector playerVector;
   float velocity = 0;
-  final float UP_FORCE = 2;
+  final float UP_FORCE = -9.81;
   final float MOVEMENT = 3.5;
-  final float GRAVITY = 700;
+  final float GRAVITY = 0.5;
   boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, jumped, isCrouched;
   int playerWidth, playerHeight, colliderType, collisionType, crouchCounter;
   Healthbar healthbar;
@@ -58,11 +58,9 @@ class Player extends Collider implements Updater {
     }
     hasCollision();
     move();
-    if (keys[0]) {
-      if (!airBorne) {
-        jump();
-        setMove(keyCode, true);
-      }
+    if (keys[0] && !airBorne) {
+      jump();
+      setMove(keyCode, true);
     } else if (keys[3] && !isCrouched) {
       setCrouch(true);
     }
@@ -138,7 +136,7 @@ class Player extends Collider implements Updater {
   }
 
   void jump() {
-    velocity += -sqrt((696-playerVector.y)*UP_FORCE);
+    velocity += UP_FORCE;
     jumped = true;
     //jump mechanic
   }
@@ -148,7 +146,7 @@ class Player extends Collider implements Updater {
     int groundHeight = trueHeight + playerHeight / 2;
     if (playerVector.y < height - groundHeight) {
       airBorne = true;
-      velocity += sqrt((696-playerVector.y)/GRAVITY);
+      velocity += GRAVITY;
       playerVector.y += velocity;
       if (keys[3]) {
         playerVector.y += (velocity/100) * 60;

@@ -33,29 +33,23 @@ class Coffee extends Collider implements Updater {
         spawned = false;
       }
     }
-    if (keys[2]) { 
-      moveEntity();
-    }
     if (!boss.spawnBoss) {
       loopCoffee();
+      if (keys[2]) { 
+        moveEntity();
+      }
+    } else {
+      if (position.x + boxWidth > 0 && position.x + boxWidth < width && keys[2]) {
+        moveEntity();
+      }
     }
     timerThread();
   }
 
   void pressedKey() {
-    if (key == CODED) {
-      if (keyCode == RIGHT) {
-        keys[2] = true;
-      }
-    }
   }
 
   void releasedKey() {
-    if (key == CODED) {
-      if (keyCode == RIGHT) {
-        keys[2] = false;
-      }
-    }
   }
 
   void timerThread() {

@@ -18,11 +18,15 @@ class Obstacle extends Collider {
       player.healthbar.isDead = true;
     } else {
       player.collisionType = CollisionType.NONE;
-      if (canWalk()) {
-        moveEntity();
-      }
       if (!boss.spawnBoss) {
         loopObstacle();
+        if (canWalk()) {
+          moveEntity();
+        }
+      } else {
+        if (position.x + boxWidth > 0 && position.x + boxWidth < width && keys[2]) {
+          moveEntity();
+        }
       }
     }
   }
@@ -35,24 +39,14 @@ class Obstacle extends Collider {
   }
 
   void pressedKey() {
-    if (key == CODED) {
-      if (keyCode == RIGHT) {
-        keys[2] = true;
-      }
-    }
   }
 
   void releasedKey() {
-    if (key == CODED) {
-      if (keyCode == RIGHT) {
-        keys[2] = false;
-      }
-    }
   }
 
   boolean canWalk() {
     boolean walk = false;
-    if (timer + WAIT_TIME < millis()&&keys[2]) {
+    if (timer + WAIT_TIME < millis() && keys[2]) {
       walk = true;
     }
     return walk;
