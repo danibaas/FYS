@@ -27,7 +27,7 @@ class GameOver {
     rectMode(CORNER);
     // reset game
     if (keyPressed) {
-      if (key == 'r') {
+      if (key == ENTER) {
         gameOver = false;
         soundTrack.stop();
         boolean chose = characterSelect.choseCorra ? true : false;

@@ -62,7 +62,7 @@ class CharacterSelect {
   }
 
   void pressed() {
-    if (key == ENTER && !hasChosen) {
+    if ((key == CODED && keyCode == UP) && !hasChosen) {
       initScreen();
       hasChosen = true;
       player.updateSkin();

@@ -100,7 +100,7 @@ void keyPressed() {
   if (!characterSelect.hasChosen) {
     characterSelect.pressed();
   } else {
-    if ((key == 'x' || key == 'X') && screenActive) {
+    if (screenActive) {
       screenActive = false;
     }  
     for (Updater r : updateList) {
