@@ -32,6 +32,13 @@ class GameOver {
         soundTrack.stop();
         boolean chose = characterSelect.choseCorra ? true : false;
         frameCount = -1;
+        characterSelect.hasChosen = true;
+        if (chose) {
+          characterSelect.choseCorra = true;
+        } else {
+          characterSelect.choseDonDon = true;
+        }
+        initScreen();
       }
     }
   }
