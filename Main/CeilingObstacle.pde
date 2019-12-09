@@ -7,5 +7,12 @@ class CeilingObstacle extends Obstacle implements Updater {
 
   void drawObject() {
     image(ceilingObstacle, position.x, position.y);
+    fixLevel();
+  }
+
+  void fixLevel() {
+    if (dist(groundObstacle.position.x, groundObstacle.position.y, position.x, position.y) < 50) {
+      position.x += 50;
+    }
   }
 }
