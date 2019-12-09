@@ -12,7 +12,7 @@ class CeilingObstacle extends Obstacle implements Updater {
 
   void fixLevel() {
     if (dist(groundObstacle.position.x, groundObstacle.position.y, position.x, position.y) < 50) {
-      position.x += 50;
+      position.x += 200;
     }
   }
 }
