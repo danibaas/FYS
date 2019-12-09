@@ -44,7 +44,7 @@ final int OBSTACLE_HEIGHT = 100;
 // CEILING OBSTACLE CONSTANTS
 final PVector CEILING_VECTOR = new PVector(-300, 0);
 final int CEILING_OBSTACLE_WIDTH = 125;
-final int CEILING_OBSTACLE_HEIGHT = 350;
+final int CEILING_OBSTACLE_HEIGHT = 600;
 // COFFEE (SPEED BOOST) CONSTANTS
 final PVector COFFEE_VECTOR = new PVector(600, 400);
 final int COFFEE_WIDTH = 100;
@@ -103,7 +103,7 @@ void keyPressed() {
   if (!characterSelect.hasChosen) {
     characterSelect.pressed();
   } else {
-    if ((key == 'x' || key == 'X') && screenActive) {
+    if (screenActive) {
       screenActive = false;
     }  
     for (Updater r : updateList) {
