@@ -15,7 +15,6 @@ GroundObstacle groundObstacle;
 GroundObstacle groundObstacle1;
 CeilingObstacle wireObstacle;
 CeilingObstacle wireObstacle1;
-Lazers lazers;
 Coffee coffeePickup;
 Boss boss;
 Login login;
@@ -34,7 +33,7 @@ final PVector PLAYER_VECTOR = new PVector(140, 646);
 final int PLAYER_WIDTH = 100;
 final int PLAYER_HEIGHT = 100;
 // ENEMY CONSTANTS
-final PVector ENEMY_VECTOR = new PVector(2300, 596);
+final PVector ENEMY_VECTOR = new PVector(20000, 596);
 final int ENEMY_WIDTH = 80;
 final int ENEMY_HEIGHT = 100;
 // OBSTACLE CONSTANTS
@@ -43,10 +42,10 @@ final PVector OBSTACLE_VECTOR = new PVector(1300, 597);
 final int OBSTACLE_WIDTH = 200;
 final int OBSTACLE_HEIGHT = 100;
 // CEILING OBSTACLE CONSTANTS
-final PVector CEILING_VECTOR = new PVector(600, 0);
+final PVector CEILING_VECTOR = new PVector(-300, 0);
 final int CEILING_OBSTACLE_WIDTH = 125;
 final int CEILING_OBSTACLE_HEIGHT = 350;
-// COFFE (SPEED BOOST) CONSTANTS
+// COFFEE (SPEED BOOST) CONSTANTS
 final PVector COFFEE_VECTOR = new PVector(600, 400);
 final int COFFEE_WIDTH = 100;
 final int COFFEE_HEIGHT = 100;
@@ -77,12 +76,16 @@ void draw() {
     if (gameOver.gameOver) {
       gameOver.drawObject();
     } else {
-      for (Collider collider : collisionList) {
-        collider.update();
-      }
       for (Updater r : updateList) {
-        r.updateObject();
-        r.drawObject();
+        if (!(r instanceof CeilingObstacle)) {
+          r.updateObject();
+          r.drawObject();
+        } else {
+          if (highScore.highScore > 50) {
+            r.updateObject();
+            r.drawObject();
+          }
+        }
       }
       highScore.displayScore();
     }
@@ -100,7 +103,7 @@ void keyPressed() {
   if (!characterSelect.hasChosen) {
     characterSelect.pressed();
   } else {
-    if (screenActive) {
+    if ((key == 'x' || key == 'X') && screenActive) {
       screenActive = false;
     }  
     for (Updater r : updateList) {

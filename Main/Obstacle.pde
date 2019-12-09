@@ -14,10 +14,8 @@ class Obstacle extends Collider {
       position.x = width + 2*boxWidth;
     }
     if (collidesWithPlayer(player)) {
-      player.colliderType = ColliderType.OBSTACLE;
       player.healthbar.isDead = true;
     } else {
-      player.collisionType = CollisionType.NONE;
       if (!boss.spawnBoss) {
         loopObstacle();
         if (canWalk()) {

@@ -41,7 +41,6 @@ class Player extends Collider implements Updater {
     playerWidth = sizeW;
     playerHeight = sizeH;
     playerSkin = characterSelect.getPlayerSkin();
-    colliderType = ColliderType.NONE;
     healthbar = new Healthbar(1);
     updateList.add(this);
   }

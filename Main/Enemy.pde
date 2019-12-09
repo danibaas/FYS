@@ -26,7 +26,6 @@ class Enemy extends Collider implements Updater {
     }
     /// player gets damage
     if (collidesWithPlayer(player)) {
-      player.colliderType = ColliderType.ENEMY;
       player.healthbar.isDead = true;
     }
     if (!boss.spawnBoss) {
