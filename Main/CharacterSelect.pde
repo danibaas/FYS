@@ -16,10 +16,10 @@ class CharacterSelect {
       //uitleg
       textSize(25);
       textAlign(CENTER);
-      text("B = Attack", width/2, 400);
-      text("A = Special attack", width/2, 425);
-      text("Arrow key up = Jump", width/2, 450);
-      text("Arrow key down = Crouch", width/2, 475);
+      text("A = Attack", width/2, 400);
+      text("X = Special attack", width/2, 425);
+      text("B = Jump", width/2, 450);
+      text("Y = Crouch", width/2, 475);
       text("Pick this up for a speedboost", width/2, 550);
       image(coffee, width/2-50, 600);
       coffee.resize(100, 100);
