@@ -34,7 +34,7 @@ final PVector PLAYER_VECTOR = new PVector(140, 646);
 final int PLAYER_WIDTH = 100;
 final int PLAYER_HEIGHT = 100;
 // ENEMY CONSTANTS
-final PVector ENEMY_VECTOR = new PVector(20000, 596);
+final PVector ENEMY_VECTOR = new PVector(2000, 596);
 final int ENEMY_WIDTH = 80;
 final int ENEMY_HEIGHT = 100;
 // OBSTACLE CONSTANTS
@@ -47,7 +47,7 @@ final PVector CEILING_VECTOR = new PVector(-300, 0);
 final int CEILING_OBSTACLE_WIDTH = 125;
 final int CEILING_OBSTACLE_HEIGHT = 600;
 // COFFEE (SPEED BOOST) CONSTANTS
-final PVector COFFEE_VECTOR = new PVector(600, 400);
+final PVector COFFEE_VECTOR = new PVector(2000, 400);
 final int COFFEE_WIDTH = 100;
 final int COFFEE_HEIGHT = 100;
 // BOSS CONSTANTS

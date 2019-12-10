@@ -13,6 +13,7 @@ class Coffee extends Collider implements Updater {
     if (spawned) {
       image(coffee, position.x, position.y);
     }
+    println(position.x);
   }
 
   void updateObject() {
@@ -35,7 +36,7 @@ class Coffee extends Collider implements Updater {
     }
     if (!boss.spawnBoss) {
       loopCoffee();
-      if (keys[2]) { 
+      if (keys[2] && highScore.highScore > 100) { 
         moveEntity();
       }
     } else {

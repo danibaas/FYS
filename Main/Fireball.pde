@@ -52,7 +52,7 @@ class Fireball extends Collider {
         resetAttack();
       }
     }
-    if (characterAttack.canAttack) {
+    if (hasFired) {
       if (normalAttack != null) {
         normalAttack.x += speed;
       }
@@ -63,7 +63,7 @@ class Fireball extends Collider {
         resetAttack();
       }
     } else {
-      if (normalAttack != null && normalAttack.x > width) {
+      if (normalAttack != null && normalAttack.x >= width) {
         resetAttack();
       }
     }
@@ -71,9 +71,8 @@ class Fireball extends Collider {
 
   void resetAttack() {
     if (!special) {
-      characterAttack.canAttack = false;
-      normalAttack.x = START_POSITION;
       hasFired = false;
+      normalAttack.x = START_POSITION;
     } else {
       special = false;
       specialAttack.y = -50;

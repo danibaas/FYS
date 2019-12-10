@@ -1,6 +1,6 @@
 class Obstacle extends Collider {
   int timer;
-  final int WAIT_TIME = 4000;
+  final int WAIT_TIME = 2000;
   final int RESPAWN_MIN = 1300;
   final int RESPAWN_MAX = 1700;
 

@@ -18,7 +18,7 @@ class Enemy extends Collider implements Updater {
   void updateObject() {
     enemyAttack.attack();
     if (gameOver.gameOver) {
-      position.x = enemy.position.x = random(1500, 1700);
+      position.x = random(RESPAWN_MIN, RESPAWN_MAX);
     }
     checkDead();
     if (healthbar != null) {
@@ -83,7 +83,7 @@ class Enemy extends Collider implements Updater {
 
   boolean canWalk() {
     boolean walk = false;
-    if (timer + WAIT_TIME < millis() && keys[2]) {
+    if (timer + WAIT_TIME < millis() && keys[2] && highScore.highScore > 200) {
       walk = true;
     }
     return walk;
