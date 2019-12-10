@@ -83,7 +83,7 @@ class Enemy extends Collider implements Updater {
 
   boolean canWalk() {
     boolean walk = false;
-    if (timer + WAIT_TIME < millis() && keys[2] && highScore.highScore > 150) {
+    if (timer + WAIT_TIME < millis() && keys[2] && highScore.highScore > 200) {
       walk = true;
     }
     return walk;
