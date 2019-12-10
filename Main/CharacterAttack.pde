@@ -1,25 +1,24 @@
 class CharacterAttack implements Updater {
-  ArrayList<Fireball> fireballs = new ArrayList();
-  Fireball attack;
-  Fireball[] Fireball;
-  boolean clickedLastFrame, canAttack, ready;
-  int timer, yAttack; 
-
   // CONSTANTS
   final int FIREBALL_SPEED = 5;
   final int SPECIAL_SPEED = 20;
-  final int SPECIAL_FIREBALL_AMOUNT = 39, NORMAL_FIREBALL_AMMOUNT = 3;
-  final int TIME_TO_WAIT = 600; //how long it takes for special to get ready devide this number with 60 then you get the seconds you have to wait
+  final int SPECIAL_FIREBALL_AMOUNT = 39, NORMAL_FIREBALL_AMOUNT = 3;
+  final int TIME_TO_WAIT = 600; //how long it takes for special to get ready divide this number with 60 then you get the seconds you have to wait
 
+  ArrayList<Fireball> fireballs = new ArrayList();
+  Fireball attack;
+  Fireball[] ammunition = new Fireball[NORMAL_FIREBALL_AMOUNT];
+  boolean clickedLastFrame, canAttack, ready;
+  int timer, yAttack; 
 
   int countDown = TIME_TO_WAIT;
 
   CharacterAttack() {
     attack = new Fireball(new PVector(ceil(player.position.x + player.playerWidth/2), yAttack), fireBall.width/4, fireBall.height/4, FIREBALL_SPEED);
     attack.shotByPlayer = true;
-    for (int i = 0; i < NORMAL_FIREBALL_AMMOUNT; i++) {
-      Fireball[i] = new Fireball(new PVector(ceil(player.position.x + player.playerWidth/2), yAttack), fireBall.width/4, fireBall.height/4, FIREBALL_SPEED);
-      attack.shotByPlayer = true;
+    for (int i = 0; i < NORMAL_FIREBALL_AMOUNT; i++) {
+      ammunition[i] = new Fireball(new PVector(ceil(player.position.x + player.playerWidth/2), yAttack), fireBall.width/4, fireBall.height/4, FIREBALL_SPEED);
+      ammunition[i].shotByPlayer = true;
     }
     //attack = new Fireball(new PVector(ceil(player.position.x + player.playerWidth/2), yAttack), fireBall.width/4, fireBall.height/4, FIREBALL_SPEED);
     //attack.shotByPlayer = true;

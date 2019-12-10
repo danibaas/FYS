@@ -1,5 +1,6 @@
 // IMAGES
-PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, enemyWeapon, health, stroopwafel, obstacle, ceilingObstacle, soundOn, skinBoss;
+PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, enemyWeapon, 
+  health, stroopwafel, obstacle, ceilingObstacle, soundOn, skinBoss, shopIcon, speed_upgrade;
 
 //SOUNDS
 SoundFile soundTrack;
@@ -47,9 +48,16 @@ void loadAssets() {
   // OFFICE / GROUND OBSTACLE
   obstacle = loadImage(sketchPath() + "/assets/images/office.png");
   obstacle.resize(OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
+
   // CEILING OBSTACLE / WIRE
   ceilingObstacle = loadImage(sketchPath() + "/assets/images/ceiling-wire.png");
   ceilingObstacle.resize(CEILING_OBSTACLE_WIDTH, CEILING_OBSTACLE_HEIGHT);
+
+  // SHOP
+  shopIcon = loadImage(sketchPath() + "/assets/images/shop.png");
+  shopIcon.resize(ICON_SIZE, ICON_SIZE);
+  speed_upgrade = loadImage(sketchPath() + "/assets/images/speed_upgrade.png");
+  speed_upgrade.resize(SPEED_SIZE, SPEED_SIZE);
 
   // FONTS
   eightBit = createFont(sketchPath() + "/assets/fonts/PressStart2P.ttf", 30);

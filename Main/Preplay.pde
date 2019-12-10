@@ -24,6 +24,7 @@ void drawScreen() {
   for (Updater objects : updateList) {
     if (!(objects instanceof CharacterAttack)) { 
       objects.drawObject();
+      shop.drawIcon();
     }
   }
 }

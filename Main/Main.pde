@@ -18,6 +18,7 @@ CeilingObstacle wireObstacle1;
 Coffee coffeePickup;
 Boss boss;
 Login login;
+Shop shop;
 
 //collision & update loop lists
 ArrayList<Updater> updateList;
@@ -53,6 +54,9 @@ final int COFFEE_HEIGHT = 100;
 final PVector BOSS_VECTOR = new PVector(-500, 300);
 final int BOSS_WIDTH = 200;
 final int BOSS_HEIGHT = 200;
+// SHOP CONSTANTS
+final int ICON_SIZE = 100;
+final int SPEED_SIZE = 100;
 
 void setup() {
   // ratio 16:9
@@ -68,6 +72,7 @@ void setup() {
   characterSelect = new CharacterSelect();
   highScore = new HighScore();
   login = new Login();
+  shop = new Shop();
 } 
 
 // the game loop
@@ -95,6 +100,7 @@ void draw() {
       soundTrack.loop();
     } else {
       drawScreen();
+      shop.drawShop();
     }
   }
 }  
@@ -103,12 +109,13 @@ void keyPressed() {
   if (!characterSelect.hasChosen) {
     characterSelect.pressed();
   } else {
-    if (screenActive) {
+    if (key != 'c' && key != 'C' && key != 'v' && screenActive) {
       screenActive = false;
     }  
     for (Updater r : updateList) {
       r.pressedKey();
     }
+    shop.pressedKey();
   }
 }
 
