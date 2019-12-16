@@ -73,7 +73,7 @@ void setup() {
   highScore = new HighScore();
   login = new Login();
   shop = new Shop();
-  initializeAchievements();
+  //initializeAchievements();
 } 
 
 // the game loop
@@ -81,7 +81,7 @@ void draw() {
   if (!screenActive && !holdScreen) {
     if (gameOver.gameOver) {
       gameOver.drawObject();
-      printAchievement(1);
+      //printAchievement(1);
     } else {
       for (Updater r : updateList) {
         if (!(r instanceof CeilingObstacle)) {

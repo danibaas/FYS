@@ -1,4 +1,4 @@
-float achievementCounter = 0;
+/*float achievementCounter = 0;
 int A=10;
 int startSeconds=0;
 float user_id;
@@ -75,4 +75,4 @@ void printAchievement(int achievementNumber) {
       }
     }
   }
-}
+}*/

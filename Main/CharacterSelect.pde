@@ -98,10 +98,10 @@ class CharacterSelect {
     float speed = defaultSpeed;
     if (choseCorra & hasChosen) {
       speed = 8;
-              printAchievement(2);
+              //printAchievement(2);
     } else if (choseDonDon && hasChosen) {
       speed = 6;
-              printAchievement(3);
+              //printAchievement(3);
     }
     return speed;
   }

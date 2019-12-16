@@ -28,7 +28,7 @@ class GameOver {
     // reset game
     if (keyPressed) {
       if (key == ENTER) {
-        gameOver = false;
+        //gameOver = false;
         soundTrack.stop();
         boolean chose = characterSelect.choseCorra ? true : false;
         frameCount = -1;
