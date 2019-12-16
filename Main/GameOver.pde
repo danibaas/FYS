@@ -1,6 +1,5 @@
 class GameOver {
-  boolean gameOver;
-  boolean loadScores;
+  boolean gameOver,loadScores, retryBox, goToMenu, clickedLastFrame, highscoreBox = true;
   int yPos = 40, yPosResults = 90;
   float scoresTopOffset = 100;
   float row1= 400;
@@ -10,9 +9,12 @@ class GameOver {
   void fontLoad() {
     textFont(eightBit);
   }
-
+  
+  //Highscore tabel
   void loadHighscores() {
     if (loadScores) {
+      background(0, 127, 127);
+      goToMenu = true;
       fill(255);
       rect(row1-50, scoresTopOffset, row2, 500);
       fill(0);
@@ -20,11 +22,6 @@ class GameOver {
       text("Player", row2, yPos+scoresTopOffset);
       text("Highscore", row3, yPos+scoresTopOffset);
       textSize(18);
-      if (gameOver) {
-        loadScores = true;
-      } else {
-        loadScores = false;
-      }
       for (int i = 0; i < 10; i++) {
         sql.query("SELECT Account.username, Highscore.score FROM Highscore INNER JOIN Account ON Highscore.user_id = Account.user_id ORDER BY score DESC LIMIT 1 OFFSET "+i);
         while (sql.next())
@@ -37,8 +34,9 @@ class GameOver {
           text(n, row3, yPosResults+i*40+scoresTopOffset);
         }
       }
-    } else {
-    }
+      fill(0);
+      text("Press ENTER for menu", width/2, 500);
+    } 
   }
 
   void drawGameOver() {
@@ -53,44 +51,70 @@ class GameOver {
       textSize(35);
       textAlign(CENTER, BOTTOM);
       text("Game Over!", width/2, height/2 - 25);
+      textAlign(CENTER, TOP);
+      fill(0);
+      textSize(25);
+      text("Score: " + nfc(highScore.highScore, 1), width/2, height/2 - 25);
+      if (retryBox) {
+        fill(255, 0, 0);
+        rect(width/2-60, height/2+45, 100, 30);
+        fill(255);
+        rect(width/2+60, height/2+45, 100, 30);
+      } else if (highscoreBox) {
+        fill(255);
+        rect(width/2-60, height/2+45, 100, 30);
+        fill(255, 0, 0);
+        rect(width/2+60, height/2+45, 100, 30);
+      }
+      rectMode(CORNER);
+      fill(0);
       textSize(15);
       textAlign(CENTER, TOP);
       text("Retry?", width/2-60, height/2+35);
       text("Highscores", width/2+60, height/2+35);
-      fill(0);
-      textSize(25);
-      text("Score: " + nfc(highScore.highScore, 1), width/2, height/2 - 25);
-      fill(0, 0, 0, 0);
-      rect(width/2-60, height/2+45, 100, 30);
-      rect(width/2+60, height/2+45, 100, 30);
-      rectMode(CORNER);
     } else {
     }
   }
 
   void drawObject() {
-    drawGameOver();
-    loadHighscores();
+    //reset.drawObject();
+    if (gameOver) {
+      soundTrack.stop();
+    }
+    if (!loadScores) {
+      drawGameOver();
+    } else if (loadScores) {
+      loadHighscores();
+    }
+  }
+  void pressedKey() {
     if (keyPressed) {
-      if (key == 'h') {
+      if (highscoreBox && key == ENTER) {
         loadScores = true;
-      }
-    }
-    // reset game
-    if (keyPressed) {
-      if (key == ENTER) {
-        gameOver = false;
-        soundTrack.stop();
-        boolean chose = characterSelect.choseCorra ? true : false;
+      } else if (retryBox && key == ENTER) {
         frameCount = -1;
-        characterSelect.hasChosen = true;
-        if (chose) {
-          characterSelect.choseCorra = true;
-        } else {
-          characterSelect.choseDonDon = true;
-        }
         initScreen();
+        //reset.restart = true;
+      }
+      if (goToMenu && key == ENTER) {
+        frameCount = -1;
+        initScreen();
+        //reset.restart = true;
+      }
+      if (keyPressed && !loadScores) {
+        if (keyCode == LEFT) {
+          retryBox=true;
+          highscoreBox = false;
+          println("yeah");
+        } else if (keyCode == RIGHT) {
+          retryBox = false;
+          highscoreBox = true;
+          println("w");
+        }
       }
     }
+  }
+  void releasedKey() {
+    keyPressed = false;
   }
 }

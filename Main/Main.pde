@@ -3,6 +3,7 @@ import processing.sound.*;
 //instance of this class, used for database
 Main instance;
 //object creation
+Reset reset;
 HighScore highScore;
 CharacterSelect characterSelect;
 Background background;
@@ -81,6 +82,8 @@ void draw() {
   if (!screenActive && !holdScreen) {
     if (gameOver.gameOver) {
       gameOver.drawObject();
+      gameOver.pressedKey();
+      gameOver.releasedKey();
       //printAchievement(1);
     } else {
       for (Updater r : updateList) {
@@ -99,7 +102,7 @@ void draw() {
   } else {
     if (!characterSelect.hasChosen) {
       characterSelect.drawSelect();
-      soundTrack.loop();
+      //soundTrack.loop();
     } else {
       drawScreen();
       shop.drawShop();
