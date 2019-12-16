@@ -2,9 +2,9 @@ class GameOver {
   boolean gameOver,loadScores, retryBox, goToMenu, clickedLastFrame, highscoreBox = true;
   int yPos = 40, yPosResults = 90;
   float scoresTopOffset = 100;
-  float row1= 400;
-  float row2 = 500;
-  float row3 = 700;
+  float row1= 425;
+  float row2 = 525;
+  float row3 = 725;
 
   void fontLoad() {
     textFont(eightBit);

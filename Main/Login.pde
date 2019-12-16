@@ -1,7 +1,7 @@
 class Login { 
   String playerPassword = "test";
   String playerName = "";
-  final int usernameBoxX = 490;
+  final int usernameBoxX = 520;
   final int usernameBoxY = height/2;
   int size = 22;
   String returnedusername;
@@ -32,7 +32,6 @@ class Login {
         }
       }
     } else if (keyPressed&&key!=CODED) { 
-      // normal key: add 
       playerName+=key; 
       returnedusername=playerName;
     }
