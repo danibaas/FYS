@@ -8,7 +8,6 @@ class Login {
   boolean loggedIn = false;
 
   void type() { 
-    // frameRate(9); 
     if (keyPressed&&key==BACKSPACE) {
       // backspace: remove letter  
       if (playerName.length()>=1) {
