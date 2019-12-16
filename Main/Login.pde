@@ -39,6 +39,7 @@ class Login {
   }
 
   void display() {
+    background(127);
     textSize(size);
     text("Username", usernameBoxX+65, usernameBoxY-40);
     fill(255, 255, 255);
