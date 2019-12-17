@@ -53,6 +53,7 @@ class CharacterAttack implements Updater {
       }
     }
     if (ready) {
+      stroke(3);
       fill(0, 255, 0);
       rect(0, 0, 250, 35);
       fill(0);
@@ -61,6 +62,7 @@ class CharacterAttack implements Updater {
       text("SPECIAL READY", 125, 25);
     }
     if (!ready) {
+      stroke(3);
       fill(255, 0, 0);
       rect(0, 0, 250, 35);
       fill(0);
