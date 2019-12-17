@@ -1,6 +1,7 @@
 class HighScore {
   float highScore = 0;
   final float SCORE_INCREMENT = 0.1;
+  int user_id = 0;
 
   void displayScore() {
     stroke(0);
@@ -34,7 +35,15 @@ class HighScore {
   // database 
   void saveHighScore(String name, float score) {
     if (sql.connect()) {
-      sql.execute("INSERT INTO highscores VALUES (" + name + ", " + score + ")");
+      sql.execute("SELECT user_id FROM Account WHERE username = '" + name + "'");
+      if(sql.next()){
+      user_id = sql.getInt("user_id");
+    }
+      println(user_id + " , this is your userId");
+      if(user_id != 0){
+        sql.execute("INSERT INTO Highscore (user_id, score) VALUES ('"+ user_id + "', '" + score + "')");
+      }
+      //sql.execute("INSERT INTO highscores VALUES (" + name + ", " + score + ")");
       sql.close();
     }
   }

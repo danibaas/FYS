@@ -9,6 +9,7 @@ class Healthbar {
   void updatePlayerHealth() {
     if (isDead) {
       gameOver.drawObject();
+      highScore.saveHighScore(login.playerName, highScore.highScore);
     }
   }
 
