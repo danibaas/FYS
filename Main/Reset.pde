@@ -8,6 +8,7 @@ class Reset {
       highScore.highScore = 0;
       characterSelect.hasChosen = false;
       characterSelect.drawSelect();
+      restart = false;
     }
   }
 }

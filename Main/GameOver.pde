@@ -92,14 +92,16 @@ class GameOver {
       if (highscoreBox && key == ENTER) {
         loadScores = true;
       } else if (retryBox && key == ENTER) {
-        frameCount = -1;
+        //frameCount = -1;
         initScreen();
-        //reset.restart = true;
+        reset.restart = true;
+        soundTrack.loop();
       }
       if (goToMenu && key == ENTER) {
-        frameCount = -1;
+        //frameCount = -1;
         initScreen();
-        //reset.restart = true;
+        reset.restart = true;
+        soundTrack.loop();
       }
       if (keyPressed && !loadScores) {
         if (keyCode == LEFT) {

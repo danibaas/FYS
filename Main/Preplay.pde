@@ -11,9 +11,7 @@ void initScreen() {
   gameOver = new GameOver();
   enemy = new Enemy(ENEMY_VECTOR, ENEMY_WIDTH, ENEMY_HEIGHT);
   groundObstacle = new GroundObstacle(OBSTACLE_VECTOR, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
-  //groundObstacle1 = new GroundObstacle(new PVector(2700, 597), OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
   wireObstacle = new CeilingObstacle(CEILING_VECTOR, CEILING_OBSTACLE_WIDTH, CEILING_OBSTACLE_HEIGHT);
-  //wireObstacle1 = new CeilingObstacle(new PVector(2100, 0), CEILING_OBSTACLE_WIDTH, CEILING_OBSTACLE_HEIGHT);
   characterAttack = new CharacterAttack();
   coffeePickup = new Coffee(COFFEE_VECTOR, COFFEE_WIDTH, COFFEE_HEIGHT);
   boss = new Boss(BOSS_VECTOR, BOSS_WIDTH, BOSS_HEIGHT);

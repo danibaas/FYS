@@ -3,6 +3,7 @@ class Obstacle extends Collider {
   final int WAIT_TIME = 2000;
   final int RESPAWN_MIN = 1300;
   final int RESPAWN_MAX = 1700;
+  int beginPosition = 1300;
 
   Obstacle(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
@@ -11,7 +12,8 @@ class Obstacle extends Collider {
 
   void updateObject() {
     if (gameOver.gameOver) {
-      position.x = width + 2*boxWidth;
+      //position.x = beginPosition;
+      //println("active");
     }
     if (collidesWithPlayer(player)) {
       player.healthbar.isDead = true;

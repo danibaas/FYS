@@ -74,6 +74,7 @@ void setup() {
   highScore = new HighScore();
   login = new Login();
   shop = new Shop();
+  reset = new Reset();
   //initializeAchievements();
 } 
 
