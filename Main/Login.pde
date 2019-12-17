@@ -8,11 +8,19 @@ class Login {
   boolean loggedIn = false;
 
   void type() { 
-    if (keyPressed&&key==BACKSPACE) {
+    if (playerName.length() >= 17) {
+      if (keyPressed&&key==BACKSPACE) {
+        // backspace: remove letter  
+        if (playerName.length()>=1) {
+          playerName=playerName.substring(0, playerName.length()-1);
+        } // if 
+        returnedusername=playerName;
+      }
+    } else if (keyPressed&&key==BACKSPACE) {
       // backspace: remove letter  
       if (playerName.length()>=1) {
         playerName=playerName.substring(0, playerName.length()-1);
-      } // if 
+      }
       returnedusername=playerName;
     } else if (keyPressed&&key==DELETE) {
       playerName="";
