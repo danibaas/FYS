@@ -32,9 +32,15 @@ class Money implements Updater {
     for (Coin coin : allCoins) {
       coin.drawCoin();
     }
-    fill(212, 175, 55);
-    textSize(30);
-    text("Coins: " + coins, 1110, 80);
+    if (!screenActive) {
+      fill(212, 175, 55);
+      textSize(30);
+      text("Coins: " + coins, 1120, 80);
+    } else {
+      fill(212, 175, 55);
+      textSize(30);
+      text("Coins: " + loadCoins(), 640, 30);
+    }
   }
 
   void updateObject() {
@@ -65,7 +71,12 @@ class Money implements Updater {
         if (sql.next()) {
           userId = sql.getInt("user_id");
         }
-        sql.execute("INSERT INTO Money VALUES ('" + userId + "', '" + coins + "');");
+        sql.query("SELECT * FROM Money WHERE user_id='" + userId + "';");
+        if (sql.next()) {
+          sql.execute("UPDATE Money SET coins='" + coins + "' WHERE user_id='" + userId + "';");
+        } else {  
+          sql.execute("INSERT INTO Money VALUES ('" + userId + "', '" + coins + "');");
+        }
         println("Coins Saved!");
         sql.close();
       }

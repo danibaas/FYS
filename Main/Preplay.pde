@@ -21,7 +21,10 @@ void initScreen() {
 
 void drawScreen() {
   for (Updater objects : updateList) {
-    if (!(objects instanceof CharacterAttack) && !(objects instanceof Money)) { 
+    if (!(objects instanceof CharacterAttack)) {
+      if (objects instanceof Money) {
+            
+      }
       objects.drawObject();
       shop.drawIcon();
     }
