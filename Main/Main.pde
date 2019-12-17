@@ -85,6 +85,7 @@ void draw() {
       gameOver.drawObject();
       gameOver.pressedKey();
       gameOver.releasedKey();
+      reset.drawObject();
       //printAchievement(1);
     } else {
       for (Updater r : updateList) {

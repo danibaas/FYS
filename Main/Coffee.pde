@@ -13,7 +13,6 @@ class Coffee extends Collider implements Updater {
     if (spawned) {
       image(coffee, position.x, position.y);
     }
-    println(position.x);
   }
 
   void updateObject() {

@@ -77,7 +77,6 @@ class GameOver {
   }
 
   void drawObject() {
-    //reset.drawObject();
     if (gameOver) {
       soundTrack.stop();
     }
@@ -107,11 +106,9 @@ class GameOver {
         if (keyCode == LEFT) {
           retryBox=true;
           highscoreBox = false;
-          println("yeah");
         } else if (keyCode == RIGHT) {
           retryBox = false;
           highscoreBox = true;
-          println("w");
         }
       }
     }

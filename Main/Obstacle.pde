@@ -12,6 +12,7 @@ class Obstacle extends Collider {
 
   void updateObject() {
     if (gameOver.gameOver) {
+      //timer = millis();
       //position.x = beginPosition;
       //println("active");
     }
