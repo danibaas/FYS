@@ -19,6 +19,15 @@ class Obstacle extends Collider {
     if (collidesWithPlayer(player)) {
       player.healthbar.isDead = true;
     } else {
+      for (Coin coins : money.allCoins) {
+        if (collides(coins)) {
+          if (coins.position.x + coins.boxWidth > position.x + boxWidth) {
+            position.x -= 10;
+          } else {
+            position.x += 10;
+          }
+        }
+      }
       if (!boss.spawnBoss) {
         loopObstacle();
         if (canWalk()) {
