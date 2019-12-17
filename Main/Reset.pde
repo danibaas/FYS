@@ -3,6 +3,7 @@ class Reset {
   
   void drawObject() {
     if (restart) {
+      updateList.clear();
       highScore.highScore = 0;
       player.healthbar.isDead = false;
       characterSelect.hasChosen = false;
