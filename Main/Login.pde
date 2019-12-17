@@ -33,8 +33,18 @@ class Login {
         println("no username detected");
       } else {
         if (sql.connect()) {
-          sql.execute("INSERT INTO Account VALUES (default, '" + playerName + "', '" + playerPassword + "')");
-          loggedIn = true;
+          sql.query("SELECT * FROM Account WHERE username='" + playerName + "';");
+          if (sql.next()) {
+            String password = sql.getString("password");
+            if (password.equals(playerPassword)) {
+              loggedIn = true;
+            } else {
+              println("Incorrect Password!");
+            }
+          } else {
+            sql.execute("INSERT INTO Account VALUES (default, '" + playerName + "', '" + playerPassword + "')");
+            loggedIn = true;
+          }
           println(playerName);
           sql.close();
         }
