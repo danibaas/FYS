@@ -35,6 +35,7 @@ class HighScore {
   void saveHighScore(String name, float score) {
     if (sql.connect()) {
       sql.execute("INSERT INTO highscores VALUES (" + name + ", " + score + ")");
+      sql.close();
     }
   }
 
@@ -45,6 +46,7 @@ class HighScore {
       if (sql.next()) {
         score = sql.getFloat("score");
       }
+      sql.close();
     }
     return score;
   }
@@ -56,6 +58,7 @@ class HighScore {
       if (sql.next()) {
         name = sql.getString("name");
       }
+      sql.close();
     }
     return name;
   }

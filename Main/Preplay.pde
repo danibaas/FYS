@@ -15,11 +15,13 @@ void initScreen() {
   characterAttack = new CharacterAttack();
   coffeePickup = new Coffee(COFFEE_VECTOR, COFFEE_WIDTH, COFFEE_HEIGHT);
   boss = new Boss(BOSS_VECTOR, BOSS_WIDTH, BOSS_HEIGHT);
+  money = new Money();
+  money.loadCoins();
 }
 
 void drawScreen() {
   for (Updater objects : updateList) {
-    if (!(objects instanceof CharacterAttack)) { 
+    if (!(objects instanceof CharacterAttack) && !(objects instanceof Money)) { 
       objects.drawObject();
       shop.drawIcon();
     }

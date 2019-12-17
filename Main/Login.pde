@@ -32,11 +32,11 @@ class Login {
       if (playerName == "" || playerName == " ") {
         println("no username detected");
       } else {
-        if (sql.connect()) 
-        {
+        if (sql.connect()) {
           sql.execute("INSERT INTO Account VALUES (default, '" + playerName + "', '" + playerPassword + "')");
           loggedIn = true;
           println(playerName);
+          sql.close();
         }
       }
     } else if (keyPressed&&key!=CODED) { 

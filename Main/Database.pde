@@ -19,5 +19,6 @@ void initializeDatabase() {
     sql.execute("CREATE TABLE IF NOT EXISTS Achievement (achievementid int AUTO_INCREMENT, name varchar(300), PRIMARY KEY (achievementid));");
     sql.execute("CREATE TABLE IF NOT EXISTS Achieved (user_id int, achievementid int, PRIMARY KEY (user_id, achievementid), FOREIGN KEY (user_id) REFERENCES Account(user_id), "
       + "FOREIGN KEY (achievementid) REFERENCES Achievement(achievementid));");
+    sql.close();
   }
 }

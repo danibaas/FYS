@@ -1,6 +1,6 @@
 // IMAGES
 PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, enemyWeapon, 
-  health, stroopwafel, obstacle, ceilingObstacle, soundOn, skinBoss, shopIcon, speed_upgrade;
+  health, stroopwafel, obstacle, ceilingObstacle, soundOn, skinBoss, shopIcon, speed_upgrade, coin;
 
 //SOUNDS
 SoundFile soundTrack;
@@ -58,6 +58,10 @@ void loadAssets() {
   shopIcon.resize(ICON_SIZE, ICON_SIZE);
   speed_upgrade = loadImage(sketchPath() + "/assets/images/speed_upgrade.png");
   speed_upgrade.resize(SPEED_SIZE, SPEED_SIZE);
+
+  // COIN
+  coin = loadImage(sketchPath() + "/assets/images/gem.jpg");
+  coin.resize(COIN_SIZE, COIN_SIZE);
 
   // FONTS
   eightBit = createFont(sketchPath() + "/assets/fonts/PressStart2P.ttf", 30);

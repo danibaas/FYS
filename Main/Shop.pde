@@ -1,6 +1,6 @@
 class Shop {
   PVector icon = new PVector(1100, 10);
-  boolean selected, showShop;
+  boolean showShop;
 
   void drawShop() { // Draw the actual shop with upgrades in it
     if (showShop) {
@@ -14,13 +14,9 @@ class Shop {
   }
 
   void drawIcon() { // Draw Icon that opens the shop
-    if (selected) {
-      image(shopIcon, icon.x, icon.y);
-    } else {
-      tint(200, 200);
-      image(shopIcon, icon.x, icon.y);
-      noTint();
-    }
+    tint(200, 200);
+    image(shopIcon, icon.x, icon.y);
+    noTint();
   }
 
   void pressedKey() {

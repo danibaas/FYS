@@ -1,5 +1,5 @@
 class GameOver {
-  boolean gameOver,loadScores, retryBox, goToMenu, clickedLastFrame, highscoreBox = true;
+  boolean gameOver, loadScores, retryBox, goToMenu, clickedLastFrame, highscoreBox = true;
   int yPos = 40, yPosResults = 90;
   float scoresTopOffset = 100;
   float row1= 425;
@@ -9,7 +9,7 @@ class GameOver {
   void fontLoad() {
     textFont(eightBit);
   }
-  
+
   //Highscore tabel
   void loadHighscores() {
     if (loadScores) {
@@ -24,8 +24,7 @@ class GameOver {
       textSize(18);
       for (int i = 0; i < 10; i++) {
         sql.query("SELECT Account.username, Highscore.score FROM Highscore INNER JOIN Account ON Highscore.user_id = Account.user_id ORDER BY score DESC LIMIT 1 OFFSET "+i);
-        while (sql.next())
-        {
+        while (sql.next()) {
           String s = sql.getString("username");
           int n = sql.getInt("score");
           int ranking = 1+i;
@@ -33,14 +32,16 @@ class GameOver {
           text(s, row2, yPosResults+i*40+scoresTopOffset);
           text(n, row3, yPosResults+i*40+scoresTopOffset);
         }
+        sql.close();
       }
       fill(0);
       text("Press ENTER for menu", width/2, 500);
-    } 
+    }
   }
 
   void drawGameOver() {
     gameOver = true;
+    money.saveCoins();
     if (!loadScores) {
       fill(0);
       rectMode(CENTER);

@@ -20,6 +20,7 @@ Coffee coffeePickup;
 Boss boss;
 Login login;
 Shop shop;
+Money money;
 
 //collision & update loop lists
 ArrayList<Updater> updateList;
@@ -58,6 +59,8 @@ final int BOSS_HEIGHT = 200;
 // SHOP CONSTANTS
 final int ICON_SIZE = 100;
 final int SPEED_SIZE = 100;
+// COIN CONSTANT;
+final int COIN_SIZE = 50;
 
 void setup() {
   // ratio 16:9
