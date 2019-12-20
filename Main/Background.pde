@@ -1,6 +1,5 @@
 class Background implements Updater {  //<>//
   float backgroundX = 0, backgroundPaneX = 1280, backgroundPaneY = 0, backgroundPane2X = 1920, backgroundPane2Y = 0, backgroundPane3X = 2560, backgroundPane3Y = 0;
-  float groundHeight = height - 24;
   float speed = characterSelect.getSpeed();
   // CONSTANTS
   final int PANEL_WIDTH = 640;
@@ -9,19 +8,10 @@ class Background implements Updater {  //<>//
   final int RESPAWN_X = 1280;
   final int GROUND_X = -50;
   final int GROUND_WIDTH = width + 50;
+  final float GROUND_HEIGHT = height - 24;
 
   Background() {
     updateList.add(this);
-  }
-  
-  void resetBackgrounds(){
-   backgroundX = 0;
-   backgroundPaneX = 1280;
-   backgroundPaneY = 0;
-   backgroundPane2X = 1920; 
-   backgroundPane2Y = 0;
-   backgroundPane3X = 2560;
-   backgroundPane3Y = 0; 
   }
 
   void drawObject() {
@@ -41,7 +31,7 @@ class Background implements Updater {  //<>//
 
     //ground
     fill(100, 0, 0);
-    rect(GROUND_X, groundHeight, GROUND_WIDTH, groundHeight);
+    rect(GROUND_X, GROUND_HEIGHT, GROUND_WIDTH, GROUND_HEIGHT);
   }
 
   void updateObject() {
@@ -77,11 +67,5 @@ class Background implements Updater {  //<>//
         keys[2] = false;
       }
     }
-  }
-
-  void equalize() {
-    backgroundPaneX = ceil(backgroundPaneX/10)*10;
-    backgroundPane2X = ceil(backgroundPane2X/10)*10;
-    backgroundPane3X = ceil(backgroundPane3X/10)*10;
   }
 }

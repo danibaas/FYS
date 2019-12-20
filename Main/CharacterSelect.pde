@@ -1,6 +1,7 @@
 class CharacterSelect {
   boolean hasChosen, choseCorra = true, choseDonDon;
   float defaultSpeed = 5;
+  final int CONTROL_TITLE_POSITION_Y = 375, CONTROLS_POSITION_Y1 = 400, CONTROLS_POSITION_Y2 = 425, CONTROLS_POSITION_Y3 = 450, CONTROLS_POSITION_Y4 = 475, CONTROLS_POSITION_Y5 = 550, CONTROLS_POSITION_Y6 = 600;
 
   void drawSelect() {
     if (!login.loggedIn) {
@@ -19,15 +20,17 @@ class CharacterSelect {
         //uitleg
         textSize(25);
         textAlign(CENTER);
-        text("R = Attack", width/2, 400);
-        text("L = Special attack", width/2, 425);
-        text("B = Jump", width/2, 450);
-        text("Y = Crouch", width/2, 475);
-        text("Pick this up for a speedboost", width/2, 550);
-        image(coffee, width/2-50, 600);
+        text("Controls", width/2, CONTROL_TITLE_POSITION_Y);
+        text("R = Attack", width/2, CONTROLS_POSITION_Y1);
+        text("L = Special attack", width/2, CONTROLS_POSITION_Y2);
+        text("B = Jump", width/2, CONTROLS_POSITION_Y3);
+        text("Y = Crouch", width/2, CONTROLS_POSITION_Y4);
+        text("Pick this up for a speedboost", width/2, CONTROLS_POSITION_Y5);
+        image(coffee, width/2-50, CONTROLS_POSITION_Y6);
         coffee.resize(100, 100);
 
-        //not selected
+        // when not selected
+        //corra
         textSize(20);
         textAlign(CENTER);
         skinCorra.resize(100, 100);
@@ -36,18 +39,17 @@ class CharacterSelect {
         rect(400, 200, 200, 100);
         fill(0);
         text("Corra", 500, 250);
-        text("Normal speed : 5", 500, 325);
-        text("Boosted speed : 10", 500, 350);
-
-        //when not selected
+        text("Normal speed : 8", 500, 325);
+        text("Boosted speed : 16", 500, 350);
+        //dondon
         skinDonDon.resize(100, 100);
         image(skinDonDon, 730, 100);
         fill(127, 0, 0);
         rect(680, 200, 200, 100);
         fill(0);
         text("Dondon", 780, 250);
-        text("Normal speed : 3", 780, 325);
-        text("Boosted speed : 5", 780, 350);
+        text("Normal speed : 5", 780, 325);
+        text("Boosted speed : 10", 780, 350);
 
         if (choseCorra) {
           fill(255, 0, 0);

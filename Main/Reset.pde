@@ -8,8 +8,10 @@ class Reset {
       player.healthbar.isDead = false;
       characterSelect.hasChosen = false;
       characterSelect.drawSelect();
-      background.resetBackgrounds();
       groundObstacle.position.x = 1300;
+      wireObstacle.position.x = -300;
+      player.playerVector.y = 646;
+      boss.position.x = -500;
       gameOver.gameOver = false;
       restart = false;
     }

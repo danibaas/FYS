@@ -141,7 +141,7 @@ class Player extends Collider implements Updater {
   }
 
   void move() {
-    int trueHeight = height - (int) background.groundHeight;
+    int trueHeight = height - (int) background.GROUND_HEIGHT;
     int groundHeight = trueHeight + playerHeight / 2;
     if (playerVector.y < height - groundHeight) {
       airBorne = true;
