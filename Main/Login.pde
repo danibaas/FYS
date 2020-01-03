@@ -48,6 +48,7 @@ class Login {
           println(playerName);
           sql.close();
         }
+        getUserId();
       }
     } else if (keyPressed&&key!=CODED) { 
       playerName+=key; 

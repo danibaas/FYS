@@ -76,7 +76,8 @@ void setup() {
   login = new Login();
   shop = new Shop();
   reset = new Reset();
-  //initializeAchievements();
+  initializeAchievements();
+  thread("endAchievements");
 } 
 
 // the game loop
@@ -87,7 +88,6 @@ void draw() {
       gameOver.pressedKey();
       gameOver.releasedKey();
       reset.drawObject();
-      //printAchievement(1);
     } else {
       for (Updater r : updateList) {
         if (!(r instanceof CeilingObstacle)) {
@@ -101,6 +101,8 @@ void draw() {
         }
       }
       highScore.displayScore();
+      scoreAchievements();
+      thread("endAchievements");
     }
   } else {
     if (!characterSelect.hasChosen) {
