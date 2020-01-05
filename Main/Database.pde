@@ -12,7 +12,6 @@ void initializeDatabase() {
     sql.execute("CREATE TABLE IF NOT EXISTS Account (user_id int AUTO_INCREMENT, username varchar(150), password varchar(150), PRIMARY KEY(user_id));");
     sql.execute("CREATE TABLE IF NOT EXISTS Money (user_id int, coins int, PRIMARY KEY (user_id), FOREIGN KEY (user_id) REFERENCES Account(user_id));");
     sql.execute("CREATE TABLE IF NOT EXISTS Highscore (user_id int, score float, PRIMARY KEY (user_id), FOREIGN KEY (user_id) REFERENCES Account(user_id));");
-    sql.execute("CREATE TABLE IF NOT EXISTS Friend (user_id int, userid int, PRIMARY KEY (user_id, userid));");
     sql.execute("CREATE TABLE IF NOT EXISTS Item (itemid int AUTO_INCREMENT, name varchar(200), value int, PRIMARY KEY (itemid));");
     sql.execute("CREATE TABLE IF NOT EXISTS Shop (user_id int, itemid int, PRIMARY KEY (user_id, itemid), FOREIGN KEY (user_id) REFERENCES Account(user_id), "
       + "FOREIGN KEY (itemid) REFERENCES Item(itemid));");

@@ -97,9 +97,32 @@ class Money implements Updater {
   }
 }
 
-  ArrayList<String> getRichest() {
-     ArrayList<String>  
+ArrayList<String> getRichest() {
+  ArrayList<String> names = new ArrayList();
+  if (sql.connect()) {
+    sql.query("SELECT coins FROM Money INNER JOIN Account ON Money.user_id = Account.user_id ORDER BY coins ASC;");
+    for (int i = 0; i < 5; i++) {
+      if (sql.next()) {
+        names.add(sql.getString("username"));
+      } else {
+        break;
+      }
+    }
+    sql.close();
   }
+  return names;
+}
+
+void deletePerson(String userid) {
+  if (sql.connect()) {
+    sql.query("SELECT * FROM Money WHERE user_id='" + userid + "';");
+    if (sql.next()) {
+      sql.execute("DELETE FROM Money WHERE user_id='" + userid + "';");
+    }
+    println("Deleted " + userid + " from table Money");
+    sql.close();
+  }
+}
 
 class Coin extends Collider {
   PVector position;
