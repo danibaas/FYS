@@ -36,11 +36,11 @@ class HighScore {
   void saveHighScore(String name, float score) {
     if (sql.connect()) {
       sql.execute("SELECT user_id FROM Account WHERE username = '" + name + "'");
-      if(sql.next()){
-      user_id = sql.getInt("user_id");
-    }
+      if (sql.next()) {
+        user_id = sql.getInt("user_id");
+      }
       println(user_id + " , this is your userId");
-      if(user_id != 0){
+      if (user_id != 0) {
         sql.execute("INSERT INTO Highscore (user_id, score) VALUES ('"+ user_id + "', '" + score + "')");
       }
       //sql.execute("INSERT INTO highscores VALUES (" + name + ", " + score + ")");
@@ -51,7 +51,7 @@ class HighScore {
   float getScore(String name) {
     float score = 0;
     if (sql.connect()) {
-      sql.query("SELECT * FROM highscores WHERE name='" + name + "'");
+      sql.query("SELECT * FROM Highscore WHERE name='" + name + "'");
       if (sql.next()) {
         score = sql.getFloat("score");
       }
@@ -63,9 +63,14 @@ class HighScore {
   String getTopScore() {
     String name = "";
     if (sql.connect()) {
-      sql.query("SELECT MAX(score) FROM highscores"); 
+      sql.query("SELECT MAX(score) FROM Highscore");
+      int userId = 0;
       if (sql.next()) {
-        name = sql.getString("name");
+        userId = sql.getInt("user_id");
+      }
+      sql.query("SELECT username FROM Account WHERE user_id='" + userId + "';");
+      if (sql.next()) {
+         name = sql.getString("username"); 
       }
       sql.close();
     }
