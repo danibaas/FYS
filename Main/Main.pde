@@ -78,6 +78,7 @@ void setup() {
   highScore = new HighScore();
   login = new Login();
   shop = new Shop();
+  shop.insertItems();
   reset = new Reset();
   initializeAchievements();
   thread("endAchievements");
@@ -127,6 +128,10 @@ void draw() {
     }
   }
 }  
+
+void stop() {
+   sql.close(); 
+}
 
 void keyPressed() {
   if (!characterSelect.hasChosen) {

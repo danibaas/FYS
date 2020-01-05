@@ -107,10 +107,18 @@ class CharacterSelect {
 
   float getSpeed() {
     float speed = defaultSpeed;
+    int speedMultiplier = 1; // Speed multiplier wordt bepaald door het level van de speed upgrade
+    if (sql.connect()) {
+      sql.query("SELECT level FROM Item WHERE name='Speed';");
+      if (sql.next()) {
+         speedMultiplier = sql.getInt("level"); 
+      }
+      sql.close();
+    }
     if (choseCorra & hasChosen) {
-      speed = 8;
+      speed = 8 * speedMultiplier;
     } else if (choseDonDon && hasChosen) {
-      speed = 6;
+      speed = 6 * speedMultiplier;
     }
     return speed;
   }

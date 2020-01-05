@@ -24,11 +24,7 @@ class Coffee extends Collider implements Updater {
         currentTime = millis();
         speedBoostActive = true;
         previousSpeed = (int) background.speed;
-        if (characterSelect.choseDonDon) {
-          background.speed = 8;
-        } else {
-          background.speed = characterSelect.getSpeed() * 2;
-        }
+        background.speed = floor(characterSelect.getSpeed() * 1.5);
         spawned = false;
       }
     }

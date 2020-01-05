@@ -1,5 +1,5 @@
 class GameOver {
-  boolean gameOver, loadScores, retryBox, goToMenu, clickedLastFrame, highscoreBox = true;
+  boolean gameOver, loadScores, retryBox, goToMenu, clickedLastFrame, highscoreBox = true, savedCoins;
   int yPos = 40, yPosResults = 90;
   float scoresTopOffset = 100;
   float row1= 425;
@@ -41,7 +41,10 @@ class GameOver {
 
   void drawGameOver() {
     gameOver = true;
-    money.saveCoins();
+    if (!savedCoins) {
+      money.saveCoins();
+      savedCoins = true;
+    }
     if (!loadScores) {
       fill(0);
       rectMode(CENTER);

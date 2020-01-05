@@ -18,6 +18,8 @@ void initializeDatabase() {
     sql.execute("CREATE TABLE IF NOT EXISTS Achievement (achievementid int AUTO_INCREMENT, name varchar(300), PRIMARY KEY (achievementid));");
     sql.execute("CREATE TABLE IF NOT EXISTS Achieved (user_id int, achievementid int, PRIMARY KEY (user_id, achievementid), FOREIGN KEY (user_id) REFERENCES Account(user_id), "
       + "FOREIGN KEY (achievementid) REFERENCES Achievement(achievementid));");
+    sql.execute("CREATE TABLE IF NOT EXISTS Gamerun(userId int, startTime int, enemiesKilled int, bossesKilled int, score int, PRIMARY KEY(userId, startTime), FOREIGN KEY(userId) REFERENCES Account(user_id));");
+    sql.execute("CREATE TABLE IF NOT EXISTS Statistic(userId int, totalRuns int, totalEnemiesKilled int, totalBossesKilled int, highScore int, PRIMARY KEY(userId), FOREIGN KEY(userId) REFERENCES Account(user_id));");
     sql.close();
   }
 }
