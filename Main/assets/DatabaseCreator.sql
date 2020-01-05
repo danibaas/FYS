@@ -49,3 +49,23 @@ CREATE TABLE Shop (
 	FOREIGN KEY(user_id) REFERENCES Account(user_id),
 	FOREIGN KEY(itemid) REFERENCES Item(itemid)
 	);
+	
+CREATE TABLE Gamerun (
+	userId int, 
+	startTime int, 
+	enemiesKilled int, 
+	bossesKilled int, 
+	score int, 
+	PRIMARY KEY(userId, startTime), 
+	FOREIGN KEY(userId) REFERENCES Account(user_id)
+	);
+	
+CREATE TABLE Statistic (
+	userId int, 
+	totalRuns int, 
+	totalEnemiesKilled int, 
+	totalBossesKilled int, 
+	highScore int, 
+	PRIMARY KEY(userId), 
+	FOREIGN KEY(userId) REFERENCES Account(user_id)
+	);
