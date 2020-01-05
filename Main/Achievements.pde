@@ -1,9 +1,10 @@
 int positionAchievement = 600;
 int startSeconds = 0;
 float user_id;
+boolean done = false;
 boolean achievementDone[] = {false, false, false, false, false, false};
 boolean achievementInDatabase[] = {false, false, false, false, false, false};
-String achievementName[] = {"a", "b", "x", "d", "e", "f"};
+String achievementName[] = {"", "", "", "", "", "", "", "", "", "", ""};
 
 void initializeAchievements() {
   float achievementCounter = 0;
@@ -19,11 +20,15 @@ void initializeAchievements() {
         sql.execute("INSERT INTO Achievement VALUES (4, 'Get 400')");
         sql.execute("INSERT INTO Achievement VALUES (5, 'Get 800')");
         sql.execute("INSERT INTO Achievement VALUES (6, 'Get 1000')");
+      } else if (achievementCounter > 6) {
+        sql.execute("DELETE FROM Achieved");
+        sql.execute("DELETE FROM Achievement");
+        initializeAchievements();
       }
-      for (int i = 0; i < achievementCounter; i++) {
+      for (int i = 1; i < achievementCounter + 1; i++) {
         sql.execute("SELECT * FROM Achievement WHERE achievementid = '"+i+"'");
         if (sql.next()) {
-          achievementName[i] = sql.getString("name");
+          achievementName[i - 1] = sql.getString("name");
         }
       }
     }
@@ -45,6 +50,9 @@ void getUserId() {
 void setAchievement(int achievementNumber) {
   if (sql.connect()) {
     sql.execute("INSERT INTO Achieved VALUES ('"+user_id+"', ' "+achievementNumber+" ')");
+    if (done == true) {
+      sql.execute("UPDATE Achievement SET name = 'Congratulations on completing' WHERE achievementid = 6 AND name LIKE 'G%' ");
+    }
     sql.close();
   }
 }
@@ -141,5 +149,6 @@ public void endAchievements() {
   if (highScore.highScore > 1000 && achievementInDatabase[5] == false) {
     achievementInDatabase[5] = true;
     setAchievement(6);
+    done = true;
   }
 }
