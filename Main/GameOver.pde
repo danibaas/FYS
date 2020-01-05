@@ -22,15 +22,17 @@ class GameOver {
       text("Player", row2, yPos+scoresTopOffset);
       text("Highscore", row3, yPos+scoresTopOffset);
       textSize(18);
-      for (int i = 0; i < 10; i++) {
-        sql.query("SELECT Account.username, Highscore.score FROM Highscore INNER JOIN Account ON Highscore.user_id = Account.user_id ORDER BY score DESC LIMIT 1 OFFSET "+i);
-        while (sql.next()) {
-          String s = sql.getString("username");
-          int n = sql.getInt("score");
-          int ranking = 1+i;
-          text("#"+ranking, row1, yPosResults+i*40+scoresTopOffset);
-          text(s, row2, yPosResults+i*40+scoresTopOffset);
-          text(n, row3, yPosResults+i*40+scoresTopOffset);
+      if (sql.connect()) {
+        for (int i = 0; i < 10; i++) {
+          sql.query("SELECT Account.username, Highscore.score FROM Highscore INNER JOIN Account ON Highscore.user_id = Account.user_id ORDER BY score DESC LIMIT 1 OFFSET "+i);
+          while (sql.next()) {
+            String s = sql.getString("username");
+            int n = sql.getInt("score");
+            int ranking = 1+i;
+            text("#"+ranking, row1, yPosResults+i*40+scoresTopOffset);
+            text(s, row2, yPosResults+i*40+scoresTopOffset);
+            text(n, row3, yPosResults+i*40+scoresTopOffset);
+          }
         }
         sql.close();
       }

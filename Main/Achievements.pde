@@ -27,6 +27,7 @@ void initializeAchievements() {
         }
       }
     }
+    sql.close();
   }
 }
 
@@ -37,12 +38,14 @@ void getUserId() {
     if (sql.next()) {
       user_id = sql.getFloat("user_id");
     }
+    sql.close();
   }
 }
 
 void setAchievement(int achievementNumber) {
   if (sql.connect()) {
     sql.execute("INSERT INTO Achieved VALUES ('"+user_id+"', ' "+achievementNumber+" ')");
+    sql.close();
   }
 }
 

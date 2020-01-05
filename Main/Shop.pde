@@ -46,7 +46,12 @@ class Shop {
       fill(210);
       rect(210, 110, 780, 100);
       image(speed_upgrade, 210, 110);
-      text("Speed Upgrade", 300, 130);
+      if (canUpgrade()) {
+        fill(0, 255, 0);
+      } else {
+        fill(255, 0, 0);
+      }
+      text("Speed Upgrade", 500, 150);
     }
   }
 

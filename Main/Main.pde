@@ -79,8 +79,8 @@ void setup() {
   highScore = new HighScore();
   login = new Login();
   shop = new Shop();
-  metrics = new Metrics();
   shop.insertItems();
+  metrics = new Metrics();
   reset = new Reset();
   initializeAchievements();
   thread("endAchievements");
