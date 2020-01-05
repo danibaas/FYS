@@ -1,6 +1,6 @@
 class Healthbar {
   int maxLives, currentLives;
-  boolean isDead;
+  boolean isDead, savedScore;
 
   Healthbar(int currentLives) {
     this.currentLives = currentLives;
@@ -9,7 +9,10 @@ class Healthbar {
   void updatePlayerHealth() {
     if (isDead) {
       gameOver.drawObject();
-      highScore.saveHighScore(login.playerName, highScore.highScore);
+      if (!savedScore) {
+        highScore.saveHighScore(login.playerName, highScore.highScore);
+        savedScore = true;
+      }
     }
   }
 

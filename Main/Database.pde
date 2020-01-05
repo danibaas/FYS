@@ -7,7 +7,7 @@ void initializeDatabase() {
   String databaseSchema = "zbaasdr";
   String username = "baasdr";
   String password = "l#aEkJ7cojymzj";
-  sql = new MySQL(instance,"oege.ie.hva.nl", "zverheut", "verheut", "uaFBlsyR0Xe1Nx");
+  sql = new MySQL(instance, databaseName, databaseSchema, username, password);
   if (sql.connect()) {
     sql.execute("CREATE TABLE IF NOT EXISTS Account (user_id int AUTO_INCREMENT, username varchar(150), password varchar(150), PRIMARY KEY(user_id));");
     sql.execute("CREATE TABLE IF NOT EXISTS Money (user_id int, coins int, PRIMARY KEY (user_id), FOREIGN KEY (user_id) REFERENCES Account(user_id));");

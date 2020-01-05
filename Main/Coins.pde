@@ -2,7 +2,6 @@ class Money implements Updater {
   int coins;
   final int TOP_ROW = 1, SEMI_MID_ROW = 3, MID_ROW = 5, WAIT_TIME = 1000;
   ArrayList<Coin> allCoins = new ArrayList();
-  HashMap<Integer, Boolean> saved = new HashMap();
 
   Money() {
     updateList.add(this);
@@ -51,9 +50,6 @@ class Money implements Updater {
         coin.draw = true;
       }
     }
-    if (!saved.containsKey(coins)) {
-      saved.put(coins, false);
-    }
   }
 
   void pressedKey() {
@@ -63,24 +59,22 @@ class Money implements Updater {
   }
 
   void saveCoins() {
-    if (!saved.containsKey(coins) || !saved.get(coins)) {
-      String name = login.playerName;
-      int userId = 0;
-      if (sql.connect()) {
-        sql.query("SELECT * FROM Account WHERE username='" + name + "';"); 
-        if (sql.next()) {
-          userId = sql.getInt("user_id");
-        }
-        sql.query("SELECT * FROM Money WHERE user_id='" + userId + "';");
-        if (sql.next()) {
-          sql.execute("UPDATE Money SET coins='" + coins + "' WHERE user_id='" + userId + "';");
-        } else {  
-          sql.execute("INSERT INTO Money VALUES ('" + userId + "', '" + coins + "');");
-        }
-        println("Coins Saved!");
-        sql.close();
+    String name = login.playerName;
+    int userId = 0;
+    if (sql.connect()) {
+      sql.query("SELECT * FROM Account WHERE username='" + name + "';"); 
+      if (sql.next()) {
+        userId = sql.getInt("user_id");
       }
-      saved.put(coins, true);
+      sql.query("SELECT * FROM Money WHERE user_id='" + userId + "';");
+      if (sql.next()) {
+        int savedCoins = sql.getInt("coins");
+        sql.execute("UPDATE Money SET coins='" + savedCoins + " + " + coins + "' WHERE user_id='" + userId + "';");
+      } else {  
+        sql.execute("INSERT INTO Money VALUES ('" + userId + "', '" + coins + "');");
+      }
+      println("Coins Saved!");
+      sql.close();
     }
   }
 
@@ -102,6 +96,10 @@ class Money implements Updater {
     return coinAmount;
   }
 }
+
+  ArrayList<String> getRichest() {
+     ArrayList<String>  
+  }
 
 class Coin extends Collider {
   PVector position;
