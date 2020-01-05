@@ -25,7 +25,6 @@ void initializeAchievements() {
         if (sql.next()) {
           achievementName[i-1] = sql.getString("name");
         }
-        println(achievementName[i-1]);
       }
     }
   }

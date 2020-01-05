@@ -25,6 +25,8 @@ ArrayList<Updater> updateList;
 ArrayList<Obstacle> obstacleList;
 ArrayList<Collider> collisionList;
 
+ArrayList<particle> particles;
+
 //movmement help
 boolean[] keys = new boolean[4];
 // 0 = up, 1 = left, 2 = right, 3 is down
@@ -67,6 +69,7 @@ void setup() {
   updateList = new ArrayList();
   obstacleList = new ArrayList();
   collisionList = new ArrayList();
+  particles = new ArrayList();
   size(1280, 720);
   instance = this;
   initializeDatabase();
@@ -100,6 +103,16 @@ void draw() {
           }
         }
       }
+
+    for (int i = particles.size()-1; i >= 0; i--) { 
+      particle particle = particles.get(i);
+      particle.move();
+      particle.drawParticle();
+      if (particle.particleLife <= 0) {
+        particles.remove(i);
+      }
+    }
+    addParticle();
       highScore.displayScore();
       scoreAchievements();
       thread("endAchievements");
