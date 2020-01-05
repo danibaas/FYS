@@ -20,10 +20,10 @@ void initializeAchievements() {
         sql.execute("INSERT INTO Achievement VALUES (5, 'Get 800')");
         sql.execute("INSERT INTO Achievement VALUES (6, 'Get 1000')");
       }
-      for (int i = 1; i < achievementCounter+1; i++) {
+      for (int i = 0; i < achievementCounter; i++) {
         sql.execute("SELECT * FROM Achievement WHERE achievementid = '"+i+"'");
         if (sql.next()) {
-          achievementName[i-1] = sql.getString("name");
+          achievementName[i] = sql.getString("name");
         }
       }
     }
