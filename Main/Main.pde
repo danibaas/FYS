@@ -19,6 +19,7 @@ Boss boss;
 Login login;
 Shop shop;
 Money money;
+Metrics metrics;
 
 //collision & update loop lists
 ArrayList<Updater> updateList;
@@ -78,6 +79,7 @@ void setup() {
   highScore = new HighScore();
   login = new Login();
   shop = new Shop();
+  metrics = new Metrics();
   shop.insertItems();
   reset = new Reset();
   initializeAchievements();
@@ -125,6 +127,7 @@ void draw() {
     } else {
       drawScreen();
       shop.drawShop();
+      metrics.drawStatistics();
     }
   }
 }  
@@ -144,6 +147,7 @@ void keyPressed() {
       r.pressedKey();
     }
     shop.pressedKey();
+    metrics.pressedKey();
   }
 }
 
