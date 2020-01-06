@@ -139,7 +139,7 @@ void keyPressed() {
   if (!characterSelect.hasChosen) {
     characterSelect.pressed();
   } else {
-    if (key != 'c' && key != 'C' && key != 'v' && key != 'o' && key != 'O' && key != 'p' && key != 'a' && key != 'A' && key != 'b' && screenActive) {
+    if (key != 'c' && key != 'C' && key != 'v' && key != 'o' && key != 'O' && key != 'p' && key != 'a' && key != 'A' && key != 'b' && key!= 'B' && screenActive) {
       screenActive = false;
       metrics.startTime = millis();
     }  

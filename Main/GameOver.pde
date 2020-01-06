@@ -98,13 +98,11 @@ class GameOver {
       if (highscoreBox && key == ENTER) {
         loadScores = true;
       } else if (retryBox && key == ENTER) {
-        //frameCount = -1;
         initScreen();
         reset.restart = true;
         soundTrack.loop();
       }
       if (goToMenu && key == ENTER) {
-        //frameCount = -1;
         initScreen();
         reset.restart = true;
         soundTrack.loop();

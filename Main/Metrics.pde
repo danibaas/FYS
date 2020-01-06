@@ -14,8 +14,9 @@ class Metrics {
   void drawStatistics() { // Draw the actual statistics 
     if (showStatistics) { 
       fill(137);
-      strokeWeight(5);
-      rect(width/2-width/8, 200, width/4, 350);
+      strokeWeight(3);
+      stroke(3);
+      rect(width/4, 200, width/2, 400);
       strokeWeight(3);
       textSize(50);
       textAlign(CENTER);
@@ -28,10 +29,11 @@ class Metrics {
       text("Total bosses killed: " + getTotalBossesKilled(name), width/2, 425);
       text("Highscore: " + getHighScore(name), width/2, 475);
       text("Press A to view runs", width/2, 525);
+      text("Press B to go back", width/2, 575);
     } 
     if (showRuns) {
       fill(127);
-      rect(275, 175, 700, 400);
+      rect(275, 175, 700, 475);
       textAlign(LEFT);
       fill(0);
       if (sql.connect()) {
@@ -56,12 +58,8 @@ class Metrics {
         }
         sql.close();
       }
-      //text("Run: "+2, 300, heightRow2);
-      //text("Enemies killed: "+2, 400, heightRow2);
-      //text("Bosses killed: "+1, 620, heightRow2);
-      //text("Score: "+2000, 820, heightRow2);
       textAlign(CENTER);
-      text("Press B for menu", width/2, height/4*3);
+      text("Press B to go back", width/2, 625);
     }
   }
 
@@ -156,7 +154,7 @@ class Metrics {
         sql.execute("UPDATE Statistic SET totalRuns='" + totalRuns + "' WHERE userId='" + userId + "';");
         sql.execute("UPDATE Statistic SET totalEnemiesKilled='" + totalEnemies + "' WHERE userId='" + userId + "';");
         sql.execute("UPDATE Statistic SET totalBossesKilled='" + totalBosses + "' WHERE userId='" + userId + "';");
-        if (previousHighScore < score) {
+        if (previousHighScore > score) {
           sql.execute("UPDATE Statistic SET highscore='" + score + "' WHERE userId = '" + userId + "';");
         }
       } else {
@@ -167,13 +165,20 @@ class Metrics {
   }
 
   void pressedKey() {
-    if (key == 'a' || key == 'A') { 
+    //Press o or O to see player overview
+    if (keyPressed && key == 'o' || key == 'O') { 
+      showStatistics = true;
+    }
+    //Press a or A to see the latest 8 runs of player
+    if (keyPressed && key == 'a' || key == 'A') { 
       showRuns = true;
     }
-    if (key == 'o' || key == 'O') { 
-      showStatistics = true;
-    } else if (key == 'p') { 
-      showStatistics = false;
+    if (keyPressed && key == 'b' || key == 'B') { 
+      if (showRuns) {
+        showRuns = false;
+      } else if (!showRuns) {
+        showStatistics = false;
+      }
     }
   }
 }
