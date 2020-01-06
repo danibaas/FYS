@@ -51,7 +51,8 @@ void setAchievement(int achievementNumber) {
   if (sql.connect()) {
     sql.execute("INSERT INTO Achieved VALUES ('"+user_id+"', ' "+achievementNumber+" ')");
     if (done == true) {
-      sql.execute("UPDATE Achievement SET name = 'Congratulations on completing' WHERE achievementid = 6 AND name LIKE 'G*' ");
+      String sqlQuery = ("UPDATE Achievement SET name = 'Congratulations on completing' WHERE achievementid = 6 AND name LIKE 'G%%' ");
+      sql.execute(sqlQuery);
     }
     sql.close();
   }
