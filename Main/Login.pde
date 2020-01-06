@@ -38,12 +38,14 @@ class Login {
             String password = sql.getString("password");
             if (password.equals(playerPassword)) {
               loggedIn = true;
+              shop.insertItems();
             } else {
               println("Incorrect Password!");
             }
           } else {
             sql.execute("INSERT INTO Account VALUES (default, '" + playerName + "', '" + playerPassword + "')");
             loggedIn = true;
+            shop.insertItems();
           }
           println(playerName);
           sql.close();

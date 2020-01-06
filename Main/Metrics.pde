@@ -79,7 +79,7 @@ class Metrics {
     int total = 0;
     int userid = getUserId(name);
     if (sql.connect()) {
-      sql.query("SELECT * FROM Statistic WHERE user_id='" + userid + "';");
+      sql.query("SELECT * FROM Statistic WHERE userId='" + userid + "';");
       if (sql.next()) {
         total = sql.getInt("totalRuns");
       }
@@ -92,7 +92,7 @@ class Metrics {
     int total = 0;
     int userid = getUserId(name);
     if (sql.connect()) {
-      sql.query("SELECT * FROM Statistic WHERE user_id='" + userid + "';");
+      sql.query("SELECT * FROM Statistic WHERE userId='" + userid + "';");
       if (sql.next()) {
         total = sql.getInt("totalEnemiesKilled");
       }
@@ -105,7 +105,7 @@ class Metrics {
     int total = 0;
     int userid = getUserId(name);
     if (sql.connect()) {
-      sql.query("SELECT * FROM Statistic WHERE user_id='" + userid + "';");
+      sql.query("SELECT * FROM Statistic WHERE userId='" + userid + "';");
       if (sql.next()) {
         total = sql.getInt("totalBossesKilled");
       }
@@ -129,12 +129,12 @@ class Metrics {
 
   void save(int userId, int startTime, int enemiesKilled, int bossesKilled, int score) {
     if (sql.connect()) {
-      sql.execute("INSERT INTO Gamerun VALUES ('" + userId + ", '" + startTime + "', '" + enemiesKilled + "', '" + bossesKilled + "', '" + score + "');");
-      sql.execute("UPDATE Statistic SET totalRuns='" + getTotalRuns(login.playerName) + 1 + "' WHERE user_id='" + userId + "';");
-      sql.execute("UPDATE Statistic SET totalEnemiesKilled='" + getTotalEnemiesKilled(login.playerName) + enemiesKilled + "' WHERE user_id='" + userId + "';");
-      sql.execute("UPDATE Statistic SET totalBossesKilled='" + getTotalBossesKilled(login.playerName) + bossesKilled + "' WHERE user_id='" + userId + "';");
+      sql.execute("INSERT INTO Gamerun VALUES ('" + userId + "', '" + startTime + "', '" + enemiesKilled + "', '" + bossesKilled + "', '" + score + "');");
+      sql.execute("UPDATE Statistic SET totalRuns='" + getTotalRuns(login.playerName) + 1 + "' WHERE userId='" + userId + "';");
+      sql.execute("UPDATE Statistic SET totalEnemiesKilled='" + getTotalEnemiesKilled(login.playerName) + enemiesKilled + "' WHERE userId='" + userId + "';");
+      sql.execute("UPDATE Statistic SET totalBossesKilled='" + getTotalBossesKilled(login.playerName) + bossesKilled + "' WHERE userId='" + userId + "';");
       if (getHighScore(login.playerName) > score) {
-       sql.execute("UPDATE Statistic SET highscore='" + score + "';"); 
+       sql.execute("UPDATE Statistic SET highscore='" + score + "' WHERE userId = '" + userId + "';"); 
       }
       sql.close();
     }

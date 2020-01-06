@@ -69,7 +69,8 @@ class Money implements Updater {
       sql.query("SELECT * FROM Money WHERE user_id='" + userId + "';");
       if (sql.next()) {
         int savedCoins = sql.getInt("coins");
-        sql.execute("UPDATE Money SET coins='" + savedCoins + " + " + coins + "' WHERE user_id='" + userId + "';");
+        int totalCoins = savedCoins + coins;
+        sql.execute("UPDATE Money SET coins='" + totalCoins + "' WHERE user_id='" + userId + "';");
       } else {  
         sql.execute("INSERT INTO Money VALUES ('" + userId + "', '" + coins + "');");
       }

@@ -6,7 +6,7 @@ class Shop {
     if (sql.connect()) {
       sql.query("SELECT * FROM Item;");
       if (!sql.next()) {
-        sql.execute("INSERT INTO Item VALUES (Speed, 500, 1);");
+        sql.execute("INSERT INTO Item (name, value, level) VALUES ('Speed', '500', '1');");
         int userid = 0;
         int itemid = 0;
         sql.query("SELECT user_id FROM Account WHERE username='" + login.playerName + "';");
@@ -90,6 +90,7 @@ class Shop {
             sql.execute("UPDATE Money SET coins='" + totalCoins + "';");
             sql.execute("INSERT INTO Shop VALUES ('" + user_id + "', '" + itemid + "');");
             // upgrade
+            sql.close();
           }
         }
       }
