@@ -1,5 +1,5 @@
 class GameOver {
-  boolean gameOver, loadScores, retryBox, goToMenu, clickedLastFrame, highscoreBox = true, savedCoins;
+  boolean gameOver, loadScores, retryBox, goToMenu, clickedLastFrame, highscoreBox = true, savedToDatabase;
   int yPos = 40, yPosResults = 90;
   float scoresTopOffset = 100;
   float row1= 425;
@@ -43,9 +43,10 @@ class GameOver {
 
   void drawGameOver() {
     gameOver = true;
-    if (!savedCoins) {
+    if (!savedToDatabase) {
       money.saveCoins();
-      savedCoins = true;
+      metrics.save(metrics.getUserId(login.playerName), metrics.startTime, metrics.enemiesKilled, metrics.bossesKilled, (int) highScore.highScore);
+      savedToDatabase = true;
     }
     if (!loadScores) {
       fill(0);

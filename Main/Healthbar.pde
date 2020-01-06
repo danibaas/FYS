@@ -11,7 +11,6 @@ class Healthbar {
       gameOver.drawObject();
       if (!savedToDatabase) {
         highScore.saveHighScore(login.playerName, highScore.highScore);
-        metrics.save(metrics.getUserId(login.playerName), metrics.startTime, metrics.enemiesKilled, metrics.bossesKilled, (int) highScore.highScore);
         savedToDatabase = true;
       }
     }

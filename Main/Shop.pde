@@ -70,14 +70,27 @@ class Shop {
       if (showShop) {
         if (canUpgrade()) {
           if (sql.connect()) {
-              // remove coins from table money
-              int itemValue = 0;
-              sql.query("SELECT value FROM Item WHERE name='Speed';");
-              if (sql.next()) {
-                 itemValue = sql.getInt("value"); 
-              }
-              // upgrade
-          }  
+            // remove coins from table money
+            int itemValue = 0;
+            sql.query("SELECT value FROM Item WHERE name='Speed';");
+            if (sql.next()) {
+              itemValue = sql.getInt("value");
+            }
+            sql.query("SELECT coins FROM Money WHERE user_id='" + metrics.getUserId(login.playerName) + "';");
+            int coins = 0;
+            if (sql.next()) {
+              coins = sql.getInt("coins");
+            }
+            int totalCoins = coins - itemValue;
+            int itemid = 0;
+            sql.query("SELECT itemid FROM Item WHERE name='Speed';");
+            if (sql.next()) {
+               itemid = sql.getInt("itemid"); 
+            }
+            sql.execute("UPDATE Money SET coins='" + totalCoins + "';");
+            sql.execute("INSERT INTO Shop VALUES ('" + user_id + "', '" + itemid + "');");
+            // upgrade
+          }
         }
       }
     }  // if the red button on our controller is pressed set the shop to false
@@ -95,6 +108,10 @@ class Shop {
       sql.query("SELECT * FROM Item WHERE name='Speed';");
       if (sql.next()) {
         itemValue = sql.getInt("value");
+      }
+      sql.query("SELECT user_id FROM Shop INNER JOIN Account ON Shop.user_id = Account.user_id WHERE username='" + login.playerName + "';");
+      if (sql.next()) {
+        canUpgrade = false;
       }
       sql.close();
       if (coins >= itemValue) {
