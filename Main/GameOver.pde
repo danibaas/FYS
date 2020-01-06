@@ -16,7 +16,7 @@ class GameOver {
       background(0, 127, 127);
       goToMenu = true;
       fill(255);
-      rect(row1-50, scoresTopOffset, row2, 500);
+      rect(row1-50, scoresTopOffset, row2, 550);
       fill(0);
       textSize(40);
       text("Player", row2, yPos+scoresTopOffset);
@@ -37,7 +37,7 @@ class GameOver {
         sql.close();
       }
       fill(0);
-      text("Press ENTER for menu", width/2, 500);
+      text("Press ENTER for menu", width/2, 600);
     }
   }
 
