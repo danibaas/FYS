@@ -1,6 +1,6 @@
 class Healthbar {
   int maxLives, currentLives;
-  boolean isDead, savedToDatabase;
+  boolean isDead, savedToDatabase, addMetricEnemy, addMetricBoss;
 
   Healthbar(int currentLives) {
     this.currentLives = currentLives;
@@ -23,7 +23,13 @@ class Healthbar {
     }
     if (currentLives <= 0) {
       isDead = true;
-      metrics.enemiesKilled++;
+      if (!addMetricEnemy) {
+        metrics.enemiesKilled++;
+        addMetricEnemy = true;
+      }
+    }
+    if (!isDead) {
+      addMetricEnemy = false;
     }
   }
 
@@ -41,7 +47,13 @@ class Healthbar {
     } 
     if (currentLives <= 0) {
       boss.isDead = true;
-      metrics.bossesKilled++;
+      if (!addMetricBoss) {
+        metrics.bossesKilled++;
+        addMetricBoss = true;
+      }
+    }
+    if (!isDead) {
+      addMetricBoss = false;
     }
   }
 
