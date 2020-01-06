@@ -1,6 +1,6 @@
 class Healthbar {
   int maxLives, currentLives;
-  boolean isDead, savedScore;
+  boolean isDead, savedToDatabase;
 
   Healthbar(int currentLives) {
     this.currentLives = currentLives;
@@ -9,9 +9,10 @@ class Healthbar {
   void updatePlayerHealth() {
     if (isDead) {
       gameOver.drawObject();
-      if (!savedScore) {
+      if (!savedToDatabase) {
         highScore.saveHighScore(login.playerName, highScore.highScore);
-        savedScore = true;
+        metrics.save(metrics.getUserId(login.playerName), metrics.startTime, metrics.enemiesKilled, metrics.bossesKilled, (int) highScore.highScore);
+        savedToDatabase = true;
       }
     }
   }
@@ -23,6 +24,7 @@ class Healthbar {
     }
     if (currentLives <= 0) {
       isDead = true;
+      metrics.enemiesKilled++;
     }
   }
 
@@ -40,6 +42,7 @@ class Healthbar {
     } 
     if (currentLives <= 0) {
       boss.isDead = true;
+      metrics.bossesKilled++;
     }
   }
 

@@ -140,8 +140,9 @@ void keyPressed() {
   if (!characterSelect.hasChosen) {
     characterSelect.pressed();
   } else {
-    if (key != 'c' && key != 'C' && key != 'v' && screenActive) {
+    if (key != 'c' && key != 'C' && key != 'v' && key != 'o' && key != 'O' && key != 'p' && key != 'a' && key != 'A' && key != 'b' && screenActive) {
       screenActive = false;
+      metrics.startTime = millis();
     }  
     for (Updater r : updateList) {
       r.pressedKey();
