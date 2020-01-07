@@ -6,14 +6,14 @@ class Shop {
     if (sql.connect()) {
       sql.query("SELECT * FROM Item;");
       if (!sql.next()) {
-        sql.execute("INSERT INTO Item (name, value, level) VALUES ('Speed', '500', '1');");
+        sql.execute("INSERT INTO Item (name, value, level) VALUES ('NormalSpeed', '500', '1');");
         int userid = 0;
         int itemid = 0;
         sql.query("SELECT user_id FROM Account WHERE username='" + login.playerName + "';");
         if (sql.next()) {
           userid = sql.getInt("user_id");
         }
-        sql.query("SELECT itemid FROM Item WHERE name='Speed';");
+        sql.query("SELECT itemid FROM Item WHERE name='NormalSpeed';");
         if (sql.next()) {
           itemid = sql.getInt("itemid");
         }
@@ -27,7 +27,7 @@ class Shop {
           if (sql.next()) {
             userid = sql.getInt("user_id");
           }
-          sql.query("SELECT * FROM Item WHERE name='Speed';");
+          sql.query("SELECT * FROM Item WHERE name='NormalSpeed';");
           if (sql.next()) {
             itemid = sql.getInt("itemid");
           }
@@ -51,7 +51,8 @@ class Shop {
       } else {
         fill(255, 0, 0);
       }
-      text("Speed Upgrade", 500, 150);
+      text("Speed Upgrade", 650, 150);
+      text("500", 650, 180);
     }
   }
 
@@ -64,7 +65,7 @@ class Shop {
   void pressedKey() {
     if (key == 'c' || key == 'C') {
       showShop = true;
-    } else if (key == 'v') {
+    } else if (key == 'b') {
       showShop = false;
     } else if (key == ENTER) {
       if (showShop) {
@@ -73,18 +74,18 @@ class Shop {
           if (sql.connect()) {
             // remove coins from table money
             int itemValue = 0;
-            sql.query("SELECT value FROM Item WHERE name='Speed';");
+            sql.query("SELECT * FROM Item WHERE name='Speed';");
             if (sql.next()) {
               itemValue = sql.getInt("value");
             }
-            sql.query("SELECT coins FROM Money WHERE user_id='" + userid + "';");
+            sql.query("SELECT * FROM Money WHERE user_id='" + userid + "';");
             int coins = 0;
             if (sql.next()) {
               coins = sql.getInt("coins");
             }
             int totalCoins = coins - itemValue;
             int itemid = 0;
-            sql.query("SELECT itemid FROM Item WHERE name='Speed';");
+            sql.query("SELECT * FROM Item WHERE name='Speed';");
             if (sql.next()) {
                itemid = sql.getInt("itemid"); 
             }
@@ -103,7 +104,7 @@ class Shop {
     int itemValue = 0;
     int coins = 0;
     if (sql.connect()) {
-      sql.query("SELECT coins FROM Money INNER JOIN Account ON Money.user_id = Account.user_id WHERE username='" + login.playerName + "';");
+      sql.query("SELECT * FROM Money INNER JOIN Account ON Money.user_id = Account.user_id WHERE username='" + login.playerName + "';");
       if (sql.next()) {
         coins = sql.getInt("coins");
       }
@@ -111,7 +112,7 @@ class Shop {
       if (sql.next()) {
         itemValue = sql.getInt("value");
       }
-      sql.query("SELECT user_id FROM Shop INNER JOIN Account ON Shop.user_id = Account.user_id WHERE username='" + login.playerName + "';");
+      sql.query("SELECT * FROM Shop INNER JOIN Account ON Shop.user_id = Account.user_id WHERE username='" + login.playerName + "';");
       if (sql.next()) {
         canUpgrade = false;
       }

@@ -72,6 +72,7 @@ void setup() {
   collisionList = new ArrayList();
   particles = new ArrayList();
   size(1280, 720);
+  frameRate(60);
   instance = this;
   initializeDatabase();
   loadAssets();
@@ -106,15 +107,15 @@ void draw() {
         }
       }
 
-    for (int i = particles.size()-1; i >= 0; i--) { 
-      particle particle = particles.get(i);
-      particle.move();
-      particle.drawParticle();
-      if (particle.particleLife <= 0) {
-        particles.remove(i);
+      for (int i = particles.size()-1; i >= 0; i--) { 
+        particle particle = particles.get(i);
+        particle.move();
+        particle.drawParticle();
+        if (particle.particleLife <= 0) {
+          particles.remove(i);
+        }
       }
-    }
-    addParticle();
+      addParticle();
       highScore.displayScore();
       scoreAchievements();
       thread("endAchievements");
@@ -132,14 +133,14 @@ void draw() {
 }  
 
 void stop() {
-   sql.close(); 
+  sql.close();
 }
 
 void keyPressed() {
   if (!characterSelect.hasChosen) {
     characterSelect.pressed();
   } else {
-    if (key != 'c' && key != 'C' && key != 'v' && key != 'o' && key != 'O' && key != 'p' && key != 'a' && key != 'A' && key != 'b' && key!= 'B' && screenActive) {
+    if (key != 'c' && key != 'C' && key != 'o' && key != 'O' && key != 'p' && key != 'a' && key != 'A' && key != 'b' && key!= 'B' && screenActive) {
       screenActive = false;
       metrics.startTime = millis();
     }  
