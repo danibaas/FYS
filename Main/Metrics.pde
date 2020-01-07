@@ -42,12 +42,12 @@ class Metrics {
       if (sql.connect()) {
         int id = getUserId(login.playerName);
         sql.connect();
-        sql.query("SELECT COUNT(*) FROM (SELECT userId FROM Gamerun WHERE userId='" + id + "' LIMIT 8) AS runs;");
+        sql.query("SELECT COUNT(*) FROM (SELECT user_id FROM Gamerun WHERE user_id='" + id + "' LIMIT 8) AS runs;");
         int iterator = 0;
         if (sql.next()) {
           iterator = sql.getInt("COUNT(*)");
         }
-        sql.query("SELECT * FROM Gamerun WHERE userId='" + id + "' ORDER BY startTime ASC;");
+        sql.query("SELECT * FROM Gamerun WHERE user_id='" + id + "' ORDER BY startTime ASC;");
         int rowHeight = 225;
         for (int i = 0; i < iterator; i++) {
           if (sql.next()) {
@@ -83,7 +83,7 @@ class Metrics {
     int total = 0;
     int userid = getUserId(name);
     if (sql.connect()) {
-      sql.query("SELECT * FROM Statistic WHERE userId='" + userid + "';");
+      sql.query("SELECT * FROM Statistic WHERE user_id='" + userid + "';");
       if (sql.next()) {
         total = sql.getInt("totalRuns");
       }
@@ -96,7 +96,7 @@ class Metrics {
     int total = 0;
     int userid = getUserId(name);
     if (sql.connect()) {
-      sql.query("SELECT * FROM Statistic WHERE userId='" + userid + "';");
+      sql.query("SELECT * FROM Statistic WHERE user_id='" + userid + "';");
       if (sql.next()) {
         total = sql.getInt("totalEnemiesKilled");
       }
@@ -109,7 +109,7 @@ class Metrics {
     int total = 0;
     int userid = getUserId(name);
     if (sql.connect()) {
-      sql.query("SELECT * FROM Statistic WHERE userId='" + userid + "';");
+      sql.query("SELECT * FROM Statistic WHERE user_id='" + userid + "';");
       if (sql.next()) {
         total = sql.getInt("totalBossesKilled");
       }
@@ -135,7 +135,7 @@ class Metrics {
     boolean has = false;
     int id = getUserId(name);
     if (sql.connect()) {
-      sql.query("SELECT * FROM Statistic WHERE userId='" + id + "';");
+      sql.query("SELECT * FROM Statistic WHERE user_id='" + id + "';");
       if (sql.next()) {
         has = true;
       }
@@ -154,11 +154,11 @@ class Metrics {
     if (sql.connect()) {
       sql.execute("INSERT INTO Gamerun VALUES ('" + userId + "', '" + startTime + "', '" + enemiesKilled + "', '" + bossesKilled + "', '" + score + "');");
       if (hasStats) {
-        sql.execute("UPDATE Statistic SET totalRuns='" + totalRuns + "' WHERE userId='" + userId + "';");
-        sql.execute("UPDATE Statistic SET totalEnemiesKilled='" + totalEnemies + "' WHERE userId='" + userId + "';");
-        sql.execute("UPDATE Statistic SET totalBossesKilled='" + totalBosses + "' WHERE userId='" + userId + "';");
+        sql.execute("UPDATE Statistic SET totalRuns='" + totalRuns + "' WHERE user_id='" + userId + "';");
+        sql.execute("UPDATE Statistic SET totalEnemiesKilled='" + totalEnemies + "' WHERE user_id='" + userId + "';");
+        sql.execute("UPDATE Statistic SET totalBossesKilled='" + totalBosses + "' WHERE user_id='" + userId + "';");
         if (score > previousHighScore) {
-          sql.execute("UPDATE Statistic SET highScore='" + score + "' WHERE userId = '" + userId + "';");
+          sql.execute("UPDATE Statistic SET highScore='" + score + "' WHERE user_id = '" + userId + "';");
         }
       } else {
         sql.execute("INSERT INTO Statistic VALUES ('" + userId + "', '" + totalRuns + "', '" + totalEnemies + "', '" + totalBosses + "', '" + score + "');");
@@ -186,5 +186,5 @@ class Metrics {
   }
 }
 
-//CREATE TABLE IF NOT EXISTS Gamerun(userId int, startTime int, enemiesKilled int, bossesKilled int, score int, PRIMARY KEY(userId, startTime), FOREIGN KEY(userId) REFERENCES Account(user_id));
-//CREATE TABLE IF NOT EXISTS Statistic(userId int, totalRuns int, totalEnemiesKilled int, totalBossesKilled int, highScore int, PRIMARY KEY(userId), FOREIGN KEY(userId) REFERENCES Account(user_id));
+//CREATE TABLE IF NOT EXISTS Gamerun(user_id int, startTime int, enemiesKilled int, bossesKilled int, score int, PRIMARY KEY(user_id, startTime), FOREIGN KEY(user_id) REFERENCES Account(user_id));
+//CREATE TABLE IF NOT EXISTS Statistic(user_id int, totalRuns int, totalEnemiesKilled int, totalBossesKilled int, highScore int, PRIMARY KEY(user_id), FOREIGN KEY(user_id) REFERENCES Account(user_id));

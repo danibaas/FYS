@@ -11,15 +11,15 @@ void initializeDatabase() {
   if (sql.connect()) {
     sql.execute("CREATE TABLE IF NOT EXISTS Account (user_id int AUTO_INCREMENT, username varchar(150), password varchar(150), PRIMARY KEY(user_id));");
     sql.execute("CREATE TABLE IF NOT EXISTS Money (user_id int, coins int, PRIMARY KEY (user_id), FOREIGN KEY (user_id) REFERENCES Account(user_id));");
-    sql.execute("CREATE TABLE IF NOT EXISTS Highscore (user_id int, score float, PRIMARY KEY (user_id), FOREIGN KEY (user_id) REFERENCES Account(user_id));");
+    sql.execute("CREATE TABLE IF NOT EXISTS Highscore (user_id int, score float, FOREIGN KEY (user_id) REFERENCES Account(user_id));");
     sql.execute("CREATE TABLE IF NOT EXISTS Item (itemid int AUTO_INCREMENT, name varchar(200), value int, PRIMARY KEY (itemid));");
     sql.execute("CREATE TABLE IF NOT EXISTS Shop (user_id int, itemid int, PRIMARY KEY (user_id, itemid), FOREIGN KEY (user_id) REFERENCES Account(user_id), "
       + "FOREIGN KEY (itemid) REFERENCES Item(itemid));");
     sql.execute("CREATE TABLE IF NOT EXISTS Achievement (achievementid int AUTO_INCREMENT, name varchar(300), PRIMARY KEY (achievementid));");
     sql.execute("CREATE TABLE IF NOT EXISTS Achieved (user_id int, achievementid int, PRIMARY KEY (user_id, achievementid), FOREIGN KEY (user_id) REFERENCES Account(user_id), "
       + "FOREIGN KEY (achievementid) REFERENCES Achievement(achievementid));");
-    sql.execute("CREATE TABLE IF NOT EXISTS Gamerun(userId int, startTime int, enemiesKilled int, bossesKilled int, score int, PRIMARY KEY(userId, startTime), FOREIGN KEY(userId) REFERENCES Account(user_id));");
-    sql.execute("CREATE TABLE IF NOT EXISTS Statistic(userId int, totalRuns int, totalEnemiesKilled int, totalBossesKilled int, highScore int, PRIMARY KEY(userId), FOREIGN KEY(userId) REFERENCES Account(user_id));");
+    sql.execute("CREATE TABLE IF NOT EXISTS Gamerun(user_id int, startTime int, enemiesKilled int, bossesKilled int, score int, PRIMARY KEY(user_id, startTime), FOREIGN KEY(user_id) REFERENCES Account(user_id));");
+    sql.execute("CREATE TABLE IF NOT EXISTS Statistic(user_id int, totalRuns int, totalEnemiesKilled int, totalBossesKilled int, highScore int, PRIMARY KEY(user_id), FOREIGN KEY(user_id) REFERENCES Account(user_id));");
     sql.close();
   }
 }
