@@ -24,16 +24,19 @@ class Metrics {
       String name = login.playerName;
       text("Name: " + name, width/2, 250);
       textSize(25);
-      text("Total runs: " + getTotalRuns(name), width/2, 325);
-      text("Total enemies killed: " + getTotalEnemiesKilled(name), width/2, 375);
-      text("Total bosses killed: " + getTotalBossesKilled(name), width/2, 425);
-      text("Highscore: " + getHighScore(name), width/2, 475);
+      text("Total runs: " + getTotalRuns(name), width/2, 300);
+      text("Total enemies killed: " + getTotalEnemiesKilled(name), width/2, 350);
+      text("Total bosses killed: " + getTotalBossesKilled(name), width/2, 400);
+      text("Highscore: " + getHighScore(name), width/2, 450);
       text("Press A to view runs", width/2, 525);
       text("Press B to go back", width/2, 575);
     } 
     if (showRuns) {
       fill(127);
-      rect(275, 175, 700, 475);
+      rect(250, 150, 750, 500);
+      textAlign(CENTER, CENTER);
+      fill(0);
+      text("Your 8 latest runs", width/2, 175);
       textAlign(LEFT);
       fill(0);
       if (sql.connect()) {
@@ -44,15 +47,15 @@ class Metrics {
         if (sql.next()) {
           iterator = sql.getInt("COUNT(*)");
         }
-        sql.query("SELECT * FROM Gamerun WHERE userId='" + id + "' ORDER BY startTime DESC;");
+        sql.query("SELECT * FROM Gamerun WHERE userId='" + id + "' ORDER BY startTime ASC;");
         int rowHeight = 225;
         for (int i = 0; i < iterator; i++) {
           if (sql.next()) {
             int run = i + 1;
-            text("Run: " + run, 300, rowHeight);
-            text("Enemies killed: " + sql.getInt("enemiesKilled"), 400, rowHeight);
-            text("Bosses killed: " + sql.getInt("bossesKilled"), 620, rowHeight);
-            text("Score: " + sql.getInt("score"), 820, rowHeight);
+            text("Run: " + run, 260, rowHeight);
+            text("Enemies killed: " + sql.getInt("enemiesKilled"), 360, rowHeight);
+            text("Bosses killed: " + sql.getInt("bossesKilled"), 610, rowHeight);
+            text("Score: " + sql.getInt("score"), 830, rowHeight);
             rowHeight += 50;
           }
         }
@@ -119,9 +122,9 @@ class Metrics {
     int total = 0;
     int userid = getUserId(name);
     if (sql.connect()) {
-      sql.query("SELECT * FROM Highscore WHERE user_id='" + userid + "';");
+      sql.query("SELECT MAX(score) FROM Highscore WHERE user_id='" + userid + "';");
       if (sql.next()) {
-        total = sql.getInt("score");
+        total = (int) sql.getFloat("MAX(score)");
       }
       sql.close();
     }
@@ -154,8 +157,8 @@ class Metrics {
         sql.execute("UPDATE Statistic SET totalRuns='" + totalRuns + "' WHERE userId='" + userId + "';");
         sql.execute("UPDATE Statistic SET totalEnemiesKilled='" + totalEnemies + "' WHERE userId='" + userId + "';");
         sql.execute("UPDATE Statistic SET totalBossesKilled='" + totalBosses + "' WHERE userId='" + userId + "';");
-        if (previousHighScore > score) {
-          sql.execute("UPDATE Statistic SET highscore='" + score + "' WHERE userId = '" + userId + "';");
+        if (score > previousHighScore) {
+          sql.execute("UPDATE Statistic SET highScore='" + score + "' WHERE userId = '" + userId + "';");
         }
       } else {
         sql.execute("INSERT INTO Statistic VALUES ('" + userId + "', '" + totalRuns + "', '" + totalEnemies + "', '" + totalBosses + "', '" + score + "');");
