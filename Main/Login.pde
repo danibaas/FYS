@@ -43,7 +43,7 @@ class Login {
               println("Incorrect Password!");
             }
           } else {
-            sql.execute("INSERT INTO Account VALUES (default, '" + playerName + "', '" + playerPassword + "')");
+            sql.execute("INSERT INTO Account VALUES (default, '" + playerName + "')");
             loggedIn = true;
             shop.insertItems();
           }
