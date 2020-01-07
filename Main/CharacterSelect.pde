@@ -21,8 +21,8 @@ class CharacterSelect {
         textSize(25);
         textAlign(CENTER);
         text("Controls", width/2, CONTROL_TITLE_POSITION_Y);
-        text("R = Attack", width/2, CONTROLS_POSITION_Y1);
-        text("L = Special attack", width/2, CONTROLS_POSITION_Y2);
+        text("R/A = Attack", width/2, CONTROLS_POSITION_Y1);
+        text("L/S = Special attack", width/2, CONTROLS_POSITION_Y2);
         text("B = Jump", width/2, CONTROLS_POSITION_Y3);
         text("Y = Crouch", width/2, CONTROLS_POSITION_Y4);
         text("Pick this up for a speedboost", width/2, CONTROLS_POSITION_Y5);
