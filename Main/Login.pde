@@ -34,19 +34,11 @@ class Login {
       } else {
         if (sql.connect()) {
           sql.query("SELECT * FROM Account WHERE username='" + playerName + "';");
-          if (sql.next()) {
-            String password = sql.getString("password");
-            if (password.equals(playerPassword)) {
-              loggedIn = true;
-              shop.insertItems();
-            } else {
-              println("Incorrect Password!");
-            }
-          } else {
+          if (!sql.next()) {
             sql.execute("INSERT INTO Account VALUES (default, '" + playerName + "')");
-            loggedIn = true;
             shop.insertItems();
           }
+          loggedIn = true;
           println(playerName);
           sql.close();
         }

@@ -69,6 +69,7 @@ class Shop {
     } else if (key == ENTER) {
       if (showShop) {
         if (canUpgrade()) {
+          int userid = metrics.getUserId(login.playerName);
           if (sql.connect()) {
             // remove coins from table money
             int itemValue = 0;
@@ -76,7 +77,7 @@ class Shop {
             if (sql.next()) {
               itemValue = sql.getInt("value");
             }
-            sql.query("SELECT coins FROM Money WHERE user_id='" + metrics.getUserId(login.playerName) + "';");
+            sql.query("SELECT coins FROM Money WHERE user_id='" + userid + "';");
             int coins = 0;
             if (sql.next()) {
               coins = sql.getInt("coins");
