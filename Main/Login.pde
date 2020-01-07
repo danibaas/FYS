@@ -32,6 +32,7 @@ class Login {
       if (playerName == "" || playerName == " ") {
         println("no username detected");
       } else {
+        getUserId();
         getAchievements();
         if (sql.connect()) {
           sql.query("SELECT * FROM Account WHERE username='" + playerName + "';");
@@ -40,10 +41,8 @@ class Login {
             shop.insertItems();
           }
           loggedIn = true;
-          println(playerName);
           sql.close();
         }
-        getUserId();
       }
     } else if (keyPressed&&key!=CODED) { 
       playerName+=key; 

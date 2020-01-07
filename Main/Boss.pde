@@ -26,6 +26,7 @@ class Boss extends Collider implements Updater {
   }
 
   void updateObject() {
+    clearBossRoom();
     bossOnScreen = (position.x < width && position.x > 0) ? true : false;
     if (position.x >= 1000) {
       moveEntity();
@@ -130,6 +131,17 @@ class Boss extends Collider implements Updater {
         time = true;
       }
       return time;
+    }
+  }
+  
+  void clearBossRoom(){
+    if(spawnBoss){
+      if(groundObstacle.position.x < width){
+        groundObstacle.position.x+=10;
+      }
+      if(wireObstacle.position.x < width){
+        groundObstacle.position.x+=10;
+      }
     }
   }
 }

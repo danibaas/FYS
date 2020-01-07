@@ -1,13 +1,12 @@
 int positionAchievement = 600;
 int startSeconds = 0;
-float user_id;
+int user_id;
 boolean done = false;
 boolean achievementDone[] = {false, false, false, false, false, false};
 boolean achievementInDatabase[] = {false, false, false, false, false, false};
 String achievementName[] = {"", "", "", "", "", "", "", "", "", "", ""};
-ArrayList<Integer> achievements = new ArrayList();
 int achievedId = 0;
-int testing;
+int achievements;
 
 void initializeAchievements() {
   float achievementCounter = 0;
@@ -39,12 +38,11 @@ void initializeAchievements() {
   }
 }
 
-
 void getUserId() {
   if (sql.connect()) {
-    sql.execute("SELECT * FROM Account WHERE username='"+login.playerName+"'");
+    sql.execute("SELECT user_id FROM Account WHERE username='" + login.playerName + "'");
     if (sql.next()) {
-      user_id = sql.getFloat("user_id");
+      user_id = sql.getInt("user_id");
     }
     sql.close();
   }
@@ -64,12 +62,17 @@ void setAchievement(int achievementNumber) {
 
 void getAchievements() {
   if (sql.connect()) {
-    sql.execute("SELECT achievementid FROM achieved WHERE user_id = '" + user_id + "' ORDER BY achievementid DESC");
-    while (sql.next()) {
-      achievements.add(sql.getInt("achievementid"));
+    sql.execute("SELECT achievementid FROM Achieved WHERE user_id = '" + user_id + "' ORDER BY achievementid DESC");
+    if (sql.next()) {
+      achievements = sql.getInt("achievementid");
     }
   }
-  println(achievements);
+  println(achievements, user_id);
+  for (int i = 0; i < achievements; i++) {
+    achievementInDatabase[i] = true;
+  }
+  println("dit zijn jouw achievements");
+  println(achievementInDatabase);
 }
 
 

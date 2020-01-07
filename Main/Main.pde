@@ -115,7 +115,7 @@ void draw() {
           particles.remove(i);
         }
       }
-      addParticle();
+      //addParticle();
       highScore.displayScore();
       scoreAchievements();
       thread("endAchievements");
@@ -130,6 +130,7 @@ void draw() {
       metrics.drawStatistics();
     }
   }
+    //println(frameRate);
 }  
 
 void stop() {
