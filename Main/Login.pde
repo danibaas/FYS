@@ -39,6 +39,7 @@ class Login {
             shop.insertItems();
           }
           loggedIn = true;
+          getAchievements();
           println(playerName);
           sql.close();
         }

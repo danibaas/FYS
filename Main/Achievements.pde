@@ -5,6 +5,7 @@ boolean done = false;
 boolean achievementDone[] = {false, false, false, false, false, false};
 boolean achievementInDatabase[] = {false, false, false, false, false, false};
 String achievementName[] = {"", "", "", "", "", "", "", "", "", "", ""};
+int achievedId = 0;
 
 void initializeAchievements() {
   float achievementCounter = 0;
@@ -47,6 +48,7 @@ void getUserId() {
   }
 }
 
+
 void setAchievement(int achievementNumber) {
   if (sql.connect()) {
     sql.execute("INSERT INTO Achieved VALUES ('"+user_id+"', ' "+achievementNumber+" ')");
@@ -58,7 +60,17 @@ void setAchievement(int achievementNumber) {
   }
 }
 
+void getAchievements() {
+  if (sql.connect()) {
+    sql.execute("SELECT * FROM Achieved WHERE user_id = '"+user_id+"'");
 
+    for (int i = 1; i < 7; i++) {
+      if (sql.next()) {
+        achievementInDatabase[i - 1] = sql.getBoolean("achievementid");
+      }
+    }
+  }
+}
 
 
 void drawAchievement(int count) {
@@ -127,9 +139,21 @@ void scoreAchievements() {
 }
 
 public void endAchievements() {
-  if (highScore.highScore > 50 && achievementInDatabase[0] == false) {
+
+  if (highScore.highScore > 10 && achievementInDatabase[0] == false) {
+    //if (sql.connect()) {
+    //  sql.execute("SELECT * FROM Achieved WHERE achievementid = '1' AND user_id = '"+user_id+"'");
+    //  if (sql.next()) {
+    //            println(achievedId);
+    //    achievedId = sql.getInt("achievementid");
+    //    println(achievedId);
+
     achievementInDatabase[0] = true;
     setAchievement(1);
+
+    //    sql.close();
+    //  }
+    //}
   }
   if (highScore.highScore > 100 && achievementInDatabase[1] == false) {
     achievementInDatabase[1] = true;
