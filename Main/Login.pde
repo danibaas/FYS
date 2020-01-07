@@ -32,6 +32,7 @@ class Login {
       if (playerName == "" || playerName == " ") {
         println("no username detected");
       } else {
+        getAchievements();
         if (sql.connect()) {
           sql.query("SELECT * FROM Account WHERE username='" + playerName + "';");
           if (!sql.next()) {
@@ -39,7 +40,6 @@ class Login {
             shop.insertItems();
           }
           loggedIn = true;
-          getAchievements();
           println(playerName);
           sql.close();
         }
