@@ -13,7 +13,7 @@ class Shop {
         if (sql.next()) {
           userid = sql.getInt("user_id");
         }
-        sql.query("SELECT itemid FROM Item WHERE name='NormalSpeed';");
+        sql.query("SELECT itemid FROM Item WHERE name=CONCAT('Normal', 'Speed');");
         if (sql.next()) {
           itemid = sql.getInt("itemid");
         }
@@ -38,6 +38,18 @@ class Shop {
     }
   }
 
+  int getUserAmount(int itemid) { // get the amount of users that have the item
+    int amount = 0;
+    if (sql.connect()) {
+      sql.query("SELECT COUNT(user_id) FROM Shop WHERE itemid='" + itemid + "' GROUP BY itemid;");
+      if (sql.next()) {
+        amount = sql.getInt("COUNT(user_id)");
+      }
+      sql.close();
+    }
+    return amount;
+  }
+
   void drawShop() { // Draw the actual shop with upgrades in it
     if (showShop) {
       fill(200);
@@ -53,6 +65,8 @@ class Shop {
       }
       text("Speed Upgrade", 650, 150);
       text("500", 650, 180);
+      textSize(18);
+      text("Achieved " + getUserAmount(1) + " time(s)!", 900, 160);
     }
   }
 
@@ -87,7 +101,7 @@ class Shop {
             int itemid = 0;
             sql.query("SELECT * FROM Item WHERE name='Speed';");
             if (sql.next()) {
-               itemid = sql.getInt("itemid"); 
+              itemid = sql.getInt("itemid");
             }
             sql.execute("UPDATE Money SET coins='" + totalCoins + "';");
             sql.execute("INSERT INTO Shop VALUES ('" + user_id + "', '" + itemid + "');");
