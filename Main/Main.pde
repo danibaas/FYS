@@ -29,7 +29,8 @@ ArrayList<Collider> collisionList;
 ArrayList<particle> particles;
 
 //movmement help
-boolean[] keys = new boolean[4];
+final int KEYS = 4;
+boolean[] keys = new boolean[KEYS];
 // 0 = up, 1 = left, 2 = right, 3 is down
 
 // PLAYER CONSTANTS
@@ -62,6 +63,9 @@ final int ICON_SIZE = 100;
 final int SPEED_SIZE = 100;
 // COIN CONSTANT;
 final int COIN_SIZE = 50;
+// OTHER
+final int FRAMERATE = 60;
+final int CEILING_OBSTACLE_THRESHOLD = 50;
 
 void setup() {
   // ratio 16:9
@@ -72,7 +76,7 @@ void setup() {
   collisionList = new ArrayList();
   particles = new ArrayList();
   size(1280, 720);
-  frameRate(60);
+  frameRate(FRAMERATE);
   instance = this;
   initializeDatabase();
   loadAssets();
@@ -100,7 +104,7 @@ void draw() {
           r.updateObject();
           r.drawObject();
         } else {
-          if (highScore.highScore > 50) {
+          if (highScore.highScore > CEILING_OBSTACLE_THRESHOLD) {
             r.updateObject();
             r.drawObject();
           }

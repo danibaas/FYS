@@ -1,7 +1,8 @@
 class Background implements Updater {  //<>//
   float backgroundX = 0, backgroundPaneX = 1280, backgroundPaneY = 0, backgroundPane2X = 1920, backgroundPane2Y = 0, backgroundPane3X = 2560, backgroundPane3Y = 0;
-  float speed = characterSelect.getSpeed();
+  float speed = characterSelect.getSpeed(); 
   // CONSTANTS
+  final int PANE_SPEED = 3;
   final int PANEL_WIDTH = 640;
   final int PANEL_HEIGHT = 800;
   final int PANEL_DESPAWN_BORDER = -640;
@@ -36,10 +37,10 @@ class Background implements Updater {  //<>//
 
   void updateObject() {
     if (keys[2] == true) {
-      backgroundPaneX -= speed;
-      backgroundPane2X -= speed;
-      backgroundPane3X -= speed;
-      backgroundX -= speed;
+      backgroundPaneX -= PANE_SPEED;
+      backgroundPane2X -= PANE_SPEED;
+      backgroundPane3X -= PANE_SPEED;
+      backgroundX -= PANE_SPEED;
       highScore.updateScore();
     }
     if (backgroundPaneX <= PANEL_DESPAWN_BORDER) {
