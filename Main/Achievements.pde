@@ -14,7 +14,6 @@ void initializeAchievements() {
     sql.execute("SELECT COUNT(name) FROM Achievement");
     if (sql.next()) {
       achievementCounter = sql.getFloat("COUNT(name)");
-      println(achievementCounter);
       if (achievementCounter == 0) {
         sql.execute("INSERT INTO Achievement VALUES (1, 'Get 50')");
         sql.execute("INSERT INTO Achievement VALUES (2, 'Get 100')");
@@ -143,20 +142,9 @@ void scoreAchievements() {
 
 public void endAchievements() {
 
-  if (highScore.highScore > 10 && achievementInDatabase[0] == false) {
-    //if (sql.connect()) {
-    //  sql.execute("SELECT * FROM Achieved WHERE achievementid = '1' AND user_id = '"+user_id+"'");
-    //  if (sql.next()) {
-    //            println(achievedId);
-    //    achievedId = sql.getInt("achievementid");
-    //    println(achievedId);
-
+  if (highScore.highScore > 50 && achievementInDatabase[0] == false) {
     achievementInDatabase[0] = true;
     setAchievement(1);
-
-    //    sql.close();
-    //  }
-    //}
   }
   if (highScore.highScore > 100 && achievementInDatabase[1] == false) {
     achievementInDatabase[1] = true;

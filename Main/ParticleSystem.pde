@@ -16,20 +16,10 @@ class particle {
 
 
 
-  void drawParticle() {
-    fill(0);
+  void drawParticle(int particleRed, int particleYellow, int particleBlue) {
+    fill(particleRed, particleYellow, particleBlue);
+    noStroke();
     ellipse(particleX, particleY, particleLife, particleLife);
-  }
-
-  public void update() {
-    for (int i = particles.size()-1; i >= 0; i--) { 
-      particle particle = particles.get(i);
-      particle.move();
-      particle.drawParticle();
-      if (particle.particleLife <= 0) {
-        particles.remove(i);
-      }
-    }
   }
 
   void move() {
@@ -38,13 +28,30 @@ class particle {
   }
 }
 
-void addParticle() {
+void addParticleRun() {
 
-    if (player.position.y >= 600) {
-      if(keyPressed && key == CODED && keyCode == RIGHT){
-      for (int i = 0; i < 5; i++) {
-        particles.add(new particle(player.position.x, player.position.y+50, random(1, 10), random(1, 10), random(1, 10)));
-      }
-    }}
-  
+  if (player.airBorne == false && keys[2] == true) {
+    for (int i = 0; i < 1; i++) {
+      runParticles.add(new particle(player.position.x, player.position.y+50, random(1, 10), random(1, 5), random(5, 20)));
+    }
+  }
+  for (int i = runParticles.size()-1; i >= 0; i--) { 
+    particle particle = runParticles.get(i);
+    particle.move();
+    particle.drawParticle(150, 150, 150);
+    if (particle.particleLife <= 0) {
+      runParticles.remove(i);
+    }
+  }
+}
+
+void addParticleShoot() {
+  for (int i = shootParticles.size()-1; i >= 0; i--) { 
+    particle particle = shootParticles.get(i);
+    particle.move();
+    particle.drawParticle(255, 0, 0);
+    if (particle.particleLife <= 0) {
+      shootParticles.remove(i);
+    }
+  }
 }

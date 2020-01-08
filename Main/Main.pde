@@ -26,7 +26,8 @@ ArrayList<Updater> updateList;
 ArrayList<Obstacle> obstacleList;
 ArrayList<Collider> collisionList;
 
-ArrayList<particle> particles;
+ArrayList<particle> runParticles;
+ArrayList<particle> shootParticles;
 
 //movmement help
 final int KEYS = 4;
@@ -74,7 +75,8 @@ void setup() {
   updateList = new ArrayList();
   obstacleList = new ArrayList();
   collisionList = new ArrayList();
-  particles = new ArrayList();
+  runParticles = new ArrayList();
+  shootParticles = new ArrayList();
   size(1280, 720);
   frameRate(FRAMERATE);
   instance = this;
@@ -110,16 +112,8 @@ void draw() {
           }
         }
       }
-
-      for (int i = particles.size()-1; i >= 0; i--) { 
-        particle particle = particles.get(i);
-        particle.move();
-        particle.drawParticle();
-        if (particle.particleLife <= 0) {
-          particles.remove(i);
-        }
-      }
-      //addParticle();
+      addParticleRun();
+      addParticleShoot();
       highScore.displayScore();
       scoreAchievements();
       thread("endAchievements");
@@ -134,7 +128,7 @@ void draw() {
       metrics.drawStatistics();
     }
   }
-    //println(frameRate);
+  //println(frameRate);
 }  
 
 void stop() {

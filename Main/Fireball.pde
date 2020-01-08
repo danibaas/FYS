@@ -43,7 +43,15 @@ class Fireball extends Collider {
       if (collides(collider) && collider instanceof Enemy) {
         enemy.enemyGotHurt = true;
         enemy.timer = millis();
-        enemy.position.x = (int) random(enemy.RESPAWN_MIN, enemy.RESPAWN_MAX);
+        if (enemy.enemyGotHurt) {
+          for (int i = 0; i < 55; i++) {
+            shootParticles.add(new particle(enemy.position.x, enemy.position.y+50, -random(1, 10), -random(1, 5), random(1, 10)));
+          }
+          if (shootParticles.size()>20) { 
+            enemy.position.x = (int) random(enemy.RESPAWN_MIN, enemy.RESPAWN_MAX);
+          }
+        }
+        // enemy.position.x = (int) random(enemy.RESPAWN_MIN, enemy.RESPAWN_MAX);
         highScore.highScore += 20;
         resetAttack();
       }
