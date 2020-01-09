@@ -144,6 +144,7 @@ class Coin extends Collider {
 
   void updateCoin() {
     if (collidesWithPlayer(player) && draw && !collectedLastFrame) {
+      coinPickup.play();
       money.coins += COIN_INCREMENT;
       draw = false;
       collectedLastFrame = true;

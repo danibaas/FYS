@@ -87,6 +87,7 @@ class CharacterAttack implements Updater {
         clickedLastFrame = true;
         for (int i = 0; i < NORMAL_FIREBALL_AMOUNT; i++) {
           if (!ammunition[i].hasFired) {
+                  shoot.play();
             ammunition[i].hasFired = true;
             break;
           }

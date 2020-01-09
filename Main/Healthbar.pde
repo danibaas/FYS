@@ -18,6 +18,7 @@ class Healthbar {
 
   void updateEnemyHealth() {
     if (enemy.enemyGotHurt && currentLives > 0) {
+      enemyHit.play();
       currentLives -= 1;
       enemy.enemyGotHurt = false;
     }

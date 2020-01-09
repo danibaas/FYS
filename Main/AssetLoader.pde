@@ -4,6 +4,9 @@ PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBa
 
 //SOUNDS
 SoundFile soundTrack;
+SoundFile shoot;
+SoundFile enemyHit;
+SoundFile coinPickup;
 
 // FONTS
 PFont eightBit;
@@ -60,7 +63,7 @@ void loadAssets() {
   speed_upgrade.resize(SPEED_SIZE, SPEED_SIZE);
 
   // COIN
-  coin = loadImage(sketchPath() + "/assets/images/gem.jpg");
+  coin = loadImage(sketchPath() + "/assets/images/coin.png");
   coin.resize(COIN_SIZE, COIN_SIZE);
 
   // FONTS
@@ -69,6 +72,9 @@ void loadAssets() {
   //SOUNDS
   soundTrack = new SoundFile(this, "/assets/sounds/soundtrack3.wav");
   soundOn = loadImage(sketchPath() + "/assets/images/GeluidAan.png");
+  shoot = new SoundFile(this, "/assets/sounds/stapler2.mp3");
+  enemyHit = new SoundFile(this, "/assets/sounds/Hit1.wav");
+  coinPickup = new SoundFile(this, "/assets/sounds/Coin3.wav");
 }
 
 void refreshPlayerSkin() {
