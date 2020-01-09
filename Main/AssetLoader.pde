@@ -1,6 +1,6 @@
 // IMAGES
 PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, enemyWeapon, 
-  health, stroopwafel, obstacle, ceilingObstacle, soundOn, skinBoss, shopIcon, speed_upgrade, coin;
+  health, stroopwafel, obstacle, ceilingObstacle, soundOn, skinBoss, shopIcon, speed_upgrade, coin, skull;
 
 //SOUNDS
 SoundFile soundTrack;
@@ -15,6 +15,7 @@ PFont eightBit;
 final int BACKGROUND_WIDTH = 640;
 final int BACKGROUND_HEIGHT = 800;
 final int STROOPWAFEL_SIZE = 35;
+final int SKULL_SIZE = 25;
 
 void loadAssets() {
   // BACKGROUND
@@ -65,7 +66,11 @@ void loadAssets() {
   // COIN
   coin = loadImage(sketchPath() + "/assets/images/coin.png");
   coin.resize(COIN_SIZE, COIN_SIZE);
-
+  
+  // PROGRESSBAR
+  skull = loadImage(sketchPath() + "/assets/images/skull.png");
+  skull.resize(SKULL_SIZE, SKULL_SIZE);
+  
   // FONTS
   eightBit = createFont(sketchPath() + "/assets/fonts/PressStart2P.ttf", 30);
 

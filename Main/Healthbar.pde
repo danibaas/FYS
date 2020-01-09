@@ -48,6 +48,10 @@ class Healthbar {
     } 
     if (currentLives <= 0) {
       boss.isDead = true;
+      boss.spawnBoss = false;
+      boss.bossScore += boss.SPAWNSCORE;
+      highScore.highScore += boss.killBonus;
+      currentLives = boss.bossHealth;
       if (!addMetricBoss) {
         metrics.bossesKilled++;
         addMetricBoss = true;

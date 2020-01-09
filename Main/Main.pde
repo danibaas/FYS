@@ -20,6 +20,7 @@ Login login;
 Shop shop;
 Money money;
 Metrics metrics;
+ProgressBar progressBar;
 
 //collision & update loop lists
 ArrayList<Updater> updateList;
@@ -64,6 +65,10 @@ final int ICON_SIZE = 100;
 final int SPEED_SIZE = 100;
 // COIN CONSTANT;
 final int COIN_SIZE = 50;
+//PROGRESS BAR CONSTANT
+final PVector PROGRESSBARPOS = new PVector(300,6);
+final int PROGRESSBARLENGTH = 400;
+final int PROGRESSBARHEIGHT = 18;
 // OTHER
 final int FRAMERATE = 60;
 final int CEILING_OBSTACLE_THRESHOLD = 50;
@@ -112,6 +117,7 @@ void draw() {
           }
         }
       }
+      progressBar.drawProgressBar();
       addParticleRun();
       addParticleShoot();
       highScore.displayScore();

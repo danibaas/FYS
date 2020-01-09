@@ -2,7 +2,7 @@ class Boss extends Collider implements Updater {
   boolean spawnBoss = false;
   boolean hasBeenHit, isDead, bossOnScreen;
   float bossScore = 500, bossVelocity = 3;
-  int bossHealth = 21, killBonus = 100;
+  int bossHealth = 2, killBonus = 100;
   final float SPAWNSCORE = 600;
   Healthbar healthbar;
   BossAttack attack;
@@ -37,11 +37,13 @@ class Boss extends Collider implements Updater {
       attack.spawn = millis();
       position.x = 2000;
     }
-    if (healthbar.currentLives == 0) {
-      spawnBoss = false;
-      bossScore += SPAWNSCORE;
-      highScore.highScore += killBonus;
-      healthbar.currentLives = bossHealth;
+    if (healthbar.currentLives > 0) {
+      isDead = false;
+      //spawnBoss = false;
+      //isDead = false;
+      //bossScore += SPAWNSCORE;
+      //highScore.highScore += killBonus;
+      //healthbar.currentLives = bossHealth;
     }
     if (!spawnBoss) {
       position.x = -999;

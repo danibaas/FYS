@@ -17,6 +17,7 @@ void initScreen() {
   boss = new Boss(BOSS_VECTOR, BOSS_WIDTH, BOSS_HEIGHT);
   money = new Money();
   money.loadCoins();
+  progressBar = new ProgressBar(PROGRESSBARPOS, PROGRESSBARLENGTH, PROGRESSBARHEIGHT);
 }
 
 void drawScreen() {
