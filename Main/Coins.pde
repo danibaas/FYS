@@ -1,6 +1,12 @@
 class Money implements Updater {
   int coins;
   final int TOP_ROW = 1, SEMI_MID_ROW = 3, MID_ROW = 5, WAIT_TIME = 1000;
+  final int COIN_ACTIVE_X = 1120;
+  final int COIN_ACTIVE_Y = 80;
+  final int COIN_INACTIVE_X = 640;
+  final int COIN_INACTIVE_Y = 30;
+  final int RESPAWN_POSITION = 10000;
+  final int RICHEST = 5;
   ArrayList<Coin> allCoins = new ArrayList();
 
   Money() {
@@ -34,11 +40,11 @@ class Money implements Updater {
     if (!screenActive) {
       fill(212, 175, 55);
       textSize(30);
-      text("Coins: " + coins, 1120, 80);
+      text("Coins: " + coins, COIN_ACTIVE_X, COIN_ACTIVE_Y);
     } else {
       fill(212, 175, 55);
       textSize(30);
-      text("Coins: " + loadCoins(), 640, 30);
+      text("Coins: " + loadCoins(), COIN_INACTIVE_X, COIN_INACTIVE_Y);
     }
   }
 
@@ -46,7 +52,7 @@ class Money implements Updater {
     for (Coin coin : allCoins) {
       coin.updateCoin(); 
       if (coin.position.x + coin.boxWidth < 0) {
-        coin.position.x = 10000;
+        coin.position.x = RESPAWN_POSITION;
         coin.draw = true;
       }
     }
@@ -64,16 +70,10 @@ class Money implements Updater {
     if (sql.connect()) {
       sql.query("SELECT * FROM Account WHERE username='" + name + "';"); 
       if (sql.next()) {
-        userId = sql.getInt("user_id");
-      }
-      sql.query("SELECT * FROM Money WHERE user_id='" + userId + "';");
-      if (sql.next()) {
         int savedCoins = sql.getInt("coins");
         int totalCoins = savedCoins + coins;
-        sql.execute("UPDATE Money SET coins='" + totalCoins + "' WHERE user_id='" + userId + "';");
-      } else {  
-        sql.execute("INSERT INTO Money VALUES ('" + userId + "', '" + coins + "');");
-      }
+        sql.execute("UPDATE Account SET coins='" + totalCoins + "' WHERE user_id='" + userId + "';");
+      } 
       println("Coins Saved!");
       sql.close();
     }
@@ -82,13 +82,8 @@ class Money implements Updater {
   int loadCoins() {
     int coinAmount = 0;
     String name = login.playerName;
-    int userId = 0;
     if (sql.connect()) {
       sql.query("SELECT * FROM Account WHERE username='" + name + "';");
-      if (sql.next()) {
-        userId = sql.getInt("user_id");
-      }
-      sql.query("SELECT * FROM Money WHERE user_id='" + userId + "';");
       if (sql.next()) {
         coinAmount = sql.getInt("coins");
       }
@@ -96,32 +91,32 @@ class Money implements Updater {
     }
     return coinAmount;
   }
-}
 
-ArrayList<String> getRichest() {
-  ArrayList<String> names = new ArrayList();
-  if (sql.connect()) {
-    sql.query("SELECT coins FROM Money INNER JOIN Account ON Money.user_id = Account.user_id ORDER BY coins ASC;");
-    for (int i = 0; i < 5; i++) {
-      if (sql.next()) {
-        names.add(sql.getString("username"));
-      } else {
-        break;
+  ArrayList<String> getRichest() {
+    ArrayList<String> names = new ArrayList();
+    if (sql.connect()) {
+      sql.query("SELECT coins FROM Account ORDER BY coins ASC;");
+      for (int i = 0; i < RICHEST; i++) {
+        if (sql.next()) {
+          names.add(sql.getString("username"));
+        } else {
+          break;
+        }
       }
+      sql.close();
     }
-    sql.close();
+    return names;
   }
-  return names;
-}
 
-void deletePerson(String userid) {
-  if (sql.connect()) {
-    sql.query("SELECT * FROM Money WHERE user_id='" + userid + "';");
-    if (sql.next()) {
-      sql.execute("DELETE FROM Money WHERE user_id='" + userid + "';");
+  void deletePerson(String userid) {
+    if (sql.connect()) {
+      sql.query("SELECT * FROM Account WHERE user_id='" + userid + "';");
+      if (sql.next()) {
+        sql.execute("DELETE FROM Account WHERE user_id='" + userid + "';");
+      }
+      println("Deleted " + userid + " from table Account");
+      sql.close();
     }
-    println("Deleted " + userid + " from table Money");
-    sql.close();
   }
 }
 

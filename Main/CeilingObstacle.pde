@@ -1,4 +1,6 @@
 class CeilingObstacle extends Obstacle implements Updater {
+  final int MIN_DISTANCE = 400;
+  final int POSITION_FIX_INCREMENT = 10;
 
   CeilingObstacle(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight); 
@@ -12,8 +14,8 @@ class CeilingObstacle extends Obstacle implements Updater {
   }
 
   void fixLevel() {
-  if (dist(groundObstacle.position.x+groundObstacle.boxWidth, groundObstacle.position.y,position.x, position.y+boxHeight) < 400){
-    position.x += 10;    
+    if (dist(groundObstacle.position.x+groundObstacle.boxWidth, groundObstacle.position.y, position.x, position.y+boxHeight) < MIN_DISTANCE) {
+      position.x += POSITION_FIX_INCREMENT;
+    }
   }
-}
 }

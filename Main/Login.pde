@@ -35,7 +35,7 @@ class Login {
         if (sql.connect()) {
           sql.query("SELECT * FROM Account WHERE username='" + playerName + "';");
           if (!sql.next()) {
-            sql.execute("INSERT INTO Account VALUES (default, '" + playerName + "')");
+            sql.execute("INSERT INTO Account VALUES (default, '" + playerName + "', 0)");
             shop.insertItems();
           }
           loggedIn = true;

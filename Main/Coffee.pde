@@ -2,6 +2,10 @@ class Coffee extends Collider implements Updater {
   boolean speedBoostActive, spawned = true;
   final int WAIT_TIME = 3000;
   final int SPAWN_WAIT_TIME = 15000;
+  final int SCORE_THRESHOLD = 100;
+  final int RESPAWN_MIN = 1500;
+  final int RESPAWN_MAX = 1800;
+  final float SPEED_MULTIPLIER = 1.5;
   int currentTime, previousSpeed, despawnTime;
 
   Coffee(PVector position, float boxWidth, float boxHeight) {
@@ -24,13 +28,13 @@ class Coffee extends Collider implements Updater {
         currentTime = millis();
         speedBoostActive = true;
         previousSpeed = (int) background.speed;
-        background.speed = floor(characterSelect.getSpeed() * 1.5);
+        background.speed = floor(characterSelect.getSpeed() * SPEED_MULTIPLIER);
         spawned = false;
       }
     }
     if (!boss.spawnBoss) {
       loopCoffee();
-      if (keys[2] && highScore.highScore > 100) { 
+      if (keys[2] && highScore.highScore > SCORE_THRESHOLD) { 
         moveEntity();
       }
     } else {
@@ -57,7 +61,7 @@ class Coffee extends Collider implements Updater {
     }
     if (despawnTime + SPAWN_WAIT_TIME < millis() && !spawned) {
       spawned = true;
-      position.x = (int) random(1500, 1800);
+      position.x = (int) random(RESPAWN_MIN, RESPAWN_MAX);
     }
   }
 
