@@ -65,9 +65,9 @@ class Boss extends Collider implements Updater {
   }
 
   void pressedKey() {
-    if(key == 'g'){
-      highScore.highScore = 500;
-    }
+    //if(key == 'g'){
+    //  highScore.highScore = 500;
+    //}
   }
 
   void releasedKey() {

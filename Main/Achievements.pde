@@ -7,6 +7,7 @@ boolean achievementInDatabase[] = {false, false, false, false, false, false};
 String achievementName[] = {"", "", "", "", "", "", "", "", "", "", ""};
 int achievedId = 0;
 int achievements;
+final int ACHIEVEMENTS = 6;
 
 void initializeAchievements() {
   float achievementCounter = 0;
@@ -21,7 +22,7 @@ void initializeAchievements() {
         sql.execute("INSERT INTO Achievement VALUES (4, 'Get 400')");
         sql.execute("INSERT INTO Achievement VALUES (5, 'Get 800')");
         sql.execute("INSERT INTO Achievement VALUES (6, 'Get 1000')");
-      } else if (achievementCounter > 6) {
+      } else if (achievementCounter > ACHIEVEMENTS) {
         sql.execute("DELETE FROM Achieved");
         sql.execute("DELETE FROM Achievement");
         initializeAchievements();
