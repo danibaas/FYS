@@ -2,6 +2,8 @@ class CharacterSelect {
   boolean hasChosen, choseCorra = true, choseDonDon;
   float defaultSpeed = 5;
   final int CONTROL_TITLE_POSITION_Y = 375, CONTROLS_POSITION_Y1 = 400, CONTROLS_POSITION_Y2 = 425, CONTROLS_POSITION_Y3 = 450, CONTROLS_POSITION_Y4 = 475, CONTROLS_POSITION_Y5 = 550, CONTROLS_POSITION_Y6 = 600;
+  final int CORRA_SPEED = 8;
+  final int DONDON_SPEED = 6;
 
   void drawSelect() {
     if (!login.loggedIn) {
@@ -93,14 +95,18 @@ class CharacterSelect {
     PImage skin = defaultSkin;
     if (choseCorra && hasChosen) {
       skin = skinCorra;
-      background.speed = 8;
+      if (!coffeePickup.speedBoostActive) {
+        background.speed = CORRA_SPEED;
+      }
       player.healthbar = new Healthbar(1);
-      player.healthbar.maxLives = 4;
+      //player.healthbar.maxLives = 4;
     } else if (choseDonDon && hasChosen) {
       skin = skinDonDon;
-      background.speed = 6;
+      if (!coffeePickup.speedBoostActive) {
+        background.speed = DONDON_SPEED;
+      }
       player.healthbar = new Healthbar(1); 
-      player.healthbar.maxLives = 6;
+      //player.healthbar.maxLives = 6;
     }
     return skin;
   }
@@ -111,14 +117,14 @@ class CharacterSelect {
     if (sql.connect()) {
       sql.query("SELECT level FROM Item WHERE name='Speed';");
       if (sql.next()) {
-         speedMultiplier = sql.getInt("level"); 
+        speedMultiplier = sql.getInt("level");
       }
       sql.close();
     }
     if (choseCorra & hasChosen) {
-      speed = 8 * speedMultiplier;
+      speed = CORRA_SPEED * speedMultiplier;
     } else if (choseDonDon && hasChosen) {
-      speed = 6 * speedMultiplier;
+      speed = DONDON_SPEED * speedMultiplier;
     }
     return speed;
   }

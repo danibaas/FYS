@@ -74,7 +74,6 @@ class Money implements Updater {
         int totalCoins = savedCoins + coins;
         sql.execute("UPDATE Account SET coins='" + totalCoins + "' WHERE user_id='" + userId + "';");
       } 
-      println("Coins Saved!");
       sql.close();
     }
   }
@@ -114,7 +113,6 @@ class Money implements Updater {
       if (sql.next()) {
         sql.execute("DELETE FROM Account WHERE user_id='" + userid + "';");
       }
-      println("Deleted " + userid + " from table Account");
       sql.close();
     }
   }

@@ -39,7 +39,7 @@ class HighScore {
       if (sql.next()) {
         user_id = sql.getInt("user_id");
       }
-      println(user_id + " , this is your userId");
+      //println(user_id + " , this is your userId");
       if (user_id != 0) {
         sql.execute("INSERT INTO Highscore (user_id, score) VALUES ('"+ user_id + "', '" + score + "')");
       }
@@ -70,7 +70,7 @@ class HighScore {
       }
       sql.query("SELECT username FROM Account WHERE user_id='" + userId + "';");
       if (sql.next()) {
-         name = sql.getString("username"); 
+        name = sql.getString("username");
       }
       sql.close();
     }

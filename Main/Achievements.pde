@@ -66,12 +66,12 @@ void getAchievements() {
       achievements = sql.getInt("achievementid");
     }
   }
-  println(achievements, user_id);
+  //(achievements, user_id);
   for (int i = 0; i < achievements; i++) {
     achievementInDatabase[i] = true;
   }
-  println("dit zijn jouw achievements");
-  println(achievementInDatabase);
+  //println("dit zijn jouw achievements");
+  //println(achievementInDatabase);
 }
 
 

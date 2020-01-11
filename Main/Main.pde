@@ -66,7 +66,7 @@ final int SPEED_SIZE = 100;
 // COIN CONSTANT;
 final int COIN_SIZE = 50;
 //PROGRESS BAR CONSTANT
-final PVector PROGRESSBARPOS = new PVector(300,6);
+final PVector PROGRESSBARPOS = new PVector(300, 6);
 final int PROGRESSBARLENGTH = 400;
 final int PROGRESSBARHEIGHT = 18;
 // OTHER
@@ -107,15 +107,19 @@ void draw() {
       reset.drawObject();
     } else {
       for (Updater r : updateList) {
-        if (!(r instanceof CeilingObstacle)) {
+        if (!(r instanceof CeilingObstacle) && !(r instanceof GroundObstacle)) {
           r.updateObject();
           r.drawObject();
-        } else {
-          if (highScore.highScore > CEILING_OBSTACLE_THRESHOLD) {
-            r.updateObject();
-            r.drawObject();
-          }
         }
+        //if (!(r instanceof CeilingObstacle)) {
+        //  r.updateObject();
+        //  r.drawObject();
+        //} else {
+        //  if (highScore.highScore > CEILING_OBSTACLE_THRESHOLD) {
+        //    r.updateObject();
+        //    r.drawObject();
+        //  }
+        //}
       }
       progressBar.drawProgressBar();
       addParticleRun();
@@ -134,7 +138,6 @@ void draw() {
       metrics.drawStatistics();
     }
   }
-  //println(frameRate);
 }  
 
 void stop() {

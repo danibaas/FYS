@@ -28,7 +28,7 @@ class ProgressBar {
 
     updateProgressBar();
 
-    println(boss.isDead);
+    //println(boss.isDead);
   }
 
   void updateProgressBar() {

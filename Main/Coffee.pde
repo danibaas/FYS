@@ -6,6 +6,7 @@ class Coffee extends Collider implements Updater {
   final int RESPAWN_MIN = 1500;
   final int RESPAWN_MAX = 1800;
   final float SPEED_MULTIPLIER = 1.5;
+  float boostSpeed;
   int currentTime, previousSpeed, despawnTime;
 
   Coffee(PVector position, float boxWidth, float boxHeight) {
@@ -28,7 +29,8 @@ class Coffee extends Collider implements Updater {
         currentTime = millis();
         speedBoostActive = true;
         previousSpeed = (int) background.speed;
-        background.speed = floor(characterSelect.getSpeed() * SPEED_MULTIPLIER);
+        background.speed = boostSpeed;
+        boostSpeed = floor(characterSelect.getSpeed() * SPEED_MULTIPLIER);
         spawned = false;
       }
     }
@@ -43,6 +45,13 @@ class Coffee extends Collider implements Updater {
       }
     }
     timerThread();
+    if (speedBoostActive) {
+      if (player.airBorne && background.speed != previousSpeed) {
+        background.speed = previousSpeed;
+      } else if (!player.airBorne && background.speed != boostSpeed) {
+        background.speed = boostSpeed;
+      }
+    }
   }
 
   void pressedKey() {

@@ -75,11 +75,6 @@ class Player extends Collider implements Updater {
         clickedLastFrame = true;
       }
     }
-    if (key == 'l') {
-      for (int i = 0; i < 3; i++) {
-        println();
-      }
-    }
   }
 
   void releasedKey() {
