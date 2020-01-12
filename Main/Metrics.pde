@@ -28,8 +28,8 @@ class Metrics {
       text("Total enemies killed: " + getTotalEnemiesKilled(name), width/2, 350);
       text("Total bosses killed: " + getTotalBossesKilled(name), width/2, 400);
       text("Highscore: " + getHighScore(name), width/2, 450);
-      text("Press A to view runs", width/2, 525);
-      text("Press B to go back", width/2, 575);
+      text("Press X to view runs", width/2, 525);
+      text("Press A to go back", width/2, 575);
     } 
     if (showRuns) {
       fill(127);
@@ -63,7 +63,7 @@ class Metrics {
         sql.close();
       }
       textAlign(CENTER);
-      text("Press B to go back", width/2, 625);
+      text("Press A to go back", width/2, 625);
     }
   }
 
@@ -174,7 +174,7 @@ class Metrics {
       showStatistics = true;
     }
     //Press a or A to see the latest 8 runs of player
-    if (keyPressed && key == 'a' || key == 'A') { 
+    if (keyPressed && key == 'x' || key == 'X') { 
       showRuns = true;
     }
     if (keyPressed && key == 'b' || key == 'B') { 

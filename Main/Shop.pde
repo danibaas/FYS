@@ -88,6 +88,10 @@ class Shop {
       text("500", UPGRADE_COST_X, UPGRADE_COST_Y);
       textSize(18);
       text("Achieved " + getUserAmount(1) + " time(s)!", ACHIEVED_AMOUNT_X, ACHIEVED_AMOUNT_Y);
+      fill(255);
+      textAlign(CENTER);
+      textSize(22);
+      text("Press A to go back", width/2, 580);
     }
   }
 
@@ -102,7 +106,7 @@ class Shop {
   void pressedKey() {
     if (key == 'c' || key == 'C') {
       showShop = true;
-    } else if (key == 'b') {
+    } else if (key == 'b' || key == 'B') {
       showShop = false;
     } else if (key == ENTER) {
       if (showShop) {
@@ -133,7 +137,7 @@ class Shop {
           }
         }
       }
-    }  // if the red button on our controller is pressed set the shop to false
+    }
   }
 
   boolean canUpgrade() { // currently one item, checks value against current coins

@@ -8,7 +8,7 @@ class particle {
   float particleSize;
   float particleLife;
 
- // constructor
+  // constructor
   particle(float particleX, float particleY, float particleSpeedX, float particleSpeedY, float particleSize, float particleLife ) {
     this.particleX = particleX;
     this.particleY = particleY;
@@ -18,13 +18,13 @@ class particle {
     this.particleLife = particleLife;
   }
 
-
   // draws the particles on the screen
   void drawParticle(int particleRed, int particleYellow, int particleBlue) {
     fill(particleRed, particleYellow, particleBlue);
     noStroke();
     ellipse(particleX, particleY, particleSize, particleSize);
   }
+
   // makes the particles move
   void move() {
     particleX -= particleSpeedX;
@@ -32,6 +32,7 @@ class particle {
     particleLife --;
   }
 }
+
 // puts new particles in the array, moves them, and removes them when their time is up, for running
 void addParticleRun() {
   final int PARTICLE_X_MIN = 1;

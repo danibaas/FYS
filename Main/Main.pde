@@ -106,7 +106,6 @@ void draw() {
       gameOver.releasedKey();
       reset.drawObject();
     } else {
-      println(player.velocity, player.playerVector.y);
       for (Updater r : updateList) {
         if (!(r instanceof CeilingObstacle)) {
           r.updateObject();
@@ -145,7 +144,7 @@ void keyPressed() {
   if (!characterSelect.hasChosen) {
     characterSelect.pressed();
   } else {
-    if (key != 'c' && key != 'C' && key != 'o' && key != 'O' && key != 'p' && key != 'a' && key != 'A' && key != 'b' && key!= 'B' && screenActive) {
+    if (key != 'c' && key != 'C' && key != 'o' && key != 'O' && key != 'p' && key != 'x' && key != 'X' && key != 'b' && key!= 'B' && screenActive) {
       screenActive = false;
       metrics.startTime = millis();
     }  
