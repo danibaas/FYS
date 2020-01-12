@@ -111,6 +111,17 @@ class CharacterSelect {
     return skin;
   }
 
+  // Method die de crouched versie van de skins teruggeeft
+  PImage getCrouchedSkin() {
+    PImage skin = defaultSkin;
+    if (choseCorra && hasChosen) {
+      skin = crouchedCorra;
+    } else if (choseDonDon && hasChosen) {
+      skin = crouchedDonDon;
+    }
+    return skin;
+  }
+
   float getSpeed() {
     float speed = defaultSpeed;
     int speedMultiplier = 1; // Speed multiplier wordt bepaald door het level van de speed upgrade

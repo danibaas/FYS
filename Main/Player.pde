@@ -25,18 +25,21 @@
  */
 
 class Player extends Collider implements Updater {
-  PImage playerSkin;
+  PImage playerSkin, crouchedSkin;
   PVector playerVector;
   float velocity = 0;
+  boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, jumped, isCrouched = false;
+  int playerWidth, playerHeight, colliderType, collisionType;//, crouchCounter;
+  Healthbar healthbar;
+
+  // Constants
   final float UP_FORCE = -9.81;
   final float MOVEMENT = 3.5;
   final float GRAVITY = 0.5;
-  boolean isUp, isDown, isRight, isLeft, airBorne, clickedLastFrame, overalCollision, jumped, isCrouched;
-  int playerWidth, playerHeight, colliderType, collisionType, crouchCounter;
-  Healthbar healthbar;
 
+  // Constructor
   Player(PVector vector, int sizeW, int sizeH) {
-    super(vector, sizeW, sizeH);
+    super(vector, sizeW, sizeH); // Geef de data door aan de constructor van de parent class (collider)
     playerVector = vector;
     playerWidth = sizeW;
     playerHeight = sizeH;
@@ -45,19 +48,24 @@ class Player extends Collider implements Updater {
     updateList.add(this);
   }
 
+  // Parent method om te tekenen
   void drawObject() {
     rectMode(CORNER);
-    image(playerSkin, playerVector.x - playerWidth/2, playerVector.y - playerHeight/2);
+    if (isCrouched) {
+      image(crouchedSkin, playerVector.x - playerWidth/2, playerVector.y - playerHeight/2);
+    } else {
+      image(playerSkin, playerVector.x - playerWidth/2, playerVector.y - playerHeight/2);
+    }
   }
 
+  // Parent method om te updaten
   void updateObject() {
-    // death check
-    if (healthbar != null) {
+    if (healthbar != null) { // health check
       healthbar.updatePlayerHealth();
     }
     hasCollision();
     move();
-    if (keys[0] && !airBorne) {
+    if (keys[0] && !airBorne) { // Als de speler op springen drukt en op de grond is
       jump();
       setMove(keyCode, true);
     } else if (keys[3] && !isCrouched) {
@@ -65,6 +73,7 @@ class Player extends Collider implements Updater {
     }
   }
 
+  // Parent method om de pressed keys te checken
   void pressedKey() {
     if (key == CODED) {
       if (keyCode == UP) {
@@ -77,6 +86,7 @@ class Player extends Collider implements Updater {
     }
   }
 
+  // Parent method om de released keys te checken
   void releasedKey() {
     setMove(keyCode, false);
     if (clickedLastFrame) {
@@ -94,11 +104,12 @@ class Player extends Collider implements Updater {
     }
   }
 
+  // Method om te kijken of de player collision heeft met iets
   boolean hasCollision() {
     boolean collision = false;
-    for (Collider collider : collisionList) {
-      if (!(collider instanceof Player)) {
-        if (collider.collidesWithPlayer(this)) {
+    for (Collider collider : collisionList) { // Voor elke collider in collisionlist...
+      if (!(collider instanceof Player)) { // kijk of het geen instantie van de player is
+        if (collider.collidesWithPlayer(this)) { // kijk of het collision heeft met de player
           collision = true;
         }
       }
@@ -106,33 +117,38 @@ class Player extends Collider implements Updater {
     return collision;
   }
 
+  /** Method om de player te laten crouchen of uncrouchen
+   *
+   * @param crouched Parameter die aangeeft of er gecrouched moet worden of uncrouched. true is crouch, false is uncrouch.
+   *
+   */
   void setCrouch(boolean crouched) {
-    playerSkin = characterSelect.getPlayerSkin();
-    if (crouched && !isCrouched) {
+    playerSkin = characterSelect.getPlayerSkin(); // Haal de skin op (image)
+    if (crouched && !isCrouched) { // Als er gecrouched moet worden en de speler is niet gecrouched dan
       isCrouched = true;
       playerVector.y += playerHeight / 4;
       playerHeight /= 2;
-      playerSkin.resize(playerWidth, playerHeight);
     } else if (!crouched && isCrouched) {
       isCrouched = false;
       playerVector.y -= playerHeight / 4;
       playerHeight *= 2;
-      playerSkin.resize(playerWidth, playerHeight);
-    }
-    crouchCounter++;
-    if (crouchCounter >= 3) {
-      refreshPlayerSkin();
     }
   }
 
+  // Method for updating the skin
   void updateSkin() {
     playerSkin = characterSelect.getPlayerSkin();
+    crouchedSkin = characterSelect.getCrouchedSkin();
   }
 
+  // Method for jump mechanic
   void jump() {
-    velocity += UP_FORCE;
+    if (isCrouched) {
+      velocity += (UP_FORCE/100) * 84;
+    } else {
+      velocity += UP_FORCE;
+    }
     jumped = true;
-    //jump mechanic
   }
 
   void move() {
@@ -161,6 +177,7 @@ class Player extends Collider implements Updater {
     playerVector.y = constrain(playerVector.y + MOVEMENT * (int(isDown) - int(isUp)), groundHeight, height - groundHeight);
   }
 
+  // Method die de movement afhandelt
   boolean setMove(final int pressedKey, final boolean toMove) {
     switch (pressedKey) {
     case +'W':

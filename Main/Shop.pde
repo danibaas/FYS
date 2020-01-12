@@ -1,6 +1,8 @@
 class Shop {
   PVector icon = new PVector(1100, 10);
   boolean showShop;
+
+  // Constants
   final int ACHIEVED_AMOUNT_X = 900;
   final int ACHIEVED_AMOUNT_Y = 160;
   final int UPGRADE_COST_X = 650;
@@ -18,6 +20,7 @@ class Shop {
   final int INNER_LAYER_WIDTH = 780;
   final int INNER_LAYER_HEIGHT = 100;
 
+  // Method om alles in de database te zetten wat nodig is
   void insertItems() {
     if (sql.connect()) {
       sql.query("SELECT * FROM Item;");
@@ -54,6 +57,7 @@ class Shop {
     }
   }
 
+  // Method om het aantal users op te halen dat het item heeft met het gegeven itemid
   int getUserAmount(int itemid) { // get the amount of users that have the item
     int amount = 0;
     if (sql.connect()) {
@@ -66,7 +70,8 @@ class Shop {
     return amount;
   }
 
-  void drawShop() { // Draw the actual shop with upgrades in it
+  // Method om shop met upgrades erin te tekenen
+  void drawShop() {
     if (showShop) {
       fill(200);
       rect(OUTER_LAYER_X, OUTER_LAYER_Y, OUTER_LAYER_WIDTH, OUTER_LAYER_HEIGHT);
@@ -86,12 +91,14 @@ class Shop {
     }
   }
 
-  void drawIcon() { // Draw Icon that opens the shop
+  // Method om icon te tekenen die de shop opent
+  void drawIcon() {
     tint(200, 200);
     image(shopIcon, icon.x, icon.y);
     noTint();
   }
 
+  // Method om de pressed keys te checken
   void pressedKey() {
     if (key == 'c' || key == 'C') {
       showShop = true;

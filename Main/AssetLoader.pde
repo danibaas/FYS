@@ -1,5 +1,5 @@
 // IMAGES
-PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, skinCorra, defaultSkin, coffee, skinEnemy, enemyWeapon, 
+PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, crouchedDonDon, skinCorra, crouchedCorra, defaultSkin, coffee, skinEnemy, enemyWeapon, 
   health, stroopwafel, obstacle, ceilingObstacle, soundOn, skinBoss, shopIcon, speed_upgrade, coin, skull;
 
 //SOUNDS
@@ -37,6 +37,14 @@ void loadAssets() {
   skinDonDon.resize(PLAYER_WIDTH, PLAYER_HEIGHT);
   skinCorra = loadImage(sketchPath() + "/assets/images/corra.png");
   skinCorra.resize(PLAYER_WIDTH, PLAYER_HEIGHT);
+
+  // CROUCHED SKINS
+  crouchedDonDon = loadImage(sketchPath() + "/assets/images/dondon.png");
+  crouchedDonDon.resize(PLAYER_WIDTH, PLAYER_HEIGHT / 2);
+  crouchedCorra = loadImage(sketchPath() + "/assets/images/corra.png");
+  crouchedCorra.resize(PLAYER_WIDTH, PLAYER_HEIGHT / 2);
+
+  // DEFAULT SKIN
   defaultSkin = loadImage(sketchPath() + "/assets/images/player.png");
 
   // COFFEE
@@ -66,11 +74,11 @@ void loadAssets() {
   // COIN
   coin = loadImage(sketchPath() + "/assets/images/coin.png");
   coin.resize(COIN_SIZE, COIN_SIZE);
-  
+
   // PROGRESSBAR
   skull = loadImage(sketchPath() + "/assets/images/skull.png");
   skull.resize(SKULL_SIZE, SKULL_SIZE);
-  
+
   // FONTS
   eightBit = createFont(sketchPath() + "/assets/fonts/PressStart2P.ttf", 30);
 
@@ -80,11 +88,4 @@ void loadAssets() {
   shoot = new SoundFile(this, "/assets/sounds/stapler2.mp3");
   enemyHit = new SoundFile(this, "/assets/sounds/Hit1.wav");
   coinPickup = new SoundFile(this, "/assets/sounds/Coin3.wav");
-}
-
-void refreshPlayerSkin() {
-  skinDonDon = loadImage(sketchPath() + "/assets/images/dondon.png");
-  skinDonDon.resize(PLAYER_WIDTH, PLAYER_HEIGHT);
-  skinCorra = loadImage(sketchPath() + "/assets/images/corra.png");
-  skinCorra.resize(PLAYER_WIDTH, PLAYER_HEIGHT);
 }

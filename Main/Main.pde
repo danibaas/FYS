@@ -106,20 +106,17 @@ void draw() {
       gameOver.releasedKey();
       reset.drawObject();
     } else {
+      println(player.velocity, player.playerVector.y);
       for (Updater r : updateList) {
-        if (!(r instanceof CeilingObstacle) && !(r instanceof GroundObstacle)) {
+        if (!(r instanceof CeilingObstacle)) {
           r.updateObject();
           r.drawObject();
+        } else {
+          if (highScore.highScore > CEILING_OBSTACLE_THRESHOLD) {
+            r.updateObject();
+            r.drawObject();
+          }
         }
-        //if (!(r instanceof CeilingObstacle)) {
-        //  r.updateObject();
-        //  r.drawObject();
-        //} else {
-        //  if (highScore.highScore > CEILING_OBSTACLE_THRESHOLD) {
-        //    r.updateObject();
-        //    r.drawObject();
-        //  }
-        //}
       }
       progressBar.drawProgressBar();
       addParticleRun();
