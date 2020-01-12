@@ -4,6 +4,8 @@ class CharacterSelect {
   final int CONTROL_TITLE_POSITION_Y = 375, CONTROLS_POSITION_Y1 = 400, CONTROLS_POSITION_Y2 = 425, CONTROLS_POSITION_Y3 = 450, CONTROLS_POSITION_Y4 = 475, CONTROLS_POSITION_Y5 = 550, CONTROLS_POSITION_Y6 = 600;
   final int CORRA_SPEED = 8;
   final int DONDON_SPEED = 6;
+  int resizeImage = 100;
+  int titelSize = 30, textSize1 = 25, textSize2 = 20;
 
   void drawSelect() {
     if (!login.loggedIn) {
@@ -13,14 +15,15 @@ class CharacterSelect {
         background(0, 127, 127);
         textAlign(CENTER);
         strokeWeight(3);
+        stroke(3);
 
         //titel
-        textSize(30);
+        textSize(titelSize);
         fill(0);
         text("Corra & Dondon’s Adventure", width/2, 50);
 
-        //uitleg
-        textSize(25);
+        //Controls
+        textSize(textSize1);
         textAlign(CENTER);
         text("Controls", width/2, CONTROL_TITLE_POSITION_Y);
         text("R/A = Attack", width/2, CONTROLS_POSITION_Y1);
@@ -29,13 +32,13 @@ class CharacterSelect {
         text("Y = Crouch", width/2, CONTROLS_POSITION_Y4);
         text("Pick this up for a speedboost", width/2, CONTROLS_POSITION_Y5);
         image(coffee, width/2-50, CONTROLS_POSITION_Y6);
-        coffee.resize(100, 100);
+        coffee.resize(resizeImage, resizeImage);
 
         // when not selected
         //corra
-        textSize(20);
+        textSize(textSize2);
         textAlign(CENTER);
-        skinCorra.resize(100, 100);
+        skinCorra.resize(resizeImage, resizeImage);
         image(skinCorra, 450, 100);
         fill(127, 0, 0);
         rect(400, 200, 200, 100);
@@ -44,7 +47,7 @@ class CharacterSelect {
         text("Normal speed : 8", 500, 325);
         text("Boosted speed : 16", 500, 350);
         //dondon
-        skinDonDon.resize(100, 100);
+        skinDonDon.resize(resizeImage, resizeImage);
         image(skinDonDon, 730, 100);
         fill(127, 0, 0);
         rect(680, 200, 200, 100);
@@ -60,6 +63,7 @@ class CharacterSelect {
           fill(0);
           text("Corra", 500, 250);
         } else if (choseDonDon) {
+          strokeWeight(3);
           fill(255, 0, 0);
           rect(680, 200, 200, 100);
           fill(0);

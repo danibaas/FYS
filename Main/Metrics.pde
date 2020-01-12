@@ -40,6 +40,7 @@ class Metrics {
       textAlign(LEFT);
       fill(0);
       if (sql.connect()) {
+        //Shows runs 8 latest runs
         int id = getUserId(login.playerName);
         sql.connect();
         sql.query("SELECT COUNT(*) FROM (SELECT user_id FROM Gamerun WHERE user_id='" + id + "' LIMIT 8) AS runs;");
@@ -185,6 +186,3 @@ class Metrics {
     }
   }
 }
-
-//CREATE TABLE IF NOT EXISTS Gamerun(user_id int, startTime int, enemiesKilled int, bossesKilled int, score int, PRIMARY KEY(user_id, startTime), FOREIGN KEY(user_id) REFERENCES Account(user_id));
-//CREATE TABLE IF NOT EXISTS Statistic(user_id int, totalRuns int, totalEnemiesKilled int, totalBossesKilled int, highScore int, PRIMARY KEY(user_id), FOREIGN KEY(user_id) REFERENCES Account(user_id));
