@@ -32,6 +32,12 @@ class Player extends Collider implements Updater {
   int playerWidth, playerHeight, colliderType, collisionType;//, crouchCounter;
   Healthbar healthbar;
 
+  int widthsprite = 243, heightsprite = 672, widthspriteDonDon = 475;
+  int cutImageTop = 0, cutImageLeft = 0;
+  int dx = 0;
+  int firstnum = 0;
+  int secondnum = 0;
+
   // Constants
   final float UP_FORCE = -9.81;
   final float MOVEMENT = 3.5;
@@ -54,7 +60,7 @@ class Player extends Collider implements Updater {
     if (isCrouched) {
       image(crouchedSkin, playerVector.x - playerWidth/2, playerVector.y - playerHeight/2);
     } else {
-      image(playerSkin, playerVector.x - playerWidth/2, playerVector.y - playerHeight/2);
+      playerAnimation();
     }
   }
 
@@ -176,6 +182,44 @@ class Player extends Collider implements Updater {
       velocity = 0;
     }
     playerVector.y = constrain(playerVector.y + MOVEMENT * (int(isDown) - int(isUp)), groundHeight, height - groundHeight);
+  }
+  
+//methode om speler sprite te animeren
+  void playerAnimation() {
+    //als speler corra heeft gekozen
+    if (characterSelect.choseCorra) {
+      //kopieer dit stukje van image skinCorraRun
+      copy(skinCorraRun, cutImageLeft, cutImageTop, widthsprite, heightsprite, int(playerVector.x - PLAYER_WIDTH/2), int(playerVector.y - PLAYER_HEIGHT/2), PLAYER_WIDTH, PLAYER_HEIGHT+20);
+      
+      if (!player.airBorne && keys[2] == true) {
+        firstnum += 1;
+        if (firstnum > secondnum) {
+          cutImageLeft += widthsprite;
+          secondnum +=12;
+        }
+      }
+
+      if (cutImageLeft >= 1200) {
+        cutImageLeft = 2;
+      }
+    } 
+    //als speler dondon heeft gekozen
+    else if (characterSelect.choseDonDon) {
+      //kopieer dit stukje van image skinDonDonRun
+      copy(skinDonDonRun, cutImageLeft, cutImageTop, widthspriteDonDon, heightsprite, int(playerVector.x - PLAYER_WIDTH/2), int(playerVector.y - PLAYER_HEIGHT/2), PLAYER_WIDTH, PLAYER_HEIGHT+20);
+
+      if (!player.airBorne && keys[2] == true) {
+        firstnum += 1;
+        if (firstnum > secondnum) {
+          cutImageLeft += widthspriteDonDon;
+          secondnum +=12;
+        }
+      }
+
+      if (cutImageLeft >= 1200) {
+        cutImageLeft = 2;
+      }
+    }
   }
 
   // Method die de movement input afhandelt

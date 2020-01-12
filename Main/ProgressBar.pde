@@ -16,6 +16,7 @@ class ProgressBar {
     this.BARHEIGHT = BARHEIGHT;
   }
   void drawProgressBar() {
+    stroke(0);
     fill(255, 0, 0);
     rect(PROGRESSBARPOS.x-5, PROGRESSBARPOS.y-5, PROGRESSBARPOS.x+BARLENGTH+10, PROGRESSBARPOS.y+BARHEIGHT+10);
 

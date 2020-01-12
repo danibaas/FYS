@@ -2,8 +2,8 @@ class Boss extends Collider implements Updater {
   boolean spawnBoss = false;
   boolean hasBeenHit, isDead, bossOnScreen;
   float bossScore = 500, bossVelocity = 3;
-  int bossHealth = 2, killBonus = 100;
-  final float SPAWNSCORE = 600;
+  int bossHealth = 21, killBonus = 100;
+  final float SPAWNSCORE = 500;
   Healthbar healthbar;
   BossAttack attack;
 

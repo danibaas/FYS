@@ -38,7 +38,6 @@ class CharacterSelect {
         //corra
         textSize(textSize2);
         textAlign(CENTER);
-        skinCorra.resize(resizeImage, resizeImage);
         image(skinCorra, 450, 100);
         fill(127, 0, 0);
         rect(400, 200, 200, 100);
@@ -47,7 +46,6 @@ class CharacterSelect {
         text("Normal speed : 8", 500, 325);
         text("Boosted speed : 16", 500, 350);
         //dondon
-        skinDonDon.resize(resizeImage, resizeImage);
         image(skinDonDon, 730, 100);
         fill(127, 0, 0);
         rect(680, 200, 200, 100);

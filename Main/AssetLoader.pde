@@ -1,6 +1,6 @@
 // IMAGES
 PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, crouchedDonDon, skinCorra, crouchedCorra, defaultSkin, coffee, skinEnemy, enemyWeapon, 
-  health, stroopwafel, obstacle, ceilingObstacle, soundOn, skinBoss, shopIcon, speed_upgrade, coin, skull;
+  health, stroopwafel, obstacle, ceilingObstacle, soundOn, skinBoss, shopIcon, speed_upgrade, coin, skull, skinCorraRun, skinDonDonRun;
 
 //SOUNDS
 SoundFile soundTrack;
@@ -38,6 +38,12 @@ void loadAssets() {
   skinCorra = loadImage(sketchPath() + "/assets/images/corra.png");
   skinCorra.resize(PLAYER_WIDTH, PLAYER_HEIGHT);
 
+  //SPRITE SHEETS
+  skinDonDonRun = loadImage(sketchPath() + "/assets/images/dondon_run.png");
+  //skinDonDonRun.resize(PLAYER_WIDTH, PLAYER_HEIGHT);
+  skinCorraRun = loadImage(sketchPath() + "/assets/images/corra_run.png");
+  //skinCorraRun.resize(PLAYER_WIDTH, PLAYER_HEIGHT);
+  
   // CROUCHED SKINS
   crouchedDonDon = loadImage(sketchPath() + "/assets/images/dondon.png");
   crouchedDonDon.resize(PLAYER_WIDTH, PLAYER_HEIGHT / 2);
