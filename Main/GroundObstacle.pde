@@ -2,7 +2,7 @@ class GroundObstacle extends Obstacle implements Updater {
 
   // Constructor
   GroundObstacle(PVector position, float boxWidth, float boxHeight) {
-    super(position, boxWidth, boxHeight); // Geef de data door aan de constructor van de parent class (collider)
+    super(position, boxWidth, boxHeight); // gives data to the constructor of the parent class (collider)
     updateList.add(this);
   }
 

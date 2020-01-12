@@ -8,7 +8,9 @@ String achievementName[] = {"", "", "", "", "", "", "", "", "", "", ""};
 int achievedId = 0;
 int achievements;
 final int ACHIEVEMENTS = 6;
+final int DRAW_TIME = 5;
 
+//Puts the achievements in the database
 void initializeAchievements() {
   float achievementCounter = 0;
   if (sql.connect()) {
@@ -27,6 +29,7 @@ void initializeAchievements() {
         sql.execute("DELETE FROM Achievement");
         initializeAchievements();
       }
+      // gets the names of the achievements so they can be printed on the screen
       for (int i = 1; i < achievementCounter + 1; i++) {
         sql.execute("SELECT * FROM Achievement WHERE achievementid = '"+i+"'");
         if (sql.next()) {
@@ -38,6 +41,7 @@ void initializeAchievements() {
   }
 }
 
+// gets the id of the user from the database, so the achievements will be matched with the right player
 void getUserId() {
   if (sql.connect()) {
     sql.execute("SELECT user_id FROM Account WHERE username='" + login.playerName + "'");
@@ -48,7 +52,7 @@ void getUserId() {
   }
 }
 
-
+// sets the achievements in the database with the right user id
 void setAchievement(int achievementNumber) {
   if (sql.connect()) {
     sql.execute("INSERT INTO Achieved VALUES ('"+user_id+"', ' "+achievementNumber+" ')");
@@ -60,6 +64,7 @@ void setAchievement(int achievementNumber) {
   }
 }
 
+//checks if user already got the achievement before, so it won't be in the database twice
 void getAchievements() {
   if (sql.connect()) {
     sql.execute("SELECT achievementid FROM Achieved WHERE user_id = '" + user_id + "' ORDER BY achievementid DESC");
@@ -67,26 +72,24 @@ void getAchievements() {
       achievements = sql.getInt("achievementid");
     }
   }
-  //(achievements, user_id);
   for (int i = 0; i < achievements; i++) {
     achievementInDatabase[i] = true;
   }
-  //println("dit zijn jouw achievements");
-  //println(achievementInDatabase);
 }
 
-
+// the way the achievement is drawn with the timing of how long it is drawn
 void drawAchievement(int count) {
   fill(0);
   text(achievementName[count], positionAchievement, positionAchievement);
   if (startSeconds==0) {
     startSeconds=second();
   }
-  if (second() > startSeconds + 5) {
+  if (second() > startSeconds + DRAW_TIME) {
     positionAchievement = 0;
   }
 }
 
+// draws the achievement on the screen when it is achieved, so the player knows it's achieved
 void scoreAchievements() {
   if (highScore.highScore > 50) {
     if (achievementDone[0] == false) {
@@ -141,6 +144,7 @@ void scoreAchievements() {
   }
 }
 
+// actually puts the achievements in database when achieved
 public void endAchievements() {
 
   if (highScore.highScore > 50 && achievementInDatabase[0] == false) {

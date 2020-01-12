@@ -3,6 +3,12 @@ class Fireball extends Collider {
   int fireballWidth, fireballHeight, fireballSpecialWidth, fireballSpecialHeight, speed;
   final int START_POSITION = ceil(player.position.x + player.playerWidth / 2);
   boolean special, hasFired, shotByPlayer;
+  final int PARTICLE_X_MIN = 1;
+  final int PARTICLE_X_MAX = 10;
+  final int PARTICLE_Y_MIN = 1;
+  final int PARTICLE_Y_MAX = 5;
+  final int PARTICLE_SIZE_MIN = 1;
+  final int PARTICLE_SIZE_MAX = 10;
 
   Fireball(PVector attack, int fireballWidth, int fireballHeight, int speed) {
     super(attack, fireballWidth, fireballHeight);
@@ -45,7 +51,7 @@ class Fireball extends Collider {
         enemy.timer = millis();
         if (enemy.enemyGotHurt) {
           for (int i = 0; i < 55; i++) {
-            shootParticles.add(new particle(enemy.position.x, enemy.position.y+50, -random(1, 10), -random(1, 5), random(1, 10)));
+            shootParticles.add(new particle(enemy.position.x, enemy.position.y+PARTICLE_OFFSET, -random(PARTICLE_X_MIN, PARTICLE_X_MAX), -random(PARTICLE_Y_MIN, PARTICLE_Y_MAX), random(PARTICLE_SIZE_MIN, PARTICLE_SIZE_MAX),PARTICLE_LIFE));
           }
           if (shootParticles.size()>20) { 
             enemy.position.x = (int) random(enemy.RESPAWN_MIN, enemy.RESPAWN_MAX);

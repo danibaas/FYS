@@ -3,18 +3,22 @@ class Enemy extends Collider implements Updater {
   final int WAIT_TIME = 5000;
   final int RESPAWN_MIN = 1800;
   final int RESPAWN_MAX = 2100;
+  final int ATTACK_POSITION = 15;
+  final int ATTACK_WIDTH = 60;
+  final int ATTACK_HEIGHT = 30;
   boolean enemyGotHurt;
   Healthbar healthbar;
   EnemyAttack enemyAttack;
 
+//constructor
   Enemy(PVector position, float boxWidth, float boxHeight) {
     super(position, boxWidth, boxHeight);
     timer = millis();
     healthbar = new Healthbar(1);
-    enemyAttack = new EnemyAttack(new PVector(position.x, position.y + 15), 60, 30);
+    enemyAttack = new EnemyAttack(new PVector(position.x, position.y + ATTACK_POSITION), ATTACK_WIDTH, ATTACK_HEIGHT);
     updateList.add(this);
   }
-
+// method to update the enemy
   void updateObject() {
     enemyAttack.attack();
     if (gameOver.gameOver) {
@@ -45,7 +49,7 @@ class Enemy extends Collider implements Updater {
       enemy.position.x = groundObstacle.position.x + groundObstacle.boxWidth + 200;
     }
   } 
-
+// method to drow the enemy to the screen
   void drawObject() {
     if (healthbar != null) {
       healthbar.drawEnemyHealth();
@@ -59,7 +63,7 @@ class Enemy extends Collider implements Updater {
 
   void releasedKey() {
   }
-
+// if the enemy is dead, he must respawn at a place further in the level
   void checkDead() {
     if (healthbar != null) {
       if (healthbar.isDead) {
@@ -72,7 +76,7 @@ class Enemy extends Collider implements Updater {
       }
     }
   }
-
+// if you walk past the enemy, he must respawn at a place further in the level
   void loopEnemy() {
     if (position.x + boxWidth < 0 && canWalk()) {
       timer = millis(); 
@@ -80,7 +84,7 @@ class Enemy extends Collider implements Updater {
       healthbar.currentLives = 1;
     }
   }
-
+// makes sure you don't run into the enemy instantly when you kill him
   boolean canWalk() {
     boolean walk = false;
     if (timer + WAIT_TIME < millis() && keys[2] && highScore.highScore > 200) {
@@ -95,24 +99,26 @@ class Enemy extends Collider implements Updater {
     boolean outOfScreen, attack;
     int timer;
     final int WAIT_TIME = 2500;
-
+    final int ATTACK_DISTANCE = -1050;
+    final int ATTACK_OFFSET = 50;
+//constructor
     EnemyAttack(PVector enemyPos, float boxWidth, float boxHeight) {
       super(enemyPos, boxWidth, boxHeight);
       this.enemyPos = enemyPos;
       attackWidth = boxWidth;
       attackHeight = boxHeight;
     }
-
+// enemy can only attack when he's in the screen
     boolean canAttack() {
       boolean attack = false;
-      if (player.position.x - enemy.position.x > -1050 && (outOfScreen || !attack) && (timer + WAIT_TIME < millis())) {
+      if (player.position.x - enemy.position.x > ATTACK_DISTANCE && (outOfScreen || !attack) && (timer + WAIT_TIME < millis())) {
         attack = true;
       } else {
         attack = false;
       }
       return attack;
     }
-
+// the attack spawns and moves
     void attack() {
       if (canAttack()) {
         enemyPos.y = enemy.position.y;
@@ -123,7 +129,7 @@ class Enemy extends Collider implements Updater {
           enemyPos.x -= background.speed+5;
         }
       } else {
-        enemyPos.x = enemy.position.x - 50;
+        enemyPos.x = enemy.position.x - ATTACK_OFFSET;
       }
       if (collidesWithPlayer(player)) {
         player.healthbar.isDead = true;
@@ -133,12 +139,12 @@ class Enemy extends Collider implements Updater {
         attack = false;
         timer = millis();
         outOfScreen = true;
-        enemyPos.x = enemy.position.x-50;
+        enemyPos.x = enemy.position.x-ATTACK_OFFSET;
       } else {
         outOfScreen = false;
       }
     }
-
+// attack is drawn
     void drawAttack() {
       if (attack) {
         noStroke();
