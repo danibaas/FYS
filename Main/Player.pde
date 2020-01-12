@@ -151,6 +151,7 @@ class Player extends Collider implements Updater {
     jumped = true;
   }
 
+  // Method die de beweging van de speler afhandelt
   void move() {
     int trueHeight = height - (int) background.GROUND_HEIGHT;
     int groundHeight = trueHeight + playerHeight / 2;
@@ -177,7 +178,7 @@ class Player extends Collider implements Updater {
     playerVector.y = constrain(playerVector.y + MOVEMENT * (int(isDown) - int(isUp)), groundHeight, height - groundHeight);
   }
 
-  // Method die de movement afhandelt
+  // Method die de movement input afhandelt
   boolean setMove(final int pressedKey, final boolean toMove) {
     switch (pressedKey) {
     case +'W':
