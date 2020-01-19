@@ -47,7 +47,7 @@ class HighScore {
       sql.close();
     }
   }
-
+  //haal score uit database
   float getScore(String name) {
     float score = 0;
     if (sql.connect()) {
@@ -60,6 +60,7 @@ class HighScore {
     return score;
   }
 
+  //haal de top score uit de database
   String getTopScore() {
     String name = "";
     if (sql.connect()) {

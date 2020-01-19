@@ -7,13 +7,16 @@ class Login {
   String returnedusername;
   boolean loggedIn = false;
 
+  //source: https://forum.processing.org/two/discussion/5697/taking-away-the-last-added-character-from-a-string
+  //login text box met zelf toegevoegde functies
   void type() { 
+    //haal laatste letter weg van de string
     if (playerName.length() >= 17) {
       if (keyPressed&&key==BACKSPACE) {
         // backspace: remove letter  
         if (playerName.length()>=1) {
           playerName=playerName.substring(0, playerName.length()-1);
-        } // if 
+        }
         returnedusername=playerName;
       }
     } else if (keyPressed&&key==BACKSPACE) {
@@ -22,12 +25,15 @@ class Login {
         playerName=playerName.substring(0, playerName.length()-1);
       }
       returnedusername=playerName;
+    //als je delete klikt dan wis je de hele playername
     } else if (keyPressed&&key==DELETE) {
       playerName="";
       returnedusername=playerName;
+    //als je spatie drukt dan word de spatie vervangen met een underscore
     } else if (keyPressed&&key==' ') {
       playerName+='_';
       returnedusername=playerName;
+    //als je op enter drukt dan word de playername gestuurt naar de database als die er nog niet instaat
     } else if (keyPressed&&key==ENTER) {
       if (playerName == "" || playerName == " ") {
         println("no username detected");
@@ -44,13 +50,14 @@ class Login {
           sql.close();
         }
       }
+    //voeg letter toe aan de playername string
     } else if (keyPressed&&key!=CODED) { 
       playerName+=key; 
       returnedusername=playerName;
       //getUserId();
     }
   }
-
+  //laat textbox zien
   void display() {
     textAlign(LEFT);
     background(127);

@@ -39,11 +39,6 @@ class Boss extends Collider implements Updater {
     }
     if (healthbar.currentLives > 0) {
       isDead = false;
-      //spawnBoss = false;
-      //isDead = false;
-      //bossScore += SPAWNSCORE;
-      //highScore.highScore += killBonus;
-      //healthbar.currentLives = bossHealth;
     }
     if (!spawnBoss) {
       position.x = -999;
@@ -55,6 +50,7 @@ class Boss extends Collider implements Updater {
     attack.shoot();
   }
 
+  //beweeg boss op en neer
   void moveBoss() {
     position.y -= bossVelocity;
     if (position.y < 100) {
@@ -64,10 +60,19 @@ class Boss extends Collider implements Updater {
     }
   }
 
+  //haal alle obstakels weg uit de boss kamer
+  void clearBossRoom() {
+    if (spawnBoss) {
+      if (groundObstacle.position.x < width) {
+        groundObstacle.position.x+=10;
+      }
+      if (wireObstacle.position.x < width) {
+        groundObstacle.position.x+=10;
+      }
+    }
+  }
+
   void pressedKey() {
-    //if(key == 'g'){
-    //  highScore.highScore = 500;
-    //}
   }
 
   void releasedKey() {
@@ -93,7 +98,7 @@ class Boss extends Collider implements Updater {
         image(enemyWeapon, attackPos.x, attackPos.y, attackWidth, attackHeight);
       }
     }
-
+    //boss kogel
     void shoot() {
       if (canAttack()) {
         PVector playerPosition = player.playerVector;
@@ -119,7 +124,8 @@ class Boss extends Collider implements Updater {
         player.healthbar.isDead = true;
       }
     }
-
+    
+    //kijk of de boss kan attacken aan de hand van de checktime methode
     boolean canAttack() {
       boolean attack = false;
       if (timer + WAIT_TIME < millis() && checkTime()) {
@@ -127,24 +133,14 @@ class Boss extends Collider implements Updater {
       }
       return attack;
     }
-
+    
+    //timer van de boss attack
     boolean checkTime() {
       boolean time = false;
       if (spawn + DELAY < millis()) {
         time = true;
       }
       return time;
-    }
-  }
-  
-  void clearBossRoom(){
-    if(spawnBoss){
-      if(groundObstacle.position.x < width){
-        groundObstacle.position.x+=10;
-      }
-      if(wireObstacle.position.x < width){
-        groundObstacle.position.x+=10;
-      }
     }
   }
 }

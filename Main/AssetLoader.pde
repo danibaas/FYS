@@ -1,3 +1,4 @@
+//initializeer/declareer alle sprites/sounds
 // IMAGES
 PImage backgroundImage, backgroundpane, backgroundpane2, backgroundpane3, fireBall, fireBallSpecial, skinDonDon, crouchedDonDon, skinCorra, crouchedCorra, defaultSkin, coffee, skinEnemy, enemyWeapon, 
   health, stroopwafel, obstacle, ceilingObstacle, soundOn, skinBoss, shopIcon, speed_upgrade, coin, skull, skinCorraRun, skinDonDonRun;

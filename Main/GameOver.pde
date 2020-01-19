@@ -22,6 +22,7 @@ class GameOver {
       text("Player", row2, yPos+scoresTopOffset);
       text("Highscore", row3, yPos+scoresTopOffset);
       textSize(18);
+      //haal de top 10 highscores uit de database en geef ze weer in een lijst
       if (sql.connect()) {
         for (int i = 0; i < 10; i++) {
           sql.query("SELECT Account.username, Highscore.score FROM Highscore INNER JOIN Account ON Highscore.user_id = Account.user_id ORDER BY score DESC LIMIT 1 OFFSET "+i);
@@ -41,6 +42,7 @@ class GameOver {
     }
   }
 
+  //game over scherm
   void drawGameOver() {
     gameOver = true;
     if (!savedToDatabase) {
@@ -94,6 +96,7 @@ class GameOver {
     }
   }
   void pressedKey() {
+    //game over menu controller mapping
     if (keyPressed) {
       if (highscoreBox && key == ENTER) {
         loadScores = true;
