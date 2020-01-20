@@ -10,6 +10,7 @@ class Fireball extends Collider {
   final int PARTICLE_SIZE_MIN = 1;
   final int PARTICLE_SIZE_MAX = 10;
 
+  //Constructor
   Fireball(PVector attack, int fireballWidth, int fireballHeight, int speed) {
     super(attack, fireballWidth, fireballHeight);
     normalAttack = attack;
@@ -18,7 +19,8 @@ class Fireball extends Collider {
     this.speed = speed;
     special = false;
   }
-
+  
+  //Constructor
   Fireball(PVector attack, int fireballSpecialWidth, int fireballSpecialHeight, int speed, boolean special) {
     super(attack, fireballSpecialWidth, fireballSpecialHeight);
     specialAttack = attack;
@@ -27,7 +29,8 @@ class Fireball extends Collider {
     this.speed = speed;
     this.special = special;
   }
-
+  
+  //Teken de fireball/nietjes 
   void drawFireball() {
     if (special) {
       image(fireBallSpecial, specialAttack.x, specialAttack.y, fireballSpecialWidth, fireballSpecialHeight);
@@ -35,7 +38,8 @@ class Fireball extends Collider {
       image(fireBall, normalAttack.x, normalAttack.y, fireballWidth, fireballHeight);
     }
   }
-
+  
+  //If fired add to collision 
   void updateFireball() {
     if (!hasFired) {
       collisionList.remove(this);
@@ -43,7 +47,8 @@ class Fireball extends Collider {
       collisionList.add(this);
     }
   }
-
+  
+  
   void move() {
     for (Collider collider : collisionList) {
       if (collides(collider) && collider instanceof Enemy) {
